@@ -1,0 +1,50 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix testv: <http://www.txample.com/people/voc/>.
+@prefix testd: <http://www.txample.com/people/data/>.
+@prefix ex: <http://www.txample.com/people/voc/>.
+
+
+<#Test>
+
+	rr:logicalTable [ rr:tableName "";];
+
+	rr:subjectMap [
+		rr:template "http://www.example.com/people/data/{ID}";
+		rr:termType rr:IRI;
+		rr:class "http://www.example.com/" ;
+	];
+	
+   rr:predicateObjectMap [
+		rr:predicate testv:4 ;
+		rr:objectMap  [ 
+			rr:column "name";
+			rr:termType rr:Literal;
+		];
+   ];
+
+	rr:predicateObjectMap [
+		rr:predicate testv:1 ;
+		rr:objectMap  [
+			rr:column "age";
+			rr:termType rr:Literal;
+		];
+   ];
+
+
+	rr:predicateObjectMap [
+		rr:predicate testv:1 ;
+		rr:objectMap  [
+			rr:column "age";
+			rr:termType rr:Literal;
+			rr:datatype "http://www.example.com/";
+		];
+   ];
+
+
+.
+
+

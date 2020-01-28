@@ -1,0 +1,9 @@
+in the directory:
+$ mvn clean
+to clean the project
+$ mvn compile
+-> will generate the bytecode in ./target/classes
+$ mvn dependency:copy-dependencies
+-> will put all necessary libraries in ./target/dependency
+$ java -cp "./target/classes:./target/dependency/*" ShaclTest
+will execute from the library, notice that I had to indicate where to find the class files and the dependency
