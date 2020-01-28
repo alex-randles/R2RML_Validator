@@ -13,7 +13,7 @@ function dereferenceClassURI(resource) {
 		}
 		if (!class_URI_checked){
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getResponseCode(labelTriple.object.lex);
+	        var ResponseCode = JavaCLass.getResponseCode(String(labelTriple.object));
 	        class_URI_checked = true;
             return ResponseCode;
 		}
@@ -34,7 +34,7 @@ function dereferenceDataTypeURI(resource) {
 		}
 		if (!datatype_URI_checked){
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getResponseCode(labelTriple.object.lex);
+	        var ResponseCode = JavaCLass.getResponseCode(String(labelTriple.object));
 	        datatype_URI_checked = true;
             return ResponseCode;
 	    // return ResponseCode;

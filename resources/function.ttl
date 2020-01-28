@@ -25,8 +25,7 @@ rmlsh:TriplesMapShape
 	a sh:NodeShape ;
 	rdfs:label "Triples map shape"@en ;
 	rdfs:comment "Defines constraints for a well-formed triples map."@en ;
-	sh:message "TriplesMap is ill-formed." ;
-
+	sh:message "Triples map should have one and only one logical source." ;
 	sh:targetClass rr:TriplesMap ;
 	sh:targetSubjectsOf
 		rr:logicalTable,
@@ -34,12 +33,22 @@ rmlsh:TriplesMapShape
 		rr:subject,
 		rr:subjectMap ;
 
-	sh:property [
-		sh:message "Triples map should have one and only one logical source." ;
-		sh:path rml:logicalSource ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
+	sh:xone (
+		[
+			sh:property [
+				sh:path rml:logicalSource ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+		[
+			sh:property [
+				sh:path rr:logicalTable ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+	) ;
 
 	sh:xone (
 		[
@@ -63,7 +72,7 @@ rmlsh:TermMapShape
 	a sh:NodeShape ;
 	rdfs:label "Term map shape"@en ;
 	rdfs:comment "Defines constraints for a well-formed term map."@en ;
-	sh:message "Term map is ill-formed." ;
+	sh:message "Term map is ilffl-formed." ;
 
 	# NOTE: We don't target object maps directly, because not all object maps are term maps;
 	#       the range for `rr:objectMap` is `rr:ObjectMap` or `rr:RefObjectMap`
@@ -82,8 +91,7 @@ rmlsh:TermMapShape
 		rr:constant ,
 		rml:reference ,
 		rr:template ,
-		rr:termType ,
-		fnml:functionValue ;
+		rr:termType ;
 
 	sh:xone (
 		[
@@ -103,13 +111,6 @@ rmlsh:TermMapShape
 		[
 			sh:property [
 				sh:path rr:template ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path fnml:functionValue ;
 				sh:minCount 1 ;
 				sh:maxCount 1 ;
 			]
@@ -148,26 +149,35 @@ rmlsh:TermMapTermTypeShape
 	]
 .
 
-rmlsh:ObjectOrRefObjectMapShape
-	a sh:NodeShape ;
-	# TODO: PM: could we not use sh:targetObjectsOf?
-	sh:targetSubjectsOf rr:objectMap ;
 
-	sh:xone (
-		[
-			sh:property [
-				sh:path rr:objectMap ;
-				sh:node rmlsh:TermMapShape, rmlsh:ObjectMapShape ;
-			]
-		]
-		[
-			sh:property [
-				sh:path rr:objectMap ;
-				sh:node rmlsh:RefObjectMapShape ;
-			]
-		]
-	) ;
-.
+
+### Remove?
+#rmlsh:ObjectOrRefObjectMapShape
+#	a sh:NodeShape ;
+#	# TODO: PM: could we not use sh:targetObjectsOf?
+#	sh:targetSubjectsOf rr:objectMap ;
+#
+#	sh:xone (
+#		[
+#			sh:property [
+#				sh:path rr:objectMap ;
+#				sh:node rmlsh:TermMapShape, rmlsh:ObjectMapShape ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path rr:objectMap ;
+#				sh:node rmlsh:RefObjectMapShape ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path rr:objectMap ;
+#				sh:node rr:column, rr:predicate ;
+#			]
+#		]
+#	) ;
+#.
 
 rmlsh:SubjectMapShape
 	a sh:NodeShape ;
