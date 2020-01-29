@@ -2,13 +2,23 @@
 @prefix ex: <http://example.com/ns#>.
 
 <#TriplesMap1>
-    rr:logicalTable [ rr:tableName "EMP" ];
+    rr:logicalTable [ rr:cc "EMP" ];
     rr:subjectMap [
         rr:template "http://data.example.com/employee/{EMPNO}";
         rr:class ex:Employee;
+                  rr:termType rr:BlankNode;
     ];
     rr:predicateObjectMap [
-        rr:predicate ex:name;
-        rr:objectMap [ rr:column "ENAME" ];
-    ]
+        rr:predicate ex:Employee;
+        rr:objectMap [ rr:column "ENAME";  ];
+    ];
+
+
+    rr:predicateObjectMap [
+        rr:predicate ex:Employee;
+
+        rr:objectMap [ rr:column "h" ;  rr:datatype rr:ssg ];
+    ];
+
 .
+

@@ -68,76 +68,87 @@ rmlsh:TriplesMapShape
 	) ;
 .
 
-rmlsh:TermMapShape
-	a sh:NodeShape ;
-	rdfs:label "Term map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed term map."@en ;
-	sh:message "Term map is ilffl-formed." ;
-
-	# NOTE: We don't target object maps directly, because not all object maps are term maps;
-	#       the range for `rr:objectMap` is `rr:ObjectMap` or `rr:RefObjectMap`
-
-	sh:targetObjectsOf
-		rr:subjectMap ,
-		rr:predicateMap ,
-		rr:graphMap ;
-
-	sh:targetClass
-		rr:SubjectMap ,
-		rr:PredicateMap ,
-		rr:GraphMap ;
-
-	sh:targetSubjectsOf
-		rr:constant ,
-		rml:reference ,
-		rr:template ,
-		rr:termType ;
-
-	sh:xone (
-		[
-			sh:property [
-				sh:path rr:constant ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path rml:reference ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path rr:template ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path carml:multiReference ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path carml:multiTemplate ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path carml:multiFunctionValue ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-	) ;
-.
+#rmlsh:TermMapShape
+#	a sh:NodeShape ;
+#	rdfs:label "Term map shape"@en ;
+#	rdfs:comment "Defines constraints for a well-formed term map."@en ;
+#	sh:message "Term map is ilffl-formed." ;
+#
+#	# NOTE: We don't target object maps directly, because not all object maps are term maps;
+#	#       the range for `rr:objectMap` is `rr:ObjectMap` or `rr:RefObjectMap`
+#
+#	sh:targetObjectsOf
+#		rr:subjectMap ,
+#		rr:predicateMap ,
+#		rr:predicate ,
+#		rr:column ,
+#		rr:graphMap ;
+#
+#
+#	sh:targetClass
+#		rr:SubjectMap ,
+#		rr:PredicateMap ,
+#		rr:GraphMap ;
+#
+#	sh:targetSubjectsOf
+#		rr:constant ,
+#		rml:reference ,
+#		rr:template ,
+#
+#		rr:termType ;
+#
+#
+#	sh:or ( [ sh:property [ sh:path     rr:predicate ;
+#							 sh:minCount 1 ;
+#							 ] ]
+#			 [ sh:property [ sh:path     rr:column ;
+#							 sh:minCount 1 ;
+#							  ] ] );
+#	sh:xone (
+#		[
+#			sh:property [
+#				sh:path rr:constant ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path rml:reference ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path rr:template ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path carml:multiReference ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path carml:multiTemplate ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			]
+#		]
+#		[
+#			sh:property [
+#				sh:path carml:multiFunctionValue ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			]
+#		]
+#	) ;
+#.
 
 rmlsh:TermMapTermTypeShape
 	a sh:NodeShape ;
@@ -149,7 +160,36 @@ rmlsh:TermMapTermTypeShape
 	]
 .
 
+rmlsh:Tee
+	a sh:NodeShape ;
+	sh:targetSubjectsOf rr:datatype, rr:language ;
+	sh:targetClass rr:objectMap;
+    # A datatypeable term map is a term map with a term type of rr:Literal that does not have a specified language tag.
+	sh:message "dhdh";
+	sh:xone (
+		[
+			sh:property [
+				sh:path rr:datatype ;
+				sh:minCount 1;
+				sh:maxCount 1;
+			]
+		]
+		[
+			sh:property [
+				sh:path rr:language ;
+				sh:minCount 1;
+			]
+		]
+		[
+			sh:property [
+				sh:path rr:language, rr:datatype ;
+				sh:minCount 0;
+			]
+		]
+	) ;
 
+
+.
 
 ### Remove?
 #rmlsh:ObjectOrRefObjectMapShape
@@ -213,35 +253,22 @@ rmlsh:ObjectMapShape
 		sh:in ( rr:IRI rr:BlankNode rr:Literal ) ;
 	] ;
 
-	# @INCOMPLETE
-	# sh:xone (
-	# 	[
-	# 		sh:property [
-	# 			sh:path rr:termType ;
-	# 			sh:in (rr:IRI rr:BlankNode)
-	# 		]
-	# 	]
-	# 	[
-	# 		sh:property [
-	# 			sh:path rr:termType ;
-	# 			sh:maxCount 0 ;
-	# 		]
-	# 	]
-	# 	[
-	# 		sh:property [
-	# 			sh:path rr:datatype ;
-	# 			sh:minCount 1 ;
-	# 			sh:nodeKind sh:IRI ;
-	# 		]
-	# 	]
-	# 	[
-	# 		sh:property [
-	# 			sh:path rr:datatype ;
-	# 			sh:minCount 1 ;
-	# 			sh:nodeKind sh:IRI ;
-	# 		]
-	# 	]
-	# )
+	 sh:xone (
+	 	[
+	 		sh:property [
+	 			sh:path rr:datatype ;
+	 			sh:maxCount 1 ;
+	 			sh:nodeKind sh:IRI ;
+	 		]
+	 	]
+	 	[
+	 		sh:property [
+	 			sh:path rr:datatype ;
+	 			sh:minCount 0 ;
+	 			sh:nodeKind sh:IRI ;
+	 		]
+	 	]
+	 )
 .
 
 rmlsh:RefObjectMapShape
@@ -274,12 +301,18 @@ rmlsh:PredicateMapShape
 	rdfs:comment "Defines constraints for a well-formed predicate map."@en ;
 	sh:message "Predicate map is ill-formed" ;
 
-	sh:targetObjectsOf rr:predicateMap ;
+	sh:targetObjectsOf rr:predicateMap, rr:objectMap ;
 
 	sh:property [
 		sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
 		sh:path rr:termType ;
 		sh:in ( rr:IRI ) ;
+	] ;
+
+	sh:property [
+		sh:message "Value for rr:datatype on predicate map should be rr:IRI." ;
+		sh:path rr:datatype ;
+		sh:nodeKind sh:IRI ;
 	] ;
 .
 
@@ -316,74 +349,98 @@ rmlsh:BaseSourceShape
 	rdfs:comment "Defines constraints for a well-formed base source."@en ;
 .
 
-rmlsh:LogicalSourceShape
-	a sh:NodeShape ;
-	rdfs:label "Logical source shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed logical source."@en ;
-	sh:message "Logical source is ill-formed" ;
 
-	sh:targetClass rml:LogicalSource ;
-	sh:targetObjectsOf rml:logicalSource ;
-	sh:targetSubjectsOf rml:source ;
 
-	# @NOTE: The iterator and referenceFormulation could be required, based on the rml:source. These
-	#        constraints will be checked at run time, and will cause a run time error when violated.
-	sh:property
-		[
-			sh:message "LogicalSource should have one and only one source." ;
-			sh:path rml:source ;
-			sh:minCount 1;
-			sh:maxCount 1;
-		] ,
-		[
-			sh:message "Logical source's source should be either a source location string or a valid carml stream description" ;
-			sh:path rml:source ;
-			sh:or (
-				[
-					sh:nodeKind sh:Literal ;
-					sh:datatype xsd:string ;
-				]
 
-				[
-					sh:node rmlsh:CarmlStreamShape ;
-				]
-			)
-		] ,
-		[
-			sh:message "LogicalSource should have at most one iterator." ;
-			sh:path rml:iterator ;
-			sh:maxCount 1;
-		] ,
-		[
-			sh:message "LogicalSource should have at most one reference formulation." ;
-			sh:path rml:referenceFormulation ;
-			sh:maxCount 1 ;
 
-			# @NOTE: The namespace sets the range to `rml:ReferenceFormulation`, but in practice, this
-			#        class does not have any special characteristic. From a practical perspective, it
-			#        seems useful to allow any IRI.
-			sh:nodeKind sh:IRI ;
-		] ;
-.
 
-rmlsh:CarmlStreamShape
- 	a sh:NodeShape ;
-	sh:targetClass carml:Stream ;
-	sh:message "Carml stream is ill-formed." ;
-	sh:property
-		[
-			sh:path rdf:type ;
-			sh:minCount 1 ;
-			sh:hasValue carml:Stream ;
-		] ,
-		[
-			sh:message "Carlm stream can have at most one stream name.";
-			sh:path carml:streamName ;
-			sh:maxCount 1 ;
-			sh:nodeKind sh:Literal ;
-			sh:datatype xsd:string ;
-		] ;
-.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#rmlsh:LogicalSourceShape
+#	a sh:NodeShape ;
+#	rdfs:label "Logical source shape"@en ;
+#	rdfs:comment "Defines constraints for a well-formed logical source."@en ;
+#	sh:message "Logical source is ill-formed" ;
+#
+#	sh:targetClass rml:LogicalSource ;
+#	sh:targetObjectsOf rml:logicalSource ;
+#	sh:targetSubjectsOf rml:source ;
+#
+#	# @NOTE: The iterator and referenceFormulation could be required, based on the rml:source. These
+#	#        constraints will be checked at run time, and will cause a run time error when violated.
+#	sh:property
+#		[
+#			sh:message "LogicalSource should have one and only one source." ;
+#			sh:path rml:source ;
+#			sh:minCount 1;
+#			sh:maxCount 1;
+#		] ,
+#		[
+#			sh:message "Logical source's source should be either a source location string or a valid carml stream description" ;
+#			sh:path rml:source ;
+#			sh:or (
+#				[
+#					sh:nodeKind sh:Literal ;
+#					sh:datatype xsd:string ;
+#				]
+#
+#				[
+#					sh:node rmlsh:CarmlStreamShape ;
+#				]
+#			)
+#		] ,
+#		[
+#			sh:message "LogicalSource should have at most one iterator." ;
+#			sh:path rml:iterator ;
+#			sh:maxCount 1;
+#		] ,
+#		[
+#			sh:message "LogicalSource should have at most one reference formulation." ;
+#			sh:path rml:referenceFormulation ;
+#			sh:maxCount 1 ;
+#
+#			# @NOTE: The namespace sets the range to `rml:ReferenceFormulation`, but in practice, this
+#			#        class does not have any special characteristic. From a practical perspective, it
+#			#        seems useful to allow any IRI.
+#			sh:nodeKind sh:IRI ;
+#		] ;
+#.
+
+#rmlsh:CarmlStreamShape
+# 	a sh:NodeShape ;
+#	sh:targetClass carml:Stream ;
+#	sh:message "Carml stream is ill-formed." ;
+#	sh:property
+#		[
+#			sh:path rdf:type ;
+#			sh:minCount 1 ;
+#			sh:hasValue carml:Stream ;
+#		] ,
+#		[
+#			sh:message "Carlm stream can have at most one stream name.";
+#			sh:path carml:streamName ;
+#			sh:maxCount 1 ;
+#			sh:nodeKind sh:Literal ;
+#			sh:datatype xsd:string ;
+#		] ;
+#.
 
 # rmlsh:ReferenceFormulationShape
 # 	a sh:NodeShape ;
@@ -442,74 +499,115 @@ rmlsh:JoinShape
 		] ;
 .
 
-rmlsh:ConstantSubjectPredicateOrGraphShape
-	a sh:PropertyShape ;
-	rdfs:label "Constant value shape for subject, predicate or graph mappings"@en ;
-	rdfs:comment "Defines constraints for a well-formed constant value for a subject, predicate or graph mapping."@en ;
-	sh:message "A triple with an RML shorthand constant as predicate should have an IRI in the object position." ;
+#rmlsh:ConstantSubjectPredicateOrGraphShape
+#	a sh:PropertyShape ;
+#	rdfs:label "Constant value shape for subject, predicate or graph mappings"@en ;
+#	rdfs:comment "Defines constraints for a well-formed constant value for a subject, predicate or graph mapping."@en ;
+#	sh:message "A triple with an RML shorthand constant as predicate should have an IRI in the object position." ;
+#
+#	sh:path rr:constant, rr:subject, rr:predicate,  rr:graph ;
+#	sh:nodeKind sh:IRI ;
+#.
+#
+#rmlsh:ConstantObjectShape
+#	a sh:PropertyShape ;
+#	rdfs:label "Constant value shape for object mappings"@en ;
+#	rdfs:comment "Defines constraints for a well-formed constant value for an object mapping."@en ;
+# 	sh:message "Constant value for object mapping is ill-formed" ;
+#
+#	sh:targetObjectsOf rr:object ;
+#
+#	sh:xone ( [ sh:nodeKind sh:IRI ; ] [ sh:nodeKind sh:literal ] )
+#.
 
-	sh:path rr:constant, rr:subject, rr:predicate,  rr:graph ;
-	sh:nodeKind sh:IRI ;
-.
+#rmlsh:FunctionTermMapShape
+#	a sh:NodeShape ;
+#	sh:targetObjectsOf fnml:functionValue ;
+#	sh:message "Functional term map is ill-formed." ;
+#	sh:property [
+#		sh:message "Functional term map should have one and only one function executing predicate object map." ;
+#		sh:path rr:predicateObjectMap ;
+#		sh:qualifiedMinCount  1 ;
+#		sh:qualifiedMaxCount  1 ;
+#		sh:qualifiedValueShape rmlsh:FunctionExecutionPOM ;
+#	];
+#.
 
-rmlsh:ConstantObjectShape
-	a sh:PropertyShape ;
-	rdfs:label "Constant value shape for object mappings"@en ;
-	rdfs:comment "Defines constraints for a well-formed constant value for an object mapping."@en ;
- 	sh:message "Constant value for object mapping is ill-formed" ;
+#rmlsh:FunctionExecutionPOM
+#	sh:or(
+#		[
+#			sh:path rr:predicate ;
+#			sh:hasValue fno:executes ;
+#		]
+#		[
+#		 	sh:path (rr:predicateMap rr:constant ) ;
+#			sh:hasValue fno:executes ;
+#		]
+#	) ;
+#.
+#
 
-	sh:targetObjectsOf rr:object ;
 
-	sh:xone ( [ sh:nodeKind sh:IRI ; ] [ sh:nodeKind sh:literal ] )
-.
+#
+#
+#rr:URIdereferencable
+#    a sh:NodeShape ;
+#	rdfs:label "URI Dereferencable"@en ;
+#	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
+#
+#	sh:targetObjectsOf rr:subjectMap ;
+#	sh:js [
+#		a sh:JSConstraint ;
+#        sh:message "Datatype URI non-dereferencable" ;
+#        sh:jsFunctionName "dereferenceDataTypeURI" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+#	] ;
+#
+#	sh:js [
+#		a sh:JSConstraint ;
+#        sh:message "Class URI non-dereferencable" ;
+#        sh:jsFunctionName "dereferenceClassURI" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+#	] ;
+#
+#	sh:js [
+#		a sh:JSConstraint ;
+#        sh:message "Predicate URI non-dereferencable" ;
+#        sh:jsFunctionName "dereferencePredicateURI" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+#	] ;
+#.
 
-rmlsh:FunctionTermMapShape
-	a sh:NodeShape ;
-	sh:targetObjectsOf fnml:functionValue ;
-	sh:message "Functional term map is ill-formed." ;
-	sh:property [
-		sh:message "Functional term map should have one and only one function executing predicate object map." ;
-		sh:path rr:predicateObjectMap ;
-		sh:qualifiedMinCount  1 ;
-		sh:qualifiedMaxCount  1 ;
-		sh:qualifiedValueShape rmlsh:FunctionExecutionPOM ;
+rr:GraphPerformanceShape
+	rdfs:label "Triple map detection"@en ;
+	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
+	sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
+	sh:targetObjectsOf  rr:predicateObjectMap ;
+	sh:targetClass rr:PredicateObjectMap ;
+
+
+	sh:js [
+		a sh:JSConstraint ;
+		sh:message "PERFORMANCE - Duplicate triples defined" ;
+        sh:jsFunctionName "checkDuplicateTriples" ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 	];
+
 .
 
-rmlsh:FunctionExecutionPOM
-	sh:or(
-		[
-			sh:path rr:predicate ;
-			sh:hasValue fno:executes ;
-		]
-		[
-		 	sh:path (rr:predicateMap rr:constant ) ;
-			sh:hasValue fno:executes ;
-		]
-	) ;
-.
-
-
-
-
-
-rr:URIdereferencable
-    a sh:NodeShape ;
-	sh:targetObjectsOf rr:subjectMap ;
-	sh:js [
-		a sh:JSConstraint ;
-        sh:message "Datatype URI non-dereferencable" ;
-        sh:jsFunctionName "dereferenceDataTypeURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-	] ;
-
-	sh:js [
-		a sh:JSConstraint ;
-        sh:message "Class URI non-dereferencable" ;
-        sh:jsFunctionName "dereferenceClassURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-	] ;
-.
-
-
+#rr:DataTypeShape
+#	a sh:NodeShape ;
+#	rdfs:label "Predicate object map shape"@en ;
+#	rdfs:comment "Defines constraints for a well-formed predicate object map."@en ;
+#	sh:message "Predicate object map is ill-formed" ;
+#	sh:targetClass rr:ObjectMap ;
+#	sh:targetObjectsOf rr:objectMap;
+#
+#	sh:property
+#		[
+#			# sh:message "Predicate object map should have at least one predicate map." ;
+#			sh:path rr:datatype;
+#			sh:minCount 1 ;
+#		] ;
+#.
 
