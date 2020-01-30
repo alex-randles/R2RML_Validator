@@ -19,6 +19,10 @@ rmlsh:
 		sh:prefix "rmlsh" ;
 		sh:namespace "http://www.taxonic.com/ns/rml-shacl#" ;
 	] ;
+	sh:declare [
+		sh:prefix "ex" ;
+		sh:namespace "http://example.com/ns??#" ;
+	] ;
 .
 
 rmlsh:TriplesMapShape
@@ -160,8 +164,11 @@ rmlsh:TermMapTermTypeShape
 	]
 .
 
-rmlsh:Tee
+rmlsh:DataTypeShape
 	a sh:NodeShape ;
+	rdfs:label "Data type & language tag shape"@en ;
+	rdfs:comment "Defines constraints for a valid data type & language tag definiton."@en ;
+	sh:message "Data type and language tag defined in same term map" ;
 	sh:targetSubjectsOf rr:datatype, rr:language ;
 	sh:targetClass rr:objectMap;
     # A datatypeable term map is a term map with a term type of rr:Literal that does not have a specified language tag.
@@ -173,7 +180,8 @@ rmlsh:Tee
 				sh:minCount 1;
 				sh:maxCount 1;
 			]
-		]
+  		]
+
 		[
 			sh:property [
 				sh:path rr:language ;
@@ -301,7 +309,7 @@ rmlsh:PredicateMapShape
 	rdfs:comment "Defines constraints for a well-formed predicate map."@en ;
 	sh:message "Predicate map is ill-formed" ;
 
-	sh:targetObjectsOf rr:predicateMap, rr:objectMap ;
+	sh:targetObjectsOf rr:predicateMap ;
 
 	sh:property [
 		sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
@@ -611,3 +619,131 @@ rr:GraphPerformanceShape
 #		] ;
 #.
 
+
+
+rr:DataStructuresShape
+	a sh:NodeShape ;
+	rdfs:label "RDF data structures shape"@en ;
+	rdfs:comment "Defines constraints for usage of data structures"@en ;
+	sh:targetSubjectsOf rdf:Statement, rdf:Alt, rdf:Bag, rdf:Seq, rdf:Container, rdf:List;
+	sh:property
+		[
+			sh:path rdf:Statement, rdf:Alt, rdf:Bag, rdf:Seq, rdf:Container, rdf:List;
+			sh:maxCount 0;
+			sh:message "Usage of RDF data structures" ;
+
+
+		] ;
+
+.
+
+rr:URIShape
+	a sh:NodeShape ;
+	rdfs:label "URI shape"@en ;
+	rdfs:comment "Defines constraints for a well-formed URI"@en ;
+	sh:message "URI is ill-formed" ;
+
+	sh:targetSubjectsOf rr:subjectMap, rr:predicateObjectMap ;
+	sh:targetClass     rr:SubjectMap, rr:predicateObjectMap ;
+
+	sh:property
+		[
+			sh:message "Value of URI should be no longer than 80 characters" ;
+			sh:path [
+				sh:inversePath (rr:class rr:predicate) ;
+			] ;
+			sh:maxLength 80;
+		],
+		[
+			sh:message "Value of URI in should contain no query paramaters" ;
+			sh:path [
+				sh:inversePath (rr:class rr:predicate) ;
+			] ;
+        	sh:pattern "^[^?]+$" ;
+		] ;
+		;
+.
+
+
+rr:DataType
+	a sh:NodeShape ;
+	rdfs:label "Subject map shape"@en ;
+	rdfs:comment "Defines constraints for a well-formed subject map."@en ;
+	sh:message "Subject map is ill-formed" ;
+
+	sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
+	sh:targetClass     rr:SubjectMap, rr:predicateObjectMap ;
+
+	sh:property
+		[
+			sh:message "Value of URI should be no longer than 80 characters" ;
+			sh:path [
+				sh:alternativePath (rr:class rr:predicate) ;
+			] ;
+			sh:maxLength 80;
+		],
+		[
+			sh:message "Value of URI in should contain no query paramaters" ;
+			sh:path [
+				sh:alternativePath (rr:class rr:predicate) ;
+			] ;
+        	sh:pattern "^[^?]+$" ;
+		] ;
+		;
+.
+
+rmlsh:VariousLanguagesShape
+	a sh:NodeShape ;
+	rdfs:label "Predicate object map shape"@en ;
+	rdfs:comment "Defines constraints for a well-formed predicate object map."@en ;
+
+	sh:targetSubjectsOf rr:language ;
+
+	sh:property
+		[
+	  		sh:path rr:language;
+			sh:maxCount 1;
+			sh:message "Data in various languages" ;
+
+		] ;
+.
+
+rr:UndefinedPropertiesShape
+    a sh:NodeShape ;
+	rdfs:label "URI Dereferencable"@en ;
+	rdfs:comment "Defines constraint for usage of Undefined Classes and Properties"@en ;
+
+	sh:targetSubjectsOf rr:class;
+	sh:js [
+		a sh:JSConstraint ;
+        sh:message "Usage of Undefined Classes and Properties" ;
+        sh:jsFunctionName "dereferenceURI" ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+	] ;
+
+
+.
+
+
+rr:BlankNodeShape
+	a sh:NodeShape ;
+	rdfs:label "Subject map shape"@en ;
+	rdfs:comment "Defines constraints for a well-formed subject map."@en ;
+	sh:message "Subject map is ill-formed" ;
+	sh:targetClass rr:SubjectMap ;
+	sh:targetObjectsOf rr:subjectMap ;
+
+
+	sh:property
+		[
+			sh:message "1111111111111" ;
+			sh:path rr:termType ;
+			sh:hasValue rr:BlankNode;
+		] ,
+		[
+			sh:message "222222222222222" ;
+			sh:path rr:class ;
+			sh:hasValue rr:BlankNode;
+
+		] ;
+.

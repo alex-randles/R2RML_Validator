@@ -1,7 +1,55 @@
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix ex:    <http://example.com/ns#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 [ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
   <http://www.w3.org/ns/shacl#conforms>
-          true
+          false ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "1111111111111" ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#HasValueConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    [] 
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "222222222222222" ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:class ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#HasValueConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    [] 
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Value for rr:termType on subject map should be rr:IRI or rr:BlankNode." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    []  ;
+            <http://www.w3.org/ns/shacl#value>
+                    rr:hh
+          ]
 ] .

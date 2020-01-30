@@ -10,27 +10,24 @@ public class DereferenceURI{
         System.out.println(getResponseCode("http://www.example.com/"));
     }
 
-    public static boolean getResponseCode(String URL){
+    public static boolean getResponseCode(String string_URL){
         try{
-            URL url = new URL(URL);
+            URL url = new URL(string_URL);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
             int code = connection.getResponseCode();
             System.out.println(URL + " produces error code " + code);
-            // if URI is dereferenceable return true
             if (code == 200) {
                 return true;
             }
+            return false;
         }
         catch(Exception e){
             System.out.println(e);
         }
 
 
-        // if URI cant be dereferenced return false
-        return false;
-    }
 
 
 }
