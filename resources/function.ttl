@@ -101,44 +101,44 @@ rmlsh:LogicalTableShape
 
 .
 
-rmlsh:TermMapShape
-	a sh:NodeShape ;
-	rdfs:label "Triples map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed triples map."@en ;
-	# sh:message "Triples map should have one and only one logical source ;;" ;
-	sh:targetClass rr:ObjectMap ;
-	sh:targetSubjectsOf
-		rr:constant,
-		rr:template,
-		rr:column ;
-
-	sh:xone (
-		[
-			sh:property [
-				sh:path rr:column ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-		[
-			sh:property [
-				sh:path rr:template ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-
-					[
-			sh:property [
-				sh:path rr:column ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-	) ;
-
-
-.
+#rmlsh:TermMapShape
+#	a sh:NodeShape ;
+#	rdfs:label "Triples map shape"@en ;
+#	rdfs:comment "Defines constraints for a well-formed triples map."@en ;
+#	# sh:message "Triples map should have one and only one logical source ;;" ;
+#	sh:targetClass rr:ObjectMap ;
+#	sh:targetSubjectsOf
+#		rr:constant,
+#		rr:template,
+#		rr:column ;
+#
+#	sh:xone (
+#		[
+#			sh:property [
+#				sh:path rr:column ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			] ;
+#		]
+#		[
+#			sh:property [
+#				sh:path rr:template ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			] ;
+#		]
+#
+#					[
+#			sh:property [
+#				sh:path rr:column ;
+#				sh:minCount 1 ;
+#				sh:maxCount 1 ;
+#			] ;
+#		]
+#	) ;
+#
+#
+#.
 
 rmlsh:TermMapTermTypeShape
 	a sh:NodeShape ;
@@ -699,3 +699,68 @@ rmlsh:BlankNodeShape
 		] ;
 
 .
+
+
+
+
+rr:EmptyValuesShape
+    a sh:NodeShape ;
+	sh:targetObjectsOf rr:subjectMap, rr:objectMap, rr:logicalTable ;
+	sh:targetClass     rr:SubjectMap, rr:ObjectMap  ;
+	sh:property [
+        sh:path rr:tableName ;
+        sh:minLength 1;
+        sh:message "rr:tableName with length 0";
+    ] ;
+
+    sh:property [
+        sh:path  rr:sqlQuery;
+        sh:minLength 1;
+        sh:message "rr:sqlQuery with length 0";
+    ] ;
+
+
+    sh:property [
+        sh:path rr:parent ;
+        sh:minLength 1;
+        sh:message "rr:parent with length 0" ;
+
+    ] ;
+
+    sh:property [
+        sh:path rr:child ;
+        sh:minLength 1;
+        sh:message "rr:child with length 0" ;
+
+    ] ;
+
+    sh:property [
+        sh:path rr:column ;
+        sh:minLength 1;
+        sh:message "rr:column with length 0" ;
+
+    ] ;
+
+        sh:property [
+        sh:path rr:template ;
+        sh:minLength 1;
+        sh:message "rr:template with length 0" ;
+
+    ] ;
+
+        sh:property [
+        sh:path rr:predicate ;
+        sh:minLength 1;
+        sh:message "rr:predicate with length 0" ;
+
+    ] ;
+
+     sh:property [
+        sh:path rr:class ;
+        sh:minLength 1;
+        sh:message "rr:class with length 0" ;
+
+    ] ;
+.
+
+
