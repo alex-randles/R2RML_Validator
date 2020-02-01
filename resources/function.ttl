@@ -19,17 +19,14 @@ rmlsh:
 		sh:prefix "rmlsh" ;
 		sh:namespace "http://www.taxonic.com/ns/rml-shacl#" ;
 	] ;
-	sh:declare [
-		sh:prefix "ex" ;
-		sh:namespace "http://example.com/ns??#" ;
-	] ;
+
 .
 
 rmlsh:TriplesMapShape
 	a sh:NodeShape ;
 	rdfs:label "Triples map shape"@en ;
 	rdfs:comment "Defines constraints for a well-formed triples map."@en ;
-	sh:message "Triples map should have one and only one logical source." ;
+	sh:message "Triples map should have one and only one logical source & subject map" ;
 	sh:targetClass rr:TriplesMap ;
 	sh:targetSubjectsOf
 		rr:logicalTable,
@@ -72,87 +69,76 @@ rmlsh:TriplesMapShape
 	) ;
 .
 
-#rmlsh:TermMapShape
-#	a sh:NodeShape ;
-#	rdfs:label "Term map shape"@en ;
-#	rdfs:comment "Defines constraints for a well-formed term map."@en ;
-#	sh:message "Term map is ilffl-formed." ;
-#
-#	# NOTE: We don't target object maps directly, because not all object maps are term maps;
-#	#       the range for `rr:objectMap` is `rr:ObjectMap` or `rr:RefObjectMap`
-#
-#	sh:targetObjectsOf
-#		rr:subjectMap ,
-#		rr:predicateMap ,
-#		rr:predicate ,
-#		rr:column ,
-#		rr:graphMap ;
-#
-#
-#	sh:targetClass
-#		rr:SubjectMap ,
-#		rr:PredicateMap ,
-#		rr:GraphMap ;
-#
-#	sh:targetSubjectsOf
-#		rr:constant ,
-#		rml:reference ,
-#		rr:template ,
-#
-#		rr:termType ;
-#
-#
-#	sh:or ( [ sh:property [ sh:path     rr:predicate ;
-#							 sh:minCount 1 ;
-#							 ] ]
-#			 [ sh:property [ sh:path     rr:column ;
-#							 sh:minCount 1 ;
-#							  ] ] );
-#	sh:xone (
-#		[
-#			sh:property [
-#				sh:path rr:constant ;
-#				sh:minCount 1 ;
-#				sh:maxCount 1 ;
-#			]
-#		]
-#		[
-#			sh:property [
-#				sh:path rml:reference ;
-#				sh:minCount 1 ;
-#				sh:maxCount 1 ;
-#			]
-#		]
-#		[
-#			sh:property [
-#				sh:path rr:template ;
-#				sh:minCount 1 ;
-#				sh:maxCount 1 ;
-#			]
-#		]
-#		[
-#			sh:property [
-#				sh:path carml:multiReference ;
-#				sh:minCount 1 ;
-#				sh:maxCount 1 ;
-#			]
-#		]
-#		[
-#			sh:property [
-#				sh:path carml:multiTemplate ;
-#				sh:minCount 1 ;
-#				sh:maxCount 1 ;
-#			]
-#		]
-#		[
-#			sh:property [
-#				sh:path carml:multiFunctionValue ;
-#				sh:minCount 1 ;
-#				sh:maxCount 1 ;
-#			]
-#		]
-#	) ;
-#.
+rmlsh:LogicalTableShape
+	a sh:NodeShape ;
+	rdfs:label "Logical table shape"@en ;
+	rdfs:comment "Defines constraints for a well-formed logical table."@en ;
+	sh:message "Logical table should exactly one R2RML view or SQL view" ;
+	sh:targetClass rr:LogicalTable ;
+	sh:targetObjectsOf rr:logicalTable;
+	sh:targetSubjectsOf
+		rr:tableName,
+		rr:sqlQuery;
+
+
+	sh:xone (
+		[
+			sh:property [
+				sh:path rr:tableName ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+		[
+			sh:property [
+				sh:path rr:sqlQuery ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+	) ;
+
+
+.
+
+rmlsh:TermMapShape
+	a sh:NodeShape ;
+	rdfs:label "Triples map shape"@en ;
+	rdfs:comment "Defines constraints for a well-formed triples map."@en ;
+	# sh:message "Triples map should have one and only one logical source ;;" ;
+	sh:targetClass rr:ObjectMap ;
+	sh:targetSubjectsOf
+		rr:constant,
+		rr:template,
+		rr:column ;
+
+	sh:xone (
+		[
+			sh:property [
+				sh:path rr:column ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+		[
+			sh:property [
+				sh:path rr:template ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+
+					[
+			sh:property [
+				sh:path rr:column ;
+				sh:minCount 1 ;
+				sh:maxCount 1 ;
+			] ;
+		]
+	) ;
+
+
+.
 
 rmlsh:TermMapTermTypeShape
 	a sh:NodeShape ;
@@ -172,7 +158,6 @@ rmlsh:DataTypeShape
 	sh:targetSubjectsOf rr:datatype, rr:language ;
 	sh:targetClass rr:objectMap;
     # A datatypeable term map is a term map with a term type of rr:Literal that does not have a specified language tag.
-	sh:message "dhdh";
 	sh:xone (
 		[
 			sh:property [
@@ -351,12 +336,12 @@ rmlsh:PredicateObjectMapShape
 		] ;
 .
 
-rmlsh:BaseSourceShape
-	a sh:NodeShape ;
-	rdfs:label "Base source shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed base source."@en ;
-.
-
+#rmlsh:BaseSourceShape
+#	a sh:NodeShape ;
+#	rdfs:label "Base source shape"@en ;
+#	rdfs:comment "Defines constraints for a well-formed base source."@en ;
+#.
+#
 
 
 
@@ -599,8 +584,8 @@ rr:GraphPerformanceShape
 		sh:message "PERFORMANCE - Duplicate triples defined" ;
         sh:jsFunctionName "checkDuplicateTriples" ;
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-	];
 
+	];
 .
 
 #rr:DataTypeShape
@@ -637,39 +622,14 @@ rr:DataStructuresShape
 
 .
 
+
+
+
 rr:URIShape
 	a sh:NodeShape ;
 	rdfs:label "URI shape"@en ;
 	rdfs:comment "Defines constraints for a well-formed URI"@en ;
 	sh:message "URI is ill-formed" ;
-
-	sh:targetSubjectsOf rr:subjectMap, rr:predicateObjectMap ;
-	sh:targetClass     rr:SubjectMap, rr:predicateObjectMap ;
-
-	sh:property
-		[
-			sh:message "Value of URI should be no longer than 80 characters" ;
-			sh:path [
-				sh:inversePath (rr:class rr:predicate) ;
-			] ;
-			sh:maxLength 80;
-		],
-		[
-			sh:message "Value of URI in should contain no query paramaters" ;
-			sh:path [
-				sh:inversePath (rr:class rr:predicate) ;
-			] ;
-        	sh:pattern "^[^?]+$" ;
-		] ;
-		;
-.
-
-
-rr:DataType
-	a sh:NodeShape ;
-	rdfs:label "Subject map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed subject map."@en ;
-	sh:message "Subject map is ill-formed" ;
 
 	sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
 	sh:targetClass     rr:SubjectMap, rr:predicateObjectMap ;
@@ -721,29 +681,21 @@ rr:UndefinedPropertiesShape
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 
-
 .
 
 
-rr:BlankNodeShape
+rmlsh:BlankNodeShape
 	a sh:NodeShape ;
-	rdfs:label "Subject map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed subject map."@en ;
-	sh:message "Subject map is ill-formed" ;
-	sh:targetClass rr:SubjectMap ;
-	sh:targetObjectsOf rr:subjectMap ;
+	rdfs:label "Blank node shape"@en ;
+	rdfs:comment "Defines constraints for the usage of blank nodes"@en ;
+	sh:message "Usage of blank node" ;
+	sh:targetObjectsOf rr:subjectMap, rr:objectMap ;
+	sh:targetClass     rr:SubjectMap, rr:ObjectMap  ;
 
-
-	sh:property
-		[
-			sh:message "1111111111111" ;
+	sh:not
+	[
 			sh:path rr:termType ;
 			sh:hasValue rr:BlankNode;
-		] ,
-		[
-			sh:message "222222222222222" ;
-			sh:path rr:class ;
-			sh:hasValue rr:BlankNode;
-
 		] ;
+
 .

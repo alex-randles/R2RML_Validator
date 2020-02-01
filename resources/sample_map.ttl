@@ -4,15 +4,15 @@
 
 
 <#TriplesMap1>
-    rr:logicalTable [ rr:cc "EMP" ];
+    rr:logicalTable [ rr:tableName "EMP" ;];
     rr:subjectMap [
         rr:template "http://data.example.com/employee/{EMPNO}";
-        rr:class rdf:fjd;
-        rr:termType rr:hh;
+        rr:class rdf:fnf463464646464646646646457575474664;
+        rr:termType rr:IRI;
     ];
     rr:predicateObjectMap [
         rr:predicate rdf:test ;
-        rr:objectMap [ rr:column "ENAME"; rr:language "dhdhhdddd";   ];
+        rr:objectMap [ rr:column "ENAME"; rr:language "dhdhhdddd"; rr:column "ENAME";  ];
     ];
 
 
@@ -21,7 +21,7 @@
 
         rr:predicate ex:Employee;
 
-        rr:objectMap [ rr:column "h" ; rr:termType rr:Literal; rr:language "dhdhhd";  ];
+        rr:objectMap [ rr:column "h" ; rr:termType rr:IRI; rr:language "dhdhhd";  ];
     ];
 
 .

@@ -61,13 +61,13 @@ function dereferenceDataTypeURI(resource) {
 	        var ResponseCode = JavaCLass.getResponseCode(String(labelTriple.object));
 	        datatype_URI_checked = true;
             return ResponseCode;
-	    // return ResponseCode;
 		}
 		else{
 		    return null;
 		}
 	}
-}
+	}
+
 
 
 function dereferenceURI($this) {

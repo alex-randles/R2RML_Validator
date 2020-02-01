@@ -10,46 +10,14 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "1111111111111" ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:termType ;
+                    "Value has 2 shapes out of 3 in the sh:xone enumeration" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#HasValueConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    [] 
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "222222222222222" ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:class ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#HasValueConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    [] 
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Value for rr:termType on subject map should be rr:IRI or rr:BlankNode." ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:termType ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    []  ;
+                    <http://www.taxonic.com/ns/rml-shacl#TermMapShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    rr:hh
+                    _:b0
           ]
 ] .
