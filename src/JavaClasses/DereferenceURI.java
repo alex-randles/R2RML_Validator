@@ -2,25 +2,25 @@ package JavaClasses;
 
 import java.net.*;
 import java.io.*;
-import org.w3c.dom.*;
-import javax.xml.parsers.*;
-import java.io.*;
-import java.util.*;
-import  	org.xml.sax.SAXException ;
-import javax.xml.stream.*;
-import org.apache.jena.rdf;
+
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
-import org.topbraid.shacl.rules.RuleUtil;
-import org.topbraid.shacl.validation.ValidationUtil;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.*;
+
 import java.io.*;
 
 public class DereferenceURI{
 
     public static void main(String[] args){
         // main method for testing purposes
-       getRDF("http://xmlns.com/foaf/0.1/Agent");
+        //  http://xmlns.com/foaf/0.1/Group http://xmlns.com/foaf/0.1/Group http://example.com/ns#Employee
+String mappingPredicate = "http://xmlns.com/foaf/0.1/Group";
+String mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
+String vocabularyURI = "http://xmlns.com/foaf/0.1/Agent";
+       getRDF("http://xmlns.com/foaf/0.1/knows", "http://xmlns.com/foaf/0.1/knows", "http://www.w3.org/1999/02/22-rdf-syntax-ns#List");
     }
 
     public static boolean getResponseCode(String string_URL){
@@ -42,128 +42,49 @@ public class DereferenceURI{
         }
 
 }
-    public static String getRDF(String uri){
+    public static boolean getRDF(String uri, String mappingSubject, String mappingPredicate){
         try{
 
         		Model data = ModelFactory.createDefaultModel();
-		data.read("http://xmlns.com/foaf/0.1/Agent",
+		data.read(uri,
            "RDF/XML");
-//             URL url = new URL(string_URL);
-//             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
-//             connection.setRequestMethod("GET");
-//             // connection.setRequestProperty("Accept", "application/xml");
-//             connection.connect();
-//             int code = connection.getResponseCode();
-//             System.out.println(string_URL + " produces error code " + code);
-//             return null;
-//             BufferedReader in = new BufferedReader(
-//             new InputStreamReader(connection.getInputStream()));
-//             String inputLine;
-//             StringBuffer content = new StringBuffer();
-//             while ((inputLine = in.readLine()) != null) {
-//                      content.append(inputLine);
-//             }
-//             in.close();
-//             System.out.print(content.toString());
-//             return content.toString();
-       //String uri =
-    // "http://api.flurry.com/eventMetrics/Event?apiAccessCode=?????&apiKey=??????&startDate=2011-2-28&endDate=2011-3-1&eventName=Tip%20Calculated";
 
-URL url = new URL(uri);
-HttpURLConnection connection =
-    (HttpURLConnection) url.openConnection();
-connection.setRequestMethod("GET");
-// connection.setRequestProperty("Accept", "application/xml");
-connection.setRequestProperty("Accept", "application/rdf+xml");
-int code = connection.getResponseCode();
 
-// System.out.println(uri + " produces error code " + code);
-// InputStream xml = connection.getInputStream();
-// System.out.println(connection.getInputStream());
-// DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-// DocumentBuilder db = dbf.newDocumentBuilder();
-// Document doc = db.parse(xml);
-            BufferedReader in = new BufferedReader(
-            new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuffer content = new StringBuffer();
-            while ((inputLine = in.readLine()) != null) {
-                     content.append(inputLine);
-            }
-            in.close();
-            // System.out.print(content.toString());
-           // whenWriteStringUsingBufferedWritter_thenCorrect(content.toString());
+StmtIterator iter = data.listStatements();
 
-writeFile( content);
-parseXml();
-            // return content.toString();
+// print out the predicate, subject and object of each statement
+int i = 0;
+while (iter.hasNext()) {
+    Statement stmt      = iter.nextStatement();  // get next statement
+    Resource  subject   = stmt.getSubject();     // get the subject
+    Property  predicate = stmt.getPredicate();   // get the predicate
+    RDFNode   object    = stmt.getObject();      // get the object
+
+
+ // System.out.println(object.toString());
+      //  System.out.println(object.toString().equals("http://xmlns.com/foaf/0.1/Person"));
+// mappingPredicate = "http://xmlns.com/foaf/0.1/dhhd";
+// mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
+// System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
+    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && !(object.toString().equals(mappingPredicate)) && subject.toString().equals(mappingSubject)){
+        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
+       return false;
+    }
+    // System.out.println("ddhdhdh");
+    // System.out.println(" .");
+i++;
+
 
         }
+}
         catch(Exception e){
             System.out.println(e + "3474374747");
         }
-        return "";
+        return true;
         }
 
 
-	public static void writeFile(StringBuffer sbf) throws IOException {
-
-
-		BufferedWriter bwr = new BufferedWriter(new FileWriter(new File("foaf.xml")));
-
-		//write contents of StringBuffer to a file
-		bwr.write(sbf.toString());
-
-		//flush the stream
-		bwr.flush();
-
-		//close the stream
-		bwr.close();
-
-		System.out.println("Content of StringBuffer written to File.");
-	}
-//  </rdf:Property></rdf:RDF>
-  public static void parseXml() {
-
-      try {
-
-	File fXmlFile = new File("foaf.xml");
-	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	Document doc = dBuilder.parse(fXmlFile);
-
-	//optional, but recommended
-	//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-	doc.getDocumentElement().normalize();
-
-	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-	NodeList nList = doc.getElementsByTagName("rdfs:comment");
-
-	System.out.println("----------------------------");
-
-	for (int temp = 0; temp < nList.getLength(); temp++) {
-
-		Node nNode = nList.item(temp);
-
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
-		System.out.println(nNode);
-		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-			Element eElement = (Element) nNode;
-
-			// System.out.println("Staff id : " + eElement.getAttribute("rdfs:domain"));
-			// System.out.println("Nick Name : " + eElement.getElementsByTagName("rdf:Property").item(5));
-			// System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
-
-		}
-	}
-    } catch (Exception e) {
-	e.printStackTrace();
-    }
-  }
 
 
 
 }
-

@@ -13,18 +13,18 @@
         rr:termType rr:IRI;
     ];
     rr:predicateObjectMap [
-        rr:predicate rdf:test ;
+        rr:predicate foaf:made ;
         rr:objectMap [ rr:column "ENAME"; rr:language "dhdhhdddd";  rr:datatype xsd:string; rr:column "ENAME";  ];
     ];
 
 
-
-    rr:predicateObjectMap [
-
-        rr:predicate ex:Employee;
-
-        rr:objectMap [ rr:column "h" ; rr:termType rr:IRI; rr:language "dhdhhd";  ];
-    ];
+#
+#    rr:predicateObjectMap [
+#
+#        rr:predicate ex:Employee;
+#
+#        rr:objectMap [ rr:column "h" ; rr:termType rr:IRI; rr:language "dhdhhd";  ];
+#    ];
 
 .
 

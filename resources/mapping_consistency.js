@@ -277,6 +277,39 @@ function checkDuplicateTriples(resource) {
     }
 
 
+
+        return no_duplicates;
+
+}
+
+
+
+
+function test(resource) {
+    columns = getAllValues("column");
+    predicates = getAllValues("predicate");
+    print("PREDICATES", predicates);
+    print("COLUMNS", columns);
+    if (no_duplicates === false){
+        return null;
+    }
+    comparison_list  =[];
+    for (var i = 0; i < predicates.length; i++) {
+        var tmp = [String(predicates[i]), String(columns[i])] ;
+        comparison_list.push(tmp);
+        tmp = [];
+
+    }
+
+    for (var i = 0; i < comparison_list.length; i++) {
+        var occurrences = countOccurrences(comparison_list, comparison_list[i]);
+        if (occurrences > 1){
+            no_duplicates = false;
+        }
+
+    }
+
+
         return no_duplicates;
 
 }
@@ -405,8 +438,13 @@ function checkDuplicateElements(numArray){
 
 
 
+function test(resource){
+
+
+}
 function checkDomain(resource) {
-	var labelProperty = TermFactory.namedNode(NS+"class");
+    var class_name  = getProperty(resource, "class");
+	var labelProperty = TermFactory.namedNode(NS+"predicate");
 	var labels = $data.find(resource, labelProperty, null);
 	for(;;) {
 		var labelTriple = labels.next();
@@ -416,10 +454,14 @@ function checkDomain(resource) {
 		}
 
 		else{
+		    // getRDF(String uri, String mappingSubject, String mappingPredicate)
+		    print(String(class_name), String(class_name), String(labelTriple.object), "47747" );
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getRDF(String(labelTriple.object));
+		    //              getRDF("http://xmlns.com/foaf/0.1/member","http://xmlns.com/foaf/0.1/member", "http://xmlns.com/foaf/0.1/4444");
+	        var ResponseCode = JavaCLass.getRDF(String(labelTriple.object), String(labelTriple.object), String(class_name));
             print(ResponseCode);
-            return null;
+            return ResponseCode;
 		}
 		}
+
 	}

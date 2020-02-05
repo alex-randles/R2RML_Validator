@@ -592,19 +592,21 @@ rr:GraphPerformanceShape
 rr:DomainShape
 	rdfs:label "Triple map detection"@en ;
 	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
-	sh:targetSubjectsOf rr:class;
-	sh:targetObjectsOf  rr:subjectMap ;
+	sh:targetObjectsOf rr:class;
+	# sh:targetSubjectsOf  rr:subjectMap ;
 	sh:targetClass rr:SubjectMap ;
 
 
 	sh:js [
 		a sh:JSConstraint ;
-		sh:message "PERFORMANCE - Duplicate triples defined" ;
+		sh:message "Domain Error Detected" ;
         sh:jsFunctionName "checkDomain" ;
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
 	];
 .
+
+
 #rr:DataTypeShape
 #	a sh:NodeShape ;
 #	rdfs:label "Predicate object map shape"@en ;
