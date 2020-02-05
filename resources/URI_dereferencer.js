@@ -15,7 +15,7 @@ function dereferenceClassURI(resource) {
 		}
 		if (!class_URI_checked){
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getResponseCode(String(labelTriple.object));
+	        var ResponseCode = JavaCLass.checkRDF(String(labelTriple.object));
 	        class_URI_checked = true;
             return ResponseCode;
 		}
@@ -36,7 +36,7 @@ function dereferencePredicateURI(resource) {
 		}
 		if (!predicate_URI_checked){
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getResponseCode(String(labelTriple.object));
+	        var ResponseCode = JavaCLass.checkRDF(String(labelTriple.object));
 	        predicate_URI_checked = true;
             return ResponseCode;
 		}
@@ -58,7 +58,7 @@ function dereferenceDataTypeURI(resource) {
 		}
 		if (!datatype_URI_checked){
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getResponseCode(String(labelTriple.object));
+	        var ResponseCode = JavaCLass.checkRDF(String(labelTriple.object));
 	        datatype_URI_checked = true;
             return ResponseCode;
 		}
@@ -82,7 +82,7 @@ function dereferenceURI($this) {
     	print("Tfgjfjh ", current_object)
     	// use method from java class to check URI response code
 	    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	    var ResponseCode = JavaCLass.getResponseCode(String(current_object));
+	    var ResponseCode = JavaCLass.checkRDF(String(current_object));
         // print("response code", ResponseCode);
         print(ResponseCode);
         return ResponseCode;

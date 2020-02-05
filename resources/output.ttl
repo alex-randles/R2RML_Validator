@@ -1,7 +1,10 @@
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://example.com/ns#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 
 [ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
@@ -10,33 +13,18 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
+                    rdf:List ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Data type and language tag defined in same term map" ;
+                    "Domain Error Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://www.taxonic.com/ns/rml-shacl#DataTypeShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b0
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
+            <http://www.w3.org/ns/shacl#sourceConstraint>
                     []  ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "rr:tableName with length 0" ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:tableName ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#MinLengthConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    []  ;
+                    rr:DomainShape ;
             <http://www.w3.org/ns/shacl#value>
-                    ""
+                    rdf:List
           ]
 ] .

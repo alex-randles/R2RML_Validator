@@ -3,20 +3,26 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/>.
 # <http://ex.org#TriplesMap1>
  <#TriplesMap1>
-    rr:logicalTable [ rr:tableName "" ;];
+    rr:logicalTable [ rr:tableName "test" ;];
     rr:subjectMap [
         rr:template "test";
 
-        rr:class foaf:Agent;
+        rr:class rdf:List;
         rr:termType rr:IRI;
     ];
     rr:predicateObjectMap [
-        rr:predicate foaf:made ;
-        rr:objectMap [ rr:column "ENAME"; rr:language "dhdhhdddd";  rr:datatype xsd:string; rr:column "ENAME";  ];
+        rr:predicate dbo:deathPlace ;
+        rr:objectMap [ rr:column "ENAME"; rr:datatype xsd:string; rr:column "ENAME";  ];
     ];
-
+    rr:predicateObjectMap [
+        rr:predicate dbo:birthPlace ;
+        rr:objectMap [ rr:column "ENAME"; rr:datatype xsd:string; rr:column "ENAME";  ];
+    ];
 
 #
 #    rr:predicateObjectMap [
