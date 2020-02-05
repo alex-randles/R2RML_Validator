@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Mapping Validator</title>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <h2 align="center">Mapping Shape Validator</h2>
+    </head>
+        <body>
+
+            <div class="nav">
+                <ul>
+                    <li><a href="/">Mapping Definition Validator</a></li>
+                    <li><a href="/mapping_output">Mapping Output Validator</a></li>
+                </ul>
+            </div>
+            <div class="container">
+                <form method="POST" action="." enctype = "multipart/form-data">
+                         <input type = "file" name = "file_1" />
+                         <input type = "submit" value="Upload"/>
+                </form>
+            </div>
+
+            <div class="download-container">
+            {% if conformity_result == "true"%}
+                <h2>The shape conforms!</h2>
+            {% else %}
+                    <p>Download Validation Report (.CSV)</p>
+                    <a href="/download_CSV_report/" target="blank"> <button class="download_button">Download</button></a>
+                    <p>Download Validation Report (.TTL)</p>
+                    <a href="/download_turtle_report/" target="blank"> <button class="download_button">Download</button></a>
+                    <p>Download Provenance</p>
+                    <a href="/download_provenance/" target="blank"> <button class="download_button">Download</button></a>
+                    <h2>The shape doesnt conform</h2>
+            </div>
+            <div class="table_container">
+            <h3 class="table_header">Validation Result</h3>
+            <script src="/static/d3min.js" href="{{ url_for('static', filename='d3min.js') }}""></script>
+            <script type="text/javascript"charset="utf-8">
+            d3.text("/static/report.csv", function(data){
+                var parsedCSV = d3.csv.parseRows(data);
+
+                var container = d3.select(".table_container")
+                    .append("table")
+
+                    .selectAll("tr")
+                        .data(parsedCSV).enter()
+                        .append("tr")
+
+                    .selectAll("td")
+                        .data(function(d) { return d; }).enter()
+                        .append("td")
+                        .text(function(d) { return d; });
+            });
+            </script>
+            </div>
+            {% endif %}
+        </body>
+</html>

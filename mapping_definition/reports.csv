@@ -1,0 +1,2 @@
+ID,FOCUS_NODE,RESULT_MESSAGE,RESULT_PATH,SOURCE_CONSTRAINT_COMPONENT,SOURCE_SHAPE,VALUE,MACHINE FIXABLE
+1,f3eeae653f60445e2872e9f489964cd2cb1,duplicate triple maps,None,http://www.w3.org/ns/shacl#JSConstraintComponent,http://www.w3.org/ns/r2rml#MappingShape,f3eeae653f60445e2872e9f489964cd2cb1,False

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Mapping Validator</title>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <h2 align="center">Mapping Output Shape Validator</h2>
+    </head>
+        <body>
+
+            <div class="nav">
+                <ul>
+                    <li><a href="/">Mapping Definition Validator</a></li>
+                    <li><a href="/mapping_output">Mapping Output Validator</a></li>
+                </ul>
+
+            </div>
+                <div class="download-container">
+                    {% if conformity == true %}
+                        <h2>The shape conforms</h2>
+                    {% else %}
+                        <p>Download Conforming Data File</p>
+                        <a href="/download_conforming_data_file/" target="blank"> <button class="download_button">Download</button></a>
+                        <p>Download Conforming Turtle File</p>
+                        <a href="/download_conforming_turtle_file/" target="blank"> <button class="download_button">Download</button></a>
+                </div>
+                {% endif %}
+        </body>
+</html>

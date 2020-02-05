@@ -553,21 +553,21 @@ rr:URIdereferencable
 		a sh:JSConstraint ;
         sh:message "Datatype URI non-dereferencable" ;
         sh:jsFunctionName "dereferenceDataTypeURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/mapping_definition/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 
 	sh:js [
 		a sh:JSConstraint ;
         sh:message "Class URI non-dereferencable" ;
         sh:jsFunctionName "dereferenceClassURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/mapping_definition/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 
 	sh:js [
 		a sh:JSConstraint ;
         sh:message "Predicate URI non-dereferencable" ;
         sh:jsFunctionName "dereferencePredicateURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/mapping_definition/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 .
 
@@ -583,28 +583,11 @@ rr:GraphPerformanceShape
 		a sh:JSConstraint ;
 		sh:message "PERFORMANCE - Duplicate triples defined" ;
         sh:jsFunctionName "checkDuplicateTriples" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/mapping_definition/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
 	];
 .
 
-
-rr:DomainShape
-	rdfs:label "Triple map detection"@en ;
-	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
-	sh:targetSubjectsOf rr:class;
-	sh:targetObjectsOf  rr:subjectMap ;
-	sh:targetClass rr:SubjectMap ;
-
-
-	sh:js [
-		a sh:JSConstraint ;
-		sh:message "PERFORMANCE - Duplicate triples defined" ;
-        sh:jsFunctionName "checkDomain" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-
-	];
-.
 #rr:DataTypeShape
 #	a sh:NodeShape ;
 #	rdfs:label "Predicate object map shape"@en ;
@@ -695,7 +678,7 @@ rr:UndefinedPropertiesShape
 		a sh:JSConstraint ;
         sh:message "Usage of Undefined Classes and Properties" ;
         sh:jsFunctionName "dereferenceURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/mapping_definition/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 
 .

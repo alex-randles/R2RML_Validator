@@ -2,7 +2,6 @@
 @prefix ex:    <http://example.com/ns#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 
 [ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
   <http://www.w3.org/ns/shacl#conforms>
@@ -38,22 +37,5 @@
                     []  ;
             <http://www.w3.org/ns/shacl#value>
                     ""
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Predicate URI non-dereferencable" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:URIdereferencable ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b1
           ]
 ] .

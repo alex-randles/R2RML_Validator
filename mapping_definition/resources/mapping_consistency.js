@@ -252,35 +252,6 @@ function checkDuplicateTriples(resource) {
 
 }
 
-function checkDuplicateTriples(resource) {
-    columns = getAllValues("column");
-    predicates = getAllValues("predicate");
-    print("PREDICATES", predicates);
-    print("COLUMNS", columns);
-    if (no_duplicates === false){
-        return null;
-    }
-    comparison_list  =[];
-    for (var i = 0; i < predicates.length; i++) {
-        var tmp = [String(predicates[i]), String(columns[i])] ;
-        comparison_list.push(tmp);
-        tmp = [];
-
-    }
-
-    for (var i = 0; i < comparison_list.length; i++) {
-        var occurrences = countOccurrences(comparison_list, comparison_list[i]);
-        if (occurrences > 1){
-            no_duplicates = false;
-        }
-
-    }
-
-
-        return no_duplicates;
-
-}
-
 function validateGermanLabel($this) {
     if (duplicates_checked){
         return;
@@ -401,25 +372,3 @@ function checkDuplicateElements(numArray){
                }
             return false;
         }
-
-
-
-
-function checkDomain(resource) {
-	var labelProperty = TermFactory.namedNode(NS+"class");
-	var labels = $data.find(resource, labelProperty, null);
-	for(;;) {
-		var labelTriple = labels.next();
-		print(labelTriple);
-		if(!labelTriple) {
-			return null;
-		}
-
-		else{
-		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	        var ResponseCode = JavaCLass.getRDF(String(labelTriple.object));
-            print(ResponseCode);
-            return null;
-		}
-		}
-	}

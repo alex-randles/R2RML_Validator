@@ -2,14 +2,12 @@
 @prefix ex: <http://example.com/ns#>.
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-# <http://ex.org#TriplesMap1>
- <#TriplesMap1>
+
+<#TriplesMap1>
     rr:logicalTable [ rr:tableName "" ;];
     rr:subjectMap [
         rr:template "test";
-
-        rr:class foaf:Agent;
+        rr:class rdf:fnf463464646464646646646457575474664;
         rr:termType rr:IRI;
     ];
     rr:predicateObjectMap [
@@ -21,7 +19,7 @@
 
     rr:predicateObjectMap [
 
-        rr:predicate ex:Employee;
+        rr:predicate rdf:test;
 
         rr:objectMap [ rr:column "h" ; rr:termType rr:IRI; rr:language "dhdhhd";  ];
     ];

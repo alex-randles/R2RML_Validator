@@ -1,0 +1,10 @@
+<http://www.example.com/error/1>
+        a       <http://www.w3.org/ns/prov#Entity> ;
+        <http://www.w3.org/ns/prov#Agent>
+                "http://www.w3.org/ns/shacl#JSConstraintComponent" ;
+        <http://www.w3.org/ns/prov#value>
+                "duplicate triple maps" ;
+        <http://www.w3.org/ns/prov#wasAttributedTo>
+                "None" ;
+        <http://www.w3.org/ns/prov#wasGeneratedBy>
+                "f8e5e0b831c5f49c290f3bf8030bec26fb1" .
