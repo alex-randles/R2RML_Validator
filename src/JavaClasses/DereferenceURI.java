@@ -21,7 +21,7 @@ String mappingPredicate = "http://xmlns.com/foaf/0.1/Group";
 String mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
 String vocabularyURI = "http://dbpedia.org/ontology/numberOfDistrict";
        // getRDF("http://xmlns.com/foaf/0.1/knows", "http://xmlns.com/foaf/0.1/knows", "http://www.w3.org/1999/02/22-rdf-syntax-ns#List");
-getRDF(vocabularyURI, vocabularyURI,  "http://dbpedia.org/ontology/Department" );
+validateRange("http://xmlns.com/foaf/0.1/knows",  "http://xmlns.com/foaf/0.1/Person");
     }
 
     public static boolean getResponseCode(String string_URL){
@@ -43,7 +43,7 @@ getRDF(vocabularyURI, vocabularyURI,  "http://dbpedia.org/ontology/Department" )
         }
 
 }
-    public static boolean getRDF(String uri, String mappingSubject, String mappingPredicate){
+    public static boolean validateDomain(String uri, String mappingSubject, String mappingPredicate){
         try{
 
         		Model data = ModelFactory.createDefaultModel();
@@ -111,5 +111,49 @@ else{
         }
 
 
+ public static boolean validateRange(String predicateURI, String objectURI){
+        try{
+
+        		Model data = ModelFactory.createDefaultModel();
+		data.read(predicateURI,
+           "RDF/XML");
+
+
+StmtIterator iter = data.listStatements();
+
+// print out the predicate, subject and object of each statement
+int i = 0;
+while (iter.hasNext()) {
+    Statement stmt      = iter.nextStatement();  // get next statement
+    Resource  subject   = stmt.getSubject();     // get the subject
+    Property  predicate = stmt.getPredicate();   // get the predicate
+    RDFNode   object    = stmt.getObject();      // get the object
+
+
+ // System.out.println(object.toString());
+      //  System.out.println(object.toString().equals("http://xmlns.com/foaf/0.1/Person"));
+// mappingPredicate = "http://xmlns.com/foaf/0.1/dhhd";
+// mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
+if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#range")){
+System.out.println( subject.toString() + " " + predicate.toString()  + " " + object.toString() );
+
+}
+// System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
+    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#range") && !(object.toString().equals(objectURI)) && subject.toString().equals(predicateURI)){
+        System.out.println(objectURI + " is not in the the range of:  " + predicateURI );
+       return false;
+    }
+    // System.out.println("ddhdhdh");
+    // System.out.println(" .");
+i++;
+
+
+        }
+}
+        catch(Exception e){
+            System.out.println(e + "3474374747");
+        }
+        return true;
+        }
 
 }

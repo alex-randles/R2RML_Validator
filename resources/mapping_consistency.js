@@ -458,7 +458,7 @@ function checkDomain(resource) {
 		    print(String(class_name), String(class_name), String(labelTriple.object), "47747" );
 		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
 		    //              getRDF("http://xmlns.com/foaf/0.1/member","http://xmlns.com/foaf/0.1/member", "http://xmlns.com/foaf/0.1/4444");
-	        var ResponseCode = JavaCLass.getRDF(String(labelTriple.object), String(labelTriple.object), String(class_name));
+	        var ResponseCode = JavaCLass.validateDomain(String(labelTriple.object), String(labelTriple.object), String(class_name));
             print(ResponseCode);
             return ResponseCode;
 		}
