@@ -8,7 +8,8 @@ var duplicates_checked = false;
 var constant_template_checked = false;
 var tables_count_check = false;
 var mappings = {} ;
-
+var disjoint_classes_check = false;
+var domain_check = false;
 // this carry out checks from mapping consistency in Ademars paper
 function checkTermType($this) {
     try{
@@ -438,30 +439,79 @@ function checkDuplicateElements(numArray){
 
 
 
-function test(resource){
+function validateDisjointClasses(resource){
+    if (!disjoint_classes_check){
+        var classesURI = getAllValues("class");
+        print("CLASSSESSSSSSSSSSS" , classesURI);
+        var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+        var result = JavaCLass.validateDisjointClasses(classesURI);
+        disjoint_classes_check = true;
+        return result;
 
+    }
 
 }
 function checkDomain(resource) {
-    var class_name  = getProperty(resource, "class");
-	var labelProperty = TermFactory.namedNode(NS+"predicate");
-	var labels = $data.find(resource, labelProperty, null);
-	for(;;) {
-		var labelTriple = labels.next();
-		print(labelTriple);
-		if(!labelTriple) {
-			return null;
+	var predicate = getProperty(resource, "predicate");
+	// var test = getProperty(resource, "class");
+	print(test, "4844747")
+	print("predicate", predicate);
+	if (!domain_check){
+	var classes = getAllValues("class");
+	print("all classess" + classes);
+        if(predicate){
+//            for (var i=0; i<classes.length; i++){
+//                // print(String(predicates[j]),String(predicates[j]),String(classes[i]), "4877474");
+//                // print(String(predicates[j]),String(predicates[j]),String(classes[i]), "4877474");
+		        var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+		        print(String(predicate), " is being tested against the following domain " + classes);
+	            var result = JavaCLass.validateDomain(String(predicate),String(predicate), classes);
+                return result
+
+
+        }
+	domain_check  = true;
+
+
+//	}
+// 	var i = 0;
+//	for(;;) {
+//		var labelTriple = labels.next();
+//		print(labelTriple);
+//		if(!labelTriple) {
+//			return null;
+//		}
+//
+//		else{
+//		    // getRDF(String uri, String mappingSubject, String mappingPredicate)
+//		    print(String(class_name), String(class_name), String(labelTriple.object), "47747" );
+//		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+//		    for (var i=0; i<predicates.length;i++){
+//		                var result = JavaCLass.validateDomain(String(predicates[i]), String(predicates[i]),String(labelTriple.object));
+//                        print(result);
+//                        return result;
+//		    }
+//		    // getRDF("http://xmlns.com/foaf/0.1/member","http://xmlns.com/foaf/0.1/member", "http://xmlns.com/foaf/0.1/4444");
+//
+//		}
+//		}
+}
 		}
 
-		else{
-		    // getRDF(String uri, String mappingSubject, String mappingPredicate)
-		    print(String(class_name), String(class_name), String(labelTriple.object), "47747" );
-		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-		    //              getRDF("http://xmlns.com/foaf/0.1/member","http://xmlns.com/foaf/0.1/member", "http://xmlns.com/foaf/0.1/4444");
-	        var ResponseCode = JavaCLass.validateDomain(String(labelTriple.object), String(labelTriple.object), String(class_name));
-            print(ResponseCode);
-            return ResponseCode;
-		}
-		}
 
+
+function validateRange(resource){
+    var predicate = getProperty(resource, "predicate");
+	var datatype = getProperty(resource, "datatype");
+	if (datatype && predicate){
+	    	print("CHECKING RANGE predicate " + predicate, "datatype " + datatype);
+	    	var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+		    print(String(predicate), "373673")
+		    var string_predicate = String(predicate);
+		    var string_datatype  = String(datatype);
+	        var result = JavaCLass.validateRange(predicate, datatype);
+	        return result;
 	}
+
+
+}

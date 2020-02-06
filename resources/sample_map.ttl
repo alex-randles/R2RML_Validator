@@ -6,23 +6,23 @@
 @prefix dbo: <http://dbpedia.org/ontology/>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dcterms: <http://purl.org/dc/terms/>.
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 # <http://ex.org#TriplesMap1>
  <#TriplesMap1>
     rr:logicalTable [ rr:tableName "test" ;];
     rr:subjectMap [
         rr:template "test";
+                rr:class foaf:Agent;
 
-        rr:class rdf:List;
         rr:termType rr:IRI;
     ];
     rr:predicateObjectMap [
-        rr:predicate dbo:deathPlace ;
-        rr:objectMap [ rr:column "ENAME"; rr:datatype xsd:string; rr:column "ENAME";  ];
+        rr:predicate foaf:knows ;
+        rr:objectMap [ rr:column "ENAME"; rr:datatype owl:Thing; rr:column "ENAME";  ];
     ];
-    rr:predicateObjectMap [
-        rr:predicate dbo:birthPlace ;
-        rr:objectMap [ rr:column "ENAME"; rr:datatype xsd:string; rr:column "ENAME";  ];
-    ];
+
+
+
 
 #
 #    rr:predicateObjectMap [

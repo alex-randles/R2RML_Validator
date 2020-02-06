@@ -592,9 +592,10 @@ rr:GraphPerformanceShape
 rr:DomainShape
 	rdfs:label "Triple map detection"@en ;
 	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
-	sh:targetObjectsOf rr:class;
+	sh:targetObjectsOf  rr:predicate;
+	# sh:targetSubjectsOf rr:predicateObjectMap, rr:subjectMap;
 	# sh:targetSubjectsOf  rr:subjectMap ;
-	sh:targetClass rr:SubjectMap ;
+	sh:targetClass rr:PredicateObjectMap ;
 
 
 	sh:js [
@@ -607,6 +608,39 @@ rr:DomainShape
 .
 
 
+rr:DisjointShape
+	rdfs:label "Triple map detection"@en ;
+	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
+	sh:targetObjectsOf rr:class;
+	sh:targetSubjectsOf  rr:subjectMap ;
+	sh:targetClass rr:SubjectMap ;
+
+
+	sh:js [
+		a sh:JSConstraint ;
+		sh:message "Disjoint Classes Detected" ;
+        sh:jsFunctionName "validateDisjointClasses" ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+
+	];
+.
+
+#rr:RangeShape
+#	rdfs:label "Triple map detection"@en ;
+#	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
+#	sh:targetObjectsOf rr:predicate, rr:datatype;
+#	# sh:targetSubjectsOf  rr:subjectMap ;
+#	sh:targetClass rr:PredicateObjectMap,  rr:ObjectMap ;
+#
+#
+#	sh:js [
+#		a sh:JSConstraint ;
+#		sh:message "Range Violation Detected" ;
+#        sh:jsFunctionName "validateRange" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#
+#	];
+#.
 #rr:DataTypeShape
 #	a sh:NodeShape ;
 #	rdfs:label "Predicate object map shape"@en ;

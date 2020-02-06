@@ -2,6 +2,7 @@
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://example.com/ns#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
@@ -13,7 +14,7 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    rdf:List ;
+                    foaf:knows ;
             <http://www.w3.org/ns/shacl#resultMessage>
                     "Domain Error Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
@@ -25,6 +26,6 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     rr:DomainShape ;
             <http://www.w3.org/ns/shacl#value>
-                    rdf:List
+                    foaf:knows
           ]
 ] .
