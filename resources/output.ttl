@@ -14,9 +14,9 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    foaf:knows ;
+                    _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Error Detected" ;
+                    "Predicate URI non-dereferencable" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
@@ -24,8 +24,8 @@
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
+                    rr:URIdereferencable ;
             <http://www.w3.org/ns/shacl#value>
-                    foaf:knows
+                    _:b0
           ]
 ] .

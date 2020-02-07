@@ -592,11 +592,13 @@ rr:GraphPerformanceShape
 rr:DomainShape
 	rdfs:label "Triple map detection"@en ;
 	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
-	sh:targetObjectsOf  rr:predicate;
-	# sh:targetSubjectsOf rr:predicateObjectMap, rr:subjectMap;
-	# sh:targetSubjectsOf  rr:subjectMap ;
-	sh:targetClass rr:PredicateObjectMap ;
+#	sh:targetClass rr:TriplesMap ;
+#	sh:targetSubjectsOf
+#		rr:TriplesMap;
+	sh:targetObjectsOf rr:predicateObjectMap, rr:subjectMap;
+	# sh:targetObjectsOf rr:predicateObjectMap;
 
+	sh:targetClass rr:PredicateObjectMap, rr:SubjectMap;
 
 	sh:js [
 		a sh:JSConstraint ;

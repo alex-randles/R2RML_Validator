@@ -101,17 +101,11 @@ function checkDuplicateColumns($this) {
 }
 
 function getProperty($this, name) {
-    // try - catch if object doesnt exist for this triple
-    try {
-        var it = $data.find($this, TermFactory.namedNode(NS + name), null);
-        var result = it.next().object;
-        it.close();
-        return result;
-	}
-    catch(err) {
-     }
+	var it = $data.find($this, TermFactory.namedNode(NS + name), null);
+	var result = it.next().object;
+	it.close();
+	return result;
 }
-
 
 
 function testing(resource) {
@@ -451,52 +445,35 @@ function validateDisjointClasses(resource){
     }
 
 }
-function checkDomain(resource) {
-	var predicate = getProperty(resource, "predicate");
-	// var test = getProperty(resource, "class");
-	print(test, "4844747")
-	print("predicate", predicate);
-	if (!domain_check){
-	var classes = getAllValues("class");
-	print("all classess" + classes);
-        if(predicate){
-//            for (var i=0; i<classes.length; i++){
-//                // print(String(predicates[j]),String(predicates[j]),String(classes[i]), "4877474");
-//                // print(String(predicates[j]),String(predicates[j]),String(classes[i]), "4877474");
-		        var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-		        print(String(predicate), " is being tested against the following domain " + classes);
-	            var result = JavaCLass.validateDomain(String(predicate),String(predicate), classes);
-                return result
 
 
-        }
-	domain_check  = true;
-
-
-//	}
-// 	var i = 0;
-//	for(;;) {
-//		var labelTriple = labels.next();
-//		print(labelTriple);
-//		if(!labelTriple) {
-//			return null;
-//		}
-//
-//		else{
-//		    // getRDF(String uri, String mappingSubject, String mappingPredicate)
-//		    print(String(class_name), String(class_name), String(labelTriple.object), "47747" );
-//		    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-//		    for (var i=0; i<predicates.length;i++){
-//		                var result = JavaCLass.validateDomain(String(predicates[i]), String(predicates[i]),String(labelTriple.object));
-//                        print(result);
-//                        return result;
-//		    }
-//		    // getRDF("http://xmlns.com/foaf/0.1/member","http://xmlns.com/foaf/0.1/member", "http://xmlns.com/foaf/0.1/4444");
-//
-//		}
-//		}
-}
+function checkDomain($this) {
+	var results = [];
+	// var classURI = getProperty($this, "class");
+	var p = TermFactory.namedNode(NS+"predicate");
+	var s = $data.find($this, p, null);
+	for(var t = s.next(); t; t = s.next()) {
+		var object = t.object;
+			print(object);
 		}
+    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+    var result = JavaCLass.validateDomain(String(object), String(object), String(getAllValues("class")));
+    return result;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

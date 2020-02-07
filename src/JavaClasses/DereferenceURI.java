@@ -26,6 +26,8 @@ String[] classesURI = {"http://xmlns.com/foaf/0.1/Document", "http://xmlns.com/f
 // validateDomain("http://xmlns.com/foaf/0.1/made","http://xmlns.com/foaf/0.1/made", "http://dbpedia.org/ontology/ArchitecturalStructure");
 // validateDisjointClasses(classesURI);
 validateRange("http://xmlns.com/foaf/0.1/made", "http://www.w3.org/2002/07/owl#Thing");
+validateDomain("http://xmlns.com/foaf/0.1/made","http://xmlns.com/foaf/0.1/made", "http://xmlns.com/foaf/0.1/Agent");
+
     }
 
     public static boolean getResponseCode(String string_URL){
@@ -47,12 +49,12 @@ validateRange("http://xmlns.com/foaf/0.1/made", "http://www.w3.org/2002/07/owl#T
         }
 
 }
-    public static boolean validateDomain(String uri, String mappingSubject, String[] mappingPredicate){
+    public static boolean validateDomain(String uri, String mappingSubject, String mappingPredicate){
         try{
-
         		Model data = ModelFactory.createDefaultModel();
 		data.read(uri,
            "RDF/XML");
+           System.out.println(mappingPredicate);
 
 
 StmtIterator iter = data.listStatements();
@@ -71,25 +73,15 @@ while (iter.hasNext()) {
 // mappingPredicate = "http://xmlns.com/foaf/0.1/dhhd";
 // mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
 // System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
-int count = 0;
-for (String comparsionURI : mappingPredicate){
-    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && !(object.toString().equals(comparsionURI)) && subject.toString().equals(mappingSubject)){
-        System.out.println(comparsionURI + " is not in the the domain of:  " + mappingSubject );
-         count++;
-    }
-
+    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && !(object.toString().equals(mappingPredicate)) && subject.toString().equals(mappingSubject)){
+        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
+        return false;
 }
-if (count  == mappingPredicate.length) {
-    return false;
+}
 }
 
-    // System.out.println("ddhdhdh");
-    // System.out.println(" .");
-i++;
 
 
-        }
-}
         catch(Exception e){
             System.out.println(e);
         }
