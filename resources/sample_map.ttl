@@ -12,7 +12,7 @@
     rr:logicalTable [ rr:tableName "test" ;];
     rr:subjectMap [
         rr:template "test";
-        rr:class foaf:Person;
+        rr:class foaf:Agent;
 
         rr:termType rr:IRI;
     ];
