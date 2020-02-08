@@ -450,14 +450,21 @@ function validateDisjointClasses(resource){
 function checkDomain($this) {
 	var results = [];
 	// var classURI = getProperty($this, "class");
-	var p = TermFactory.namedNode(NS+"predicate");
-	var s = $data.find($this, p, null);
-	for(var t = s.next(); t; t = s.next()) {
-		var object = t.object;
-			print(object);
-		}
+	print("Testing domain");
+//	var p = TermFactory.namedNode(NS+"predicate");
+//	var s = $data.find($this, p, null);
+//	var
+//	for(var t = s.next(); t; t = s.next()) {
+//		var object = t.object;
+//			print(object);
+//		}
+    var predicate  = getProperty($this, "predicate");
+    var classes  = getProperty($this, "class");
+    print("PREDICATE", predicate);
+    print("CLASS", getAllValues("class"));
     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-    var result = JavaCLass.validateDomain(String(object), String(object), String(getAllValues("class")));
+    var result = JavaCLass.validateDomain(String(getAllValues("class")), String(predicate));
+    print("RESULT OF TESTING DOMAIN", result);
     return result;
 }
 
@@ -468,11 +475,10 @@ function checkDomain($this) {
 
 
 
-
-
-
-
-
+function square($number) {
+    print("fufdyfhhfhfh");
+	return $number;
+}
 
 
 

@@ -2,6 +2,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix rml: <http://semweb.mmlab.be/ns/rml#> .
@@ -543,33 +544,33 @@ rmlsh:JoinShape
 
 #
 #
-rr:URIdereferencable
-    a sh:NodeShape ;
-	rdfs:label "URI Dereferencable"@en ;
-	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
-
-	sh:targetObjectsOf rr:subjectMap ;
-	sh:js [
-		a sh:JSConstraint ;
-        sh:message "Datatype URI non-dereferencable" ;
-        sh:jsFunctionName "dereferenceDataTypeURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-	] ;
-
-	sh:js [
-		a sh:JSConstraint ;
-        sh:message "Class URI non-dereferencable" ;
-        sh:jsFunctionName "dereferenceClassURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-	] ;
-
-	sh:js [
-		a sh:JSConstraint ;
-        sh:message "Predicate URI non-dereferencable" ;
-        sh:jsFunctionName "dereferencePredicateURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-	] ;
-.
+#rr:URIdereferencable
+#    a sh:NodeShape ;
+#	rdfs:label "URI Dereferencable"@en ;
+#	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
+#
+#	sh:targetObjectsOf rr:subjectMap ;
+#	sh:js [
+#		a sh:JSConstraint ;
+#        sh:message "Datatype URI non-dereferencable" ;
+#        sh:jsFunctionName "dereferenceDataTypeURI" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+#	] ;
+#
+#	sh:js [
+#		a sh:JSConstraint ;
+#        sh:message "Class URI non-dereferencable" ;
+#        sh:jsFunctionName "dereferenceClassURI" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+#	] ;
+#
+#	sh:js [
+#		a sh:JSConstraint ;
+#        sh:message "Predicate URI non-dereferencable" ;
+#        sh:jsFunctionName "dereferencePredicateURI" ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
+#	] ;
+#.
 
 rr:GraphPerformanceShape
 	rdfs:label "Triple map detection"@en ;
@@ -589,16 +590,39 @@ rr:GraphPerformanceShape
 .
 
 
+rr:DomainShape
+	rdfs:label "Triple map detection"@en ;
+	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
+#	sh:targetClass rr:TriplesMap ;
+#	sh:targetSubjectsOf
+#		rr:TriplesMap;
+	sh:targetObjectsOf rr:predicateObjectMap;
+	# sh:targetSubjectsOf rr:predicateObjectMap;
+
+	sh:targetClass rr:PredicateObjectMap;
+
+	sh:js [
+		a sh:JSConstraint ;
+		sh:message "Domain Error Detected" ;
+        sh:jsFunctionName "checkDomain" ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+
+	];
+.
+
+
+
+#### WORKING DOMAIN SHAPE
 #rr:DomainShape
 #	rdfs:label "Triple map detection"@en ;
 #	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
 ##	sh:targetClass rr:TriplesMap ;
 ##	sh:targetSubjectsOf
 ##		rr:TriplesMap;
-#	sh:targetObjectsOf rr:predicateObjectMap, rr:subjectMap;
-#	# sh:targetObjectsOf rr:predicateObjectMap;
+#	sh:targetObjectsOf rr:predicateObjectMap;
+#	# sh:targetSubjectsOf rr:predicateObjectMap;
 #
-#	sh:targetClass rr:PredicateObjectMap, rr:SubjectMap;
+#	sh:targetClass rr:PredicateObjectMap;
 #
 #	sh:js [
 #		a sh:JSConstraint ;
@@ -610,11 +634,12 @@ rr:GraphPerformanceShape
 #.
 
 
+
 rr:DisjointShape
 	rdfs:label "Triple map detection"@en ;
 	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
 	sh:targetObjectsOf rr:class;
-	sh:targetSubjectsOf  rr:subjectMap ;
+	sh:targetObjectsOf  rr:subjectMap ;
 	sh:targetClass rr:SubjectMap ;
 
 
@@ -816,17 +841,30 @@ rr:EmptyValuesShape
     ] ;
 .
 
-
-rr:Test
-	a sh:NodeShape;
-	sh:targetObjectsOf rr:subjectMap ;
-	sh:targetClass     rr:SubjectMap ;
-	sh:property [
-	sh:not [
-		sh:path rr:class;
-		sh:hasValue ('http://xmlns.com/foaf/0.1/Agent') ;
-		];
-		   ];
-
-
-.
+#
+#rr:DomainShape2
+#	a sh:NodeShape;
+#	# sh:targetObjectsOf rr:subjectMap ;
+#	sh:targetSubjectsOf rr:subjectMap;
+#	sh:targetObjectsOf rr:class;
+#	sh:targetClass     rr:SubjectMap ;
+#	sh:property
+#		[
+#			# sh:message sh:path ;
+#			sh:path rr:class ;
+#			sh:equals <http://dbpedia.org/ontology/Person>;
+#		] ;
+#.
+#
+#rr:square
+#	a sh:JSFunction ;
+##	sh:targetObjectsOf rr:objectMap;
+##	sh:targetClass rr:ObjectMap;
+##	sh:targetSubjectsOf rr:objectMap;
+#	sh:parameter [
+#		sh:path rr:datatype ;
+#		sh:datatype xsd:string ;
+#	] ;
+#	sh:returnType xsd:string ;
+#	sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#	sh:jsFunctionName "square" .

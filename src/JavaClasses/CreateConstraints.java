@@ -12,7 +12,7 @@ import org.apache.jena.rdf.model.*;
 
 import java.io.*;
 
-public class DereferenceURI{
+public class CreateConstraints{
 
     public static void main(String[] args){
         // main method for testing purposes

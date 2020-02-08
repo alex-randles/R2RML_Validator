@@ -25,8 +25,8 @@ String vocabularyURI = "http://dbpedia.org/ontology/numberOfDistrict";
 String[] classesURI = {"http://xmlns.com/foaf/0.1/Document", "http://xmlns.com/foaf/0.1/Person"};
 // validateDomain("http://xmlns.com/foaf/0.1/made","http://xmlns.com/foaf/0.1/made", "http://dbpedia.org/ontology/ArchitecturalStructure");
 // validateDisjointClasses(classesURI);
-validateRange("http://xmlns.com/foaf/0.1/made", "http://www.w3.org/2002/07/owl#Thing");
-validateDomain("http://xmlns.com/foaf/0.1/made","http://xmlns.com/foaf/0.1/made", "http://xmlns.com/foaf/0.1/Agent");
+// validateRange("http://xmlns.com/foaf/0.1/made", "http://www.w3.org/2002/07/owl#Thing");
+// validateDomain("http://dbpedia.org/ontology/co","http://dbpedia.org/ontology/co", "http://dbpedia.org/ontology/Person");
 
     }
 
@@ -49,69 +49,72 @@ validateDomain("http://xmlns.com/foaf/0.1/made","http://xmlns.com/foaf/0.1/made"
         }
 
 }
-    public static boolean validateDomain(String uri, String mappingSubject, String mappingPredicate){
+    public static boolean validateDomain(String mappingSubject, String mappingPredicate){
         try{
+        System.out.println("CHECKING DOMAIN");
         		Model data = ModelFactory.createDefaultModel();
-		data.read(uri,
-           "RDF/XML");
+		data.read(mappingSubject);
            System.out.println(mappingPredicate);
 
 
 StmtIterator iter = data.listStatements();
-
 // print out the predicate, subject and object of each statement
 int i = 0;
+boolean inDomain = false;
 while (iter.hasNext()) {
     Statement stmt      = iter.nextStatement();  // get next statement
     Resource  subject   = stmt.getSubject();     // get the subject
     Property  predicate = stmt.getPredicate();   // get the predicate
     RDFNode   object    = stmt.getObject();      // get the object
-
-
- // System.out.println(object.toString());
-      //  System.out.println(object.toString().equals("http://xmlns.com/foaf/0.1/Person"));
-// mappingPredicate = "http://xmlns.com/foaf/0.1/dhhd";
-// mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
-// System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
-    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && !(object.toString().equals(mappingPredicate)) && subject.toString().equals(mappingSubject)){
+//     System.out.println("SUBJECT " + subject.toString());
+//     System.out.println("OBJECT " + object.toString());
+//     System.out.println("PREDICATE " + predicate.toString());
+//     System.out.println("COMPARING TO SUBJECT " + mappingSubject  + " PREDICATE " + mappingPredicate);
+    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
+       System.out.println("ENTERING DOMAIN IF STATEMENT");
+       System.out.println("SUBJECT " + subject.toString());
+    System.out.println("OBJECT " + object.toString());
+    System.out.println("PREDICATE " + predicate.toString());
         System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
-        return false;
 }
+else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && subject.toString().equals(mappingPredicate)){
+    inDomain = true;
 }
+
+}
+return inDomain;
 }
 
 
 
         catch(Exception e){
-            System.out.println(e);
+            System.out.println(e + " ERROR ");
+            return true;
         }
-        return true;
         }
 
    public static boolean checkRDF(String uri){
         try{
 
-        		Model data = ModelFactory.createDefaultModel();
-		data.read(uri,
-           "RDF/XML");
+            Model data = ModelFactory.createDefaultModel();
+            data.read(uri,"RDF/XML");
 
+            StmtIterator iter = data.listStatements();
+            if (iter.hasNext()) {
+                return true;
 
-StmtIterator iter = data.listStatements();
-if (iter.hasNext()) {
-    return true;
-
-    }
-else{
-    return false;
-}
-}
+                }
+            else{
+                return false;
+            }
+            }
 
 
 
         catch(Exception e){
-            System.out.println(e + "3474374747");
+            System.out.println("Error fetching RDF " + e);
+            return false;
         }
-        return true;
         }
 
 

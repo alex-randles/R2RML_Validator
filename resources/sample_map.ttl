@@ -12,17 +12,20 @@
     rr:logicalTable [ rr:tableName "test" ;];
     rr:subjectMap [
         rr:template "test";
-        rr:class foaf:Agent;
-
+        rr:class foaf:Person;
         rr:termType rr:IRI;
     ];
 
 
         rr:predicateObjectMap [
         rr:predicate foaf:knows ;
-        rr:objectMap [ rr:column "ENAME"; rr:datatype owl:Thing; rr:column "ENAME";  ];
+        rr:objectMap [ rr:column "ENAME"; rr:datatype "ey"^^xsd:string; rr:column "ENAME";  ];
     ];
 
+        rr:predicateObjectMap [
+        rr:predicate foaf:firstName ;
+        rr:objectMap [ rr:column "ENAME"; rr:datatype "ey"^^xsd:string; rr:column "d";  ];
+    ];
 
 
 
