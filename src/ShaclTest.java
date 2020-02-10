@@ -31,6 +31,27 @@ public class ShaclTest {
 		 
 		Resource report = ValidationUtil.validateModel(data, function, true);
 		report.getModel().write(System.out, "TURTLE");
+				Model new_data = ModelFactory.createDefaultModel();
+		data.read("./resources/new_sample_map.ttl");
+
+		// read function.ttl -- it creates a rule with JavaScript functionality to compute the
+		// area of circles using its radius. But watch out, this code assume that all target nodes
+		// hava a property radius. You need to add conditionals in the code
+		Model new_function = ModelFactory.createDefaultModel();
+		function.read("./resources/function.ttl");
+
+		// You can add additional parameters, but you can consult the documentation
+		// This model will only contain the inferred triples (via the rules)
+		// Model inferenced = RuleUtil.executeRules(data, function, null , null);
+		// Model inferenced = RuleUtil.executeRules(data, function, data , null);
+		// inferenced.write(System.out, "TURTLE");
+
+
+
+		// Output to file aswell
+
+		Resource new_report = ValidationUtil.validateModel(new_data, new_function, true);
+		new_report.getModel().write(System.out, "TURTLE");
 		String output_file = "./resources/output.ttl";
 		File file = new File(output_file);
         try{

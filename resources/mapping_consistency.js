@@ -1,5 +1,4 @@
 var NS = "http://www.w3.org/ns/r2rml#";
-var count = 0;
 var predicates = [];
 var columns = [];
 var groupings = [];
@@ -10,6 +9,9 @@ var tables_count_check = false;
 var mappings = {} ;
 var disjoint_classes_check = false;
 var domain_check = false;
+var missing_datatype_check = false;
+		var count = 0;
+
 // this carry out checks from mapping consistency in Ademars paper
 function checkTermType($this) {
     try{
@@ -459,16 +461,62 @@ function checkDomain($this) {
 //			print(object);
 //		}
     var predicate  = getProperty($this, "predicate");
-    var classes  = getProperty($this, "class");
-    print("PREDICATE", predicate);
+   //  var classes  = getProperty($this, "class");
+ if (predicate){
+
+      print("PREDICATE", predicate);
     print("CLASS", getAllValues("class"));
     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-    var result = JavaCLass.validateDomain(String(getAllValues("class")), String(predicate));
+    var result = JavaCLass.validateAllDomains(getAllValues("class"), String(predicate));
     print("RESULT OF TESTING DOMAIN", result);
+    if(result==true){
+        return true;
+    }
+    return String(predicate);
     return result;
+
+
+  }
+
 }
 
 
+function addMissingDataTypes(resource){
+	var labelProperty = TermFactory.namedNode(NS+"predicate");
+	var labels = $data.find(resource, labelProperty, null);
+	if (!missing_datatype_check && domain_check){
+	for(;;) {
+		var labelTriple = labels.next();
+		if(!labelTriple) {
+            break;
+            return null;
+		}
+				var label = labelTriple.object;
+				if (count==0){
+				     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+    var result = JavaCLass.fixDataType(String(label), "./resources/sample_map.ttl");
+
+				}
+				else{
+				print("USING NEW SAMPLE MAP");
+
+				     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+    var result = JavaCLass.fixDataType(String(label), "./resources/new_sample_map.ttl");
+				}
+count++;
+    print("ADDING DATAYTPE !!!!!!");
+
+
+
+	}
+	domain_check = true;
+	return;
+
+
+
+
+	}
+}
 
 
 

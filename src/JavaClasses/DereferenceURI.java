@@ -27,6 +27,7 @@ String[] classesURI = {"http://xmlns.com/foaf/0.1/Document", "http://xmlns.com/f
 // validateDisjointClasses(classesURI);
 // validateRange("http://xmlns.com/foaf/0.1/made", "http://www.w3.org/2002/07/owl#Thing");
 // validateDomain("http://dbpedia.org/ontology/co","http://dbpedia.org/ontology/co", "http://dbpedia.org/ontology/Person");
+  // fixDataType("http://dbpedia.org/ontology/areaCode");
 
     }
 
@@ -49,6 +50,39 @@ String[] classesURI = {"http://xmlns.com/foaf/0.1/Document", "http://xmlns.com/f
         }
 
 }
+
+
+public static void findValidDomain(String URI){
+
+System.out.println("FINDING DOMAIN");
+        		Model data = ModelFactory.createDefaultModel();
+		data.read(URI);
+
+
+StmtIterator iter = data.listStatements();
+System.out.println(iter);
+while (iter.hasNext()) {
+    Statement stmt      = iter.nextStatement();  // get next statement
+    Resource  subject   = stmt.getSubject();     // get the subject
+    Property  predicate = stmt.getPredicate();   // get the predicate
+    RDFNode   object    = stmt.getObject();      // get the object
+    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && subject.toString().equals(URI)){
+        String result = AddDomain.AddDomainTriple(object.toString(),  "./resources/sample_map.ttl");
+        System.out.println("ADDING DOMAIN " + object.toString());
+        System.out.println(result);
+}
+
+}
+}
+public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate){
+     for (String subject : mappingSubject){
+        if (validateDomain((subject), mappingPredicate) == true){
+            return true;
+        }
+     }
+     return false;
+
+}
     public static boolean validateDomain(String mappingSubject, String mappingPredicate){
         try{
         System.out.println("CHECKING DOMAIN");
@@ -69,7 +103,7 @@ while (iter.hasNext()) {
 //     System.out.println("SUBJECT " + subject.toString());
 //     System.out.println("OBJECT " + object.toString());
 //     System.out.println("PREDICATE " + predicate.toString());
-//     System.out.println("COMPARING TO SUBJECT " + mappingSubject  + " PREDICATE " + mappingPredicate);
+//     System.out.println("COMPARING TO SUBJECT " + mappingSubject  + " PREDICATE " + mappingPredicate);#
     if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
        System.out.println("ENTERING DOMAIN IF STATEMENT");
        System.out.println("SUBJECT " + subject.toString());
@@ -81,6 +115,11 @@ else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domai
     inDomain = true;
 }
 
+
+
+}
+if (!inDomain){
+findValidDomain(mappingPredicate);
 }
 return inDomain;
 }
@@ -93,6 +132,39 @@ return inDomain;
         }
         }
 
+   public static void fixDataType(String URI, String mappingFile){
+            System.out.println("CHECKING DATATYPE OF"  + URI);
+        		Model data = ModelFactory.createDefaultModel();
+		data.read(URI);
+
+
+StmtIterator iter = data.listStatements();
+while (iter.hasNext()) {
+    Statement stmt      = iter.nextStatement();  // get next statement
+    Resource  subject   = stmt.getSubject();     // get the subject
+    Property  predicate = stmt.getPredicate();   // get the predicate
+    RDFNode   object    = stmt.getObject();      // get the object
+    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#range") && subject.toString().equals(URI)){
+       System.out.println("ENTERING DATATYPE IF STATEMENT");
+    String validDataType = object.toString();
+    String[] parts = validDataType.split("#");
+    if (parts[0].equals("http://www.w3.org/2001/XMLSchema")){
+         System.out.println("ADDING DATATYPE " + validDataType + " subject " + subject.toString());
+        AddDataType.AddDataTypeTriple(subject.toString(),validDataType, mappingFile);
+       //  System.exit(0);
+
+        // return;
+    }
+
+}
+
+
+
+
+}
+
+
+   }
    public static boolean checkRDF(String uri){
         try{
 

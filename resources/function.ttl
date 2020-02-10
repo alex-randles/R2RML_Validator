@@ -596,15 +596,24 @@ rr:DomainShape
 #	sh:targetClass rr:TriplesMap ;
 #	sh:targetSubjectsOf
 #		rr:TriplesMap;
+	sh:targetSubjectsOf rr:predicate;
 	sh:targetObjectsOf rr:predicateObjectMap;
-	# sh:targetSubjectsOf rr:predicateObjectMap;
-
 	sh:targetClass rr:PredicateObjectMap;
 
 	sh:js [
 		a sh:JSConstraint ;
-		sh:message "Domain Error Detected" ;
+		sh:node rr:test;
+		# sh:message "Domain Error Detected" ;
         sh:jsFunctionName "checkDomain" ;
+		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+
+	];
+
+	sh:js [
+		a sh:JSConstraint ;
+		sh:node rr:test;
+		# sh:message "Domain Error Detected" ;
+        sh:jsFunctionName "addMissingDataTypes" ;
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
 	];

@@ -12,20 +12,27 @@
     rr:logicalTable [ rr:tableName "test" ;];
     rr:subjectMap [
         rr:template "test";
-        rr:class foaf:Person;
+        rr:class dbo:Person;
         rr:termType rr:IRI;
     ];
 
 
+
         rr:predicateObjectMap [
         rr:predicate foaf:knows ;
-        rr:objectMap [ rr:column "ENAME"; rr:datatype "ey"^^xsd:string; rr:column "ENAME";  ];
+        rr:objectMap [ rr:column "ENAME"; rr:datatype "ey"^^xsd:string; rr:column "d";  ];
     ];
 
         rr:predicateObjectMap [
-        rr:predicate foaf:firstName ;
-        rr:objectMap [ rr:column "ENAME"; rr:datatype "ey"^^xsd:string; rr:column "d";  ];
+        rr:predicate dbo:areaCode ;
+        rr:objectMap [ rr:column "ENAME";  rr:column "d";  ];
     ];
+
+        rr:predicateObjectMap [
+        rr:predicate dbo:artificialSnowArea ;
+        rr:objectMap [ rr:column "ENAME";  rr:column "d";  ];
+    ];
+
 
 
 
