@@ -75,6 +75,11 @@ while (iter.hasNext()) {
 }
 }
 public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate){
+     if (mappingSubject.length == 0){
+        System.out.println("NO DOMAIN CLASSES");
+        findValidDomain(mappingPredicate);
+        return true;
+     }
      for (String subject : mappingSubject){
         if (validateDomain((subject), mappingPredicate) == true){
             return true;
@@ -95,6 +100,7 @@ StmtIterator iter = data.listStatements();
 // print out the predicate, subject and object of each statement
 int i = 0;
 boolean inDomain = false;
+
 while (iter.hasNext()) {
     Statement stmt      = iter.nextStatement();  // get next statement
     Resource  subject   = stmt.getSubject();     // get the subject
@@ -127,6 +133,7 @@ return inDomain;
 
 
         catch(Exception e){
+            findValidDomain(mappingPredicate);
             System.out.println(e + " ERROR ");
             return true;
         }
@@ -151,7 +158,7 @@ while (iter.hasNext()) {
     if (parts[0].equals("http://www.w3.org/2001/XMLSchema")){
          System.out.println("ADDING DATATYPE " + validDataType + " subject " + subject.toString());
         AddDataType.AddDataTypeTriple(subject.toString(),validDataType, mappingFile);
-       //  System.exit(0);
+       //System.exit(0);
 
         // return;
     }

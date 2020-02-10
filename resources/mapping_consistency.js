@@ -484,25 +484,19 @@ function checkDomain($this) {
 function addMissingDataTypes(resource){
 	var labelProperty = TermFactory.namedNode(NS+"predicate");
 	var labels = $data.find(resource, labelProperty, null);
-	if (!missing_datatype_check && domain_check){
+	if (!missing_datatype_check){
 	for(;;) {
 		var labelTriple = labels.next();
 		if(!labelTriple) {
             break;
             return null;
 		}
+		print("DATATYPE CHECKING");
 				var label = labelTriple.object;
-				if (count==0){
+
 				     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
     var result = JavaCLass.fixDataType(String(label), "./resources/sample_map.ttl");
 
-				}
-				else{
-				print("USING NEW SAMPLE MAP");
-
-				     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-    var result = JavaCLass.fixDataType(String(label), "./resources/new_sample_map.ttl");
-				}
 count++;
     print("ADDING DATAYTPE !!!!!!");
 

@@ -21,11 +21,13 @@ public class AddDomain{
 
    public static String AddDomainTriple(String DomainURI, String MappingFile){
 		Model model = ModelFactory.createDefaultModel();
-		model.read(MappingFile);
+		model.read("./resources/new_sample_map.ttl");
 
         model.write( System.out, "TURTLE" );
 
-        String rename = String.format("INSERT  { ?o <http://www.w3.org/ns/r2rml#class>  <%s>}\n  WHERE {?t 	<http://www.w3.org/ns/r2rml#subjectMap> ?o}", DomainURI) ;
+        //String rename = String.format("INSERT  { ?o <http://www.w3.org/ns/r2rml#class>  <%s>}\n  WHERE {?t 	<http://www.w3.org/ns/r2rml#subjectMap> ?o}", DomainURI) ;
+               String rename = String.format("INSERT  { ?object  <http://www.w3.org/ns/r2rml#class>  <%s>}\n  WHERE {  ?subject <http://www.w3.org/ns/r2rml#subjectMap> ?object. }", DomainURI) ;
+
         System.out.println("SPARQL QUERY " + DomainURI);
         UpdateAction.parseExecute( rename, model );
 

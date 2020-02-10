@@ -1,48 +1,76 @@
-@prefix rr: <http://www.w3.org/ns/r2rml#>.
-@prefix ex: <http://example.com/ns#>.
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://example.com/ns#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix dcterms: <http://purl.org/dc/terms/>.
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-# <http://ex.org#TriplesMap1>
- <#TriplesMap1>
-    rr:logicalTable [ rr:tableName "test" ;];
-    rr:subjectMap [
-        rr:template "test";
-        rr:class dbo:Person;
-        rr:termType rr:IRI;
-    ];
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix testv: <http://www.txample.com/people/voc/>.
+@prefix testd: <http://www.txample.com/people/data/>.
+@prefix ex: <http://www.txample.com/people/voc/>.
 
 
+<#Test>
 
-        rr:predicateObjectMap [
-        rr:predicate foaf:knows ;
-        rr:objectMap [ rr:column "ENAME"; rr:datatype "ey"^^xsd:string; rr:column "d";  ];
-    ];
+	rr:logicalTable [ rr:tableName "test";];
 
-        rr:predicateObjectMap [
-        rr:predicate dbo:areaCode ;
-        rr:objectMap [ rr:column "ENAME";  rr:column "d";  ];
-    ];
+	rr:subjectMap [
+		rr:template "http://www.example.com/people/data/{ID}";
+		rr:termType rr:IRI;
+		rr:class "http://www.example.com/" ;
+	];
+	
+   rr:predicateObjectMap [
+		rr:predicate foaf:knows;
+		rr:objectMap  [ 
+			rr:column "name";
+			rr:termType rr:Literal;
+		];
+   ];
 
-        rr:predicateObjectMap [
-        rr:predicate dbo:artificialSnowArea ;
-        rr:objectMap [ rr:column "ENAME";  rr:column "d";  ];
-    ];
+	rr:predicateObjectMap [
+		rr:predicate dbo:age ;
+		rr:objectMap  [
+			rr:column "age";
+			rr:termType rr:Literal;
+			                                                 rr:datatype  xsd:integer ;
 
+		];
+   ];
 
+	rr:predicateObjectMap [
+		rr:predicate dbo:areaCode ;
+		rr:objectMap  [
+			rr:column "age";
+			rr:datatype "test"; 
+			rr:termType rr:Literal;
+		];
+   ];
 
+	rr:predicateObjectMap [
+		rr:predicate foaf:made ;
+		rr:objectMap  [
+			rr:column "age";
+			rr:datatype "test"; 
+			rr:termType rr:Literal;
+		];
+   ];
 
-#
-#    rr:predicateObjectMap [
-#
-#        rr:predicate ex:Employee;
-#
-#        rr:objectMap [ rr:column "h" ; rr:termType rr:IRI; rr:language "dhdhhd";  ];
-#    ];
+	rr:predicateObjectMap [
+		rr:predicate foaf:Project ;
+		rr:objectMap  [
+			rr:column "age";
+			rr:termType rr:Literal;
+		];
+   ];
 
 .
+
 

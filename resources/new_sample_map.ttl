@@ -1,27 +1,48 @@
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
-@prefix ex:    <http://example.com/ns#> .
-@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
 
-<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#TriplesMap1>
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
         rr:logicalTable        [ rr:tableName  "test" ] ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:column  "d" , "ENAME" ] ;
-                                 rr:predicate  dbo:artificialSnowArea
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:Project
                                ] ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:column  "d" , "ENAME" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  "test" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:made
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
                                  rr:predicate  dbo:areaCode
                                ] ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "d" , "ENAME" ;
-                                                 rr:datatype  "ey"
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:integer ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
                                                ] ;
                                  rr:predicate  foaf:knows
                                ] ;
-        rr:subjectMap          [ rr:class     dbo:Place , dbo:Person ;
-                                 rr:template  "test" ;
+        rr:subjectMap          [ rr:class     "http://www.example.com/" ;
+                                 rr:class     foaf:Person , foaf:Agent , dbo:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
                                  rr:termType  rr:IRI
                                ] .

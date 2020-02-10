@@ -24,18 +24,45 @@ public class AddDataType{
     }
    public static String AddDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
 		Model model = ModelFactory.createDefaultModel();
-		System.out.println("CHECKING DATATYPE FOR "+ dataTypeURI + MappingFile);
-		model.read(MappingFile);
+		System.out.println("CHECKING DATATYPE FOR "+ dataTypeURI + "./resources/new_sample_map.ttl");
+		model.read("./resources/new_sample_map.ttl");
 
         // model.write( System.out, "TURTLE" );
 
-        String updateDataType = String.format("INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <%s>}\n  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <%s>; <http://www.w3.org/ns/r2rml#objectMap> ?object. }", predicateURI, dataTypeURI) ;
-        System.out.println("SPARQL QUERY " + updateDataType);
-        UpdateAction.parseExecute( updateDataType, model );
 
-        model.write( System.out, "TURTLE" );
-		String output_file = "./resources/new_datatype_sample_map.ttl";
+
+
+        String selectQuery = String.format("SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<%s>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}", dataTypeURI) ;
+
+System.out.println(selectQuery);
+  Query query = QueryFactory.create(selectQuery) ;
+  System.out.println("SELECT  QUERY");
+  try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+  Iterator<QuerySolution> results = qexec.execSelect() ;
+    for ( ; results.hasNext() ; )
+    {
+        QuerySolution soln = results.next() ;
+    System.out.println(soln);
+    }
+    }
+// System.exit(0);
+        String deleteQuery = String.format("DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<%s>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}", dataTypeURI) ;
+        System.out.println("SPARQL QUERY " + deleteQuery);
+        System.out.println("DELETING DATATYPE FOR " + predicateURI);
+        UpdateAction.parseExecute( deleteQuery, model );
+
+//         System.exit(0);
+        String updateQuery = String.format("INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <%s>}\n  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <%s>; <http://www.w3.org/ns/r2rml#objectMap> ?object }", predicateURI, dataTypeURI) ;
+       // String updateQuery = String.format("INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <%s>}\n  WHERE {  ?subject <http://www.w3.org/ns/r2rml#subjectMap> ?object. }", predicateURI, dataTypeURI) ;
+
+
+
+        System.out.println("SPARQL QUERY " + updateQuery);
+        UpdateAction.parseExecute( updateQuery, model );
+
+		String output_file = "./resources/new_sample_map.ttl";
 		File file = new File(output_file);
+         model.write( System.out, "TURTLE" );
         try{
 
 			FileOutputStream fop = new FileOutputStream(file);
@@ -51,9 +78,10 @@ public class AddDataType{
 
 		catch(Exception e) {
 	        String result = "File not found!";
-			// System.out.println(result);
+			System.out.println(e + "777");
 			return result;
 }
+
 
 
    }

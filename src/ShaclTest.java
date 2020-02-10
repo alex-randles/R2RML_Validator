@@ -13,6 +13,30 @@ public class ShaclTest {
 		Model data = ModelFactory.createDefaultModel();
 		data.read("./resources/sample_map.ttl");
 
+
+
+		String copy_mapping_file = "./resources/new_sample_map.ttl";
+		File copy_file = new File(copy_mapping_file);
+        try{
+
+			FileOutputStream copy_file_stream = new FileOutputStream(copy_file);
+			// fop.write(contentInBytes);
+			data.write(copy_file_stream, "TURTLE");
+			copy_file_stream.flush();
+			copy_file_stream.close();
+			System.out.println("Sample map copied to " + copy_mapping_file);
+
+		}
+
+		catch(Exception e) {
+
+			System.out.println("File not found!");
+
+		}
+
+
+
+
 		// read function.ttl -- it creates a rule with JavaScript functionality to compute the
 		// area of circles using its radius. But watch out, this code assume that all target nodes
 		// hava a property radius. You need to add conditionals in the code
@@ -31,8 +55,15 @@ public class ShaclTest {
 		 
 		Resource report = ValidationUtil.validateModel(data, function, true);
 		report.getModel().write(System.out, "TURTLE");
-				Model new_data = ModelFactory.createDefaultModel();
-		data.read("./resources/new_sample_map.ttl");
+	    Model new_data = ModelFactory.createDefaultModel();
+		new_data.read("./resources/new_sample_map.ttl");
+
+        // copy sample map over so not to change the manipulate the original
+
+
+
+
+
 
 		// read function.ttl -- it creates a rule with JavaScript functionality to compute the
 		// area of circles using its radius. But watch out, this code assume that all target nodes
