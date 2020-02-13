@@ -24,23 +24,23 @@
 	rr:subjectMap [
 		rr:template "http://www.example.com/people/data/{ID}";
 		rr:termType rr:IRI;
-		rr:class "http://www.example.com/" ;
 	];
 	
+
+   
    rr:predicateObjectMap [
-		rr:predicate foaf:knows;
+		rr:predicate foaf:age;
 		rr:objectMap  [ 
 			rr:column "name";
-			rr:termType rr:Literal;
+			rr:termType rr:IRI;
 		];
    ];
 
 	rr:predicateObjectMap [
-		rr:predicate dbo:age ;
+		rr:predicate foaf:gender ;
 		rr:objectMap  [
 			rr:column "age";
-			rr:termType rr:Literal;
-			                                                 rr:datatype  xsd:integer ;
+			rr:termType rr:BlankNode;
 
 		];
    ];
@@ -54,22 +54,8 @@
 		];
    ];
 
-	rr:predicateObjectMap [
-		rr:predicate foaf:made ;
-		rr:objectMap  [
-			rr:column "age";
-			rr:datatype "test"; 
-			rr:termType rr:Literal;
-		];
-   ];
 
-	rr:predicateObjectMap [
-		rr:predicate foaf:Project ;
-		rr:objectMap  [
-			rr:column "age";
-			rr:termType rr:Literal;
-		];
-   ];
+
 
 .
 

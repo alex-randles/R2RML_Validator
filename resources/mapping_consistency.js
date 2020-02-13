@@ -10,27 +10,36 @@ var mappings = {} ;
 var disjoint_classes_check = false;
 var domain_check = false;
 var missing_datatype_check = false;
-		var count = 0;
+var term_type_check = false;
+var count = 0;
 
 // this carry out checks from mapping consistency in Ademars paper
-function checkTermType($this) {
+function checkTermType(resource) {
     try{
-    	var current_object  = getProperty($this, "termType");
-    	if (current_object != null){
-    	    // var current_object = "http://www.w3.org/ns/r2rml#Literal";
-    	    print("termType table is ", current_object);
-    	    if ([NS+"Literal", NS+"IRI", NS+"BlankNode"].indexOf(current_object) < 0){
-    	        print("current object is not valid termType", current_object);
-    	    }
-    	}
 
 
+	var labelProperty = TermFactory.namedNode(NS+"predicate");
+	var labels = $data.find(resource, labelProperty, null);
+	for(;;) {
+		var labelTriple = labels.next();
+		if(!labelTriple) {
+            break;
+            return null;
+		}
+		                print("TERM TYPE IS ", labelTriple.object);
+                        var JavaCLass = Java.type("JavaClasses.TermType");
+                        var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
 
 
     }
+
+    }
+
+
     catch (err) {
         print("error dereferencing URI ", err )
     }
+
 
 }
 
@@ -79,6 +88,8 @@ function checkDataType($this) {
 
     // print("current count", count);
 }
+
+
 
 function checkDuplicateColumns($this) {
     try{

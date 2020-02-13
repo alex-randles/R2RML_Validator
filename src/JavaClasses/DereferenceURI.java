@@ -16,18 +16,6 @@ public class DereferenceURI{
 
     public static void main(String[] args){
         // main method for testing purposes
-        //  http://xmlns.com/foaf/0.1/Group http://xmlns.com/foaf/0.1/Group http://example.com/ns#Employee
-String mappingPredicate = "http://xmlns.com/foaf/0.1/Group";
-String mappingSubject  =  "http://xmlns.com/foaf/0.1/member";
-String vocabularyURI = "http://dbpedia.org/ontology/numberOfDistrict";
-       // getRDF("http://xmlns.com/foaf/0.1/knows", "http://xmlns.com/foaf/0.1/knows", "http://www.w3.org/1999/02/22-rdf-syntax-ns#List");
-// validateRange("http://xmlns.com/foaf/0.1/knows",  "http://www.w3.org/2001/XMLSchema#integer");
-String[] classesURI = {"http://xmlns.com/foaf/0.1/Document", "http://xmlns.com/foaf/0.1/Person"};
-// validateDomain("http://xmlns.com/foaf/0.1/made","http://xmlns.com/foaf/0.1/made", "http://dbpedia.org/ontology/ArchitecturalStructure");
-// validateDisjointClasses(classesURI);
-// validateRange("http://xmlns.com/foaf/0.1/made", "http://www.w3.org/2002/07/owl#Thing");
-// validateDomain("http://dbpedia.org/ontology/co","http://dbpedia.org/ontology/co", "http://dbpedia.org/ontology/Person");
-  // fixDataType("http://dbpedia.org/ontology/areaCode");
 
     }
 
@@ -90,45 +78,41 @@ public static boolean validateAllDomains(String[] mappingSubject, String mapping
 }
     public static boolean validateDomain(String mappingSubject, String mappingPredicate){
         try{
-        System.out.println("CHECKING DOMAIN");
+                System.out.println("CHECKING DOMAIN");
         		Model data = ModelFactory.createDefaultModel();
-		data.read(mappingSubject);
-           System.out.println(mappingPredicate);
+		        data.read(mappingSubject);
+                System.out.println(mappingPredicate);
 
 
-StmtIterator iter = data.listStatements();
-// print out the predicate, subject and object of each statement
-int i = 0;
-boolean inDomain = false;
+                StmtIterator iter = data.listStatements();
+                // print out the predicate, subject and object of each statement
+                int i = 0;
+                boolean inDomain = false;
 
-while (iter.hasNext()) {
-    Statement stmt      = iter.nextStatement();  // get next statement
-    Resource  subject   = stmt.getSubject();     // get the subject
-    Property  predicate = stmt.getPredicate();   // get the predicate
-    RDFNode   object    = stmt.getObject();      // get the object
-//     System.out.println("SUBJECT " + subject.toString());
-//     System.out.println("OBJECT " + object.toString());
-//     System.out.println("PREDICATE " + predicate.toString());
-//     System.out.println("COMPARING TO SUBJECT " + mappingSubject  + " PREDICATE " + mappingPredicate);#
-    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
-       System.out.println("ENTERING DOMAIN IF STATEMENT");
-       System.out.println("SUBJECT " + subject.toString());
-    System.out.println("OBJECT " + object.toString());
-    System.out.println("PREDICATE " + predicate.toString());
-        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
-}
-else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && subject.toString().equals(mappingPredicate)){
-    inDomain = true;
-}
+                while (iter.hasNext()) {
+                    Statement stmt      = iter.nextStatement();  // get next statement
+                    Resource  subject   = stmt.getSubject();     // get the subject
+                    Property  predicate = stmt.getPredicate();   // get the predicate
+                    RDFNode   object    = stmt.getObject();      // get the object
+                    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
+                       System.out.println("ENTERING DOMAIN IF STATEMENT");
+                       System.out.println("SUBJECT " + subject.toString());
+                       System.out.println("OBJECT " + object.toString());
+                    System.out.println("PREDICATE " + predicate.toString());
+                        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
+                }
+                else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && subject.toString().equals(mappingPredicate)){
+                    inDomain = true;
+                }
 
 
 
-}
-if (!inDomain){
-findValidDomain(mappingPredicate);
-}
-return inDomain;
-}
+                }
+                if (!inDomain){
+                findValidDomain(mappingPredicate);
+                }
+                return inDomain;
+                }
 
 
 
@@ -200,30 +184,26 @@ while (iter.hasNext()) {
  public static boolean validateRange(String predicateURI, String dataTypeURI){
         try{
 
-        		Model data = ModelFactory.createDefaultModel();
-		data.read(predicateURI,
-           "RDF/XML");
+        	Model data = ModelFactory.createDefaultModel();
+		    data.read(predicateURI,"RDF/XML");
+            StmtIterator iter = data.listStatements();
+            // print out the predicate, subject and object of each statement
+            int i = 0;
+            while (iter.hasNext()) {
+                Statement stmt      = iter.nextStatement();  // get next statement
+                Resource  subject   = stmt.getSubject();     // get the subject
+                Property  predicate = stmt.getPredicate();   // get the predicate
+                RDFNode   object    = stmt.getObject();      // get the object
 
+                // System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
+                if (subject.toString().equals(predicateURI) && predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#range") && !(object.toString().equals(dataTypeURI))){
+                        System.out.println(object.toString() +  dataTypeURI);
+                        System.out.println(object.toString().equals(dataTypeURI));
+                        System.out.println( object.toString() + " is not in range of " + subject.toString()) ;;
+                        System.out.println("range is " + object.toString());
+                        return false;
 
-StmtIterator iter = data.listStatements();
-
-// print out the predicate, subject and object of each statement
-int i = 0;
-while (iter.hasNext()) {
-    Statement stmt      = iter.nextStatement();  // get next statement
-    Resource  subject   = stmt.getSubject();     // get the subject
-    Property  predicate = stmt.getPredicate();   // get the predicate
-    RDFNode   object    = stmt.getObject();      // get the object
-
-// System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
-if (subject.toString().equals(predicateURI) && predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#range") && !(object.toString().equals(dataTypeURI))){
-        System.out.println(object.toString() +  dataTypeURI);
-        System.out.println(object.toString().equals(dataTypeURI));
-        System.out.println( object.toString() + " is not in range of " + subject.toString()) ;;
-        System.out.println("range is " + object.toString());
-        return false;
-
-}
+                }
 
 
 
@@ -251,10 +231,6 @@ if (subject.toString().equals(predicateURI) && predicate.toString().equals("http
                 RDFNode   object    = stmt.getObject();      // get the object
 
             for (String comparisonURI : classesURI){
-//                 System.out.println(comparisonURI +  " comparing with " + currentClassURI);
-//                 if (predicate.toString().equals("http://www.w3.org/2002/07/owl#disjointWith")){
-//                  System.out.println(subject.toString() + " " + predicate.toString()  + " " + object.toString());
-//                 }
                 if (predicate.toString().equals("http://www.w3.org/2002/07/owl#disjointWith") && subject.toString().equals(comparisonURI) && object.toString().equals(currentClassURI)){
                         System.out.println(subject.toString() + " " + predicate.toString()  + " " + object.toString() );
                         System.out.println("DISJOINT");
@@ -265,13 +241,6 @@ if (subject.toString().equals(predicateURI) && predicate.toString().equals("http
 
             }
 
-            // System.out.println(predicate.toString() + " " + object.toString() + " " +  subject.toString());
-//                 if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#range") && !(object.toString().equals(objectURI)) && subject.toString().equals(predicateURI)){
-//                     System.out.println(objectURI + " is not in the the range of:  " + predicateURI );
-//                    return false;
-//                 }
-                // System.out.println("ddhdhdh");
-                // System.out.println(" .");
 
 
                     }

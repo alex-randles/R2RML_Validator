@@ -34,6 +34,7 @@ public class AddDomain{
         model.write( System.out, "TURTLE" );
 		String output_file = "./resources/new_sample_map.ttl";
 		File file = new File(output_file);
+
         try{
 
 			FileOutputStream fop = new FileOutputStream(file);

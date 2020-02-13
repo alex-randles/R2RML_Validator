@@ -1,5 +1,8 @@
+JavaClasses/SPARQL.class
 JavaClasses/AddDataType.class
+JavaClasses/AddDomain.class
+JavaClasses/Output.class
 ShaclTest.class
 JavaClasses/DereferenceURI.class
-JavaClasses/AddDomain.class
 JavaClasses/CreateConstraints.class
+JavaClasses/TermType.class

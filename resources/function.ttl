@@ -289,25 +289,26 @@ rmlsh:RefObjectMapShape
 		] ;
 .
 
-rmlsh:PredicateMapShape
+
+
+rr:ValidTermType
 	a sh:NodeShape ;
-	rdfs:label "Predicate map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed predicate map."@en ;
+
 	sh:message "Predicate map is ill-formed" ;
 
 	sh:targetObjectsOf rr:predicateMap ;
 
 	sh:property [
-		sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
-		sh:path rr:termType ;
-		sh:in ( rr:IRI ) ;
-	] ;
+					sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
+					sh:path rr:termType ;
+					sh:in ( rr:IRI ) ;
+				] ;
 
 	sh:property [
-		sh:message "Value for rr:datatype on predicate map should be rr:IRI." ;
-		sh:path rr:datatype ;
-		sh:nodeKind sh:IRI ;
-	] ;
+					sh:message "Value for rr:datatype on predicate map should be rr:IRI." ;
+					sh:path rr:datatype ;
+					sh:nodeKind sh:IRI ;
+				] ;
 .
 
 rmlsh:PredicateObjectMapShape
@@ -763,12 +764,28 @@ rr:UndefinedPropertiesShape
 	sh:targetSubjectsOf rr:class;
 	sh:js [
 		a sh:JSConstraint ;
-        sh:message "Usage of Undefined Classes and Properties" ;
+        # sh:message "Usage of Undefined Classes and Properties" ;
         sh:jsFunctionName "dereferenceURI" ;
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 
 .
+
+
+rr:TermTypeShape
+	a sh:NodeShape ;
+	rdfs:label "URI Dereferencable"@en ;
+	rdfs:comment "Defines constraint for correct term type definition"@en ;
+	sh:targetObjectsOf rr:predicateObjectMap;
+	sh:targetClass rr:PredicateMap;
+	sh:js [
+			  a sh:JSConstraint ;
+			  sh:jsFunctionName "checkTermType" ;
+			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+		  ] ;
+
+.
+
 
 
 rmlsh:BlankNodeShape
@@ -786,6 +803,8 @@ rmlsh:BlankNodeShape
 		] ;
 
 .
+
+
 
 
 

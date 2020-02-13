@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/R2RML_Validator.iml" filepath="$PROJECT_DIR$/.idea/R2RML_Validator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/R2RML_Validator.iml" filepath="$PROJECT_DIR$/R2RML_Validator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapping_definition/mapping_definition.iml" filepath="$PROJECT_DIR$/mapping_definition/mapping_definition.iml" />
     </modules>
   </component>
 </project>

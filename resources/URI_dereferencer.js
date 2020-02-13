@@ -85,6 +85,9 @@ function dereferenceURI($this) {
 	    var ResponseCode = JavaCLass.checkRDF(String(current_object));
         // print("response code", ResponseCode);
         print(ResponseCode);
+        if (response == false){
+             return String(current_object);
+        }
         return ResponseCode;
         return true;
 	    // return ResponseCode;

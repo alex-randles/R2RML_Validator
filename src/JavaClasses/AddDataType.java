@@ -62,7 +62,7 @@ System.out.println(selectQuery);
 
 		String output_file = "./resources/new_sample_map.ttl";
 		File file = new File(output_file);
-         model.write( System.out, "TURTLE" );
+        model.write( System.out, "TURTLE" );
         try{
 
 			FileOutputStream fop = new FileOutputStream(file);
