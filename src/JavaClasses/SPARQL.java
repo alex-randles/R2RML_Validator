@@ -1,6 +1,10 @@
 package JavaClasses;
 
 
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.update.*;
@@ -9,13 +13,40 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public class SPARQL {
+
+    public static String RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#" ;
+    public static String FOAF_NS = "http://xmlns.com/foaf/0.1/";
+
+
     public static void main(String[] args){
-        String updateQuery = "INSERT {?objectMapObject <http://www.w3.org/ns/r2rml#termType> 'testing'} WHERE {\n" +
-                "  ?predicateSubject ?predicate <http://xmlns.com/foaf/0.1/knows>.\n" +
-                "  ?predicateSubject <http://www.w3.org/ns/r2rml#objectMap> ?objectMapObject.\n" +
-                "  ?objectMapObject \t<http://www.w3.org/ns/r2rml#termType> ?termTypeObject.          \n" +
-                "}";
-        System.out.println(updateQuery);
+
+        String query = String.format("ASK {<%s> <%s> ?label }",FOAF_NS+"age", RDFS_NS+"label");
+        System.out.println(SPARQL.askQuery( FOAF_NS+"Person", query));
+
+//        String updateQuery = "INSERT {?objectMapObject <http://www.w3.org/ns/r2rml#termType> 'testing'} WHERE {\n" +
+//                "  ?predicateSubject ?predicate <http://xmlns.com/foaf/0.1/knows>.\n" +
+//                "  ?predicateSubject <http://www.w3.org/ns/r2rml#objectMap> ?objectMapObject.\n" +
+//                "  ?objectMapObject \t<http://www.w3.org/ns/r2rml#termType> ?termTypeObject.          \n" +
+//                "}";
+//        System.out.println(updateQuery);
+
+    }
+
+
+    public static boolean askQuery(String URI, String query){
+        try {
+            Model model = ModelFactory.createDefaultModel().read(URI);
+            Query askQuery = QueryFactory.create(String.format(query));
+            QueryExecution qexec = QueryExecutionFactory.create(askQuery, model) ;
+            boolean result = qexec.execAsk() ;
+            qexec.close() ;
+            return result;
+        }
+        catch(Exception e){
+            System.out.println("ASK QUERY ERROR " + e);
+            return false;
+        }
+
 
     }
     public static void updateData(String updateQuery, String inputFile, String outputFile){

@@ -12,17 +12,17 @@ import org.apache.jena.rdf.model.*;
 
 import java.io.*;
 
-public class DereferenceURI{
+public class DereferenceURI {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // main method for testing purposes
 
     }
 
-    public static boolean getResponseCode(String string_URL){
-        try{
+    public static boolean getResponseCode(String string_URL) {
+        try {
             URL url = new URL(string_URL);
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
             int code = connection.getResponseCode();
@@ -31,97 +31,105 @@ public class DereferenceURI{
                 return true;
             }
             return false;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
-            return true ;
-        }
-
-}
-
-
-public static void findValidDomain(String URI){
-
-System.out.println("FINDING DOMAIN");
-        		Model data = ModelFactory.createDefaultModel();
-		data.read(URI);
-
-
-StmtIterator iter = data.listStatements();
-System.out.println(iter);
-while (iter.hasNext()) {
-    Statement stmt      = iter.nextStatement();  // get next statement
-    Resource  subject   = stmt.getSubject();     // get the subject
-    Property  predicate = stmt.getPredicate();   // get the predicate
-    RDFNode   object    = stmt.getObject();      // get the object
-    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && subject.toString().equals(URI)){
-        String result = AddDomain.AddDomainTriple(object.toString(),  "./resources/sample_map.ttl");
-        System.out.println("ADDING DOMAIN " + object.toString());
-        System.out.println(result);
-}
-
-}
-}
-public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate){
-     if (mappingSubject.length == 0){
-        System.out.println("NO DOMAIN CLASSES");
-        findValidDomain(mappingPredicate);
-        return true;
-     }
-     for (String subject : mappingSubject){
-        if (validateDomain((subject), mappingPredicate) == true){
             return true;
         }
-     }
-     return false;
 
-}
-    public static boolean validateDomain(String mappingSubject, String mappingPredicate){
-        try{
-                System.out.println("CHECKING DOMAIN");
-        		Model data = ModelFactory.createDefaultModel();
-		        data.read(mappingSubject);
-                System.out.println(mappingPredicate);
+    }
 
 
-                StmtIterator iter = data.listStatements();
-                // print out the predicate, subject and object of each statement
-                int i = 0;
-                boolean inDomain = false;
+    public static void findValidDomain(String URI) {
 
-                while (iter.hasNext()) {
-                    Statement stmt      = iter.nextStatement();  // get next statement
-                    Resource  subject   = stmt.getSubject();     // get the subject
-                    Property  predicate = stmt.getPredicate();   // get the predicate
-                    RDFNode   object    = stmt.getObject();      // get the object
-                    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
-                       System.out.println("ENTERING DOMAIN IF STATEMENT");
-                       System.out.println("SUBJECT " + subject.toString());
-                       System.out.println("OBJECT " + object.toString());
-                    System.out.println("PREDICATE " + predicate.toString());
-                        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
-                }
-                else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && subject.toString().equals(mappingPredicate)){
-                    inDomain = true;
-                }
+        System.out.println("FINDING DOMAIN");
+        Model data = ModelFactory.createDefaultModel();
+        data.read(URI);
 
 
+        StmtIterator iter = data.listStatements();
+        System.out.println(iter);
+        while (iter.hasNext()) {
+            Statement stmt = iter.nextStatement();  // get next statement
+            Resource subject = stmt.getSubject();     // get the subject
+            Property predicate = stmt.getPredicate();   // get the predicate
+            RDFNode object = stmt.getObject();      // get the object
+            if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && subject.toString().equals(URI)) {
+                String result = AddDomain.AddDomainTriple(object.toString(), "./resources/sample_map.ttl");
+                System.out.println("ADDING DOMAIN " + object.toString());
+                System.out.println(result);
+            }
 
-                }
-                if (!inDomain){
-                findValidDomain(mappingPredicate);
-                }
-                return inDomain;
-                }
+        }
+    }
+
+    public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate) {
+        if (mappingSubject.length == 0) {
+            System.out.println("NO DOMAIN CLASSES");
+            findValidDomain(mappingPredicate);
+            return true;
+        }
+        for (String subject : mappingSubject) {
+            if (validateDomain((subject), mappingPredicate) == true) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public static boolean validateDomain(String mappingSubject, String mappingPredicate) {
+        try {
+            System.out.println("CHECKING DOMAIN");
+            Model data = ModelFactory.createDefaultModel();
+            data.read(mappingSubject);
+            System.out.println(mappingPredicate);
+//
+//
+//                StmtIterator iter = data.listStatements();
+//                // print out the predicate, subject and object of each statement
+//                int i = 0;
+//                boolean inDomain = false;
+//
+//                while (iter.hasNext()) {
+//                    Statement stmt      = iter.nextStatement();  // get next statement
+//                    Resource  subject   = stmt.getSubject();     // get the subject
+//                    Property  predicate = stmt.getPredicate();   // get the predicate
+//                    RDFNode   object    = stmt.getObject();      // get the object
+//                    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
+//                       System.out.println("ENTERING DOMAIN IF STATEMENT");
+//                       System.out.println("SUBJECT " + subject.toString());
+//                       System.out.println("OBJECT " + object.toString());
+//                    System.out.println("PREDICATE " + predicate.toString());
+//                        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
+//                }
+//                else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && subject.toString().equals(mappingPredicate)){
+//                    inDomain = true;
+//                }
 
 
+        boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingSubject, mappingPredicate));
+        String s = String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject);
+        System.out.println(s + inDomain);
 
-        catch(Exception e){
+
+        if (!inDomain) {
+            findValidDomain(mappingPredicate);
+        }
+        return inDomain;
+
+
+    }
+
+        catch(Exception e)
+
+        {
             findValidDomain(mappingPredicate);
             System.out.println(e + " ERROR ");
             return true;
         }
-        }
+    }
+
+
 
    public static void fixDataType(String URI, String mappingFile){
             System.out.println("CHECKING DATATYPE OF"  + URI);

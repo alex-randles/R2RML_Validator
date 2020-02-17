@@ -12,8 +12,36 @@ var domain_check = false;
 var missing_datatype_check = false;
 var term_type_check = false;
 var count = 0;
+var ontology_score = [];
+
+
+function calculateOntologyScore(resource) {
+    try{
+
+
+
+	var labelProperty = TermFactory.namedNode(NS+"predicate");
+	var labels = $data.find(resource, labelProperty, null);
+	for(;;) {
+		var labelTriple = labels.next();
+		if(!labelTriple) {
+            break;
+            return null;
+		}
+                        var JavaCLass = Java.type("JavaClasses.TermType");
+                        var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
+
+
+    }
+    }
+
+
+
+
+
 
 // this carry out checks from mapping consistency in Ademars paper
+
 function checkTermType(resource) {
     try{
 
@@ -26,13 +54,11 @@ function checkTermType(resource) {
             break;
             return null;
 		}
-		                print("TERM TYPE IS ", labelTriple.object);
                         var JavaCLass = Java.type("JavaClasses.TermType");
                         var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
 
 
     }
-
     }
 
 
@@ -48,9 +74,7 @@ function checkColumnLength($this) {
     	var current_object  = getProperty($this, "column");
     	if (current_object != null){
     	    // var current_object = "http://www.w3.org/ns/r2rml#Literal";
-    	    print("column name is ", current_object);
     	    if (current_object.lex.length == 0){
-    	        print("column name length is 0");
     	        return false;
     	    }
 
@@ -70,9 +94,8 @@ function checkDataType($this) {
     try{
     	var current_object  = getProperty($this, "datatype");
     	if (current_object != null){
-    	    print("DATATYPE IS ", current_object);
     	    var JavaCLass = Java.type("test.TestURI");
-	        var ResponseCode = JavaCLass.getResponseCode(current_object);
+	        var ResponseCode = JavaCLass.checkRDF(current_object);
 	        return ResponseCode;
     	}
 
@@ -161,6 +184,14 @@ function testing(resource) {
 
 
         return no_duplicates;
+
+}
+
+
+function calculateRangeDefinitionCoverage(resource){
+    predicates = getAllValues("predicate", resource);
+    //for(String predicate: predicates){
+    // }
 
 }
 

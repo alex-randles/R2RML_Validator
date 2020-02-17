@@ -1,5 +1,5 @@
-@prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -13,5 +13,18 @@
 
 [ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
   <http://www.w3.org/ns/shacl#conforms>
-          true
+          true ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://datashapes.org/dash#FailureResult> ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Could not execute JavaScript constraint" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:DomainShape
+          ]
 ] .

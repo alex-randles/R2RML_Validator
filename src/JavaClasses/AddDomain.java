@@ -1,19 +1,8 @@
 package JavaClasses;
-
-import java.net.*;
 import java.io.*;
-
-
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.*;
-import org.apache.jena.query.* ;
-import java. util.*;
-import java.io.*;
 import org.apache.jena.update.*;
-import org.apache.jena.update.UpdateRequest;
 
 
 public class AddDomain{

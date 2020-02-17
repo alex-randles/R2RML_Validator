@@ -33,19 +33,17 @@ public class AddDataType{
 
 
         String selectQuery = String.format("SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<%s>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}", dataTypeURI) ;
-
-System.out.println(selectQuery);
-  Query query = QueryFactory.create(selectQuery) ;
-  System.out.println("SELECT  QUERY");
-  try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
-  Iterator<QuerySolution> results = qexec.execSelect() ;
-    for ( ; results.hasNext() ; )
-    {
-        QuerySolution soln = results.next() ;
-    System.out.println(soln);
-    }
-    }
-// System.exit(0);
+        System.out.println(selectQuery);
+      Query query = QueryFactory.create(selectQuery) ;
+      System.out.println("SELECT  QUERY");
+      try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+      Iterator<QuerySolution> results = qexec.execSelect() ;
+        for ( ; results.hasNext() ; )
+        {
+            QuerySolution soln = results.next() ;
+        System.out.println(soln);
+        }
+        }
         String deleteQuery = String.format("DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<%s>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}", dataTypeURI) ;
         System.out.println("SPARQL QUERY " + deleteQuery);
         System.out.println("DELETING DATATYPE FOR " + predicateURI);
