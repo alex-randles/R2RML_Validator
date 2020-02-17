@@ -33,6 +33,7 @@
 		rr:objectMap  [ 
 			rr:column "name";
 			rr:termType rr:IRI;
+			rr:datatype xsd:test; 
 		];
    ];
 

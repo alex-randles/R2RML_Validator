@@ -14,26 +14,26 @@ var term_type_check = false;
 var count = 0;
 var ontology_score = [];
 
-
-function calculateOntologyScore(resource) {
-    try{
-
-
-
-	var labelProperty = TermFactory.namedNode(NS+"predicate");
-	var labels = $data.find(resource, labelProperty, null);
-	for(;;) {
-		var labelTriple = labels.next();
-		if(!labelTriple) {
-            break;
-            return null;
-		}
-                        var JavaCLass = Java.type("JavaClasses.TermType");
-                        var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
-
-
-    }
-    }
+//
+//function calculateOntologyScore(resource) {
+//    try{
+//
+//
+//
+//	var labelProperty = TermFactory.namedNode(NS+"predicate");
+//	var labels = $data.find(resource, labelProperty, null);
+//	for(;;) {
+//		var labelTriple = labels.next();
+//		if(!labelTriple) {
+//            break;
+//            return null;
+//		}
+//                        var JavaCLass = Java.type("JavaClasses.TermType");
+//                        var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
+//
+//
+//    }
+//    }
 
 
 
@@ -45,20 +45,24 @@ function calculateOntologyScore(resource) {
 function checkTermType(resource) {
     try{
 
+    if(!term_type_check){
+    	var labelProperty = TermFactory.namedNode(NS+"predicate");
+    	var labels = $data.find(resource, labelProperty, null);
+    	for(;;) {
+    		var labelTriple = labels.next();
+    		if(!labelTriple) {
+                break;
+                return null;
+    		}
+                            var JavaCLass = Java.type("JavaClasses.TermType");
+                            var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
 
-	var labelProperty = TermFactory.namedNode(NS+"predicate");
-	var labels = $data.find(resource, labelProperty, null);
-	for(;;) {
-		var labelTriple = labels.next();
-		if(!labelTriple) {
-            break;
-            return null;
-		}
-                        var JavaCLass = Java.type("JavaClasses.TermType");
-                        var ResponseCode = JavaCLass.repairTermType(String(labelTriple.object));
 
+        }
+        term_type_check = true;
 
     }
+
     }
 
 
@@ -570,10 +574,11 @@ function square($number) {
 function validateRange(resource){
     var predicate = getProperty(resource, "predicate");
 	var datatype = getProperty(resource, "datatype");
+	print("PREDICATE", )
 	if (datatype && predicate){
 	    	print("CHECKING RANGE predicate " + predicate, "datatype " + datatype);
 	    	var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-		    print(String(predicate), "373673")
+		    print(String(predicate), "373673", String(datatype));
 		    var string_predicate = String(predicate);
 		    var string_datatype  = String(datatype);
 	        var result = JavaCLass.validateRange(predicate, datatype);

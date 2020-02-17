@@ -1,177 +1,629 @@
-PREDICATES http://purl.org/dc/terms/accrualPolicy
-COLUMNS "ENAME"
-Triple(6d53b58700439906c89b86098aad83be, http://www.w3.org/ns/r2rml#predicate, http://purl.org/dc/terms/accrualPolicy)
-http://purl.org/dc/terms/accrualPolicy produces error code 301
-Triple(d8e1ed72c62a43babbcf35fcb5dfd74f, http://www.w3.org/ns/r2rml#class, http://xmlns.com/foaf/0.1/Documen)
-http://xmlns.com/foaf/0.1/Documen produces error code 200
-Triple(706a44cae0d6ade9d5433b6c03b64c1a, http://www.w3.org/ns/r2rml#datatype, http://www.w3.org/2001/XMLSchema#string)
-http://www.w3.org/2001/XMLSchema#string produces error code 200
-Tfgjfjh  http://xmlns.com/foaf/0.1/Documen
-http://xmlns.com/foaf/0.1/Documen produces error code 200
-true
-Triple(6d53b58700439906c89b86098aad83be, http://www.w3.org/ns/r2rml#predicate, http://purl.org/dc/terms/accrualPolicy)
-http://xmlns.com/foaf/0.1/Documen http://xmlns.com/foaf/0.1/Documen http://purl.org/dc/terms/accrualPolicy 47747
-http://www.w3.org/2000/01/rdf-schema#label Medium@en http://purl.org/dc/terms/medium
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/medium
-http://www.w3.org/2000/01/rdf-schema#comment The material or physical carrier of the resource.@en http://purl.org/dc/terms/medium
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/medium
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/medium
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/PhysicalMedium http://purl.org/dc/terms/medium
-http://purl.org/dc/dcam/domainIncludes http://purl.org/dc/terms/PhysicalResource http://purl.org/dc/terms/medium
-http://www.w3.org/2000/01/rdf-schema#label Format@en http://purl.org/dc/terms/format
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/format
-http://www.w3.org/2000/01/rdf-schema#comment The file format, physical medium, or dimensions of the resource.@en http://purl.org/dc/terms/format
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/format
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/format
-http://purl.org/dc/terms/description Recommended practice is to use a controlled vocabulary where available. For example, for file formats one could use the list of Internet Media Types [[MIME](https://www.iana.org/assignments/media-types/media-types.xhtml)].  Examples of dimensions include size and duration.@en http://purl.org/dc/terms/format
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/MediaType http://purl.org/dc/terms/format
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/Extent http://purl.org/dc/terms/format
-http://www.w3.org/2000/01/rdf-schema#label Rights Statement@en http://purl.org/dc/terms/RightsStatement
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/RightsStatement
-http://www.w3.org/2000/01/rdf-schema#comment A statement about the intellectual property rights (IPR) held in or over a resource, a legal document giving official permission to do something with a resource, or a statement about access rights.@en http://purl.org/dc/terms/RightsStatement
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/RightsStatement
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/RightsStatement
-http://www.w3.org/2000/01/rdf-schema#subClassOf http://purl.org/dc/terms/LocationPeriodOrJurisdiction http://purl.org/dc/terms/Jurisdiction
-http://www.w3.org/2000/01/rdf-schema#label Jurisdiction@en http://purl.org/dc/terms/Jurisdiction
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/Jurisdiction
-http://www.w3.org/2000/01/rdf-schema#comment The extent or range of judicial, law enforcement, or other authority.@en http://purl.org/dc/terms/Jurisdiction
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/Jurisdiction
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/Jurisdiction
-http://www.w3.org/2000/01/rdf-schema#label Media Type or Extent@en http://purl.org/dc/terms/MediaTypeOrExtent
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/MediaTypeOrExtent
-http://www.w3.org/2000/01/rdf-schema#comment A media type or extent.@en http://purl.org/dc/terms/MediaTypeOrExtent
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/MediaTypeOrExtent
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/MediaTypeOrExtent
-http://www.w3.org/2000/01/rdf-schema#label Subject@en http://purl.org/dc/terms/subject
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/subject
-http://www.w3.org/2000/01/rdf-schema#comment A topic of the resource.@en http://purl.org/dc/terms/subject
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/subject
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/subject
-http://purl.org/dc/terms/description Recommended practice is to refer to the subject with a URI. If this is not possible or feasible, a literal value that identifies the subject may be provided. Both should preferably refer to a subject in a controlled vocabulary.@en http://purl.org/dc/terms/subject
-http://www.w3.org/2000/01/rdf-schema#range http://www.w3.org/2000/01/rdf-schema#Literal http://purl.org/dc/terms/alternative
-http://www.w3.org/2000/01/rdf-schema#label Alternative Title@en http://purl.org/dc/terms/alternative
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/alternative
-http://www.w3.org/2000/01/rdf-schema#comment An alternative name for the resource.@en http://purl.org/dc/terms/alternative
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/alternative
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/alternative
-http://purl.org/dc/terms/description The distinction between titles and alternative titles is application-specific.@en http://purl.org/dc/terms/alternative
-http://www.w3.org/2000/01/rdf-schema#label Table Of Contents@en http://purl.org/dc/terms/tableOfContents
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/tableOfContents
-http://www.w3.org/2000/01/rdf-schema#comment A list of subunits of the resource.@en http://purl.org/dc/terms/tableOfContents
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/tableOfContents
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/tableOfContents
-http://www.w3.org/2000/01/rdf-schema#range http://www.w3.org/2000/01/rdf-schema#Literal http://purl.org/dc/terms/date
-http://www.w3.org/2000/01/rdf-schema#label Date@en http://purl.org/dc/terms/date
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/date
-http://www.w3.org/2000/01/rdf-schema#comment A point or period of time associated with an event in the lifecycle of the resource.@en http://purl.org/dc/terms/date
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/date
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/date
-http://purl.org/dc/terms/description Date may be used to express temporal information at any level of granularity.  Recommended practice is to express the date, date/time, or period of time according to ISO 8601-1 [[ISO 8601-1](https://www.iso.org/iso-8601-date-and-time-format.html)] or a published profile of the ISO standard, such as the W3C Note on Date and Time Formats [[W3CDTF](https://www.w3.org/TR/NOTE-datetime)] or the Extended Date/Time Format Specification [[EDTF](http://www.loc.gov/standards/datetime/)].  If the full date is unknown, month and year (YYYY-MM) or just year (YYYY) may be used. Date ranges may be specified using ISO 8601 period of time specification in which start and end dates are separated by a '/' (slash) character.  Either the start or end date may be missing.@en http://purl.org/dc/terms/date
-http://www.w3.org/2000/01/rdf-schema#seeAlso http://www.udcc.org/ http://purl.org/dc/terms/UDC
-http://www.w3.org/2000/01/rdf-schema#label UDC@en http://purl.org/dc/terms/UDC
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/UDC
-http://www.w3.org/2000/01/rdf-schema#comment The set of conceptual resources specified by the Universal Decimal Classification.@en http://purl.org/dc/terms/UDC
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://purl.org/dc/dcam/VocabularyEncodingScheme http://purl.org/dc/terms/UDC
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/UDC
-http://www.w3.org/2000/01/rdf-schema#label Bibliographic Resource@en http://purl.org/dc/terms/BibliographicResource
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/BibliographicResource
-http://www.w3.org/2000/01/rdf-schema#comment A book, article, or other documentary resource.@en http://purl.org/dc/terms/BibliographicResource
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/BibliographicResource
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/BibliographicResource
-http://www.w3.org/2000/01/rdf-schema#label License@en http://purl.org/dc/terms/license
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/license
-http://www.w3.org/2000/01/rdf-schema#comment A legal document giving official permission to do something with the resource.@en http://purl.org/dc/terms/license
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/license
-http://purl.org/dc/terms/issued 2004-06-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/license
-http://purl.org/dc/terms/description Recommended practice is to identify the license document with a URI. If this is not possible or feasible, a literal value that identifies the license may be provided.@en http://purl.org/dc/terms/license
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/LicenseDocument http://purl.org/dc/terms/license
-http://www.w3.org/2000/01/rdf-schema#label Source@en http://purl.org/dc/terms/source
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/source
-http://www.w3.org/2000/01/rdf-schema#comment A related resource from which the described resource is derived.@en http://purl.org/dc/terms/source
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/source
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/source
-http://purl.org/dc/terms/description This property is intended to be used with non-literal values. The described resource may be derived from the related resource in whole or in part. Best practice is to identify the related resource by means of a URI or a string conforming to a formal identification system.@en http://purl.org/dc/terms/source
-http://www.w3.org/2000/01/rdf-schema#label Is Referenced By@en http://purl.org/dc/terms/isReferencedBy
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/isReferencedBy
-http://www.w3.org/2000/01/rdf-schema#comment A related resource that references, cites, or otherwise points to the described resource.@en http://purl.org/dc/terms/isReferencedBy
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/isReferencedBy
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/isReferencedBy
-http://purl.org/dc/terms/description This property is intended to be used with non-literal values. This property is an inverse property of References.@en http://purl.org/dc/terms/isReferencedBy
-http://www.w3.org/2000/01/rdf-schema#label Has Format@en http://purl.org/dc/terms/hasFormat
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/hasFormat
-http://www.w3.org/2000/01/rdf-schema#comment A related resource that is substantially the same as the pre-existing described resource, but in another format.@en http://purl.org/dc/terms/hasFormat
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/hasFormat
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/hasFormat
-http://purl.org/dc/terms/description This property is intended to be used with non-literal values. This property is an inverse property of Is Format Of.@en http://purl.org/dc/terms/hasFormat
-http://www.w3.org/2000/01/rdf-schema#seeAlso http://www.nlm.nih.gov/mesh/meshhome.html http://purl.org/dc/terms/MESH
-http://www.w3.org/2000/01/rdf-schema#label MeSH@en http://purl.org/dc/terms/MESH
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/MESH
-http://www.w3.org/2000/01/rdf-schema#comment The set of labeled concepts specified by the Medical Subject Headings.@en http://purl.org/dc/terms/MESH
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://purl.org/dc/dcam/VocabularyEncodingScheme http://purl.org/dc/terms/MESH
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/MESH
-http://www.w3.org/2000/01/rdf-schema#label Location, Period, or Jurisdiction@en http://purl.org/dc/terms/LocationPeriodOrJurisdiction
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/LocationPeriodOrJurisdiction
-http://www.w3.org/2000/01/rdf-schema#comment A location, period of time, or jurisdiction.@en http://purl.org/dc/terms/LocationPeriodOrJurisdiction
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/LocationPeriodOrJurisdiction
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/LocationPeriodOrJurisdiction
-http://www.w3.org/2000/01/rdf-schema#label Replaces@en http://purl.org/dc/terms/replaces
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/replaces
-http://www.w3.org/2000/01/rdf-schema#comment A related resource that is supplanted, displaced, or superseded by the described resource.@en http://purl.org/dc/terms/replaces
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/replaces
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/replaces
-http://purl.org/dc/terms/description This property is intended to be used with non-literal values. This property is an inverse property of Is Replaced By.@en http://purl.org/dc/terms/replaces
-http://www.w3.org/2000/01/rdf-schema#label Mediator@en http://purl.org/dc/terms/mediator
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/mediator
-http://www.w3.org/2000/01/rdf-schema#comment An entity that mediates access to the resource.@en http://purl.org/dc/terms/mediator
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/mediator
-http://purl.org/dc/terms/issued 2001-05-21^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/mediator
-http://purl.org/dc/terms/description In an educational context, a mediator might be a parent, teacher, teaching assistant, or care-giver.@en http://purl.org/dc/terms/mediator
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/AgentClass http://purl.org/dc/terms/mediator
-http://www.w3.org/2000/01/rdf-schema#label Extent@en http://purl.org/dc/terms/extent
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/extent
-http://www.w3.org/2000/01/rdf-schema#comment The size or duration of the resource.@en http://purl.org/dc/terms/extent
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/extent
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/extent
-http://purl.org/dc/terms/description Recommended practice is to specify the file size in megabytes and duration in ISO 8601 format.@en http://purl.org/dc/terms/extent
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/SizeOrDuration http://purl.org/dc/terms/extent
-http://www.w3.org/2000/01/rdf-schema#label Rights Holder@en http://purl.org/dc/terms/rightsHolder
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/rightsHolder
-http://www.w3.org/2000/01/rdf-schema#comment A person or organization owning or managing rights over the resource.@en http://purl.org/dc/terms/rightsHolder
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/rightsHolder
-http://purl.org/dc/terms/issued 2004-06-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/rightsHolder
-http://purl.org/dc/terms/description Recommended practice is to refer to the rights holder with a URI. If this is not possible or feasible, a literal value that identifies the rights holder may be provided.@en http://purl.org/dc/terms/rightsHolder
-http://purl.org/dc/dcam/rangeIncludes http://purl.org/dc/terms/Agent http://purl.org/dc/terms/rightsHolder
-http://www.w3.org/2000/01/rdf-schema#label Agent@en http://purl.org/dc/terms/Agent
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/Agent
-http://www.w3.org/2000/01/rdf-schema#comment A resource that acts or has the power to act.@en http://purl.org/dc/terms/Agent
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/Agent
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://purl.org/dc/terms/AgentClass http://purl.org/dc/terms/Agent
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/Agent
-http://www.w3.org/2000/01/rdf-schema#subClassOf http://purl.org/dc/terms/RightsStatement http://purl.org/dc/terms/LicenseDocument
-http://www.w3.org/2000/01/rdf-schema#label License Document@en http://purl.org/dc/terms/LicenseDocument
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/LicenseDocument
-http://www.w3.org/2000/01/rdf-schema#comment A legal document giving official permission to do something with a resource.@en http://purl.org/dc/terms/LicenseDocument
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/2000/01/rdf-schema#Class http://purl.org/dc/terms/LicenseDocument
-http://purl.org/dc/terms/issued 2008-01-14^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/LicenseDocument
-http://www.w3.org/2000/01/rdf-schema#label Has Version@en http://purl.org/dc/terms/hasVersion
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/hasVersion
-http://www.w3.org/2000/01/rdf-schema#comment A related resource that is a version, edition, or adaptation of the described resource.@en http://purl.org/dc/terms/hasVersion
-http://www.w3.org/1999/02/22-rdf-syntax-ns#type http://www.w3.org/1999/02/22-rdf-syntax-ns#Property http://purl.org/dc/terms/hasVersion
-http://purl.org/dc/terms/issued 2000-07-11^^http://www.w3.org/2001/XMLSchema#date http://purl.org/dc/terms/hasVersion
-http://purl.org/dc/terms/description Changes in version imply substantive changes in content rather than differences in format. This property is intended to be used with non-literal values. This property is an inverse property of Is Version Of.@en http://purl.org/dc/terms/hasVersion
-http://www.w3.org/2000/01/rdf-schema#label Accrual Policy@en http://purl.org/dc/terms/accrualPolicy
-http://www.w3.org/2000/01/rdf-schema#isDefinedBy http://purl.org/dc/terms/ http://purl.org/dc/terms/accrualPolicy
-http://www.w3.org/2000/01/rdf-schema#domain http://purl.org/dc/dcmitype/Collection http://purl.org/dc/terms/accrualPolicy
-http://xmlns.com/foaf/0.1/Documen is not in the the domain of:  http://purl.org/dc/terms/accrualPolicy
-false
+Sample map copied to ./resources/new_sample_map.ttl
+PREDICATES http://dbpedia.org/ontology/areaCode,http://xmlns.com/foaf/0.1/gender,http://xmlns.com/foaf/0.1/age
+COLUMNS "age","age","name"
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+PREDICATES http://dbpedia.org/ontology/areaCode,http://xmlns.com/foaf/0.1/gender,http://xmlns.com/foaf/0.1/age
+COLUMNS "age","age","name"
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+PREDICATES http://dbpedia.org/ontology/areaCode,http://xmlns.com/foaf/0.1/gender,http://xmlns.com/foaf/0.1/age
+COLUMNS "age","age","name"
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+CLASSSESSSSSSSSSSS 
+REPARINING TERM TYPE FOR http://dbpedia.org/ontology/areaCode
+http://dbpedia.org/ontology/areaCode has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/gender
+http://xmlns.com/foaf/0.1/gender has datatype or literal
+UPDATING TERM TYPE
+REMOVE LATER http://www.w3.org/ns/r2rml#BlankNode
+UPDATE QUERY INSERT { ?objectMapValue <http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>} WHERE { ?objectMapSubject <http://www.w3.org/ns/r2rml#predicate> <http://xmlns.com/foaf/0.1/gender> ; <http://www.w3.org/ns/r2rml#objectMap> ?objectMapValue}
+@prefix testd: <http://www.txample.com/people/data/> .
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
-@prefix ex:    <http://example.com/ns#> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:IRI
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal , rr:BlankNode
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  "test" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+UPDATE QUERY written to ./resources/new_sample_map.ttl
+DELETING TERM TYPE http://www.w3.org/ns/r2rml#BlankNode
+UPDATE QUERY DELETE { ?objectMapObject 	<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#BlankNode>. } 
+WHERE {
+  ?predicateSubject ?predicate <http://xmlns.com/foaf/0.1/gender>.
+  ?predicateSubject <http://www.w3.org/ns/r2rml#objectMap> ?objectMapObject.
+  ?objectMapObject 	<http://www.w3.org/ns/r2rml#termType> ?termTypeObject.          
+}
+
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  "test" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:IRI
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+UPDATE QUERY written to ./resources/new_sample_map.ttl
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/age
+http://xmlns.com/foaf/0.1/age has datatype or literal
+UPDATING TERM TYPE
+REMOVE LATER http://www.w3.org/ns/r2rml#IRI
+UPDATE QUERY INSERT { ?objectMapValue <http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#Literal>} WHERE { ?objectMapSubject <http://www.w3.org/ns/r2rml#predicate> <http://xmlns.com/foaf/0.1/age> ; <http://www.w3.org/ns/r2rml#objectMap> ?objectMapValue}
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal , rr:IRI
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  "test" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+UPDATE QUERY written to ./resources/new_sample_map.ttl
+DELETING TERM TYPE http://www.w3.org/ns/r2rml#IRI
+UPDATE QUERY DELETE { ?objectMapObject 	<http://www.w3.org/ns/r2rml#termType> <http://www.w3.org/ns/r2rml#IRI>. } 
+WHERE {
+  ?predicateSubject ?predicate <http://xmlns.com/foaf/0.1/age>.
+  ?predicateSubject <http://www.w3.org/ns/r2rml#objectMap> ?objectMapObject.
+  ?objectMapObject 	<http://www.w3.org/ns/r2rml#termType> ?termTypeObject.          
+}
+
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  "test" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+UPDATE QUERY written to ./resources/new_sample_map.ttl
+REPARINING TERM TYPE FOR http://dbpedia.org/ontology/areaCode
+http://dbpedia.org/ontology/areaCode has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/gender
+http://xmlns.com/foaf/0.1/gender has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/age
+http://xmlns.com/foaf/0.1/age has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://dbpedia.org/ontology/areaCode
+http://dbpedia.org/ontology/areaCode has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/gender
+http://xmlns.com/foaf/0.1/gender has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/age
+http://xmlns.com/foaf/0.1/age has datatype or literal
+UPDATING TERM TYPE
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2001/XMLSchema#string
+ADDING DATATYPE http://www.w3.org/2001/XMLSchema#string subject http://dbpedia.org/ontology/areaCode
+CHECKING DATATYPE FOR http://dbpedia.org/ontology/areaCode./resources/new_sample_map.ttl
+SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+SELECT  QUERY
+( ?o = "test" ) -> ( ?p = _:b0 ) -> ( ?subject = _:b1 ) -> [Root]
+SPARQL QUERY DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+DELETING DATATYPE FOR http://www.w3.org/2001/XMLSchema#string
+SPARQL QUERY INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <http://www.w3.org/2001/XMLSchema#string>}
+  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?object }
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2001/XMLSchema#string
+ADDING DATATYPE http://www.w3.org/2001/XMLSchema#string subject http://dbpedia.org/ontology/areaCode
+CHECKING DATATYPE FOR http://dbpedia.org/ontology/areaCode./resources/new_sample_map.ttl
+SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+SELECT  QUERY
+( ?o = xsd:string ) -> ( ?p = _:b2 ) -> ( ?subject = _:b3 ) -> [Root]
+SPARQL QUERY DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+DELETING DATATYPE FOR http://www.w3.org/2001/XMLSchema#string
+SPARQL QUERY INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <http://www.w3.org/2001/XMLSchema#string>}
+  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?object }
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2001/XMLSchema#string
+ADDING DATATYPE http://www.w3.org/2001/XMLSchema#string subject http://dbpedia.org/ontology/areaCode
+CHECKING DATATYPE FOR http://dbpedia.org/ontology/areaCode./resources/new_sample_map.ttl
+SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+SELECT  QUERY
+( ?o = xsd:string ) -> ( ?p = _:b4 ) -> ( ?subject = _:b5 ) -> [Root]
+SPARQL QUERY DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+DELETING DATATYPE FOR http://www.w3.org/2001/XMLSchema#string
+SPARQL QUERY INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <http://www.w3.org/2001/XMLSchema#string>}
+  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?object }
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+Testing domain
+PREDICATE http://dbpedia.org/ontology/areaCode
+CLASS 
+NO DOMAIN CLASSES
+FINDING DOMAIN
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://dbpedia.org/ontology/Place
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://dbpedia.org/ontology/Place
+RESULT OF TESTING DOMAIN true
+Testing domain
+PREDICATE http://xmlns.com/foaf/0.1/gender
+CLASS 
+NO DOMAIN CLASSES
+FINDING DOMAIN
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://xmlns.com/foaf/0.1/Agent
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://xmlns.com/foaf/0.1/Agent
+RESULT OF TESTING DOMAIN true
+Testing domain
+PREDICATE http://xmlns.com/foaf/0.1/age
+CLASS 
+NO DOMAIN CLASSES
+FINDING DOMAIN
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://xmlns.com/foaf/0.1/Agent
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://xmlns.com/foaf/0.1/Agent
+RESULT OF TESTING DOMAIN true
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
 
 [ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
   <http://www.w3.org/ns/shacl#conforms>
@@ -179,9 +631,24 @@ false
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    foaf:Documen ;
+                    _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Error Detected" ;
+                    "Usage of blank node" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://www.taxonic.com/ns/rml-shacl#BlankNodeShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b0
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Disjoint Classes Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
@@ -189,16 +656,787 @@ false
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
+                    rr:DisjointShape ;
             <http://www.w3.org/ns/shacl#value>
-                    foaf:Documen
-          ] ;
+                    _:b1
+          ]
+] .
+Validation report out written to ./resources/output.ttl
+PREDICATES http://xmlns.com/foaf/0.1/age,http://xmlns.com/foaf/0.1/gender,http://dbpedia.org/ontology/areaCode
+COLUMNS "name","age","age"
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+PREDICATES http://xmlns.com/foaf/0.1/age,http://xmlns.com/foaf/0.1/gender,http://dbpedia.org/ontology/areaCode
+COLUMNS "name","age","age"
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+PREDICATES http://xmlns.com/foaf/0.1/age,http://xmlns.com/foaf/0.1/gender,http://dbpedia.org/ontology/areaCode
+COLUMNS "name","age","age"
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+CLASSSESSSSSSSSSSS http://xmlns.com/foaf/0.1/Agent,http://dbpedia.org/ontology/Place
+ASK {<http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Agent> } 
+false result
+ASK {<http://dbpedia.org/ontology/Place> <http://www.w3.org/2002/07/owl#disjointWith> <http://xmlns.com/foaf/0.1/Agent> } 
+false result
+ASK {<http://xmlns.com/foaf/0.1/Agent> <http://www.w3.org/2002/07/owl#disjointWith> <http://dbpedia.org/ontology/Place> } 
+false result
+ASK {<http://dbpedia.org/ontology/Place> <http://www.w3.org/2002/07/owl#disjointWith> <http://dbpedia.org/ontology/Place> } 
+false result
+Tfgjfjh  http://xmlns.com/foaf/0.1/Agent
+true
+ReferenceError: "response" is not defined
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/age
+http://xmlns.com/foaf/0.1/age has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/gender
+http://xmlns.com/foaf/0.1/gender has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://dbpedia.org/ontology/areaCode
+http://dbpedia.org/ontology/areaCode has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/age
+http://xmlns.com/foaf/0.1/age has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/gender
+http://xmlns.com/foaf/0.1/gender has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://dbpedia.org/ontology/areaCode
+http://dbpedia.org/ontology/areaCode has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/age
+http://xmlns.com/foaf/0.1/age has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://xmlns.com/foaf/0.1/gender
+http://xmlns.com/foaf/0.1/gender has datatype or literal
+UPDATING TERM TYPE
+REPARINING TERM TYPE FOR http://dbpedia.org/ontology/areaCode
+http://dbpedia.org/ontology/areaCode has datatype or literal
+UPDATING TERM TYPE
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2001/XMLSchema#string
+ADDING DATATYPE http://www.w3.org/2001/XMLSchema#string subject http://dbpedia.org/ontology/areaCode
+CHECKING DATATYPE FOR http://dbpedia.org/ontology/areaCode./resources/new_sample_map.ttl
+SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+SELECT  QUERY
+( ?o = xsd:string ) -> ( ?p = _:b6 ) -> ( ?subject = _:b7 ) -> [Root]
+SPARQL QUERY DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+DELETING DATATYPE FOR http://www.w3.org/2001/XMLSchema#string
+SPARQL QUERY INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <http://www.w3.org/2001/XMLSchema#string>}
+  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?object }
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2001/XMLSchema#string
+ADDING DATATYPE http://www.w3.org/2001/XMLSchema#string subject http://dbpedia.org/ontology/areaCode
+CHECKING DATATYPE FOR http://dbpedia.org/ontology/areaCode./resources/new_sample_map.ttl
+SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+SELECT  QUERY
+( ?o = xsd:string ) -> ( ?p = _:b8 ) -> ( ?subject = _:b9 ) -> [Root]
+SPARQL QUERY DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+DELETING DATATYPE FOR http://www.w3.org/2001/XMLSchema#string
+SPARQL QUERY INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <http://www.w3.org/2001/XMLSchema#string>}
+  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?object }
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2000/01/rdf-schema#Literal
+ADDING DATAYTPE !!!!!!
+DATATYPE CHECKING
+ADDING RANGE http://www.w3.org/2001/XMLSchema#string
+ADDING DATATYPE http://www.w3.org/2001/XMLSchema#string subject http://dbpedia.org/ontology/areaCode
+CHECKING DATATYPE FOR http://dbpedia.org/ontology/areaCode./resources/new_sample_map.ttl
+SELECT * WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+SELECT  QUERY
+( ?o = xsd:string ) -> ( ?p = _:b10 ) -> ( ?subject = _:b11 ) -> [Root]
+SPARQL QUERY DELETE {?p <http://www.w3.org/ns/r2rml#datatype> ?o }  WHERE { ?subject 	<http://www.w3.org/ns/r2rml#predicate> 	<http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?p . ?p <http://www.w3.org/ns/r2rml#datatype> ?o}
+DELETING DATATYPE FOR http://www.w3.org/2001/XMLSchema#string
+SPARQL QUERY INSERT  { ?object  <http://www.w3.org/ns/r2rml#datatype>  <http://www.w3.org/2001/XMLSchema#string>}
+  WHERE { ?subject <http://www.w3.org/ns/r2rml#predicate> <http://dbpedia.org/ontology/areaCode>; <http://www.w3.org/ns/r2rml#objectMap> ?object }
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DATAYTPE !!!!!!
+Testing domain
+PREDICATE http://xmlns.com/foaf/0.1/age
+CLASS http://xmlns.com/foaf/0.1/Agent,http://dbpedia.org/ontology/Place
+CHECKING DOMAIN
+http://xmlns.com/foaf/0.1/age
+ASK {<http://xmlns.com/foaf/0.1/age> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Agent> }false
+FINDING DOMAIN
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://xmlns.com/foaf/0.1/Agent
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://xmlns.com/foaf/0.1/Agent
+CHECKING DOMAIN
+http://xmlns.com/foaf/0.1/age
+ASK {<http://xmlns.com/foaf/0.1/age> <http://www.w3.org/2000/01/rdf-schema#domain> <http://dbpedia.org/ontology/Place> }false
+FINDING DOMAIN
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://xmlns.com/foaf/0.1/Agent
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://xmlns.com/foaf/0.1/Agent
+RESULT OF TESTING DOMAIN false
+Testing domain
+PREDICATE http://xmlns.com/foaf/0.1/gender
+CLASS http://xmlns.com/foaf/0.1/Agent,http://dbpedia.org/ontology/Place
+CHECKING DOMAIN
+http://xmlns.com/foaf/0.1/gender
+ASK {<http://xmlns.com/foaf/0.1/gender> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Agent> }false
+FINDING DOMAIN
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://xmlns.com/foaf/0.1/Agent
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://xmlns.com/foaf/0.1/Agent
+CHECKING DOMAIN
+http://xmlns.com/foaf/0.1/gender
+ASK {<http://xmlns.com/foaf/0.1/gender> <http://www.w3.org/2000/01/rdf-schema#domain> <http://dbpedia.org/ontology/Place> }false
+FINDING DOMAIN
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://xmlns.com/foaf/0.1/Agent
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://xmlns.com/foaf/0.1/Agent
+RESULT OF TESTING DOMAIN false
+Testing domain
+PREDICATE http://dbpedia.org/ontology/areaCode
+CLASS http://xmlns.com/foaf/0.1/Agent,http://dbpedia.org/ontology/Place
+CHECKING DOMAIN
+http://dbpedia.org/ontology/areaCode
+ASK {<http://dbpedia.org/ontology/areaCode> <http://www.w3.org/2000/01/rdf-schema#domain> <http://xmlns.com/foaf/0.1/Agent> }false
+FINDING DOMAIN
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://dbpedia.org/ontology/Place
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:Agent ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://dbpedia.org/ontology/Place
+CHECKING DOMAIN
+http://dbpedia.org/ontology/areaCode
+ASK {<http://dbpedia.org/ontology/areaCode> <http://www.w3.org/2000/01/rdf-schema#domain> <http://dbpedia.org/ontology/Place> }false
+FINDING DOMAIN
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+SPARQL QUERY http://dbpedia.org/ontology/Place
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+<file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
+        rr:logicalTable        [ rr:tableName  "test" ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+                                 rr:template  "http://www.example.com/people/data/{ID}" ;
+                                 rr:termType  rr:IRI
+                               ] .
+ADDING DOMAIN http://dbpedia.org/ontology/Place
+RESULT OF TESTING DOMAIN false
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+@prefix dc:    <http://purl.org/dc/terms/> .
+
+[ a       <http://www.w3.org/ns/shacl#ValidationReport> ;
+  <http://www.w3.org/ns/shacl#conforms>
+          false ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Predicate URI non-dereferencable" ;
+                    "http://dbpedia.org/ontology/areaCode" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:DomainShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b0
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b2 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "http://xmlns.com/foaf/0.1/gender" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:DomainShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b2
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b3 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "http://xmlns.com/foaf/0.1/age" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:DomainShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b3
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    dbo:Place ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Disjoint Classes Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
@@ -206,9 +1444,9 @@ false
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:URIdereferencable ;
+                    rr:DisjointShape ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b0
+                    dbo:Place
           ]
 ] .
 Validation report out written to ./resources/output.ttl

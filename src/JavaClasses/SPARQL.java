@@ -1,12 +1,10 @@
 package JavaClasses;
 
 
-import org.apache.jena.query.Query;
-import org.apache.jena.query.QueryExecution;
-import org.apache.jena.query.QueryExecutionFactory;
-import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.*;
 import org.apache.jena.update.*;
 
 import java.io.File;
@@ -73,6 +71,27 @@ public class SPARQL {
             String result = "File not found!";
             System.out.println(result);
         }
+
+    }
+
+    public static ResultSet selectQuery(String URI, String queryString){
+        try{
+            Model model = ModelFactory.createDefaultModel() ;
+            model.read(URI);
+            Query query = QueryFactory.create(queryString) ;
+            try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
+                ResultSet results = qexec.execSelect() ;
+                results = ResultSetFactory.copyResults(results) ;
+                return results ;    // Passes the result set out of the try-resources
+            }
+
+        }
+        catch (Exception e){
+            System.out.println("SELECT query error "  + e);
+            return null;
+        }
+
+
 
     }
 }
