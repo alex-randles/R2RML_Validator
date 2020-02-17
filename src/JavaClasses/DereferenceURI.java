@@ -201,7 +201,7 @@ public class DereferenceURI {
 
 
 
-   public static boolean checkRDF(String uri){
+   public static boolean accessRDF(String uri){
         try{
 
             Model data = ModelFactory.createDefaultModel();

@@ -99,7 +99,7 @@ function checkDataType($this) {
     	var current_object  = getProperty($this, "datatype");
     	if (current_object != null){
     	    var JavaCLass = Java.type("test.TestURI");
-	        var ResponseCode = JavaCLass.checkRDF(current_object);
+	        var ResponseCode = JavaCLass.accessRDF(current_object);
 	        return ResponseCode;
     	}
 
