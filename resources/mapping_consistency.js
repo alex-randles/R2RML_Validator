@@ -13,6 +13,7 @@ var missing_datatype_check = false;
 var term_type_check = false;
 var count = 0;
 var ontology_score = [];
+var ontologies_assessed = false;
 
 //
 //function calculateOntologyScore(resource) {
@@ -98,8 +99,8 @@ function checkDataType($this) {
     try{
     	var current_object  = getProperty($this, "datatype");
     	if (current_object != null){
-    	    var JavaCLass = Java.type("test.TestURI");
-	        var ResponseCode = JavaCLass.accessRDF(current_object);
+ 	    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+ 	    var ResponseCode = JavaCLass.accessRDF(String(current_object));
 	        return ResponseCode;
     	}
 
@@ -147,6 +148,26 @@ function getProperty($this, name) {
 	return result;
 }
 
+
+function assessOntologies(resource){
+    if (!ontologies_assessed){
+            	ontologies_assessed =true;
+                print("ASSESSING ONTOLOGIES USED")
+            	var labelProperty = TermFactory.namedNode(NS+"class");
+            	var labels = $data.find(resource, labelProperty, null);
+            	for(;;) {
+            		var labelTriple = labels.next();
+            		if(!labelTriple) {
+                        break;
+                        return null;
+            		}
+                                    var JavaCLass = Java.type("JavaClasses.OntologyQualityAssessment");
+                                    var ResponseCode = JavaCLass.runTest(String(labelTriple.object));
+
+
+                }
+    }
+}
 
 function testing(resource) {
     if (!duplicates_checked){
@@ -483,8 +504,8 @@ function checkDuplicateElements(numArray){
 
 function validateDisjointClasses(resource){
     if (!disjoint_classes_check){
+
         var classesURI = getAllValues("class");
-        print("CLASSSESSSSSSSSSSS" , classesURI);
         var JavaCLass = Java.type("JavaClasses.DereferenceURI");
         var result = JavaCLass.validateDisjointClasses(classesURI);
         disjoint_classes_check = true;
@@ -574,7 +595,6 @@ function square($number) {
 function validateRange(resource){
     var predicate = getProperty(resource, "predicate");
 	var datatype = getProperty(resource, "datatype");
-	print("PREDICATE", )
 	if (datatype && predicate){
 	    	print("CHECKING RANGE predicate " + predicate, "datatype " + datatype);
 	    	var JavaCLass = Java.type("JavaClasses.DereferenceURI");

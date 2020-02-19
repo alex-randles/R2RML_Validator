@@ -23,6 +23,9 @@
 
 	rr:subjectMap [
 		rr:template "http://www.example.com/people/data/{ID}";
+		rr:class foaf:name;
+		rr:class foaf:name;
+
 		rr:termType rr:IRI;
 	];
 	

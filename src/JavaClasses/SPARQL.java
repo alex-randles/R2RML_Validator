@@ -90,8 +90,19 @@ public class SPARQL {
             System.out.println("SELECT query error "  + e);
             return null;
         }
+    }
 
-
+    public static String getStringVariable(ResultSet results, String variableName){
+        try {
+            for(;results.hasNext();){
+                QuerySolution soln = results.nextSolution();
+                String s = soln.get(variableName).toString();
+                return s;
+            }
+        }
+        catch (Exception e) {
+        }
+        return "";
 
     }
 }

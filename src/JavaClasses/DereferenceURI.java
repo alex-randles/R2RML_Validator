@@ -17,12 +17,9 @@ import java.io.*;
 
 public class DereferenceURI {
 
-    public static void main(String[] args) {
-        // main method for testing purposes
-//        String[] s = {"http://xmlns.com/foaf/0.1/Project", "http://xmlns.com/foaf/0.1/Person"};
-//        System.out.println(validateDisjointClasses(s));
-        boolean  s = validateRange("http://dbpedia.org/ontology/areaCode","http://www.w3.org/2001/XMLSchema#g");
-        System.out.println(s);
+    public static void main(String[] args){
+       //  String[] disjointClasses = {"http://dbpedia.org/ontology/Person", "http://dbpedia.org/ontology/Activity", "http://dbpedia.org/ontology/Building"}
+
     }
 
     public static boolean getResponseCode(String string_URL) {
@@ -205,7 +202,7 @@ public class DereferenceURI {
         try{
 
             Model data = ModelFactory.createDefaultModel();
-            data.read(uri,"RDF/XML");
+            data.read(uri);
 
             StmtIterator iter = data.listStatements();
             if (iter.hasNext()) {
@@ -278,20 +275,24 @@ public class DereferenceURI {
 
     public static boolean validateDisjointClasses(String[] classesURI){
      try{
-
-         for (String currentClassURI : classesURI){
+         boolean disjointClasses = false;
+         int count = 0;
+         for (String currentClassURI : classesURI) {
 
              for (String comparisonURI : classesURI) {
                  String query = String.format("ASK {<%s> <http://www.w3.org/2002/07/owl#disjointWith> <%s> } ", comparisonURI, currentClassURI);
                  boolean result = SPARQL.askQuery(comparisonURI, query);
-                 System.out.println(query);
-                 String s = String.format("%s result", result);
-                 System.out.println(s);
-                 if (result==true) {
-                     return true;
+
+                 if (result == true) {
+                     count++;
+                     disjointClasses = true;
                  }
 
              }
+         }
+         String output = String.format("Disjoint Classes %.0f%% ", (float)classesURI.length/count);
+         Output.writeFile(output, "SemanticAssessment.txt");
+         return disjointClasses;
 
 //        for (String currentClassURI : classesURI){
 //            Model data = ModelFactory.createDefaultModel();
@@ -323,7 +324,7 @@ public class DereferenceURI {
 
 
 //                    }
-                    }
+
 }
         catch(Exception e){
             System.out.println(e + "3474374747");

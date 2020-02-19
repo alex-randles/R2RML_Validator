@@ -20,6 +20,10 @@ public class ShaclTest {
 		
 	}
 
+	public static void parseResults(){
+
+	}
+
 
 
 	public static void runTest(String function_file,String data_file, String output_file) {

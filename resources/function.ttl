@@ -780,13 +780,25 @@ rr:TermTypeShape
 	sh:targetClass rr:PredicateMap;
 	sh:js [
 			  a sh:JSConstraint ;
-			  sh:jsFunctionName "checkTermType" ;
+			  sh:jsFunctionName "assessOntologies" ;
 			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 		  ] ;
 
 .
 
+rr:TermTypeShape
+	a sh:NodeShape ;
+	rdfs:label "Ontology Assessment"@en ;
+	rdfs:comment "Defines quality assessment of ontologies used"@en ;
+	sh:targetObjectsOf rr:predicateObjectMap;
+	sh:targetClass rr:PredicateMap;
+	sh:js [
+			  a sh:JSConstraint ;
+			  sh:jsFunctionName "checkTermType" ;
+			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+		  ] ;
 
+.
 
 rmlsh:BlankNodeShape
 	a sh:NodeShape ;

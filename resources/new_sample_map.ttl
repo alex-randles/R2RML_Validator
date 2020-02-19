@@ -1,5 +1,5 @@
-@prefix testd: <http://www.txample.com/people/data/> .
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -13,24 +13,24 @@
 
 <file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
         rr:logicalTable        [ rr:tableName  "test" ] ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
-                                                 rr:datatype  xsd:test ;
-                                                 rr:termType  rr:Literal
-                                               ] ;
-                                 rr:predicate  foaf:age
-                               ] ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
-                                                 rr:termType  rr:Literal
-                                               ] ;
-                                 rr:predicate  foaf:gender
-                               ] ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
                                                  rr:datatype  xsd:string ;
                                                  rr:termType  rr:Literal
                                                ] ;
                                  rr:predicate  dbo:areaCode
                                ] ;
-        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:gender
+                               ] ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
+                                                 rr:datatype  xsd:test ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  foaf:age
+                               ] ;
+        rr:subjectMap          [ rr:class     dbo:Place , foaf:name , foaf:Agent ;
                                  rr:template  "http://www.example.com/people/data/{ID}" ;
                                  rr:termType  rr:IRI
                                ] .

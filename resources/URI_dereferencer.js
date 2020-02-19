@@ -81,8 +81,8 @@ function dereferenceURI($this) {
 
     	print("Tfgjfjh ", current_object)
     	// use method from java class to check URI response code
-	    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-	    var ResponseCode = JavaCLass.checkRDF(String(current_object));
+    	var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+        var ResponseCode = JavaCLass.accessRDF(String(current_object));
         // print("response code", ResponseCode);
         print(ResponseCode);
         if (response == false){

@@ -1,1 +1,32 @@
-Mapping definition not accessible
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with range definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with domain definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with human labelling 99%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with is defined by definition 99%
+Ontology http://dbpedia.org/ontology/Place  - Triples with range definition 23%
+Ontology http://dbpedia.org/ontology/Place  - Triples with domain definition 77%
+Ontology http://dbpedia.org/ontology/Place  - Triples with human labelling 0%
+Ontology http://dbpedia.org/ontology/Place  - Triples with is defined by definition 0%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with range definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with domain definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with human labelling 99%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with is defined by definition 99%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with range definition 72%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with domain definition 72%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with human labelling 99%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with is defined by definition 99%
+Mapping definition not accessibleMapping definition not accessibleOntology http://xmlns.com/foaf/0.1/name  - Triples with range definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with domain definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with human labelling 99%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with is defined by definition 99%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with range definition 72%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with domain definition 72%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with human labelling 99%
+Ontology http://xmlns.com/foaf/0.1/Agent  - Triples with is defined by definition 99%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with range definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with domain definition 72%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with human labelling 99%
+Ontology http://xmlns.com/foaf/0.1/name  - Triples with is defined by definition 99%
+Ontology http://dbpedia.org/ontology/Place  - Triples with range definition 23%
+Ontology http://dbpedia.org/ontology/Place  - Triples with domain definition 77%
+Ontology http://dbpedia.org/ontology/Place  - Triples with human labelling 0%
+Ontology http://dbpedia.org/ontology/Place  - Triples with is defined by definition 0%
