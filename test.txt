@@ -1,1 +1,37 @@
 Sample map copied to ./resources/new_sample_map.ttl
+PREDICATES http://dbpedia.org/ontology/areaCode,http://xmlns.com/foaf/0.1/gender,http://xmlns.com/foaf/0.1/age
+COLUMNS "age","age","name"
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+PREDICATES http://dbpedia.org/ontology/areaCode,http://xmlns.com/foaf/0.1/gender,http://xmlns.com/foaf/0.1/age
+COLUMNS "age","age","name"
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+PREDICATES http://dbpedia.org/ontology/areaCode,http://xmlns.com/foaf/0.1/gender,http://xmlns.com/foaf/0.1/age
+COLUMNS "age","age","name"
+http://xmlns.com/foaf/0.1/gender http://dbpedia.org/ontology/areaCode false
+http://xmlns.com/foaf/0.1/age http://dbpedia.org/ontology/areaCode false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/gender false
+http://xmlns.com/foaf/0.1/age http://xmlns.com/foaf/0.1/gender false
+"name" "age" false
+http://dbpedia.org/ontology/areaCode http://xmlns.com/foaf/0.1/age false
+"age" "name" false
+http://xmlns.com/foaf/0.1/gender http://xmlns.com/foaf/0.1/age false
+"age" "name" false

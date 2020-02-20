@@ -547,7 +547,11 @@ function checkDomain($this) {
 
 }
 
-
+function testRDF(resource){
+    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+    var result = JavaCLass.testing();
+    return result;
+}
 function addMissingDataTypes(resource){
 	var labelProperty = TermFactory.namedNode(NS+"predicate");
 	var labels = $data.find(resource, labelProperty, null);

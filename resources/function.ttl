@@ -545,7 +545,7 @@ rmlsh:JoinShape
 
 #
 #
-#rr:URIdereferencable
+#rr:ResourceDereferencableShape
 #    a sh:NodeShape ;
 #	rdfs:label "URI Dereferencable"@en ;
 #	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
@@ -769,22 +769,24 @@ rr:UndefinedPropertiesShape
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
 	] ;
 
-.
-
-
-rr:TermTypeShape
-	a sh:NodeShape ;
-	rdfs:label "URI Dereferencable"@en ;
-	rdfs:comment "Defines constraint for correct term type definition"@en ;
-	sh:targetObjectsOf rr:predicateObjectMap;
-	sh:targetClass rr:PredicateMap;
-	sh:js [
-			  a sh:JSConstraint ;
-			  sh:jsFunctionName "assessOntologies" ;
-			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-		  ] ;
 
 .
+
+
+#rr:TermTypeShape
+#	a sh:NodeShape ;
+#	rdfs:label "URI Dereferencable"@en ;
+#	rdfs:comment "Defines constraint for correct term type definition"@en ;
+#	sh:targetObjectsOf rr:predicateObjectMap;
+#	sh:targetClass rr:PredicateMap;
+#	sh:js [
+#			  a sh:JSConstraint ;
+#			  sh:jsFunctionName "assessOntologies" ;
+#			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#		  ] ;
+#
+#
+#.
 
 rr:TermTypeShape
 	a sh:NodeShape ;
@@ -798,9 +800,10 @@ rr:TermTypeShape
 			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 		  ] ;
 
+
 .
 
-rmlsh:BlankNodeShape
+rr:BlankNodeShape
 	a sh:NodeShape ;
 	rdfs:label "Blank node shape"@en ;
 	rdfs:comment "Defines constraints for the usage of blank nodes"@en ;

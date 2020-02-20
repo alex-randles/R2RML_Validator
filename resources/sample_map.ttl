@@ -45,7 +45,6 @@
 		rr:objectMap  [
 			rr:column "age";
 			rr:termType rr:BlankNode;
-
 		];
    ];
 

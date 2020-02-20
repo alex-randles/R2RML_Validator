@@ -14,6 +14,7 @@ public class ShaclTest {
 		String new_sample_map = "./resources/new_sample_map.ttl";
 		copySampleMap(original_mapping_file, new_sample_map);
 		runTest(function_file, original_mapping_file, output_file);
+		System.exit(0);
 		//Thread.sleep(10000);
 		runTest(function_file, new_sample_map, output_file);
 

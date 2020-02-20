@@ -60,22 +60,6 @@ public class DereferenceURI {
 
             }
 
-
-
-//        StmtIterator iter = data.listStatements();
-//        System.out.println(iter);
-//        while (iter.hasNext()) {
-//            Statement stmt = iter.nextStatement();  // get next statement
-//            Resource subject = stmt.getSubject();     // get the subject
-//            Property predicate = stmt.getPredicate();   // get the predicate
-//            RDFNode object = stmt.getObject();      // get the object
-//            if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && subject.toString().equals(URI)) {
-//                String result = AddDomain.AddDomainTriple(object.toString(), "./resources/sample_map.ttl");
-//                System.out.println("ADDING DOMAIN " + object.toString());
-//                System.out.println(result);
-//            }
-//
-//        }
     }
 
     public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate) {
@@ -95,43 +79,19 @@ public class DereferenceURI {
 
     public static boolean validateDomain(String mappingSubject, String mappingPredicate) {
         try {
-            System.out.println("CHECKING DOMAIN");
-            Model data = ModelFactory.createDefaultModel();
-            data.read(mappingSubject);
-            System.out.println(mappingPredicate);
-//
-//
-//                StmtIterator iter = data.listStatements();
-//                // print out the predicate, subject and object of each statement
-//                int i = 0;
-//                boolean inDomain = false;
-//
-//                while (iter.hasNext()) {
-//                    Statement stmt      = iter.nextStatement();  // get next statement
-//                    Resource  subject   = stmt.getSubject();     // get the subject
-//                    Property  predicate = stmt.getPredicate();   // get the predicate
-//                    RDFNode   object    = stmt.getObject();      // get the object
-//                    if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && !(subject.toString().equals(mappingPredicate))){
-//                       System.out.println("ENTERING DOMAIN IF STATEMENT");
-//                       System.out.println("SUBJECT " + subject.toString());
-//                       System.out.println("OBJECT " + object.toString());
-//                    System.out.println("PREDICATE " + predicate.toString());
-//                        System.out.println(mappingPredicate + " is not in the the domain of:  " + mappingSubject );
-//                }
-//                else if (predicate.toString().equals("http://www.w3.org/2000/01/rdf-schema#domain") && object.toString().equals(mappingSubject) && subject.toString().equals(mappingPredicate)){
-//                    inDomain = true;
-//                }
+                System.out.println("CHECKING DOMAIN");
+                Model data = ModelFactory.createDefaultModel();
+                data.read(mappingSubject);
+                System.out.println(mappingPredicate);
+                boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingSubject, mappingPredicate));
+                String s = String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject);
+                System.out.println(s + inDomain);
 
 
-        boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingSubject, mappingPredicate));
-        String s = String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject);
-        System.out.println(s + inDomain);
-
-
-        if (!inDomain) {
-            findValidDomain(mappingPredicate);
-        }
-        return inDomain;
+                if (!inDomain) {
+                    findValidDomain(mappingPredicate);
+                }
+                return inDomain;
 
 
     }
@@ -146,6 +106,19 @@ public class DereferenceURI {
     }
 
 
+    public static String testing(){
+        String query = "SELECT ?s WHERE { ?s ?p ?o }";
+        ResultSet results = SPARQL.selectQuery("http://xmlns.com/foaf/0.1/age", query);
+        System.out.println("OUTPUTTING RDF NODE");
+        for (; results.hasNext(); ) {
+            QuerySolution soln = results.nextSolution();
+            RDFNode resource = soln.getResource("?s");
+            System.out.println(resource.toString());
+            return resource.toString();
+
+        }
+        return null;
+    }
 
    public static void fixDataType(String URI, String mappingFile) {
 //            System.out.println("CHECKING DATATYPE OF"  + URI);
@@ -203,7 +176,6 @@ public class DereferenceURI {
 
             Model data = ModelFactory.createDefaultModel();
             data.read(uri);
-
             StmtIterator iter = data.listStatements();
             if (iter.hasNext()) {
                 return true;
