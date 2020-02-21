@@ -82,12 +82,11 @@ public class DereferenceURI {
                 System.out.println("CHECKING DOMAIN");
                 Model data = ModelFactory.createDefaultModel();
                 data.read(mappingSubject);
+                System.out.println(mappingSubject + "47474");
                 System.out.println(mappingPredicate);
                 boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingSubject, mappingPredicate));
                 String s = String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject);
                 System.out.println(s + inDomain);
-
-
                 if (!inDomain) {
                     findValidDomain(mappingPredicate);
                 }

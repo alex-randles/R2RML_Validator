@@ -534,8 +534,9 @@ function checkDomain($this) {
       print("PREDICATE", predicate);
     print("CLASS", getAllValues("class"));
     var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-    var result = JavaCLass.validateAllDomains(getAllValues("class"), String(predicate));
+    var result = JavaCLass.validateAllDomains(getAllValues("class", $this), String(predicate));
     print("RESULT OF TESTING DOMAIN", result);
+    print("ALL CLASSES ", getAllValues("class"));
     if(result==true){
         return true;
     }
@@ -544,6 +545,37 @@ function checkDomain($this) {
 
 
   }
+//
+//    print("rerrr DOMAIN");
+//
+//
+//    if(!domain_check){
+//    print("484774");
+//    	var labelProperty = TermFactory.namedNode(NS+"predicate");
+//    	var labels = $data.find(resource, labelProperty, null);
+//    	for(;;) {
+//    		var labelTriple = labels.next();
+//    		if(!labelTriple) {
+//                break;
+//                return null;
+//    		}
+//				var label = labelTriple.object;
+//
+//    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+//    var result = JavaCLass.validateAllDomains(getAllValues("class"), String(label));
+//    print("RESULT OF TESTING DOMAIN", result);
+//    if(result==true){
+//        return true;
+//    }
+//    else{
+//        return String(predicate);
+//    }
+//
+//
+//        }
+//        domain_check = true;
+//
+//    }
 
 }
 

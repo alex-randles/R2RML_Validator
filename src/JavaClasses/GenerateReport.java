@@ -18,40 +18,58 @@ public class GenerateReport {
     public static String mappingFileName = "./resources/sample_map.ttl";
     public static String domainShape = R2RML_NS + "DomainShape";
     public static String disjointShape = R2RML_NS + "DisjointShape";
+    public static String termTypeShape = R2RML_NS + "ValidTermType";
     public static String resourceDereferencableShape = R2RML_NS + "ResourceDereferencableShape";
     public static String blankNodeShape = R2RML_NS + "BlankNodeShape";
-    public static String termTypeShape = R2RML_NS + "TermTypeShape";
     public static String[] reportShapes =  {domainShape, disjointShape, resourceDereferencableShape};
     public static Map<String, String> headings = new HashMap<String, String>();
     public static String SHACL_NS = "http://www.w3.org/ns/shacl#";
-    public static String[] columnNames = {"number of classes", "number of predicates", };
-    public static String reportFile = "./resources/report.csv";
+    public static String[] columnNames = {"# classes", "# predicates", "# termtype" };
+    // public static String reportFile = "./resources/report.csv";
 
     public static void main(String[] args) throws IOException {
         generateReport(outputFileName, mappingFileName);
     }
 
     public static void generateReport(String shaclOutputFile, String mappingFile) throws IOException {
+        String reportFile =  "REPORT-" + getFileName(mappingFile) + ".csv";
+        System.out.println(reportFile);
+        createFile(reportFile);
         writeFile(reportFile, String.join(",", columnNames));
-        headings.put(blankNodeShape, "number of blank nodes ");
-        headings.put(disjointShape, "number of disjoint classes ");
-        headings.put(domainShape, "number of domain violations ");
+        writeFile(reportFile, ",");
+        headings.put(blankNodeShape, "# blank nodes ");
+        headings.put(disjointShape, "# disjoint classes ");
+        headings.put(domainShape, "# domain violations ");
+        headings.put(termTypeShape, "# termType violations ");
         for (Map.Entry mapElement : headings.entrySet()) {
             String value = (String)mapElement.getValue();
-            writeValue(reportFile, value+",");
+            writeValue(reportFile, value);
+            System.out.println(value);
         }
+        writeValue(reportFile, "# total errors");
         writeFile(reportFile, "\n");
-        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+"predicates")));
+        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+"predicate")));
         writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+ "class")));
+        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+ "termType")));
+
+        int totalErrors = 0;
         // System.out.println(getNumberShapes(shaclOutputFile, R2RML_NS + "DomainShape"));
         for (Map.Entry mapElement : headings.entrySet()) {
             String key = (String)mapElement.getKey();
             String s = String.valueOf(getNumberShapes(shaclOutputFile, key));
-            System.out.println(key + s);
-            // writeValue(reportFile, String.valueOf(getNumberShapes(shaclOutputFile, R2RML_NS + "DomainShape")));
+            totalErrors += Integer.parseInt(s);
+            writeValue(reportFile, s);
         }
+        writeValue(reportFile, String.valueOf(totalErrors));
+        writeFile(reportFile, "\n");
+
     }
 
+    public static String getFileName(String mappingFileName){
+        String[] parts = mappingFileName.split("/");
+        String result = parts[parts.length-1].split(".ttl")[0];
+        return result;
+    }
 
     public static void writeValue(String outputFile, String content) throws IOException {
         File file = new File(outputFile);
@@ -63,8 +81,17 @@ public class GenerateReport {
     public static void writeFile(String outputFile, String content) throws IOException {
         File file = new File(outputFile);
         FileWriter fr = new FileWriter(file, true);
-        fr.write(content + ",");
+        fr.write(content);
         fr.close();
+    }
+
+    public static void createFile(String fileName) throws IOException {
+        File file = new File(fileName);
+        if (file.createNewFile())
+        {
+            System.out.println("File is created!");
+        }
+        FileWriter fr = new FileWriter(file);
     }
 
     public static void querySHACLOutput(String fileName) {

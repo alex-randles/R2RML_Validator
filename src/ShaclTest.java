@@ -1,3 +1,4 @@
+import JavaClasses.GenerateReport;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
@@ -7,18 +8,16 @@ import java.io.*;
 
 public class ShaclTest {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		String original_mapping_file  = "./resources/sample_map.ttl";
 		String function_file  = "./resources/function.ttl";
 		String output_file = "./resources/output.ttl";
 		String new_sample_map = "./resources/new_sample_map.ttl";
 		copySampleMap(original_mapping_file, new_sample_map);
 		runTest(function_file, original_mapping_file, output_file);
-		System.exit(0);
-		//Thread.sleep(10000);
+		GenerateReport.generateReport(output_file, original_mapping_file);
 		runTest(function_file, new_sample_map, output_file);
-
-		
+		GenerateReport.generateReport(output_file, new_sample_map);
 	}
 
 	public static void parseResults(){

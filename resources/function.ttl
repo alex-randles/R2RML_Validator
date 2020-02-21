@@ -603,7 +603,6 @@ rr:DomainShape
 
 	sh:js [
 		a sh:JSConstraint ;
-		sh:node rr:test;
 		# sh:message "Domain Error Detected" ;
         sh:jsFunctionName "checkDomain" ;
 		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;

@@ -1,5 +1,5 @@
-@prefix testd: <http://www.txample.com/people/data/> .
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -19,123 +19,6 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "http://xmlns.com/foaf/0.1/knows" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:TermTypeShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b0
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "http://xmlns.com/foaf/0.1/gender" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b3 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b2
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b4 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "http://xmlns.com/foaf/0.1/knows" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:TermTypeShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b4
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "http://xmlns.com/foaf/0.1/age" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b3 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b0
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b5 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Usage of blank node" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:BlankNodeShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b5
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b4 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "http://dbpedia.org/ontology/areaCode" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b3 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b4
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "http://xmlns.com/foaf/0.1/knows" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:TermTypeShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b2
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b6 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
                     "Disjoint Classes Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
@@ -146,6 +29,6 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     rr:DisjointShape ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b6
+                    _:b0
           ]
 ] .
