@@ -16,6 +16,7 @@ public class ShaclTest {
 		copySampleMap(original_mapping_file, new_sample_map);
 		runTest(function_file, original_mapping_file, output_file);
 		GenerateReport.generateReport(output_file, original_mapping_file);
+		// hdhd
 		runTest(function_file, new_sample_map, output_file);
 		GenerateReport.generateReport(output_file, new_sample_map);
 	}
