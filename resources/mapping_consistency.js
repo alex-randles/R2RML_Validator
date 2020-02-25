@@ -9,6 +9,7 @@ var tables_count_check = false;
 var mappings = {} ;
 var disjoint_classes_check = false;
 var domain_check = false;
+var domain_validated = false;
 var missing_datatype_check = false;
 var term_type_check = false;
 var count = 0;
@@ -516,7 +517,7 @@ function validateDisjointClasses(resource){
 }
 
 
-function checkDomain($this) {
+function checkDomain(resource) {
 	var results = [];
 	// var classURI = getProperty($this, "class");
 	print("Testing domain");
@@ -527,24 +528,54 @@ function checkDomain($this) {
 //		var object = t.object;
 //			print(object);
 //		}
-    var predicate  = getProperty($this, "predicate");
-   //  var classes  = getProperty($this, "class");
- if (predicate){
+//    var predicate  = getProperty($this, "predicate");
+//   //  var classes  = getProperty($this, "class");
+// if (predicate){
+//
+//      print("PREDICATE", predicate);
+//    print("CLASS", getAllValues("class"));
+//    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+//    var result = JavaCLass.validateAllDomains(getAllValues("class", $this), String(predicate));
+//    print("RESULT OF TESTING DOMAIN", result);
+//    print("ALL CLASSES ", getAllValues("class"));
+//    if(result==true){
+//        return true;
+//    }
+//    return String(predicate);
+//    return result;
+//
+//
+//  }
+//
+if (!domain_validated){
+result = [] ;
+  	var labelProperty = TermFactory.namedNode(NS+"predicate");
+  	var labels = $data.find(resource, labelProperty, null);
+  	for(;;) {
+  		var labelTriple = labels.next();
+  		if(!labelTriple) {
+              break;
+              return null;
+  		}
 
-      print("PREDICATE", predicate);
-    print("CLASS", getAllValues("class"));
-    var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-    var result = JavaCLass.validateAllDomains(getAllValues("class", $this), String(predicate));
-    print("RESULT OF TESTING DOMAIN", result);
-    print("ALL CLASSES ", getAllValues("class"));
-    if(result==true){
-        return true;
-    }
-    return String(predicate);
-    return result;
+  		var predicate = labelTriple.object;
+      var JavaCLass = Java.type("JavaClasses.DereferenceURI");
+      var result = JavaCLass.validateAllDomains(getAllValues("class", resource), String(predicate));
+      print("RESULT OF TESTING DOMAIN", result);
+      print("ALL CLASSES ", getAllValues("class"));
+      if(result==true){
+          return true;
+      }
+   	else{
+   	    results.push({ value : predicate });
 
+   		}
 
-  }
+  	}
+  	  	domain_validated = true;
+
+  	return results;
+  	}
 //
 //    print("rerrr DOMAIN");
 //

@@ -233,6 +233,12 @@ public class OntologyQualityAssessment {
     }
 
 
+    public static int lowLatency(String URI){
+
+        return 0;
+    }
+
+
 
 }
 

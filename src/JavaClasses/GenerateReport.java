@@ -38,13 +38,12 @@ public class GenerateReport {
         writeFile(reportFile, String.join(",", columnNames));
         writeFile(reportFile, ",");
         headings.put(blankNodeShape, "# blank nodes ");
-        headings.put(disjointShape, "# disjoint classes ");
+        headings.put(disjointShape, "# disjoint violations ");
         headings.put(domainShape, "# domain violations ");
         headings.put(termTypeShape, "# termType violations ");
         for (Map.Entry mapElement : headings.entrySet()) {
             String value = (String)mapElement.getValue();
             writeValue(reportFile, value);
-            System.out.println(value);
         }
         writeValue(reportFile, "# total errors");
         writeFile(reportFile, "\n");

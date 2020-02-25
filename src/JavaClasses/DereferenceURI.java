@@ -69,7 +69,8 @@ public class DereferenceURI {
             return true;
         }
         for (String subject : mappingSubject) {
-            if (validateDomain((subject), mappingPredicate) == true) {
+            System.out.println("SUHEEHE" + subject);
+            if (validateDomain((subject), mappingPredicate)) {
                 return true;
             }
         }
@@ -82,9 +83,7 @@ public class DereferenceURI {
                 System.out.println("CHECKING DOMAIN");
                 Model data = ModelFactory.createDefaultModel();
                 data.read(mappingSubject);
-                System.out.println(mappingSubject + "47474");
-                System.out.println(mappingPredicate);
-                boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingSubject, mappingPredicate));
+                boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject));
                 String s = String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject);
                 System.out.println(s + inDomain);
                 if (!inDomain) {
@@ -253,7 +252,8 @@ public class DereferenceURI {
              for (String comparisonURI : classesURI) {
                  String query = String.format("ASK {<%s> <http://www.w3.org/2002/07/owl#disjointWith> <%s> } ", comparisonURI, currentClassURI);
                  boolean result = SPARQL.askQuery(comparisonURI, query);
-
+                 System.out.println(result);
+                 System.out.println(query);
                  if (result == true) {
                      count++;
                      disjointClasses = true;
@@ -261,8 +261,8 @@ public class DereferenceURI {
 
              }
          }
-         String output = String.format("Disjoint Classes %.0f%% ", (float)classesURI.length/count);
-         Output.writeFile(output, "SemanticAssessment.txt");
+         System.out.println("COUNT");
+         System.out.println(count);
          return disjointClasses;
 
 //        for (String currentClassURI : classesURI){

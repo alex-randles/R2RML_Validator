@@ -12,19 +12,14 @@ public class ShaclTest {
 		String original_mapping_file  = "./resources/sample_map.ttl";
 		String function_file  = "./resources/function.ttl";
 		String output_file = "./resources/output.ttl";
-		String new_sample_map = "./resources/new_sample_map.ttl";
-		copySampleMap(original_mapping_file, new_sample_map);
-		runTest(function_file, original_mapping_file, output_file);
+		String new_mapping_file = "./resources/new_sample_map.ttl";
+//		copySampleMap(original_mapping_file, new_sample_map);
+//		runTest(function_file, original_mapping_file, output_file);
+//		// System.exit(0);
 		GenerateReport.generateReport(output_file, original_mapping_file);
-		// hdhd
-		runTest(function_file, new_sample_map, output_file);
-		GenerateReport.generateReport(output_file, new_sample_map);
+		runTest(function_file, original_mapping_file, output_file);
+		GenerateReport.generateReport(output_file, new_mapping_file);
 	}
-
-	public static void parseResults(){
-
-	}
-
 
 
 	public static void runTest(String function_file,String data_file, String output_file) {
