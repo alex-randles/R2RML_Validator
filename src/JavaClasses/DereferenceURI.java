@@ -42,66 +42,9 @@ public class DereferenceURI {
     }
 
 
-    public static void findValidDomain(String URI) {
-
-        System.out.println("FINDING DOMAIN");
-        String queryString = String.format("SELECT ?domain WHERE {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", URI);
-        ResultSet results = SPARQL.selectQuery(URI, queryString);
-         for ( ; results.hasNext() ; )
-            {
-                QuerySolution soln = results.nextSolution() ;
-                String domain = soln.get("?domain").toString() ;   // Get a result variable - must be a literal
-                if(!domain.isEmpty()){
-                     AddDomain.AddDomainTriple(domain, "./resources/sample_map.ttl");
-                     System.out.println("ADDING DOMAIN " + domain);
-                     return;
-
-                }
-
-            }
-
-    }
-
-    public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate) {
-        if (mappingSubject.length == 0) {
-            System.out.println("NO DOMAIN CLASSES");
-            findValidDomain(mappingPredicate);
-            return true;
-        }
-        for (String subject : mappingSubject) {
-            System.out.println("SUHEEHE" + subject);
-            if (validateDomain((subject), mappingPredicate)) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    public static boolean validateDomain(String mappingSubject, String mappingPredicate) {
-        try {
-                System.out.println("CHECKING DOMAIN");
-                Model data = ModelFactory.createDefaultModel();
-                data.read(mappingSubject);
-                boolean inDomain = SPARQL.askQuery(mappingSubject, String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject));
-                String s = String.format("ASK {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> <%s> }", mappingPredicate, mappingSubject);
-                System.out.println(s + inDomain);
-                if (!inDomain) {
-                    findValidDomain(mappingPredicate);
-                }
-                return inDomain;
 
 
-    }
 
-        catch(Exception e)
-
-        {
-            findValidDomain(mappingPredicate);
-            System.out.println(e + " ERROR ");
-            return true;
-        }
-    }
 
 
     public static String testing(){

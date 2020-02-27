@@ -1,24 +1,13 @@
 package JavaClasses;
 
 
-import org.apache.jena.base.Sys;
 import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.*;
-import org.apache.jena.update.*;
-import org.apache.jena.vocabulary.RDFS;
-
+// import  org.apache.commons.httpclient.*;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.function.BiConsumer;
+
 
 public class OntologyQualityAssessment {
 
@@ -26,8 +15,7 @@ public class OntologyQualityAssessment {
     public static String FOAF_NS = "http://xmlns.com/foaf/0.1/";
 
     public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        runTest(FOAF_NS);
-
+        System.out.println(hasHumanReadableLicense(RDFS_NS));
     }
 
     public static boolean hasRange(String URI) {
@@ -41,10 +29,6 @@ public class OntologyQualityAssessment {
         boolean result = SPARQL.askQuery(URI, query);
         return result;
 
-    }
-
-    public static boolean providesHTML(String URL){
-            return true;
     }
 
     public static boolean hasHumanLabelling(String URI) {
@@ -82,44 +66,6 @@ public class OntologyQualityAssessment {
         return s;
     }
 
-    public static void runTest(String URI) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        // Populate commands map
-        if(!isAccessible(URI)){
-            writeData("Mapping definition not accessible");
-            return;
-        }
-        int numSubjects = subjectCount(URI);
-//        Map<String, Runnable> commands = new HashMap<>();
-//
-////        commands.put("Triples with human labelling ", () -> numHumanLabelling(URI));
-////        commands.put("Triples with Domain definition ", () -> numDomainDefinition(URI));
-////        commands.put("Triples with range definition ", () -> numRangeDefinition(URI));
-////        commands.put("Triples with defined by ", () -> numDefinedBy(URI));
-//        // commands.get("Accessibility").run();   // Prints "Teleport"
-//        Iterator it = commands.entrySet().iterator();
-//        while (it.hasNext()) {
-//            Map.Entry pair = (Map.Entry)it.next();
-//            int testResult = commands.get((String) pair.getKey()).run(URI);
-//            System.out.println((String) pair.getKey() +  "3636");
-//            it.remove(); // avoids a ConcurrentModificationException
-//        }
-
-//        System.out.println(numRangeDefinition(URI));
-//        System.out.println(((float)numRangeDefinition(URI)/numSubjects)*100);
-       // System.out.println(String.format("Triples with range definition %.0f%%", ((float)numRangeDefinition(URI)/numSubjects)*100));
-        writeData(String.format("Ontology %s  - Triples with range definition %.0f%%\n", URI, ((float)numRangeDefinition(URI)/numSubjects)*100));
-        writeData(String.format("Ontology %s  - Triples with domain definition %.0f%%\n", URI, ((float)numDomainDefinition(URI)/numSubjects)*100));
-        writeData(String.format("Ontology %s  - Triples with human labelling %.0f%%\n", URI, ((float)numHumanLabelling(URI)/numSubjects)*100));
-        writeData(String.format("Ontology %s  - Triples with is defined by definition %.0f%%\n", URI, ((float)numDefinedBy(URI)/numSubjects)*100));
-
-    }
-
-    public static void writeData(String content) throws IOException {
-        File file = new File("OntologyAssessmentResults.txt");
-        FileWriter fr = new FileWriter(file, true);
-        fr.write(content);
-        fr.close();
-    }
 
     public static int subjectCount(String URI) {
         String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s ?p ?o }";
@@ -233,11 +179,71 @@ public class OntologyQualityAssessment {
     }
 
 
-    public static int lowLatency(String URI){
-
-        return 0;
+    public static boolean lowLatency(String URI){
+        // ideal time is 1 seconds
+        // return true if <= else false
+        double idealTime = 1.0;
+        long startTime = System.nanoTime();
+        boolean response  = DereferenceURI.getResponseCode(URI);
+        long elapsedTime = System.nanoTime() - startTime;
+        double elapsedSeconds = (double)elapsedTime / 1_000_000_000.0;
+        if (response && elapsedSeconds < idealTime){
+            return true;
+        }
+        return false;
     }
 
+
+
+
+    public static boolean hasMachineReadableLicense(String URI){
+        // returns true if machine readable license present
+        // http://purl.org/NET/rdflicense/.* as predicate and object is a valid license
+        String[] licensePredicates = {
+                "<http://purl.org/dc/terms/license>",
+                "<http://purl.org/dc/terms/rights>",
+                "<http://purl.org/dc/elements/1.1/rights>",
+                "<http://www.w3.org/1999/xhtml#license>",
+                "<http://creativecommons.org/ns#license>",
+                "<http://purl.org/dc/elements/1.1/licence>",
+                "<http://usefulinc.com/ns/doap#license>",
+                "<http://schema.org/license>"
+                };
+        String joinedPredicates = String.join("|", licensePredicates);
+        String query = String.format("ASK {?s %s ?o}", joinedPredicates);
+        boolean result = SPARQL.askQuery(URI, query);
+        System.out.println(result);
+        return true;
+
+    }
+
+    public static boolean hasHumanReadableLicense(String URI){
+        String[] licensePredicates = {
+                "<http://purl.org/dc/terms/description>",
+                "<http://www.w3.org/2000/01/rdf-schema#comment>",
+                "<http://www.w3.org/2000/01/rdf-schema#label>",
+                "<http://schema.org/description>"
+                };
+        String regularExpression = "(licensed|rights|copyrighted|license)+";
+        String joinedPredicates = String.join("|", licensePredicates);
+        String query = String.format("ASK {  \n" +
+                "  ?subject %s ?object. \n" +
+                "  FILTER regex(?object, \"(licensed|rights|copyrighted|license)+\"). \n" +
+                "} ", joinedPredicates );
+        boolean result = SPARQL.askQuery(URI, query);
+        return result;
+        }
+
+        public static boolean highThroughput(String URI){
+//            MultiThreadedHttpConnectionManager connectionManager =
+//                    new MultiThreadedHttpConnectionManager();
+//            HttpClient client = new HttpClient(connectionManager);
+//            // and then from inside some thread executing a method
+            return true;
+
+
+
+        }
 
 
 }

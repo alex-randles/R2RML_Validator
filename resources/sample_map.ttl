@@ -33,7 +33,7 @@
 		rr:predicate foaf:age;
 		rr:objectMap  [ 
 			rr:column "name";
-			rr:termType rr:IRI;
+			rr:termType rr:IR;
 			rr:datatype xsd:test; 
 		];
    ];

@@ -34,3 +34,5 @@
                                  rr:template  "http://www.example.com/people/data/{ID}" ;
                                  rr:termType  rr:IRI
                                ] .
+
+rr:predicateObjectMap <http://purl.org/dc/terms/description> "license".
