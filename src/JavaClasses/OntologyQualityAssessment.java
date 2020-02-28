@@ -1,73 +1,25 @@
 package JavaClasses;
 
-
 import org.apache.jena.query.*;
 // import  org.apache.commons.httpclient.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 
 public class OntologyQualityAssessment {
 
-    public static String RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#";
-    public static String FOAF_NS = "http://xmlns.com/foaf/0.1/";
 
-    public static void main(String[] args) throws IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        System.out.println(hasHumanReadableLicense(RDFS_NS));
-    }
-
-    public static boolean hasRange(String URI) {
-        String query = String.format("ASK {<%s> <%s> ?domain }", URI, RDFS_NS + "range");
-        boolean result = SPARQL.askQuery(URI, query);
-        return result;
-    }
-
-    public static boolean hasDomain(String URI) {
-        String query = String.format("ASK {<%s> <%s> ?domain }", URI, RDFS_NS + "domain");
-        boolean result = SPARQL.askQuery(URI, query);
-        return result;
-
-    }
-
-    public static boolean hasHumanLabelling(String URI) {
-        String[] humanLabels = new String[]{"rdfs:label",
-                "rdfs:comment",
-                "dcterms:title",
-                "dcterms:description",
-                "dcterms:alternative",
-                "skos:altLabel",
-                "skos:prefLabel",
-                "skos:note",
-                "powder-s:text",
-                "skosxl:altLabel",
-                "skosxl:hiddenLabel",
-                "skosxl:prefLabel",
-                "skosxl:literalForm",
-                "schema:name",
-                "schema:description",
-                "schema:alternateName",
-                "foaf:name"};
-        for (String current_label : humanLabels) {
-            String query = String.format("ASK {<%s> <%s> ?label }", URI, current_label);
-            boolean result = SPARQL.askQuery(URI, query);
-            if (result) {
-                return result;
-            }
-        }
-        return false;
+    public static void main(String[] args) {
 
     }
 
     public static boolean isAccessible(String URI){
-        boolean s =  DereferenceURI.accessRDF(URI);
-        System.out.println(s);
-        return s;
+        // check if resource is accessible
+        boolean result =  DereferenceURI.accessRDF(URI);
+        return result;
     }
 
 
     public static int subjectCount(String URI) {
+        // calculate total number of unique subjects
         String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s ?p ?o }";
         ResultSet results = SPARQL.selectQuery(URI, query);
         for (; results.hasNext(); ) {
@@ -85,6 +37,7 @@ public class OntologyQualityAssessment {
     }
 
     public static int numRangeDefinition(String URI) {
+        // calculate number of unique subjects with range definitions
         String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#range> ?o }";
         ResultSet results = SPARQL.selectQuery(URI, query);
         for (; results.hasNext(); ) {
@@ -101,6 +54,7 @@ public class OntologyQualityAssessment {
     }
 
     public static int numDefinedBy(String URI) {
+        // calculate number of unique subjects with defined by
         String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ?o }";
         ResultSet results = SPARQL.selectQuery(URI, query);
         for (; results.hasNext(); ) {
@@ -117,7 +71,8 @@ public class OntologyQualityAssessment {
         return 0;
     }
 
-        public static int numDomainDefinition(String URI){
+    public static int numDomainDefinition(String URI){
+            // calculate number of unique subjects with domain definitions
             String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#domain> ?o }";
             ResultSet results = SPARQL.selectQuery(URI, query);
             for (; results.hasNext(); ) {
@@ -131,10 +86,11 @@ public class OntologyQualityAssessment {
                 }
 
             }
-        return 0;
+            return 0;
     }
 
     public static int numHumanLabelling(String URI){
+        // calculate number of unique subjects with human labellings
         String query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
                 "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +

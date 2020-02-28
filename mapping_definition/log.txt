@@ -1,2 +1,0 @@
-Row ID 3, Column name BIRTHDATE and value nan doesn't conform with shape
-Row ID 2, Column name WEBSITE and value nan doesn't conform with shape

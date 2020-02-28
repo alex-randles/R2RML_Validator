@@ -15,31 +15,9 @@ public class TermType {
     public static String RR_NS = "http://www.w3.org/ns/r2rml#";
 
     public static void main(String[] args){
-        // updateTermType( "http://www.w3.org/ns/r2rml#Literal", "http://xmlns.com/foaf/0.1/age");
         repairTermType( "http://xmlns.com/foaf/0.1/age");
     }
     public static void repairTermType(String URI){
-//        System.out.println("REPARINING TERM TYPE FOR " + URI);
-//        Model data = ModelFactory.createDefaultModel();
-//        data.read(URI);
-//        StmtIterator iter = data.listStatements();
-//        while (iter.hasNext()) {
-//            Statement stmt      = iter.nextStatement();  // get next statement
-//            Resource subject   = stmt.getSubject();     // get the subject
-//            Property  predicate = stmt.getPredicate();   // get the predicate
-//            RDFNode   object    = stmt.getObject();      // get the object
-//            Output.printTriples(subject.toString(), predicate.toString(), object.toString());
-//
-//            if (predicate.toString().equals(RDFS_NS + "range") && subject.toString().equals(URI) && object.toString().equals(RDFS_NS+"Literal")){
-//                // Output.printTriples(subject.toString(), predicate.toString(), object.toString());
-//                System.out.println(URI + "has range " + object.toString());
-//                // updateTermType(RR_NS+"Literal", URI);
-//            }
-//
-//        }
-
-        System.out.println("REPARINING TERM TYPE FOR " + URI);
-        // Model data = ModelFactory.createDefaultModel().read(URI);
         String literalQuery = String.format("ASK {<%s> <%s> <%s>}", URI, RDFS_NS+"range", RDFS_NS+"Literal");
         String dataTypeQuery = String.format("ASK\n" +
                 "WHERE {\n" +
@@ -49,7 +27,6 @@ public class TermType {
         boolean hasDataType = SPARQL.askQuery(URI,dataTypeQuery);
         boolean hasLiteral = SPARQL.askQuery(URI, literalQuery);
         if (hasDataType || hasLiteral){
-            System.out.println(URI + " has datatype or literal");
             updateTermType(RR_NS+"Literal", URI);
         }
 
@@ -82,6 +59,7 @@ public class TermType {
 
                 }
                 catch (Exception e){
+                    System.out.println("term type error");
 
                 }
             }
@@ -105,8 +83,6 @@ public class TermType {
 
 
             }
-
-
 
         }
 

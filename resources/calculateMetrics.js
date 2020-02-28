@@ -1,3 +1,0 @@
-function calculate(){
-    return "testing";
-}

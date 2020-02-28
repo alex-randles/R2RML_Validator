@@ -13,12 +13,11 @@ public class ShaclTest {
 		String function_file  = "./resources/function.ttl";
 		String output_file = "./resources/output.ttl";
 		String new_mapping_file = "./resources/new_sample_map.ttl";
-//		copySampleMap(original_mapping_file, new_sample_map);
-//		runTest(function_file, original_mapping_file, output_file);
-//		// System.exit(0);
-		GenerateReport.generateReport(output_file, original_mapping_file);
+		copySampleMap(original_mapping_file, new_mapping_file);
 		runTest(function_file, original_mapping_file, output_file);
-		GenerateReport.generateReport(output_file, new_mapping_file);
+//		GenerateReport.generateReport(output_file, original_mapping_file);
+//		runTest(function_file, new_mapping_file, output_file);
+//		GenerateReport.generateReport(output_file, new_mapping_file);
 	}
 
 

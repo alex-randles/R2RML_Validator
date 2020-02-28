@@ -21,13 +21,6 @@ public class SPARQL {
         String query = String.format("ASK {<%s> <%s> ?label }",FOAF_NS+"age", RDFS_NS+"label");
         System.out.println(SPARQL.askQuery( FOAF_NS+"Person", query));
 
-//        String updateQuery = "INSERT {?objectMapObject <http://www.w3.org/ns/r2rml#termType> 'testing'} WHERE {\n" +
-//                "  ?predicateSubject ?predicate <http://xmlns.com/foaf/0.1/knows>.\n" +
-//                "  ?predicateSubject <http://www.w3.org/ns/r2rml#objectMap> ?objectMapObject.\n" +
-//                "  ?objectMapObject \t<http://www.w3.org/ns/r2rml#termType> ?termTypeObject.          \n" +
-//                "}";
-//        System.out.println(updateQuery);
-
     }
 
 

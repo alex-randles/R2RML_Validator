@@ -1,9 +1,12 @@
+/home/alex/Desktop/R2RML_Validator/src/JavaClasses/Domain.java
 /home/alex/Desktop/R2RML_Validator/src/JavaClasses/OntologyQualityAssessment.java
 /home/alex/Desktop/R2RML_Validator/src/JavaClasses/GenerateReport.java
-/home/alex/Desktop/R2RML_Validator/src/JavaClasses/AddDomain.java
-/home/alex/Desktop/R2RML_Validator/src/JavaClasses/Output.java
+/home/alex/Desktop/R2RML_Validator/src/JavaClasses/DataType.java
+/home/alex/Desktop/R2RML_Validator/src/JavaClasses/Disjoint.java
 /home/alex/Desktop/R2RML_Validator/src/JavaClasses/DereferenceURI.java
-/home/alex/Desktop/R2RML_Validator/src/JavaClasses/AddDataType.java
+/home/alex/Desktop/R2RML_Validator/src/JavaClasses/Range.java
 /home/alex/Desktop/R2RML_Validator/src/ShaclTest.java
 /home/alex/Desktop/R2RML_Validator/src/JavaClasses/TermType.java
+/home/alex/Desktop/R2RML_Validator/src/JavaClasses/NS.java
 /home/alex/Desktop/R2RML_Validator/src/JavaClasses/SPARQL.java
+/home/alex/Desktop/R2RML_Validator/src/JavaClasses/Refinement.java

@@ -1,3 +1,0 @@
-ID,FOCUS_NODE,RESULT_MESSAGE,RESULT_PATH,SOURCE_CONSTRAINT_COMPONENT,SOURCE_SHAPE,VALUE,MACHINE FIXABLE
-1,ub9bL27C21,rr:tableName with length 0,http://www.w3.org/ns/r2rml#tableName,http://www.w3.org/ns/shacl#MinLengthConstraintComponent,ub9bL38C21, ,False
-2,ff06b318288494060ae61a44fb5097b3ab1,Data type and language tag defined in same term map,None,http://www.w3.org/ns/shacl#XoneConstraintComponent,http://www.taxonic.com/ns/rml-shacl#DataTypeShape,ff06b318288494060ae61a44fb5097b3ab1,False

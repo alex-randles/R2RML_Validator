@@ -14,15 +14,15 @@
 <file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#Test>
         rr:logicalTable        [ rr:tableName  "test" ] ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "name" ;
-                                                 rr:datatype  xsd:test ;
+                                                 rr:datatype  xsd:string ;
                                                  rr:termType  rr:Literal
                                                ] ;
                                  rr:predicate  foaf:age
                                ] ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
-                                                 rr:termType  rr:Literal
+                                                 rr:termType  rr:BlankNode
                                                ] ;
-                                 rr:predicate  foaf:gender
+                                 rr:predicate  "47474"
                                ] ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
                                                  rr:datatype  xsd:string ;
@@ -30,9 +30,13 @@
                                                ] ;
                                  rr:predicate  dbo:areaCode
                                ] ;
-        rr:subjectMap          [ rr:class     foaf:Agent , foaf:Person , dbo:Place ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
+                                                 rr:datatype  xsd:string ;
+                                                 rr:termType  rr:Literal
+                                               ] ;
+                                 rr:predicate  dbo:areaCode
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Place , foaf:Person ;
                                  rr:template  "http://www.example.com/people/data/{ID}" ;
                                  rr:termType  rr:IRI
                                ] .
-
-rr:predicateObjectMap <http://purl.org/dc/terms/description> "license".

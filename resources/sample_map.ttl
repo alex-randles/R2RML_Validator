@@ -34,26 +34,11 @@
 		rr:objectMap  [ 
 			rr:column "name";
 			rr:termType rr:IR;
-			rr:datatype xsd:test; 
+			rr:datatype xsd:string;
 		];
    ];
 
-	rr:predicateObjectMap [
-		rr:predicate foaf:gender ;
-		rr:objectMap  [
-			rr:column "age";
-			rr:termType rr:BlankNode;
-		];
-   ];
 
-	rr:predicateObjectMap [
-		rr:predicate dbo:areaCode ;
-		rr:objectMap  [
-			rr:column "age";
-			rr:datatype "test"; 
-			rr:termType rr:Literal;
-		];
-   ];
 
 
 

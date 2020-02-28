@@ -13,26 +13,26 @@ import java.util.Map;
 public class GenerateReport {
 
 
-    public static String R2RML_NS = "http://www.w3.org/ns/r2rml#";
     public static String outputFileName = "./resources/output.ttl";
     public static String mappingFileName = "./resources/sample_map.ttl";
-    public static String domainShape = R2RML_NS + "DomainShape";
-    public static String disjointShape = R2RML_NS + "DisjointShape";
-    public static String termTypeShape = R2RML_NS + "ValidTermType";
-    public static String resourceDereferencableShape = R2RML_NS + "ResourceDereferencableShape";
-    public static String blankNodeShape = R2RML_NS + "BlankNodeShape";
+    public static String domainShape = NS.R2RML_NS + "DomainShape";
+    public static String disjointShape = NS.R2RML_NS + "DisjointShape";
+    public static String termTypeShape = NS.R2RML_NS + "ValidTermType";
+    public static String resourceDereferencableShape = NS.R2RML_NS + "ResourceDereferencableShape";
+    public static String blankNodeShape = NS.R2RML_NS + "BlankNodeShape";
     public static String[] reportShapes =  {domainShape, disjointShape, resourceDereferencableShape};
     public static Map<String, String> headings = new HashMap<String, String>();
     public static String SHACL_NS = "http://www.w3.org/ns/shacl#";
     public static String[] columnNames = {"# classes", "# predicates", "# termtype" };
-    // public static String reportFile = "./resources/report.csv";
+
 
     public static void main(String[] args) throws IOException {
-        generateReport(outputFileName, mappingFileName);
+        System.out.println(getNumberOccurrences(mappingFileName, NS.R2RML_NS+"predicate"));
+
     }
 
     public static void generateReport(String shaclOutputFile, String mappingFile) throws IOException {
-        String reportFile =  "REPORT-" + getFileName(mappingFile) + ".csv";
+        String reportFile =  "./reports/REPORT-" + getFileName(mappingFile) + ".csv";
         System.out.println(reportFile);
         createFile(reportFile);
         writeFile(reportFile, String.join(",", columnNames));
@@ -47,10 +47,9 @@ public class GenerateReport {
         }
         writeValue(reportFile, "# total errors");
         writeFile(reportFile, "\n");
-        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+"predicate")));
-        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+ "class")));
-        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, R2RML_NS+ "termType")));
-
+        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, NS.R2RML_NS+"predicate")));
+        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, NS.R2RML_NS+ "class")));
+        writeValue(reportFile, String.valueOf(getNumberOccurrences(mappingFile, NS.R2RML_NS+ "termType")));
         int totalErrors = 0;
         // System.out.println(getNumberShapes(shaclOutputFile, R2RML_NS + "DomainShape"));
         for (Map.Entry mapElement : headings.entrySet()) {
@@ -170,14 +169,15 @@ public class GenerateReport {
         return count;
     }
     public static int getNumberOccurrences(String fileName, String predicate){
-        String query = String.format("SELECT ?predicate WHERE { ?s <%s> ?predicate}", predicate);
+        // finds number of occurrences of a predicate
+        String query = String.format("SELECT  (COUNT(?object) as ?count) WHERE { ?s <%s> ?object}", predicate);
         ResultSet results = SPARQL.selectQuery(fileName, query);
-        int count = 0;
-        for(;results.hasNext();){
-            QuerySolution soln = results.nextSolution();
-            count++;
-        }
-        return count;
+//        int count = 0;
+//        for(;results.hasNext();){
+//            QuerySolution soln = results.nextSolution();
+//            count++;
+//        }
+        return Integer.parseInt(SPARQL.getStringVariable(results, "?count").split("\\^")[0]);
     }
 
 
