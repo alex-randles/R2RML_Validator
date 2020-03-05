@@ -81,6 +81,7 @@ function assessOntologies(resource){
 
 function validateDuplicateTriples(resource) {
     try{
+
         columns = getAllValues("column");
         predicates = getAllValues("predicate");
         if (no_duplicates === false){

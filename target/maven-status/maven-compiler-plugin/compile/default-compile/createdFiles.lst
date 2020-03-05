@@ -1,12 +1,13 @@
 JavaClasses/OntologyQualityAssessment.class
-JavaClasses/SPARQL.class
-JavaClasses/Domain.class
-JavaClasses/GenerateReport.class
-ShaclTest.class
 JavaClasses/Range.class
 JavaClasses/NS.class
 JavaClasses/DereferenceURI.class
 JavaClasses/Refinement.class
+JavaClasses/SPARQL.class
+JavaClasses/Domain.class
+JavaClasses/GenerateReport.class
+ShaclTest.class
 JavaClasses/Disjoint.class
+JavaClasses/DuplicateTriples.class
 JavaClasses/TermType.class
 JavaClasses/DataType.class

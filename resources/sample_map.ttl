@@ -26,7 +26,7 @@
 		rr:class foaf:Person;
 		rr:termType rr:IRI;
 	];
-	
+
 
    
    rr:predicateObjectMap [
@@ -39,10 +39,40 @@
    ];
 
 
+	rr:predicateObjectMap [
+							  rr:predicate foaf:age;
+							  rr:objectMap  [
+												rr:column "name";
+												rr:termType rr:IR;
+												rr:datatype xsd:string;
+											];
+						  ];
+
+	rr:predicateObjectMap [
+							  rr:predicate foaf:aghhe;
+							  rr:objectMap  [
+												rr:column "name";
+												rr:termType rr:IR;
+												rr:datatype xsd:string;
+											];
+						  ];
 
 
 
+	rr:predicateMap [ rr:constant rdf:type ];
+	rr:objectMap [ rr:constant ex:Employee ];
 
-.
 
+	rr:predicateMap [ rr:constant rdf:type ];
+	rr:objectMap [ rr:constant ex:Employgee ];
+
+	rr:predicateObjectMap [
+							  rr:predicate foaf:addge;
+							  rr:objectMap  [
+												rr:column "name";
+												rr:termType rr:IR;
+												rr:datatype xsd:string;
+											];
+						  ];
+						  .
 

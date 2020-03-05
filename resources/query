@@ -1,0 +1,32 @@
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+
+#
+
+DELETE {
+ ?subject <http://www.w3.org/ns/r2rml#predicateObjectMap> ?o. ?o <http://www.w3.org/ns/r2rml#predicate> ?predicate.
+ ?o <http://www.w3.org/ns/r2rml#objectMap> ?objectMap.
+  ?objectMap    <http://www.w3.org/ns/r2rml#column> ?column. ?objectMap         <http://www.w3.org/ns/r2rml#template> ?template.?objectMap      <http://www.w3.org/ns/r2rml#datatype> ?datatype. ?objectMap        <http://www.w3.org/ns/r2rml#termType> ?termType.}
+WHERE{
+    SELECT ?subject ?o ?predicate ?objectMap ?column ?datatype ?termType ?template WHERE{
+  ?subject <http://www.w3.org/ns/r2rml#predicateObjectMap> ?o.
+  ?o    <http://www.w3.org/ns/r2rml#predicate> ?predicate.  ?o <http://www.w3.org/ns/r2rml#objectMap> ?objectMap.
+  OPTIONAL {?objectMap  <http://www.w3.org/ns/r2rml#column> ?column. } OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#template> ?template. } OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#datatype> ?datatype. }  OPTIONAL {?objectMap        <http://www.w3.org/ns/r2rml#termType> ?termType. }{
+  SELECT  ?predicate ?column ?template ?datatype ?termType  WHERE{
+?subject <http://www.w3.org/ns/r2rml#subjectMap> ?subjectMap;
+           <http://www.w3.org/ns/r2rml#predicateObjectMap> ?objectMap.
+  ?objectMap    <http://www.w3.org/ns/r2rml#predicate> ?predicate.
+  ?objectMap <http://www.w3.org/ns/r2rml#objectMap> ?object.
+  OPTIONAL {?object     <http://www.w3.org/ns/r2rml#column> ?column. }
+  OPTIONAL {?object     <http://www.w3.org/ns/r2rml#template> ?template. }
+  OPTIONAL {?object     <http://www.w3.org/ns/r2rml#datatype> ?datatype. }
+  OPTIONAL {?object     <http://www.w3.org/ns/r2rml#termType> ?termType. }
+
+    }
+GROUP BY ?predicate ?column ?template ?datatype ?termType
+HAVING (COUNT(?objectMap) > 1)
+  }
+}
+  LIMIT 1
+}
+

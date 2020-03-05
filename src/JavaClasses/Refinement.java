@@ -9,7 +9,9 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 
 public class Refinement {
-
+    public static void main(String[] args){
+        removeDuplicates("./resources/sample_map.ttl");
+    }
     public static void findValidDomain(String URI) {
         String queryString = String.format("SELECT ?domain WHERE {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", URI);
         ResultSet results = SPARQL.selectQuery(URI, queryString);
@@ -79,6 +81,42 @@ public class Refinement {
             System.out.println("ADDING DATATYPE ERROR"  + e);
             return result;
         }
+    }
+
+    public static boolean removeDuplicates(String URI){
+        String removeQuery = "\n" +
+                "DELETE {\n" +
+                "    ?subject \t<http://www.w3.org/ns/r2rml#predicateObjectMap> ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#predicate> ?predicate.\n" +
+                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#objectMap> ?objectMap. \n" +
+                "  \n" +
+                "}\n" +
+                "WHERE{\n" +
+                "SELECT  ?predicateObjectMap ?predicate ?column ?template ?datatype ?termType\n" +
+                "WHERE{\n" +
+                "  ?subject \t<http://www.w3.org/ns/r2rml#predicateObjectMap> ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#predicate> ?predicate.\n" +
+                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#objectMap> ?objectMap.   {\n" +
+                "SELECT (COUNT(?predicateObjectMap) AS ?count) ?predicate ?column ?template ?datatype ?termType\n" +
+                "WHERE {\n" +
+                "  ?subject \t<http://www.w3.org/ns/r2rml#predicateObjectMap> ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#predicate> ?predicate.\n" +
+                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#objectMap> ?objectMap. \n" +
+                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#column> ?column. }\n" +
+                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#template> ?template. }\n" +
+                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#datatype> ?datatype. }\n" +
+                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#termType> ?termType. }\n" +
+                "}\n" +
+                "GROUP BY ?predicate ?column ?template ?datatype ?termType\n" +
+                "HAVING (COUNT(?predicateObjectMap)  > 1)\n" +
+                " OFFSET 1" +
+                "\n" +
+                "}\n" +
+                "  }}";
+        System.out.println(removeQuery);
+        return true;
+//        SPARQL.updateData(removeQuery, URI, URI);
+//        return true;
     }
 }
 
