@@ -19,17 +19,17 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Violation Detected" ;
+                    "Value for rr:termType on predicate map should be rr:IRI." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
+                    []  ;
             <http://www.w3.org/ns/shacl#value>
-                    foaf:age
+                    rr:BlankNode
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
@@ -40,67 +40,65 @@
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
+                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
                     rr:DomainShape ;
             <http://www.w3.org/ns/shacl#value>
-                    "47474"
+                    dbo:army
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Violation Detected" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:areaCode
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Violation Detected" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:DomainShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:areaCode
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Usage of blank node" ;
+                    "Usage of RDF structurees." ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:BlankNodeShape ;
+                    rr:RDFstructures ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b2
+                    _:b0
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    _:b3 ;
+                    _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Incorrect datatype" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:ValidDatatypeShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:army
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Data in only one language." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:VariousLanguagesShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b1
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b2 ;
             <http://www.w3.org/ns/shacl#resultMessage>
                     "Disjoint Classes Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
@@ -112,22 +110,20 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     rr:DisjointShape ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b3
+                    _:b2
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "PERFORMANCE - Duplicate triples defined" ;
+                    "Usage of Blank node." ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:GraphPerformanceShape ;
+                    rr:dd ;
             <http://www.w3.org/ns/shacl#value>
                     _:b0
           ]

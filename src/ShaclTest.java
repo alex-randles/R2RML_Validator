@@ -16,8 +16,8 @@ public class ShaclTest {
 		copySampleMap(original_mapping_file, new_mapping_file);
 		runTest(function_file, original_mapping_file, output_file);
 //		GenerateReport.generateReport(output_file, original_mapping_file);
-//		runTest(function_file, new_mapping_file, output_file);
-//		GenerateReport.generateReport(output_file, new_mapping_file);
+	//	runTest(function_file, new_mapping_file, output_file);
+	//	GenerateReport.generateReport(output_file, new_mapping_file);
 	}
 
 
@@ -30,7 +30,6 @@ public class ShaclTest {
 		report.getModel().write(System.out, "TURTLE");
 		File file = new File(output_file);
 		try {
-
 			FileOutputStream fop = new FileOutputStream(file);
 			// fop.write(contentInBytes);
 			report.getModel().write(fop, "TURTLE");
@@ -43,21 +42,16 @@ public class ShaclTest {
 			System.out.println("File not found!");
 
 		}
-
-
 	}
 
 
 	public static void copySampleMap(String input_file, String output_file){
 		Model data = ModelFactory.createDefaultModel();
 		data.read(input_file);
-
-
 		File copy_file = new File(output_file);
 		try {
 
 			FileOutputStream copy_file_stream = new FileOutputStream(copy_file);
-			// fop.write(contentInBytes);
 			data.write(copy_file_stream, "TURTLE");
 			copy_file_stream.flush();
 			copy_file_stream.close();

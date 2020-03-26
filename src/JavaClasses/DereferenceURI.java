@@ -8,7 +8,6 @@ import org.apache.jena.rdf.model.*;
 public class DereferenceURI {
 
     public static void main(String[] args){
-
     }
 
     public static boolean getResponseCode(String string_URL) {
@@ -41,5 +40,8 @@ public class DereferenceURI {
              return false;
              }
         }
+
+
+
 
 }

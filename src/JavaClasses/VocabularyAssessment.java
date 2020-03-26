@@ -1,13 +1,20 @@
 package JavaClasses;
 
 import org.apache.jena.query.*;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
 // import  org.apache.commons.httpclient.*;
 
 
-public class OntologyQualityAssessment {
+public class VocabularyAssessment {
 
 
     public static void main(String[] args) {
+        // calculate number of unique subjects with human labellings
+        //System.out.println(hasHumamReadableLabelling("http://dbpedia.org/ontology/Person")) ;
+        // System.out.println(vocabularyCompleteness("http://dbpedia.org/ontology/djdjdjd"));
+        System.out.println(getRDF(NS.FOAF_NS+"age"));
 
     }
 
@@ -136,6 +143,10 @@ public class OntologyQualityAssessment {
 
 
     public static boolean lowLatency(String URI){
+        // if vocabulary not available, return true
+        if(!DereferenceURI.getResponseCode(URI)){
+            return true;
+        }
         // ideal time is 1 seconds
         // return true if <= else false
         double idealTime = 1.0;
@@ -150,8 +161,19 @@ public class OntologyQualityAssessment {
     }
 
 
+    public static boolean vocabularyCompleteness(String URI){
+        // returns true if vocabulary contains definition relating to URI
+        // if can not retrieve vocabulary, return true
+        if (!DereferenceURI.accessRDF(URI)){
+            return true;
+        }
+        String query = String.format("ASK {<%s> ?predicate ?object} ", URI);
+        System.out.println(query);
+        boolean result = SPARQL.askQuery(URI, query);
+        return result;
 
 
+    }
     public static boolean hasMachineReadableLicense(String URI){
         // returns true if machine readable license present
         // http://purl.org/NET/rdflicense/.* as predicate and object is a valid license
@@ -201,6 +223,48 @@ public class OntologyQualityAssessment {
 
         }
 
+        public static boolean hasHumamReadableLabelling(String URI){
+            // if can not retrieve vocabulary, return true
+            if (!DereferenceURI.accessRDF(URI)){
+                return true;
+            }
+            String[] labellingPredicates = new String[]{"rdfs:label", "dcterms:title", "dcterms:description",
+                    "dcterms:alternative", "skos:altLabel", "skos:prefLabel", "powder-s:text",
+                    "skosxl:altLabel", "skosxl:hiddenLabel", "skosxl:prefLabel", "skosxl:literalForm",
+                    "schema:description", "schema:description", "foaf:name" };
+            String joinedPredicates = String.join("|", labellingPredicates);
+            String query = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
+                    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                    "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+                    "PREFIX dcterms: <http://purl.org/dc/terms/> \n" +
+                    "PREFIX ct: <http://data.linkedct.org/resource/linkedct/>\n" +
+                    "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+                    "PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>\n" +
+                    "PREFIX schema: <http://schema.org/>\n" +
+                    "PREFIX powder-s: <http://www.w3.org/2007/05/powder-s#> \n" +
+                    "\n" +
+                    "ASK {<%s> %s ?object} ", URI, joinedPredicates);
+            boolean result = SPARQL.askQuery(URI, query);
+            return result;
+        }
+
+    public static boolean getRDF(String string_URL) {
+        try {
+            URL url = new URL(string_URL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            connection.setRequestProperty("Accept", "application/rdf+xml");
+            int code = connection.getResponseCode();
+            System.out.println(code);
+            return true;
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+
+    }
 
 }
 

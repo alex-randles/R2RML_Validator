@@ -1,78 +1,46 @@
+@prefix testd: <http://www.txample.com/people/data/> .
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
-@prefix ex:    <http://example.com/ns#> .
-@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix testv: <http://www.txample.com/people/voc/> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
-@prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix dc: <http://purl.org/dc/terms/> .
-@prefix testv: <http://www.txample.com/people/voc/>.
-@prefix testd: <http://www.txample.com/people/data/>.
-@prefix ex: <http://www.txample.com/people/voc/>.
+@prefix dc:    <http://purl.org/dc/terms/> .
 
+<#TripleMap1>
+        rr:logicalTable        [rr:tableName "dhdh"]  ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:termType rr:IRI;
+                                                   rr:column    "army" ;
+                                                 rr:datatype  xsd:j;
+                                               ] ;
+                                 rr:predicate  dbo:army;
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Agent, foaf:Document ;
+                                 rr:template  "http://example.org/solider/{id}";
+                                 rr:termType rr:IRI;
 
-<#Test>
+                               ];
 
-	rr:logicalTable [ rr:tableName "test";];
+        rr:predicateObjectMap [
+    rr:predicate rdf:Bag;
+    rr:termType rr:BlankNode;
 
-	rr:subjectMap [
-		rr:template "http://www.example.com/people/data/{ID}";
-		rr:class foaf:Person;
-		rr:termType rr:IRI;
-	];
+    rr:objectMap [
+                     rr:language  xsd:jjj;
 
-
-   
-   rr:predicateObjectMap [
-		rr:predicate foaf:age;
-		rr:objectMap  [ 
-			rr:column "name";
-			rr:termType rr:IR;
-			rr:datatype xsd:string;
-		];
-   ];
-
-
-	rr:predicateObjectMap [
-							  rr:predicate foaf:age;
-							  rr:objectMap  [
-												rr:column "name";
-												rr:termType rr:IR;
-												rr:datatype xsd:string;
-											];
-						  ];
-
-	rr:predicateObjectMap [
-							  rr:predicate foaf:aghhe;
-							  rr:objectMap  [
-												rr:column "name";
-												rr:termType rr:IR;
-												rr:datatype xsd:string;
-											];
-						  ];
+                     rr:parentTriplesMap <#TriplesMap2>;
+        rr:joinCondition [
+            rr:child "DEPTNO";
+            rr:parent "DEPTNO";
+        ];
+                 ];
+                              ];
+.
 
 
 
-	rr:predicateMap [ rr:constant rdf:type ];
-	rr:objectMap [ rr:constant ex:Employee ];
-
-
-	rr:predicateMap [ rr:constant rdf:type ];
-	rr:objectMap [ rr:constant ex:Employgee ];
-
-	rr:predicateObjectMap [
-							  rr:predicate foaf:addge;
-							  rr:objectMap  [
-												rr:column "name";
-												rr:termType rr:IR;
-												rr:datatype xsd:string;
-											];
-						  ];
-						  .
 

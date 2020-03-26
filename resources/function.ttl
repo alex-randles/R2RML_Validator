@@ -3,648 +3,419 @@
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix rml: <http://semweb.mmlab.be/ns/rml#> .
 @prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
 @prefix fno: <http://semweb.datasciencelab.be/ns/function#> .
-
 @prefix carml: <http://carml.taxonic.com/carml/> .
-
 @prefix rmlsh: <http://www.taxonic.com/ns/rml-shacl#> .
 
-rmlsh:
-	rdfs:label "SHACL for RML"@en ;
-	rdfs:comment "This shapes graph can be used to validate RML mapping graphs."@en ;
-	sh:declare [
-		sh:prefix "rmlsh" ;
-		sh:namespace "http://www.taxonic.com/ns/rml-shacl#" ;
-	] ;
-
-.
-
-rr:TriplesMapShape
-	a sh:NodeShape ;
-	rdfs:label "Triples map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed triples map."@en ;
-	sh:message "Triples map should have one and only one logical source & subject map" ;
-	sh:targetClass rr:TriplesMap ;
-	sh:targetSubjectsOf
-		rr:logicalTable,
-		rr:subject,
-		rr:subjectMap ;
-
-	sh:xone (
-		[
-			sh:property [
-				sh:path rml:logicalSource ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-		[
-			sh:property [
-				sh:path rr:logicalTable ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-	) ;
-
-	sh:xone (
-		[
-			sh:property [
-				sh:path rr:subjectMap ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-		[
-			sh:property [
-				sh:path rr:subject ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			]
-		]
-	) ;
-.
-
-rr:LogicalTableShape
-	a sh:NodeShape ;
-	rdfs:label "Logical table shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed logical table."@en ;
-	sh:message "Logical table should exactly one R2RML view or SQL view" ;
-	sh:targetClass rr:LogicalTable ;
-	sh:targetObjectsOf rr:logicalTable;
-	sh:targetSubjectsOf
-		rr:tableName,
-		rr:sqlQuery;
-
-
-	sh:xone (
-		[
-			sh:property [
-				sh:path rr:tableName ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-		[
-			sh:property [
-				sh:path rr:sqlQuery ;
-				sh:minCount 1 ;
-				sh:maxCount 1 ;
-			] ;
-		]
-	) ;
-
-
-.
-
-
-
-rr:TermMapTermTypeShape
-	rdfs:label "Term map term type shape"@en ;
-	rdfs:comment "Defines constraints for a valid term type definiton."@en ;
-	a sh:NodeShape ;
-	sh:targetSubjectsOf rr:termType ;
-	sh:property [
-		sh:message "Term map may have at most one value for rr:termType." ;
-		sh:path rr:termType ;
-		sh:maxCount 1 ;
-	]
-.
-
 rr:DataTypeShape
-	a sh:NodeShape ;
-	rdfs:label "Data type and language tag shape"@en ;
-	rdfs:comment "Defines constraints for a valid data type and language tag definiton."@en ;
-	sh:message "Data type and language tag defined in same term map" ;
-	sh:targetSubjectsOf rr:datatype, rr:language ;
-	sh:targetClass rr:objectMap;
-	sh:xone (
-		[
-			sh:property [
-				sh:path rr:datatype ;
-				sh:minCount 1;
-				sh:maxCount 1;
-			]
-  		]
+    a sh:NodeShape ;
+    sh:message "Data type and language tag defined in same term map" ;
+    sh:targetSubjectsOf rr:datatype, rr:language ;
+    sh:targetClass rr:objectMap;
+    sh:xone (
+                [
+                    sh:property [
+                                    sh:path rr:datatype ;
+                                    sh:minCount 1;
+                                ]
+                ]
 
-		[
-			sh:property [
-				sh:path rr:language ;
-				sh:minCount 1;
-			]
-		]
-		[
-			sh:property [
-				sh:path rr:language, rr:datatype ;
-				sh:minCount 0;
-			]
-		]
-	) ;
+                [
+                    sh:property [
+                                    sh:path rr:language ;
+                                    sh:minCount 1;
+                                ]
+                ]
+                [
+                    sh:property [
+                                    sh:path rr:language, rr:datatype ;
+                                    sh:minCount 0;
+                                ]
+                ]
+            ) ;
 
+    sh:property [
+                    sh:message "More than one datatype in a term map.";
+                    sh:path rr:datatype ;
+                    sh:maxCount 1;
 
+                ]
 .
-
 
 rr:SubjectMapShape
-	a sh:NodeShape ;
-	rdfs:label "Subject map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed subject map."@en ;
-	sh:message "Subject map is ill-formed" ;
-	sh:targetObjectsOf rr:subjectMap ;
-	sh:targetClass     rr:SubjectMap ;
-	sh:property
-		[
-			sh:message "Value for rr:termType on subject map should be rr:IRI or rr:BlankNode." ;
-			sh:path rr:termType ;
-			sh:in ( rr:IRI rr:BlankNode ) ;
-		] ,
-		[
-			sh:message "Value of rr:class in subject map should be an IRI" ;
-			sh:path rr:class ;
-			sh:nodeKind sh:IRI ;
-		] ;
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:subjectMap ;
+    sh:targetClass     rr:SubjectMap ;
+    sh:property
+        [
+            sh:message "rr:termType for the subject map should be rr:IRI or rr:BlankNode." ;
+            sh:path rr:termType ;
+            sh:in ( rr:IRI rr:BlankNode ) ;
+        ] ,
+        [
+            sh:message "rr:class for the subject map should be an IRI." ;
+            sh:path rr:class ;
+            sh:nodeKind sh:IRI ;
+        ] ;
 .
 
-rr:ObjectMapShape
-	a sh:NodeShape ;
-	rdfs:label "Object map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed object map."@en ;
-	sh:message "Object map is ill-formed" ;
+rr:PredicateObjectMapShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
+    sh:targetObjectsOf  rr:predicateObjectMap ;
+    sh:targetClass rr:PredicateObjectMap ;
 
-	sh:property [
-		sh:message "Value for rr:termType on subject map should be rr:IRI or rr:BlankNode or rr:Literal." ;
-		sh:path rr:termType ;
-		sh:in ( rr:IRI rr:BlankNode rr:Literal ) ;
-	] ;
-
-	 sh:xone (
-	 	[
-	 		sh:property [
-	 			sh:path rr:datatype ;
-	 			sh:maxCount 1 ;
-	 			sh:nodeKind sh:IRI ;
-	 		]
-	 	]
-	 	[
-	 		sh:property [
-	 			sh:path rr:datatype ;
-	 			sh:minCount 0 ;
-	 			sh:nodeKind sh:IRI ;
-	 		]
-	 	]
-	 )
-.
-
-rr:RefObjectMapShape
-	a sh:NodeShape ;
-	rdfs:label "Reference object map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed reference object map."@en ;
-	sh:message "Referencing object map is ill-formed" ;
-
-	sh:targetClass rr:RefObjectMap ;
-	sh:targetSubjectsOf rr:parentTriplesMap, rr:joinCondition, carml:multiJoinCondition ;
-	sh:targetObjectsOf rr:refObjectMap ;
-
-	sh:property
-		[
-			sh:message "Referencing object map should have one and only one parent triples map." ;
-			sh:path rr:parentTriplesMap ;
-			sh:minCount 1 ;
-			sh:maxCount 1 ;
-		] ,
-		[
-			sh:message "Value of rr:parentTriplesMap op referencing object map should be rr:IRI." ;
-			sh:path rr:parentTriplesMap ;
-			sh:nodeKind sh:IRI ;
-		] ;
-.
-
-
-
-rr:PredicateShape
-	a sh:NodeShape ;
-	rdfs:label "Predicate map shape"@en ;
-	rdfs:comment "Defines constraints for a valid predicate map term type."@en ;
-	sh:message "Predicate term type is invalid" ;
-	sh:targetObjectsOf rr:predicateMap ;
-
-	sh:property [
-					sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
-					sh:path rr:termType ;
-					sh:in ( rr:IRI ) ;
-				] ;
-
-
-.
-
-rmlsh:PredicateObjectMapShape
-	a sh:NodeShape ;
-	rdfs:label "Predicate object map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed predicate object map."@en ;
-	sh:message "Predicate object map is ill-formed" ;
-
-	sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
-	sh:targetObjectsOf  rr:predicateObjectMap ;
-	sh:targetClass rr:PredicateObjectMap ;
-
-	sh:property
-		[
-			sh:message "Predicate object map should have at least one predicate map." ;
-			sh:path [
-				sh:alternativePath (rr:predicate rr:predicateMap) ;
-			] ;
-			sh:minCount 1 ;
-		] ,
-		[
-			sh:message "Predicate object map should have at least one object map." ;
-			sh:path [
-				sh:alternativePath (rr:object rr:objectMap) ;
-			] ;
-			sh:minCount 1 ;
-		] ;
-.
-
-
-rmlsh:GraphMapShape
-	a sh:NodeShape ;
-	rdfs:label "Graph map shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed graph map."@en ;
-	sh:message "Graph map is ill-formed" ;
-
-	sh:targetClass rr:GraphMap ;
-	sh:targetObjectsOf rr:graphMap ;
-
-	sh:property [
-		sh:message "Value for rr:termType on graph map should be rr:IRI." ;
-		sh:path rr:termType ;
-		sh:in ( rr:IRI ) ;
-	] ;
+    sh:property
+        [
+            sh:message "Predicate object map should contain at least one predicate map." ;
+            sh:path [
+                        sh:alternativePath (rr:predicate rr:predicateMap) ;
+                    ] ;
+            sh:minCount 1 ;
+        ] ,
+        [
+            sh:message "Predicate object map should contain at least one object map." ;
+            sh:path [
+                        sh:alternativePath (rr:object rr:objectMap) ;
+                    ] ;
+            sh:minCount 1 ;
+        ] ;
 .
 
 rr:JoinShape
-	a sh:NodeShape ;
-	rdfs:label "Join shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed join "@en ;
-	sh:message "Join is ill-formed" ;
+    a sh:NodeShape ;
+    sh:targetClass rr:Join ;
+    sh:targetSubjectsOf rr:parent, rr:child ;
+    sh:targetObjectsOf rr:joinCondition ;
 
-	sh:targetClass rr:Join ;
-	sh:targetSubjectsOf rr:parent, rr:child ;
-	sh:targetObjectsOf rr:joinCondition ;
+    sh:property
+        [
+            sh:message "Join should have one and only one child." ;
+            sh:path rr:child ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+        ] ,
+        [
+            sh:message "Value of child in join should be a literal value." ;
+            sh:path rr:child ;
+            sh:nodeKind sh:Literal ;
+        ] ,
+        [
+            sh:message "Join should have one and only one parent." ;
+            sh:path rr:parent ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+        ] ,
+        [
+            sh:message "Join should have at least one parent." ;
+            sh:path rr:parent ;
+            sh:nodeKind sh:Literal ;
+        ] ;
+.
 
-	sh:property
-		[
-			sh:message "Join should have one and only one child." ;
-			sh:path rr:child ;
-			sh:minCount 1 ;
-			sh:maxCount 1 ;
-		] ,
-		[
-			sh:message "Value of child in join should be a literal value." ;
-			sh:path rr:child ;
-			sh:nodeKind sh:Literal ;
-		] ,
-		[
-			sh:message "Join should have one and only one parent." ;
-			sh:path rr:parent ;
-			sh:minCount 1 ;
-			sh:maxCount 1 ;
-		] ,
-		[
-			sh:message "Join should have at least one parent." ;
-			sh:path rr:parent ;
-			sh:nodeKind sh:Literal ;
-		] ;
+rr:LogicalTableShape
+    a sh:NodeShape ;
+    sh:targetClass rr:TriplesMap ;
+    sh:targetSubjectsOf rr:logicalTable, rr:subject, rr:subjectMap ;
+    sh:property [
+                    sh:path rr:logicalTable ;
+                    sh:message "Exactly one logical table should exist.";
+                    sh:minCount 1 ;
+                    sh:maxCount 1 ;
+                ] ;
+
+
 .
 
 
-rr:DataTypeDereferencableShape
-	a sh:NodeShape ;
-	rdfs:label "URI Dereferencable"@en ;
-	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
-	sh:targetObjectsOf rr:datatype ;
-	sh:targetSubjectsOf rr:datatype ;
-	sh:targetClass rr:objectMap;
-	sh:js [
-			  a sh:JSConstraint ;
-			  sh:message "Datatype URI non-dereferencable" ;
-			  sh:jsFunctionName "dereference" ;
-			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-		  ] ;
+rr:TableViewShape
+    a sh:NodeShape ;
+    sh:targetClass rr:LogicalTable ;
+    sh:targetObjectsOf rr:logicalTable;
+    sh:targetSubjectsOf rr:tableName, rr:sqlQuery;
+    sh:message "Logical table should exactly one R2RML view or SQL view" ;
+    sh:xone (
+                [
+                    sh:property [
+                                    sh:path rr:tableName ;
+                                    sh:minCount 1 ;
+                                    sh:maxCount 1 ;
+                                ] ;
+                ]
+                [
+                    sh:property [
+                                    sh:path rr:sqlQuery ;
+                                    sh:minCount 1 ;
+                                    sh:maxCount 1 ;
+                                ] ;
+                ]
+            ) ;
+
+
+.
+
+rr:PredicateShape
+    a sh:NodeShape ;
+    sh:message "Predicate term type should be an IRI," ;
+    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
+
+    sh:property [
+                    sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
+                    sh:path rr:termType ;
+                    sh:in ( rr:IRI ) ;
+                ] ;
 .
 
 
 
-rr:PredicateDereferencableShape
-	a sh:NodeShape ;
-	rdfs:label "URI Dereferencable"@en ;
-	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
-	sh:targetObjectsOf rr:predicate ;
-	sh:targetSubjectsOf rr:predicate ;
-	sh:targetClass rr:PredicateObjectMap;
-	sh:js [
-			  a sh:JSConstraint ;
-			  sh:message "Predicate URI non-dereferencable" ;
-			  sh:jsFunctionName "dereference" ;
-			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-		  ] ;
+rr:ObjectMapShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:objectMap ;
+    sh:property [
+                    sh:message "Value for rr:termType on subject map should be rr:IRI or rr:BlankNode or rr:Literal." ;
+                    sh:path rr:termType ;
+                    sh:in ( rr:IRI rr:BlankNode rr:Literal ) ;
+                ] ;
+
 .
 
-
-
-rr:ClassDereferencableShape
-	a sh:NodeShape ;
-	rdfs:label "URI Dereferencable"@en ;
-	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
-	sh:targetObjectsOf rr:datatype ;
-	sh:targetSubjectsOf rr:datatype ;
-	sh:targetClass rr:objectMap;
-	sh:js [
-			  a sh:JSConstraint ;
-			  sh:message "Datatype URI non-dereferencable" ;
-			  sh:jsFunctionName "dereference" ;
-			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-		  ] ;
+rr:PredicateShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicate ;
+    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
+    sh:property
+        [
+            sh:message "rr:predicate should be a valid IRI" ;
+            sh:path rr:predicate ;
+            sh:nodeKind sh:IRI ;
+        ] ;
 .
 
+rr:GraphMapShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:graphMap ;
 
-#rr:ResourceDereferencableShape
+    sh:property [
+                    sh:message "rr:termType on graph map should be rr:IRI." ;
+                    sh:path rr:termType ;
+                    sh:in ( rr:IRI ) ;
+                ] ;
+.
+
+#rr:DataTypeValueShape
 #    a sh:NodeShape ;
-#	rdfs:label "URI Dereferencable"@en ;
-#	rdfs:comment "Defines constraint for URI URI Dereferencablity"@en ;
-#
-#	sh:targetObjectsOf rr:subjectMap ;
-#	sh:js [
-#		a sh:JSConstraint ;
-#        sh:message "Datatype URI non-dereferencable" ;
-#        sh:jsFunctionName "dereferenceDataTypeURI" ;
-#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-#	] ;
-#
-#	sh:js [
-#		a sh:JSConstraint ;
-#        sh:message "Class URI non-dereferencable" ;
-#        sh:jsFunctionName "dereferenceClassURI" ;
-#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-#	] ;
-#
-#	sh:js [
-#		a sh:JSConstraint ;
-#        sh:message "Predicate URI non-dereferencable" ;
-#        sh:jsFunctionName "dereferencePredicateURI" ;
-#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-#	] ;
+#    sh:targetSubjectsOf rr:datatype, rr:language ;
+#    sh:targetClass rr:objectMap;
+#    sh:property [
+#                    sh:message "rr:datatype value should be a valid IRI" ;
+#                    sh:path rr:datatype;
+#                    sh:in ( rr:IRI ) ;
+#                ] ;
 #.
 
-rr:GraphPerformanceShape
-	rdfs:label "Duplicate term map shape"@en ;
-	rdfs:comment "Defines constraint for duplicate triples defined"@en ;
-	sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
-	sh:targetObjectsOf  rr:predicateObjectMap ;
-	sh:targetClass rr:PredicateObjectMap ;
 
 
-	sh:js [
-		a sh:JSConstraint ;
-		sh:message "PERFORMANCE - Duplicate triples defined" ;
-        sh:jsFunctionName "validateDuplicateTriples" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#rr:VocabularyShape
+#    sh:targetSubjectsOf rr:predicate;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:targetClass rr:PredicateObjectMap;
+#
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No human labelling" ;
+#              sh:jsFunctionName "hasHumanReadableLabelling" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#          ];
+#.
 
-	];
+rr:DomainShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Domain Violation Detected" ;
+              sh:jsFunctionName "validateDomain" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+
+          ];
+
 .
 
 
-rr:DomainShape
-	rdfs:label "Domain Violation Shape"@en ;
-	rdfs:comment "Defines constraint for domain violations"@en ;
 
-	sh:targetSubjectsOf rr:predicate;
-	sh:targetObjectsOf rr:predicateObjectMap;
-	sh:targetClass rr:PredicateObjectMap;
 
-	sh:js [
-		a sh:JSConstraint ;
-		sh:message "Domain Violation Detected" ;
-        sh:jsFunctionName "validateDomain" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#rr:MachineLicenseShape
+#    sh:targetSubjectsOf rr:predicate;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:targetClass rr:PredicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No machine-readable license." ;
+#              sh:jsFunctionName "validateMachineLicense" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#
+#          ];
+#
+#.
 
-	];
+rr:ValidDatatypeShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:jsFunctionName "validateDatatype" ;
+              sh:message "Incorrect datatype.";
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
-	sh:js [
-		a sh:JSConstraint ;
-        sh:jsFunctionName "addMissingDataTypes" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+          ];
+.
 
-	];
+
+
+rr:URIlength
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
+    sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
+    sh:property
+        [
+            sh:message "URI longer than 80 characters." ;
+            sh:path rr:class, rr:predicate ;
+            sh:maxLength 80;
+        ] ;
+.
+
+rr:URIqueryParameter
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
+    sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
+    sh:property
+        [
+            sh:message "URI comtains query parameter." ;
+            sh:path rr:class, rr:predicate ;
+            sh:pattern "^[^?]+$" ;
+        ] ;
+.
+
+
+
+rr:VariousLanguagesShape
+    sh:message "Data in only one language.";
+    sh:targetSubjectsOf rr:language ;
+    sh:targetClass rr:objectMap;
+    sh:xone (
+                [
+                    sh:property [
+                                    sh:path rr:language ;
+                                    sh:minCount 2;
+                                ]
+                ]
+                [
+                    sh:property [
+                                    sh:path rr:language;
+                                    sh:maxCount 0;
+                                ]
+                ]
+            ) ;
+.
+
+rr:RDFstructures
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicateObjectMap ;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:message "Usage of RDF structurees." ;
+    sh:not
+        [
+            sh:path rr:predicate ;
+            sh:in (rdf:Statement rdf:Alt rdf:Bag rdf:Seq rdf:Container rdf:List);
+        ] ;
+
+.
+
+
+rr:dd
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicateObjectMap,rr:subjectMap,rr:objectMap ;
+    sh:message "Usage of Blank node." ;
+    sh:not
+        [
+            sh:path rr:termType ;
+            sh:hasValue rr:BlankNode;
+        ] ;
+
+.
+
+#rr:LowLatencyShape
+#    sh:targetSubjectsOf rr:predicate;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:targetClass rr:PredicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "Low latency detected." ;
+#              sh:jsFunctionName "validateLowLatency" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#
+#          ];
+#
+#.
+
+rr:DuplicateTriplesShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Duplicate triples detected." ;
+              sh:jsFunctionName "validateDuplicateTriples" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+
+          ];
+
 .
 
 
 rr:DisjointShape
-	rdfs:label "Disjoint Violation Shape"@en ;
-	rdfs:comment "Defines constraint for disjoint violation"@en ;
-	sh:targetObjectsOf rr:class;
-	sh:targetObjectsOf  rr:subjectMap ;
-	sh:targetClass rr:SubjectMap ;
+    sh:targetObjectsOf rr:class;
+    sh:targetObjectsOf  rr:subjectMap ;
+    sh:targetClass rr:SubjectMap ;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Disjoint Classes Detected" ;
+              sh:jsFunctionName "validateDisjointClasses" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
-
-	sh:js [
-		a sh:JSConstraint ;
-		sh:message "Disjoint Classes Detected" ;
-        sh:jsFunctionName "validateDisjointClasses" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-
-	];
+          ];
 .
 
-#rr:RangeShape
-#	rdfs:label "Range Violation Shape"@en ;
-#	rdfs:comment "Defines constraint range violations"@en ;
-#
-#	sh:targetObjectsOf rr:predicate, rr:datatype;
-#	sh:targetClass rr:PredicateObjectMap,  rr:ObjectMap ;
-#
-#
-#	sh:js [
-#		a sh:JSConstraint ;
-#		sh:message "Range Violation Detected" ;
-#        sh:jsFunctionName "validateRange" ;
-#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-#
-#	];
-#.
+rr:AccessibilityShape
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Unable to derference URI." ;
+              sh:jsFunctionName "isAccessible" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
-rr:DataStructuresShape
-	a sh:NodeShape ;
-	rdfs:label "RDF data structures shape"@en ;
-	rdfs:comment "Defines constraints for usage of RDF data structures"@en ;
-	sh:targetSubjectsOf rdf:Statement, rdf:Alt, rdf:Bag, rdf:Seq, rdf:Container, rdf:List;
-	sh:property
-		[
-			sh:path rdf:Statement, rdf:Alt, rdf:Bag, rdf:Seq, rdf:Container, rdf:List;
-			sh:maxCount 0;
-			sh:message "Usage of RDF data structures" ;
-
-
-		] ;
+          ];
 
 .
 
 
-rr:URIShape
-	a sh:NodeShape ;
-	rdfs:label "URI shape"@en ;
-	rdfs:comment "Defines constraints for a well-formed URI"@en ;
-	sh:message "URI is ill-formed" ;
+rr:UndefinedShape
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Usage of undefined class or properties" ;
+              sh:jsFunctionName "ValidateVocabularyCompleteness" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
-	sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
-	sh:targetClass     rr:SubjectMap, rr:predicateObjectMap ;
-
-	sh:property
-		[
-			sh:message "Value of URI should be no longer than 80 characters" ;
-			sh:path [
-				sh:alternativePath (rr:class rr:predicate) ;
-			] ;
-			sh:maxLength 80;
-		],
-		[
-			sh:message "Value of URI in should contain no query paramaters" ;
-			sh:path [
-				sh:alternativePath (rr:class rr:predicate) ;
-			] ;
-        	sh:pattern "^[^?]+$" ;
-		] ;
-		;
-.
-
-rr:VariousLanguagesShape
-	a sh:NodeShape ;
-	rdfs:label "Various Languages Shape"@en ;
-	rdfs:comment "Defines constraints for a data in various languages"@en ;
-
-	sh:targetSubjectsOf rr:language ;
-
-	sh:property
-		[
-	  		sh:path rr:language;
-			sh:maxCount 1;
-			sh:message "Data in various languages" ;
-
-		] ;
-.
-
-rr:UndefinedPropertiesShape
-    a sh:NodeShape ;
-	rdfs:label "URI Dereferencable"@en ;
-	rdfs:comment "Defines constraint for usage of Undefined Classes and Properties"@en ;
-
-	sh:targetSubjectsOf rr:class;
-	sh:js [
-		a sh:JSConstraint ;
-        sh:message "Usage of Undefined Classes and Properties" ;
-        sh:jsFunctionName "dereferenceURI" ;
-		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/URI_dereferencer.js"^^xsd:anyURI] ;
-	] ;
-
+];
 
 .
-
-
-
-rr:TermTypeShape
-	a sh:NodeShape ;
-	rdfs:label "Ontology Assessment"@en ;
-	rdfs:comment "Defines quality assessment of ontologies used"@en ;
-	sh:targetObjectsOf rr:predicateObjectMap;
-	sh:targetClass rr:PredicateMap;
-	sh:js [
-			  a sh:JSConstraint ;
-			  sh:jsFunctionName "validateTermType" ;
-			  sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-		  ] ;
-
-
-.
-
-rr:BlankNodeShape
-	a sh:NodeShape ;
-	rdfs:label "Blank node shape"@en ;
-	rdfs:comment "Defines constraints for the usage of blank nodes"@en ;
-	sh:message "Usage of blank node" ;
-	sh:targetObjectsOf rr:subjectMap, rr:objectMap ;
-	sh:targetClass     rr:SubjectMap, rr:ObjectMap  ;
-
-	sh:not
-	[
-			sh:path rr:termType ;
-			sh:hasValue rr:BlankNode;
-		] ;
-
-.
-
-
-
-rr:EmptyValuesShape
-    a sh:NodeShape ;
-	sh:targetObjectsOf rr:subjectMap, rr:objectMap, rr:logicalTable ;
-	sh:targetClass     rr:SubjectMap, rr:ObjectMap  ;
-	sh:property [
-        sh:path rr:tableName ;
-        sh:minLength 1;
-        sh:message "rr:tableName with length 0";
-    ] ;
-
-    sh:property [
-        sh:path  rr:sqlQuery;
-        sh:minLength 1;
-        sh:message "rr:sqlQuery with length 0";
-    ] ;
-
-
-    sh:property [
-        sh:path rr:parent ;
-        sh:minLength 1;
-        sh:message "rr:parent with length 0" ;
-
-    ] ;
-
-    sh:property [
-        sh:path rr:child ;
-        sh:minLength 1;
-        sh:message "rr:child with length 0" ;
-
-    ] ;
-
-    sh:property [
-        sh:path rr:column ;
-        sh:minLength 1;
-        sh:message "rr:column with length 0" ;
-
-    ] ;
-
-        sh:property [
-        sh:path rr:template ;
-        sh:minLength 1;
-        sh:message "rr:template with length 0" ;
-
-    ] ;
-
-        sh:property [
-        sh:path rr:predicate ;
-        sh:minLength 1;
-        sh:message "rr:predicate with length 0" ;
-
-    ] ;
-
-     sh:property [
-        sh:path rr:class ;
-        sh:minLength 1;
-        sh:message "rr:class with length 0" ;
-
-    ] ;
-.
-
 

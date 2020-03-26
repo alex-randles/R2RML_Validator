@@ -1,4 +1,3 @@
-JavaClasses/OntologyQualityAssessment.class
 JavaClasses/Range.class
 JavaClasses/NS.class
 JavaClasses/DereferenceURI.class
@@ -8,6 +7,7 @@ JavaClasses/Domain.class
 JavaClasses/GenerateReport.class
 ShaclTest.class
 JavaClasses/Disjoint.class
+JavaClasses/VocabularyAssessment.class
 JavaClasses/DuplicateTriples.class
 JavaClasses/TermType.class
 JavaClasses/DataType.class
