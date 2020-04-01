@@ -19,14 +19,14 @@
                                                ] ;
                                  rr:predicate  dbo:age;
                                ] ;
-        rr:subjectMap          [ rr:class     foaf:Agent, foaf:Document ;
+        rr:subjectMap          [ rr:class     foaf:Agent, foaf:Document, rdf:Statement ;
                                  rr:template  "http://example.org/solider/{id}";
                                  rr:termType rr:IRI;
 
                                ];
 
         rr:predicateObjectMap [
-    rr:predicate rdf:Bag;
+    rr:predicate rdf:predicate;
     rr:termType rr:BlankNode;
 
     rr:objectMap [

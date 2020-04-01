@@ -1,4 +1,4 @@
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
@@ -189,7 +189,7 @@ rr:ObjectMapShape
 
 .
 
-rr:PredicateShape
+ex:PredicateShape
     a sh:NodeShape ;
     sh:targetObjectsOf rr:predicate ;
     sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
@@ -201,7 +201,7 @@ rr:PredicateShape
         ] ;
 .
 
-rr:GraphMapShape
+ex:GraphMapShape
     a sh:NodeShape ;
     sh:targetObjectsOf rr:graphMap ;
     sh:property [
@@ -237,7 +237,7 @@ rr:GraphMapShape
 #          ];
 #.
 
-rr:DomainShape
+ex:DomainShape
     sh:targetSubjectsOf rr:predicate;
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
@@ -269,7 +269,7 @@ rr:DomainShape
 #
 #.
 
-rr:ValidDatatypeShape
+ex:ValidDatatypeShape
     sh:targetSubjectsOf rr:predicate;
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
@@ -284,7 +284,7 @@ rr:ValidDatatypeShape
 
 
 
-rr:URIlength
+ex:URIlength
     a sh:NodeShape ;
     sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
     sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
@@ -296,7 +296,7 @@ rr:URIlength
         ] ;
 .
 
-rr:URIqueryParameter
+ex:URIqueryParameter
     a sh:NodeShape ;
     sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
     sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
@@ -310,7 +310,7 @@ rr:URIqueryParameter
 
 
 
-rr:VariousLanguagesShape
+ex:VariousLanguagesShape
     sh:message "Data in only one language.";
     sh:targetSubjectsOf rr:language ;
     sh:targetClass rr:objectMap;
@@ -329,25 +329,37 @@ rr:VariousLanguagesShape
                 ]
             ) ;
 .
-      #  This metric consider all classes in a mapping defined to be
-#instances of rdf:Statement, and predicate maps defined with any of the properties
-#rdf:subject, rdf:predicate, or rdf:object.
+#  This metric consider all classes in a mapping defined to be
+#   instances of rdf:Statement, and predicate maps defined with any of the properties
+#   rdf:subject, rdf:predicate, or rdf:object.
 
-rr:RDFreification
+ex:RDFreification
     a sh:NodeShape ;
-    sh:targetObjectsOf rr:predicateObjectMap ;
-    sh:targetClass rr:PredicateObjectMap;
-    sh:message "Usage of RDF reification" ;
-    sh:not
+    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap, rr:subjectMap;
+    sh:property
         [
             sh:path rr:predicate ;
-            sh:in df:subject,
-                    rdf:predicate,
-                    rdf:object,
-                    rdfs:member, rdf:first, rdf:rest,);
+            sh:message  "Usage of RDF reification" ;
+            sh:not [
+                       a sh:PropertyShape ;
+                       sh:in (rdf:subject rdf:predicate rdf:object) ;
+
+                   ]
+        ] ;
+    sh:property
+        [
+            sh:path rr:class ;
+            sh:message  "Usage of RDF reification" ;
+            sh:not [
+                       a sh:PropertyShape ;
+                       sh:in (rdf:Statement) ;
+
+                   ]
         ] ;
 
+
 .
+
 
 
 rr:dd
@@ -376,7 +388,7 @@ rr:dd
 #
 #.
 
-rr:DuplicateTriplesShape
+ex:DuplicateTriplesShape
     sh:targetSubjectsOf rr:predicate;
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
@@ -391,7 +403,7 @@ rr:DuplicateTriplesShape
 .
 
 
-rr:DisjointShape
+ex:DisjointShape
     sh:targetObjectsOf rr:class;
     sh:targetObjectsOf  rr:subjectMap ;
     sh:targetClass rr:SubjectMap ;
@@ -404,7 +416,7 @@ rr:DisjointShape
           ];
 .
 
-rr:AccessibilityShape
+ex:AccessibilityShape
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
     sh:js [
@@ -418,7 +430,7 @@ rr:AccessibilityShape
 .
 
 
-rr:UndefinedShape
+ex:UndefinedShape
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
     sh:js [
