@@ -15,9 +15,9 @@
         rr:logicalTable        [rr:tableName "dhdh"]  ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:termType rr:IRI;
                                                    rr:column    "army" ;
-                                                 rr:datatype  xsd:j;
+                                                 rr:datatype  xsd:string;
                                                ] ;
-                                 rr:predicate  dbo:army;
+                                 rr:predicate  dbo:age;
                                ] ;
         rr:subjectMap          [ rr:class     foaf:Agent, foaf:Document ;
                                  rr:template  "http://example.org/solider/{id}";
@@ -30,7 +30,7 @@
     rr:termType rr:BlankNode;
 
     rr:objectMap [
-                     rr:language  xsd:jjj;
+                     rr:language  'en-djdhd';
 
                      rr:parentTriplesMap <#TriplesMap2>;
         rr:joinCondition [

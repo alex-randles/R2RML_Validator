@@ -1,12 +1,5 @@
 var NS = "http://www.w3.org/ns/r2rml#";
-var predicates = [];
-var columns = [];
-var groupings = [];
-var no_duplicates = true;
 var duplicates_checked = false;
-var constant_template_checked = false;
-var tables_count_check = false;
-var mappings = {} ;
 var disjoint_classes_check = false;
 var low_latency_validated = false;
 var machine_license_validated = false;
@@ -15,9 +8,6 @@ var domain_validated = false;
 var missing_datatype_check = false;
 var term_type_check = false;
 var datatype_validated = false;
-var count = 0;
-var ontology_score = [];
-var ontologies_assessed = false;
 var labelling_validated = false;
 var accessibility_validated = false;
 var vcabulary_completeness_validated = false;
@@ -175,7 +165,6 @@ function validateDisjointClasses(resource){
             var result = JavaCLass.validateDisjointClasses(classesURI);
             disjoint_classes_check = true;
             return result;
-
         }
     }
     catch(err){
@@ -410,3 +399,5 @@ function validateRange(resource){
         print("validateRange " + err);
     }
 }
+
+

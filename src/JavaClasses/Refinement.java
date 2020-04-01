@@ -51,21 +51,6 @@ public class Refinement {
                "  ?objectMap rr:datatype ?datatype.\n" +
                "  } ",  dataTypeURI, predicateURI);
        SPARQL.updateData(updateQuery, output_file, output_file);
-//        File file = new File(output_file);
-//        try{
-//            FileOutputStream fop = new FileOutputStream(file);
-//            model.write(fop, "TURTLE");
-//            fop.flush();
-//            fop.close();
-//            String result = "Validation report out written to " + output_file;
-//            return result;
-//        }
-//
-//        catch(Exception e) {
-//            String result = "File not found!";
-//            System.out.println("ADDING DATATYPE ERROR"  + e);
-//            return result;
-//        }
         return "shdhd";
     }
 
@@ -101,8 +86,6 @@ public class Refinement {
                 "  }}";
         System.out.println(removeQuery);
         return true;
-//        SPARQL.updateData(removeQuery, URI, URI);
-//        return true;
     }
 }
 

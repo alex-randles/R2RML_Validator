@@ -19,23 +19,6 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Value for rr:termType on predicate map should be rr:IRI." ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:termType ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    []  ;
-            <http://www.w3.org/ns/shacl#value>
-                    rr:BlankNode
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
                     "Domain Violation Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
@@ -46,39 +29,7 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     rr:DomainShape ;
             <http://www.w3.org/ns/shacl#value>
-                    dbo:army
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Usage of RDF structurees." ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:RDFstructures ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b0
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect datatype" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    rr:ValidDatatypeShape ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:army
+                    dbo:age
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
@@ -94,6 +45,23 @@
                     rr:VariousLanguagesShape ;
             <http://www.w3.org/ns/shacl#value>
                     _:b1
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Invalid language tag." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:language ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    []  ;
+            <http://www.w3.org/ns/shacl#value>
+                    "en-djdhd"
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
@@ -115,7 +83,24 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    _:b0 ;
+                    _:b3 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Value for rr:termType on predicate map should be rr:IRI." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    []  ;
+            <http://www.w3.org/ns/shacl#value>
+                    rr:BlankNode
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b3 ;
             <http://www.w3.org/ns/shacl#resultMessage>
                     "Usage of Blank node." ;
             <http://www.w3.org/ns/shacl#resultSeverity>
@@ -125,6 +110,38 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     rr:dd ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b0
+                    _:b3
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Incorrect datatype detected." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:ValidDatatypeShape ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:age
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b3 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Usage of RDF structurees." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    rr:RDFstructures ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b3
           ]
 ] .

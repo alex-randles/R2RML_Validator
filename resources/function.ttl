@@ -4,13 +4,9 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
-@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
-@prefix fno: <http://semweb.datasciencelab.be/ns/function#> .
-@prefix carml: <http://carml.taxonic.com/carml/> .
-@prefix rmlsh: <http://www.taxonic.com/ns/rml-shacl#> .
+@prefix ex: <http://example.com/ns#> .
 
-rr:DataTypeShape
+ex:DataTypeShape
     a sh:NodeShape ;
     sh:message "Data type and language tag defined in same term map" ;
     sh:targetSubjectsOf rr:datatype, rr:language ;
@@ -45,7 +41,7 @@ rr:DataTypeShape
                 ]
 .
 
-rr:SubjectMapShape
+ex:SubjectMapShape
     a sh:NodeShape ;
     sh:targetObjectsOf rr:subjectMap ;
     sh:targetClass     rr:SubjectMap ;
@@ -62,7 +58,7 @@ rr:SubjectMapShape
         ] ;
 .
 
-rr:PredicateObjectMapShape
+ex:PredicateObjectMapShape
     a sh:NodeShape ;
     sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
     sh:targetObjectsOf  rr:predicateObjectMap ;
@@ -85,7 +81,7 @@ rr:PredicateObjectMapShape
         ] ;
 .
 
-rr:JoinShape
+ex:JoinShape
     a sh:NodeShape ;
     sh:targetClass rr:Join ;
     sh:targetSubjectsOf rr:parent, rr:child ;
@@ -116,7 +112,7 @@ rr:JoinShape
         ] ;
 .
 
-rr:LogicalTableShape
+ex:LogicalTableShape
     a sh:NodeShape ;
     sh:targetClass rr:TriplesMap ;
     sh:targetSubjectsOf rr:logicalTable, rr:subject, rr:subjectMap ;
@@ -131,12 +127,12 @@ rr:LogicalTableShape
 .
 
 
-rr:TableViewShape
+ex:TableShape
     a sh:NodeShape ;
     sh:targetClass rr:LogicalTable ;
     sh:targetObjectsOf rr:logicalTable;
     sh:targetSubjectsOf rr:tableName, rr:sqlQuery;
-    sh:message "Logical table should exactly one R2RML view or SQL view" ;
+    sh:message "Logical table should exactly one  table, view or SQL query" ;
     sh:xone (
                 [
                     sh:property [
@@ -157,15 +153,26 @@ rr:TableViewShape
 
 .
 
-rr:PredicateShape
+ex:PredicateShape
     a sh:NodeShape ;
-    sh:message "Predicate term type should be an IRI," ;
     sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
 
     sh:property [
-                    sh:message "Value for rr:termType on predicate map should be rr:IRI." ;
+                    sh:message "rr:termType on predicate map should be rr:IRI." ;
                     sh:path rr:termType ;
                     sh:in ( rr:IRI ) ;
+                ] ;
+.
+
+
+rr:ValidLanguageTagShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:objectMap ;
+
+    sh:property [
+                    sh:message "Language tag not defined in RFC 5646 Language Tags." ;
+                    sh:path rr:language ;
+                    sh:in ( "af" "af-ZA" "ar" "ar-AE" "ar-BH" "ar-DZ" "ar-EG" "ar-IQ" "ar-JO" "ar-KW" "ar-LB" "ar-LY" "ar-MA" "ar-OM" "ar-QA" "ar-SA" "ar-SY" "ar-TN" "ar-YE" "az" "az-AZ" "az-Cyrl-AZ" "be" "be-BY" "bg" "bg-BG" "bs-BA" "ca" "ca-ES" "cs" "cs-CZ" "cy" "cy-GB" "da" "da-DK" "de" "de-AT" "de-CH" "de-DE" "de-LI" "de-LU" "dv" "dv-MV" "el" "el-GR" "en" "en-AU" "en-BZ" "en-CA" "en-CB" "en-GB" "en-IE" "en-JM" "en-NZ" "en-PH" "en-TT" "en-US" "en-ZA" "en-ZW" "eo" "es" "es-AR" "es-BO" "es-CL" "es-CO" "es-CR" "es-DO" "es-EC" "es-ES" "es-GT" "es-HN" "es-MX" "es-NI" "es-PA" "es-PE" "es-PR" "es-PY" "es-SV" "es-UY" "es-VE" "et" "et-EE" "eu" "eu-ES" "fa" "fa-IR" "fi" "fi-FI" "fo" "fo-FO" "fr" "fr-BE" "fr-CA" "fr-CH" "fr-FR" "fr-LU" "fr-MC" "gl" "gl-ES" "gu" "gu-IN" "he" "he-IL" "hi" "hi-IN" "hr" "hr-BA" "hr-HR" "hu" "hu-HU" "hy" "hy-AM" "id" "id-ID" "is" "is-IS" "it" "it-CH" "it-IT" "ja" "ja-JP" "ka" "ka-GE" "kk" "kk-KZ" "kn" "kn-IN" "ko" "ko-KR" "kok" "kok-IN" "ky" "ky-KG" "lt" "lt-LT" "lv" "lv-LV" "mi" "mi-NZ" "mk" "mk-MK" "mn" "mn-MN" "mr" "mr-IN" "ms" "ms-BN" "ms-MY" "mt" "mt-MT" "nb" "nb-NO" "nl" "nl-BE" "nl-NL" "nn-NO" "ns" "ns-ZA" "pa" "pa-IN" "pl" "pl-PL" "ps" "ps-AR" "pt" "pt-BR" "pt-PT" "qu" "qu-BO" "qu-EC" "qu-PE" "ro" "ro-RO" "ru" "ru-RU" "sa" "sa-IN" "se" "se-FI" "se-NO" "se-SE" "sk" "sk-SK" "sl" "sl-SI" "sq" "sq-AL" "sr-BA" "sr-Cyrl-BA" "sr-SP" "sr-Cyrl-SP" "sv" "sv-FI" "sv-SE" "sw" "sw-KE" "syr" "syr-SY" "ta" "ta-IN" "te" "te-IN" "th" "th-TH" "tl" "tl-PH" "tn" "tn-ZA" "tr" "tr-TR" "tt" "tt-RU" "ts" "uk" "uk-UA" "ur" "ur-PK" "uz" "uz-UZ" "uz-Cyrl-UZ" "vi" "vi-VN" "xh" "xh-ZA" "zh" "zh-CN" "zh-HK" "zh-MO" "zh-SG" "zh-TW" "zu" "zu-ZA" ) ;
                 ] ;
 .
 
@@ -175,7 +182,7 @@ rr:ObjectMapShape
     a sh:NodeShape ;
     sh:targetObjectsOf rr:objectMap ;
     sh:property [
-                    sh:message "Value for rr:termType on subject map should be rr:IRI or rr:BlankNode or rr:Literal." ;
+                    sh:message "rr:termType on subject map should be rr:IRI or rr:BlankNode or rr:Literal." ;
                     sh:path rr:termType ;
                     sh:in ( rr:IRI rr:BlankNode rr:Literal ) ;
                 ] ;
@@ -197,7 +204,6 @@ rr:PredicateShape
 rr:GraphMapShape
     a sh:NodeShape ;
     sh:targetObjectsOf rr:graphMap ;
-
     sh:property [
                     sh:message "rr:termType on graph map should be rr:IRI." ;
                     sh:path rr:termType ;
@@ -270,7 +276,7 @@ rr:ValidDatatypeShape
     sh:js [
               a sh:JSConstraint ;
               sh:jsFunctionName "validateDatatype" ;
-              sh:message "Incorrect datatype.";
+              sh:message "Incorrect datatype detected.";
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
           ];
@@ -323,16 +329,22 @@ rr:VariousLanguagesShape
                 ]
             ) ;
 .
+      #  This metric consider all classes in a mapping defined to be
+#instances of rdf:Statement, and predicate maps defined with any of the properties
+#rdf:subject, rdf:predicate, or rdf:object.
 
-rr:RDFstructures
+rr:RDFreification
     a sh:NodeShape ;
     sh:targetObjectsOf rr:predicateObjectMap ;
     sh:targetClass rr:PredicateObjectMap;
-    sh:message "Usage of RDF structurees." ;
+    sh:message "Usage of RDF reification" ;
     sh:not
         [
             sh:path rr:predicate ;
-            sh:in (rdf:Statement rdf:Alt rdf:Bag rdf:Seq rdf:Container rdf:List);
+            sh:in df:subject,
+                    rdf:predicate,
+                    rdf:object,
+                    rdfs:member, rdf:first, rdf:rest,);
         ] ;
 
 .
