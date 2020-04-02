@@ -34,18 +34,16 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    []  ;
+                    _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Usage of RDF reification" ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:class ;
+                    "Data type and language tag defined in same term map" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    []  ;
+                    <http://example.com/ns#DataTypeShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    rdf:Statement
+                    _:b0
           ]
 ] .

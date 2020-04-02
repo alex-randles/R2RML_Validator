@@ -16,10 +16,12 @@
         rr:predicateObjectMap  [ rr:objectMap  [ rr:termType rr:Literal;
                                                    rr:column    "army" ;
                                                  rr:datatype  xsd:integer;
+                                                 rr:language  'en-GB';
+
                                                ] ;
                                  rr:predicate  dbo:age;
                                ] ;
-        rr:subjectMap          [ rr:class     foaf:Document, rdf:Statement, dbo:Agent ;
+        rr:subjectMap          [ #rr:class     foaf:Document, rdf:Statement, dbo:Agent ;
                                  rr:template  "http://example.org/solider/{id}";
                                  rr:termType rr:IRI;
 

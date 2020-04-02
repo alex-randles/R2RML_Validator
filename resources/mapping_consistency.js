@@ -162,6 +162,9 @@ function validateDisjointClasses(resource){
     try{
         if (!disjoint_classes_check){
             var classesURI = getAllValues("class");
+            if (classesURI === undefined || classesURI.length == 0) {
+                   return true;
+               }
             var JavaCLass = Java.type("JavaClasses.Disjoint");
             var result = JavaCLass.validateDisjointClasses(classesURI);
             disjoint_classes_check = true;
@@ -233,37 +236,6 @@ function validateRange(resource) {
     }
 }
 
-function validateLowLatency(resource) {
-    try{
-        var results = [];
-        if (!low_latency_validated){
-            result = [] ;
-            var labelProperty = TermFactory.namedNode(NS+"predicate");
-            var labels = $data.find(resource, labelProperty, null);
-            for(;;) {
-                var labelTriple = labels.next();
-                if (!labelTriple) {
-                    break;
-                    return null;
-                }
-                var predicate = labelTriple.object;
-                var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
-                var result = JavaCLass.lowLatency(String(predicate));
-                if (!result) {
-                    results.push({value: predicate});
-
-                }
-            }
-            low_latency_validated = true;
-
-            return results;
-        }
-    }
-    catch(err){
-        print("validateDomain " + err);
-    }
-}
-
 
 function validateMachineLicense(resource) {
     try{
@@ -314,7 +286,6 @@ function validateDomain(resource) {
             var result = JavaCLass.validateAllDomains(getAllValues("class", resource), String(predicate));
             if (!result) {
                 results.push({value: predicate});
-
             }
         }
                 domain_validated = true;

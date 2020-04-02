@@ -10,16 +10,17 @@ public class Domain {
     public static boolean validateAllDomains(String[] mappingSubject, String mappingPredicate){
         // if can not retrieve vocabulary, return true
         try {
+            if (mappingSubject.length == 0) {
+                Refinement.findValidDomain(mappingPredicate);
+                return true;
+            }
             String checkDomainQuery = String.format("SELECT ?domain {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", mappingPredicate);
             ResultSet result = SPARQL.selectQuery(mappingPredicate, checkDomainQuery);
             String domain = SPARQL.getStringVariable(result, "?domain");
             if(domain.isEmpty()){
                 return true;
             }
-            if (mappingSubject.length == 0 ) {
-                Refinement.findValidDomain(mappingPredicate);
-                return true;
-            }
+
             for (String subject : mappingSubject) {
                 if (validateDomain((subject), mappingPredicate)) {
                     return true;
