@@ -10,9 +10,11 @@ import java.io.FileOutputStream;
 import java.util.Iterator;
 
 public class Refinement {
+
+    public static String output_file = "./resources/new_sample_map.ttl";
+
     public static void main(String[] args){
-        ResultSet  s = SPARQL.selectQuery("http://dbpedia.org/ontology/army", "SELECT ?datatype WHERE { <http://dbpedia.org/ontology/army> <http://www.w3.org/2000/01/rdf-schema#range> ?datatype}" );
-        System.out.println(SPARQL.getStringVariable(s, "?datatype"));
+        changeTermType("<http://dbpedia.org/ontology/age>", "<http://www.w3.org/ns/r2rml#IRIh>");
     }
     public static void findValidDomain(String URI) {
         String queryString = String.format("SELECT ?domain WHERE {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", URI);
@@ -36,7 +38,6 @@ public class Refinement {
 
     public static String AddDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
         Model model = ModelFactory.createDefaultModel();
-        String output_file = "./resources/new_sample_map.ttl";
         model.read(output_file);
         String updateQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
                "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
@@ -85,6 +86,21 @@ public class Refinement {
                 "}\n" +
                 "  }}";
         System.out.println(removeQuery);
+        return true;
+    }
+
+    public static boolean changeTermType(String predicateURI, String termType){
+        String updateQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
+                "DELETE {  ?objectMap rr:termType ?termType}\n" +
+                "INSERT {  ?objectMap rr:termType \t<%s> }\n" +
+                "WHERE\n" +
+                "  {  \n" +
+                "  ?subject rr:predicateObjectMap ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap rr:predicate <%s>.\n" +
+                "  ?predicateObjectMap rr:objectMap ?objectMap.\n" +
+                "  ?objectMap rr:termType ?termType.\n" +
+                "  } ", termType, predicateURI);
+        SPARQL.updateData(updateQuery, output_file, output_file);
         return true;
     }
 }

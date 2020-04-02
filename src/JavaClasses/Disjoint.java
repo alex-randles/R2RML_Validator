@@ -17,7 +17,7 @@ public class Disjoint {
                     System.out.println(query);
                     boolean result = SPARQL.askQuery(classesURI[j], query);
                     System.out.println(result);
-                    if (!result) {
+                    if (result) {
                         return false;
                     }
 

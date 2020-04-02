@@ -1,0 +1,94 @@
+@prefix ex: <http://example.com/ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix dqv: <http://www.w3.org/ns/dqv#>.
+@prefix daq: <http://purl.org/eis/vocab/daq#>.
+
+ex:accessibilityCategory a dqv:Category ;
+                         skos:prefLabel "Accessibility category"@en;
+                         skos:definition "Accessibility category groups dimensions related to the access, authenticity and retrieval of data."@en;
+                         daq:hasDimension ex:availability, ex:licensing .
+
+ex:intrinsicCategory a dqv:Category ;
+                     skos:prefLabel "Intrinsic category"@en;
+                     skos:definition "Intrinsic category groups dimensions related to the corrrectness, consistency and conciseness."@en;
+                     daq:hasDimension ex:dataConsistency, ex:mappingConsistency, ex:RDFtermCorrectness .
+
+
+
+ex:contextualCategory a dqv:Category ;
+                      skos:prefLabel "Contextual category"@en;
+                      skos:definition "Contextual category groups dimensions related to trustworthiness and understandability."@en;
+                       daq:hasDimension ex:trustworthiness, ex:understandability .
+
+
+ex:representationalCategory a dqv:Category ;
+                            skos:prefLabel "Representational category"@en;
+                            skos:definition "Representational category groups dimensions related to the quality of the resulting datasets produced by mappings."@en;
+                            daq:hasDimension ex:interpretability, ex:representationalConciseness .
+
+
+ex:availability
+    a dqv:Dimension ;
+    dqv:inCategory ex:accessibilityCategory ;
+    skos:prefLabel "Availability"@en;
+    skos:definition "Availability refers to the extent to which the mapping, the mapped data, and the resulting dataset are available."@en
+.
+
+ex:dataConsistency
+    a dqv:Dimension ;
+    dqv:inCategory ex:intrinsicCategory;
+    skos:prefLabel "Data Consistency"@en;
+    skos:definition "Data Consistency refers to the extent to which a dataset will be generated with no consistency conflicting information."@en
+.
+
+ex:interpretability
+    a dqv:Dimension ;
+    dqv:inCategory ex:representationalCategory;
+    skos:prefLabel "Interpretability"@en;
+    skos:definition "Interpretability is concerned to information being represented in an appropriate notation, and whether it is machine-processable."@en
+.
+
+ex:licensing
+    a dqv:Dimension ;
+    dqv:inCategory ex:accessibilityCategory;
+    skos:prefLabel "Licensing"@en;
+    skos:definition "Licensing refers to the license under which a mapping and its resulting dataset can be (re) used."@en
+.
+
+ex:mappingConsistency
+    a dqv:Dimension ;
+    dqv:inCategory ex:intrinsicCategory;
+    skos:prefLabel "Mapping Consistency"@en;
+    skos:definition "Mapping Consistency refers to the extent to which a mapping is conformant to its mapping consistency language."@en
+.
+
+ex:representationalConciseness
+    a dqv:Dimension ;
+    dqv:inCategory ex:representationalCategory;
+    skos:prefLabel "Representational Conciseness"@en;
+    skos:definition "Representational Conciseness refers to the representational of the resulting dataset being compact, conciseness well-formatted, and clear."@en
+.
+
+ex:RDFtermCorrectness
+    a dqv:Dimension ;
+    dqv:inCategory ex:representationalCategory;
+    skos:prefLabel "RDF Term Correctness"@en;
+    skos:definition "RDF Term Correctness refers to the extent to which a mapping correctly defines RDF terms."@en
+.
+
+ex:trustworthiness
+    a dqv:Dimension ;
+    dqv:inCategory ex:contextualCategory;
+    skos:prefLabel "Trustworthiness"@en;
+    skos:definition "Trustworthiness refers to the extent to which data producers involved in the mapping process believe that the information in those mappings is true"@en
+.
+
+ex:understandability
+    a dqv:Dimension ;
+    dqv:inCategory ex:contextualCategory;
+    skos:prefLabel "Understandability"@en;
+    skos:definition "Understandability is concerned with human-readable information being provided to mappings and the resources being generated such that data producers and consumers are able to understand them"@en
+.
+
+
+

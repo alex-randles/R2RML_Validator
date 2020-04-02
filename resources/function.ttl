@@ -282,7 +282,18 @@ ex:ValidDatatypeShape
           ];
 .
 
+ex:ValidRangeShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:jsFunctionName "validateRange" ;
+              sh:message "Incorrect range detected.";
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
+          ];
+.
 
 ex:URIlength
     a sh:NodeShape ;
@@ -310,25 +321,7 @@ ex:URIqueryParameter
 
 
 
-ex:VariousLanguagesShape
-    sh:message "Data in only one language.";
-    sh:targetSubjectsOf rr:language ;
-    sh:targetClass rr:objectMap;
-    sh:xone (
-                [
-                    sh:property [
-                                    sh:path rr:language ;
-                                    sh:minCount 2;
-                                ]
-                ]
-                [
-                    sh:property [
-                                    sh:path rr:language;
-                                    sh:maxCount 0;
-                                ]
-                ]
-            ) ;
-.
+
 #  This metric consider all classes in a mapping defined to be
 #   instances of rdf:Statement, and predicate maps defined with any of the properties
 #   rdf:subject, rdf:predicate, or rdf:object.
@@ -404,7 +397,6 @@ ex:DuplicateTriplesShape
 
 
 ex:DisjointShape
-    sh:targetObjectsOf rr:class;
     sh:targetObjectsOf  rr:subjectMap ;
     sh:targetClass rr:SubjectMap ;
     sh:js [

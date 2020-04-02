@@ -1,5 +1,5 @@
-@prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -13,22 +13,22 @@
 
 <file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#TripleMap1>
         rr:logicalTable        [ rr:tableName  "dhdh" ] ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:joinCondition     [ rr:child   "DEPTNO" ;
-                                                                        rr:parent  "DEPTNO"
-                                                                      ] ;
-                                                 rr:language          "en-djdhd" ;
-                                                 rr:parentTriplesMap  <file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#TriplesMap2>
-                                               ] ;
-                                 rr:predicate  rdf:predicate ;
-                                 rr:termType   rr:BlankNode
-                               ] ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "army" ;
                                                  rr:datatype  xsd:integer ;
-                                                 rr:termType  rr:IRI
+                                                 rr:termType  rr:Literal
                                                ] ;
                                  rr:predicate  dbo:age
                                ] ;
-        rr:subjectMap          [ rr:class     rdf:Statement , foaf:Document , foaf:Agent , dbo:Agent ;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:joinCondition     [ rr:child   "DEPTNO" ;
+                                                                        rr:parent  "DEPTNO"
+                                                                      ] ;
+                                                 rr:language          "en-GB" ;
+                                                 rr:parentTriplesMap  <file:///home/alex/Desktop/R2RML_Validator/resources/sample_map.ttl#TriplesMap2>
+                                               ] ;
+                                 rr:predicate  rdf:predicate ;
+                                 rr:termType   rr:IRI
+                               ] ;
+        rr:subjectMap          [ rr:class     foaf:Document , rdf:Statement , dbo:Agent ;
                                  rr:template  "http://example.org/solider/{id}" ;
                                  rr:termType  rr:IRI
                                ] .

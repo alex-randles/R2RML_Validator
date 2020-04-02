@@ -13,13 +13,13 @@
 
 <#TripleMap1>
         rr:logicalTable        [rr:tableName "dhdh"]  ;
-        rr:predicateObjectMap  [ rr:objectMap  [ rr:termType rr:IRI;
+        rr:predicateObjectMap  [ rr:objectMap  [ rr:termType rr:Literal;
                                                    rr:column    "army" ;
-                                                 rr:datatype  xsd:string;
+                                                 rr:datatype  xsd:integer;
                                                ] ;
                                  rr:predicate  dbo:age;
                                ] ;
-        rr:subjectMap          [ rr:class     foaf:Agent, foaf:Document, rdf:Statement ;
+        rr:subjectMap          [ rr:class     foaf:Document, rdf:Statement, dbo:Agent ;
                                  rr:template  "http://example.org/solider/{id}";
                                  rr:termType rr:IRI;
 
@@ -27,10 +27,10 @@
 
         rr:predicateObjectMap [
     rr:predicate rdf:predicate;
-    rr:termType rr:BlankNode;
+    rr:termType rr:IRI;
 
     rr:objectMap [
-                     rr:language  'en-djdhd';
+                     rr:language  'en-GB';
 
                      rr:parentTriplesMap <#TriplesMap2>;
         rr:joinCondition [

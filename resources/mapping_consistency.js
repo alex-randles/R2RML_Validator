@@ -11,6 +11,7 @@ var datatype_validated = false;
 var labelling_validated = false;
 var accessibility_validated = false;
 var vcabulary_completeness_validated = false;
+var range_validated = false;
 
 function validateTermType(resource) {
     try{
@@ -203,6 +204,34 @@ function validateDatatype(resource) {
     }
 }
 
+function validateRange(resource) {
+    try{
+        var results = [];
+        if (!range_validated){
+            result = [] ;
+            var labelProperty = TermFactory.namedNode(NS+"predicate");
+            var labels = $data.find(resource, labelProperty, null);
+            for(;;) {
+                var labelTriple = labels.next();
+                if (!labelTriple) {
+                    break;
+                    return null;
+                }
+                var predicate = labelTriple.object;
+                var JavaCLass = Java.type("JavaClasses.Range");
+                var result = JavaCLass.validateRange(String(predicate));
+                if (!result) {
+                    results.push({value: predicate});
+                }
+            }
+            range_validated = true;
+            return results;
+        }
+    }
+    catch(err){
+        print("validateDomain " + err);
+    }
+}
 
 function validateLowLatency(resource) {
     try{
@@ -381,23 +410,5 @@ function addMissingDataTypes(resource){
 }
 
 
-function validateRange(resource){
-    try{
-        var predicate = getProperty(resource, "predicate");
-    	var datatype = getProperty(resource, "datatype");
-    	if (datatype && predicate){
-    	    	print("CHECKING RANGE predicate " + predicate, "datatype " + datatype);
-    	    	var JavaCLass = Java.type("JavaClasses.Range");
-    		    var string_predicate = String(predicate);
-    		    var string_datatype  = String(datatype);
-    	        var result = JavaCLass.validateRange(predicate, datatype);
-    	        return result;
-    	}
-    }
-
-    catch(err){
-        print("validateRange " + err);
-    }
-}
 
 

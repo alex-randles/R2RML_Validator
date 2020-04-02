@@ -11,54 +11,10 @@ public class DuplicateTriples {
     }
 
     public static boolean detectDuplicateTriples(){
-        if(duplicateTriples1(mappingFile)){
-            return true;
-        }
-        return false;
+        return duplicateTriples1(mappingFile);
     }
 
     public static boolean duplicateTriples1(String URI){
-        //    rr:predicateObjectMap [
-        //        rr:predicate ex:name;
-        //        rr:objectMap [ rr:column "ENAME" ];
-        //    ].
-
-//        String saveDuplicatePredicateObjectMap = "\n" +
-//                "  SELECT ?subject ?predicate ?column ?template ?datatype ?termType ?language ?parentTriplesMap ?child ?parent \n" +
-//                "  WHERE{\n" +
-//                "      ?subject      <http://www.w3.org/ns/r2rml#predicateObjectMap> ?predicateObjectMap.\n" +
-//                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#predicate> ?predicate.\n" +
-//                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#objectMap> ?objectMap. \n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#column> ?column. }\n" +
-//                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#template> ?template. }\n" +
-//                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#datatype> ?datatype. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#termType> ?termType. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#language> ?language. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#parentTriplesMap> ?parentTriplesMap. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#joinCondition> ?joinCondition. }\n" +
-//                "  OPTIONAL {?joinCondition     <http://www.w3.org/ns/r2rml#child> ?child. }  \n" +
-//                "  OPTIONAL {?joinCondition     <http://www.w3.org/ns/r2rml#parent> ?parent. }{\n" +
-//                "SELECT ?subject ?predicate ?column ?template ?datatype ?termType ?language ?parentTriplesMap ?child ?parent \n" +
-//                "WHERE {\n" +
-//                "  ?subject      <http://www.w3.org/ns/r2rml#predicateObjectMap> ?predicateObjectMap.\n" +
-//                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#predicate> ?predicate.\n" +
-//                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#objectMap> ?objectMap. \n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#column> ?column. }\n" +
-//                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#template> ?template. }\n" +
-//                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#datatype> ?datatype. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#termType> ?termType. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#language> ?language. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#parentTriplesMap> ?parentTriplesMap. }\n" +
-//                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#joinCondition> ?joinCondition. }\n" +
-//                "  OPTIONAL {?joinCondition     <http://www.w3.org/ns/r2rml#child> ?child. }  \n" +
-//                "  OPTIONAL {?joinCondition     <http://www.w3.org/ns/r2rml#parent> ?parent. }\n" +
-//                "}\n" +
-//                "GROUP BY ?subject ?predicate ?column ?template ?datatype ?termType ?language ?parentTriplesMap ?child ?parent \n" +
-//                "HAVING (COUNT(?predicateObjectMap)  > 1)\n" +
-//                "    }\n" +
-//                "}\n" +
-//                "  GROUP BY  ?predicate ?column ?template ?datatype ?termType ?language ?parentTriplesMap ?child ?parent ?subject \n" +
-//                "\n";
         String query = "\n" +
                 "\n" +
                 "SELECT (COUNT(?predicateObjectMap) AS ?count) ?subject ?predicate ?column ?template ?datatype ?termType ?language\n" +

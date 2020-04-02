@@ -18,8 +18,6 @@ public class SPARQL {
 
     }
 
-
-
     public static boolean askQuery(String URI, String query){
         try {
             Model model = ModelFactory.createDefaultModel().read(URI);
@@ -65,14 +63,13 @@ public class SPARQL {
 
     public static ResultSet selectQuery(String URI, String queryString){
         try{
-            Model model = ModelFactory.createDefaultModel() ;
-            model.read(URI);
+            Model model = ModelFactory.createDefaultModel().read(URI);
             Query query = QueryFactory.create(queryString) ;
             try (QueryExecution qexec = QueryExecutionFactory.create(query, model)) {
                 ResultSet results = qexec.execSelect() ;
                 results = ResultSetFactory.copyResults(results) ;
                 qexec.close() ;
-                return results ;    // Passes the result set out of the try-resources
+                return results ;
             }
 
 
