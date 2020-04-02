@@ -301,7 +301,7 @@ function validateDomain(resource) {
 
 
 
-function ValidateVocabularyCompleteness(resource) {
+function validateUndefined(resource) {
     try{
         var results = [];
         if (!vcabulary_completeness_validated){

@@ -428,7 +428,7 @@ ex:UndefinedShape
     sh:js [
               a sh:JSConstraint ;
               sh:message "Usage of undefined class or properties" ;
-              sh:jsFunctionName "ValidateVocabularyCompleteness" ;
+              sh:jsFunctionName "validateUndefined" ;
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
 ];

@@ -34,7 +34,58 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
+                    []  ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Usage of RDF reification" ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:class ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#NotConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    []  ;
+            <http://www.w3.org/ns/shacl#value>
+                    rdf:Statement
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Unable to derference URI." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#AccessibilityShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:agedgdydg
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b0 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Usage of undefined class or properties" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#UndefinedShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:agedgdydg
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
             <http://www.w3.org/ns/shacl#resultMessage>
                     "Data type and language tag defined in same term map" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
@@ -44,6 +95,6 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     <http://example.com/ns#DataTypeShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b0
+                    _:b1
           ]
 ] .

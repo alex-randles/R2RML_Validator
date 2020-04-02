@@ -46,21 +46,14 @@ public class Range {
             }
             boolean isLiteral = isDatatype(range);
             boolean correctRange;
-            System.out.println(777);
             if(isLiteral){
                 correctRange = termType.equals("http://www.w3.org/ns/r2rml#Literal");
-                System.out.println(correctRange);
-                System.out.println(isLiteral);
-                System.out.println(termType);
                 if(!correctRange){
                     Refinement.changeTermType(predicateURI, "http://www.w3.org/ns/r2rml#Literal");
                 }
             }
             else {
                correctRange = termType.equals("http://www.w3.org/ns/r2rml#IRI");
-                System.out.println(correctRange);
-                System.out.println(isLiteral);
-                System.out.println(termType);
                 if(!correctRange){
                     Refinement.changeTermType(predicateURI, "http://www.w3.org/ns/r2rml#IRI");
                 }

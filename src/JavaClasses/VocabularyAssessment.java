@@ -2,6 +2,7 @@ package JavaClasses;
 
 import org.apache.jena.query.*;
 
+import javax.swing.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 // import  org.apache.commons.httpclient.*;
@@ -165,7 +166,7 @@ public class VocabularyAssessment {
         // returns true if vocabulary contains definition relating to URI
         // if can not retrieve vocabulary, return true
         if (!DereferenceURI.accessRDF(URI)){
-            return true;
+            return false;
         }
         String query = String.format("ASK {<%s> ?predicate ?object} ", URI);
         System.out.println(query);
