@@ -211,37 +211,37 @@ ex:GraphMapShape
                 ] ;
 .
 
-#rr:DataTypeValueShape
-#    a sh:NodeShape ;
-#    sh:targetSubjectsOf rr:datatype, rr:language ;
-#    sh:targetClass rr:objectMap;
-#    sh:property [
-#                    sh:message "rr:datatype value should be a valid IRI" ;
-#                    sh:path rr:datatype;
-#                    sh:in ( rr:IRI ) ;
-#                ] ;
-#.
 
+ex:HumanLabellingShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
 
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No human-readable labelling detected." ;
+              sh:jsFunctionName "hasHumanReadableLabelling" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+          ];
+.
 
-#rr:VocabularyShape
-#    sh:targetSubjectsOf rr:predicate;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:targetClass rr:PredicateObjectMap;
-#
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "No human labelling" ;
-#              sh:jsFunctionName "hasHumanReadableLabelling" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-#          ];
-#.
+ex:HumanLicenseShaoe
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No human-readable license detected. " ;
+              sh:jsFunctionName "validateHumanLicense" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+          ];
+.
 
 ex:DomainShape
     sh:targetSubjectsOf rr:predicate;
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
-
     sh:js [
               a sh:JSConstraint ;
               sh:message "Domain Violation Detected" ;
@@ -249,25 +249,24 @@ ex:DomainShape
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
           ];
-
 .
 
 
 
 
-#rr:MachineLicenseShape
-#    sh:targetSubjectsOf rr:predicate;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:targetClass rr:PredicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "No machine-readable license." ;
-#              sh:jsFunctionName "validateMachineLicense" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-#
-#          ];
-#
-#.
+ex:MachineLicenseShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No machine-readable license detected." ;
+              sh:jsFunctionName "validateMachineLicense" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+
+          ];
+
+.
 
 ex:ValidDatatypeShape
     sh:targetSubjectsOf rr:predicate;
@@ -320,8 +319,6 @@ ex:URIqueryParameter
 .
 
 
-
-
 #  This metric consider all classes in a mapping defined to be
 #   instances of rdf:Statement, and predicate maps defined with any of the properties
 #   rdf:subject, rdf:predicate, or rdf:object.
@@ -367,19 +364,6 @@ rr:dd
 
 .
 
-#rr:LowLatencyShape
-#    sh:targetSubjectsOf rr:predicate;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:targetClass rr:PredicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "Low latency detected." ;
-#              sh:jsFunctionName "validateLowLatency" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
-#
-#          ];
-#
-#.
 
 ex:DuplicateTriplesShape
     sh:targetSubjectsOf rr:predicate;
@@ -421,17 +405,54 @@ ex:AccessibilityShape
 
 .
 
-
-ex:UndefinedShape
+ex:ProvenanceShape
     sh:targetObjectsOf rr:predicateObjectMap;
     sh:targetClass rr:PredicateObjectMap;
     sh:js [
               a sh:JSConstraint ;
-              sh:message "Usage of undefined class or properties" ;
-              sh:jsFunctionName "validateUndefined" ;
+              sh:message "No basic provenance information detected." ;
+              sh:jsFunctionName "validateBasicProvenance" ;
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
 
-];
+          ];
 
 .
 
+#ex:UndefinedShape
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:targetClass rr:PredicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "Usage of undefined class or properties" ;
+#              sh:jsFunctionName "validateUndefined" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#
+#];
+#
+#.
+
+
+ex:UndefinedShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Usage of Undefined class or property" ;
+              sh:jsFunctionName "validateUndefined" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js" ] ;
+          ];
+
+.
+
+
+#
+#ex:LanguageExampleShape
+#	a sh:NodeShape ;
+#	sh:targetSubjectsOf rr:predicateObjectMap;
+#	sh:js [    # _:b1
+#		a sh:JSConstraint ;   # This triple is optional
+#		sh:message "Values are literals with German language tag." ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"] ;
+#		sh:jsFunctionName "getEnglishLabel" ;
+#] .

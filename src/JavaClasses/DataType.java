@@ -3,9 +3,9 @@ package JavaClasses;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
-public class DataType {
+import java.io.File;
 
-    public static String mappingFile = "./resources/sample_map.ttl";
+public class DataType {
 
     public static void main(String[] args){
         String selectQuery = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
@@ -40,9 +40,9 @@ public class DataType {
                     "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
                     "  ?objectMap rr:datatype <%s>. \n" +
                     "}\n", predicateURI, range);
-            boolean correctDatatype = SPARQL.askQuery(mappingFile, askQuery);
+            boolean correctDatatype = SPARQL.askQuery(FileNames.originalMappingFile, askQuery);
             if (!correctDatatype) {
-                Refinement.AddDataTypeTriple(range, predicateURI, "./resources/new_sample_map.ttl");
+                Refinement.AddDataTypeTriple(range, predicateURI, FileNames.refinedMappingFile);
             }
             return correctDatatype;
         }

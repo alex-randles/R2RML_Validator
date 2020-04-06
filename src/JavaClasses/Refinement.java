@@ -11,8 +11,6 @@ import java.util.Iterator;
 
 public class Refinement {
 
-    public static String output_file = "./resources/new_sample_map.ttl";
-
     public static void main(String[] args){
         changeTermType("<http://dbpedia.org/ontology/age>", "<http://www.w3.org/ns/r2rml#IRIh>");
     }
@@ -25,7 +23,7 @@ public class Refinement {
             String domain = soln.get("?domain").toString() ;   // Get a result variable - must be a literal
             System.out.println("domain for " + URI + " is " + domain);
             if(!domain.isEmpty()){
-                AddDomainTriple(domain, "./resources/new_sample_map.ttl");
+                AddDomainTriple(domain, FileNames.refinedMappingFile);
                 return;
             }
         }
@@ -33,12 +31,11 @@ public class Refinement {
 
     public static void AddDomainTriple(String DomainURI, String MappingFile){
         String rename = String.format("INSERT  { ?object  <http://www.w3.org/ns/r2rml#class>  <%s>}\n  WHERE {  ?subject <http://www.w3.org/ns/r2rml#subjectMap> ?object. }", DomainURI) ;
-        SPARQL.updateData(rename, "./resources/new_sample_map.ttl", "./resources/new_sample_map.ttl");
+        SPARQL.updateData(rename, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
     }
 
-    public static String AddDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
-        Model model = ModelFactory.createDefaultModel();
-        model.read(output_file);
+    public static boolean AddDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
+        Model model = ModelFactory.createDefaultModel().read(FileNames.refinedMappingFile);
         String updateQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
                "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -51,8 +48,8 @@ public class Refinement {
                "  ?predicateObjectMap rr:objectMap ?objectMap.\n" +
                "  ?objectMap rr:datatype ?datatype.\n" +
                "  } ",  dataTypeURI, predicateURI);
-       SPARQL.updateData(updateQuery, output_file, output_file);
-        return "shdhd";
+       SPARQL.updateData(updateQuery, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
+        return  true;
     }
 
     public static boolean removeDuplicates(String URI){
@@ -85,7 +82,6 @@ public class Refinement {
                 "\n" +
                 "}\n" +
                 "  }}";
-        System.out.println(removeQuery);
         return true;
     }
 
@@ -100,7 +96,7 @@ public class Refinement {
                 "  ?predicateObjectMap rr:objectMap ?objectMap.\n" +
                 "  ?objectMap rr:termType ?termType.\n" +
                 "  } ", termType, predicateURI);
-        SPARQL.updateData(updateQuery, output_file, output_file);
+        SPARQL.updateData(updateQuery, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
         return true;
     }
 }

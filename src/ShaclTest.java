@@ -8,16 +8,24 @@ import java.io.*;
 
 public class ShaclTest {
 
+	public static String original_mapping_file  = "./resources/sample_map.ttl";
+	public static String function_file  = "./resources/function.ttl";
+	public static String output_file = "./resources/output.ttl";
+	public static String new_mapping_file = "./resources/new_sample_map.ttl";
+
 	public static void main(String[] args) throws InterruptedException, IOException {
-		String original_mapping_file  = "./resources/sample_map.ttl";
-		String function_file  = "./resources/function.ttl";
-		String output_file = "./resources/output.ttl";
-		String new_mapping_file = "./resources/new_sample_map.ttl";
-		copySampleMap(original_mapping_file, new_mapping_file);
-		runTest(function_file, original_mapping_file, output_file);
+		try{
+			// String input_file = args[0];
+			// copyMapping(input_file, original_mapping_file);
+			copyMapping(original_mapping_file, new_mapping_file);
+			runTest(function_file, original_mapping_file, output_file);
 //		GenerateReport.generateReport(output_file, original_mapping_file);
-	//	runTest(function_file, new_mapping_file, output_file);
-	//	GenerateReport.generateReport(output_file, new_mapping_file);
+			//	runTest(function_file, new_mapping_file, output_file);
+			//	GenerateReport.generateReport(output_file, new_mapping_file);
+		}
+		catch (Exception e){
+			System.out.println("Problem assessing your mapping... ");
+		}
 	}
 
 
@@ -45,7 +53,7 @@ public class ShaclTest {
 	}
 
 
-	public static void copySampleMap(String input_file, String output_file){
+	public static void copyMapping(String input_file, String output_file){
 		Model data = ModelFactory.createDefaultModel();
 		data.read(input_file);
 		File copy_file = new File(output_file);

@@ -4,6 +4,8 @@ JavaClasses/DereferenceURI.class
 JavaClasses/Refinement.class
 JavaClasses/SPARQL.class
 JavaClasses/Domain.class
+JavaClasses/Undefined.class
+JavaClasses/FileNames.class
 JavaClasses/GenerateReport.class
 ShaclTest.class
 JavaClasses/Disjoint.class

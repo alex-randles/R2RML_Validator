@@ -1,8 +1,8 @@
 var NS = "http://www.w3.org/ns/r2rml#";
 var duplicates_checked = false;
 var disjoint_classes_check = false;
-var low_latency_validated = false;
 var machine_license_validated = false;
+var human_license_validated = false;
 var domain_check = false;
 var domain_validated = false;
 var missing_datatype_check = false;
@@ -10,47 +10,22 @@ var term_type_check = false;
 var datatype_validated = false;
 var labelling_validated = false;
 var accessibility_validated = false;
+var basic_provenance_validated = false;
 var vcabulary_completeness_validated = false;
 var range_validated = false;
 
-function validateTermType(resource) {
-    try{
-        // repair the term type if incorrect
-        if(!term_type_check){
-            var labelProperty = TermFactory.namedNode(NS+"predicate");
-            var labels = $data.find(resource, labelProperty, null);
-            for(;;) {
-                var labelTriple = labels.next();
-                if(!labelTriple) {
-                    break;
-                    return null;
-                }
-                var JavaCLass = Java.type("JavaClasses.TermType");
-                var Result = JavaCLass.repairTermType(String(labelTriple.object));
-
-            }
-            term_type_check = true;
-
-        }
-
-    }
-
-    catch (err) {
-        print("ERROR REPAIRING TERM TYPE ", err )
-    }
-
-
-}
-
 
 function getProperty($this, name) {
-	var it = $data.find($this, TermFactory.namedNode(NS + name), null);
-	var result = it.next().object;
-	it.close();
-	return result;
+    try{
+    	var it = $data.find($this, TermFactory.namedNode(NS + name), null);
+    	var result = it.next().object;
+    	it.close();
+    	return result;
+    }
+    catch(err){
+         return;
+    }
 }
-
-
 
 function hasHumanReadableLabelling(resource) {
     try{
@@ -66,6 +41,10 @@ function hasHumanReadableLabelling(resource) {
                     return null;
                 }
                 var predicate = labelTriple.object;
+                if (!isUndefined(predicate)){
+                    break;
+                    return null;
+                }
                 var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
                 var result = JavaCLass.hasHumamReadableLabelling(predicate);
                 if(!result){
@@ -78,6 +57,7 @@ function hasHumanReadableLabelling(resource) {
     }
     catch(err){
         print("validateDomain " + err);
+        return true;
     }
 }
 
@@ -107,10 +87,10 @@ function isAccessible(resource) {
 
             return results;
         }
-
     }
     catch(err){
         print("accessibility error  " + err);
+        return true;
     }
 }
 
@@ -127,10 +107,10 @@ function validateDuplicateTriples(resource) {
     }
     catch(err){
         print("validateDuplicateTriples ", err);
+        return true;
     }
 
 }
-
 
 
 function getAllValues(name, resource){
@@ -147,13 +127,12 @@ function getAllValues(name, resource){
 
             var label = labelTriple.object;
             result.push(label);
-
-
         }
         return result;
     }
     catch(err){
         print("getAllValues ", err);
+        return;
     }
 }
 
@@ -173,6 +152,7 @@ function validateDisjointClasses(resource){
     }
     catch(err){
         print("validateDisjointClasses " + err);
+        return true;
     }
 }
 
@@ -191,6 +171,10 @@ function validateDatatype(resource) {
                     return null;
                 }
                 var predicate = labelTriple.object;
+                 if (isUndefined(predicate)){
+                           break;
+                           return null;
+                 }
                 var JavaCLass = Java.type("JavaClasses.DataType");
                 var result = JavaCLass.validateDatatype(String(predicate));
                 if (!result) {
@@ -204,6 +188,7 @@ function validateDatatype(resource) {
     }
     catch(err){
         print("validateDomain " + err);
+        return true;
     }
 }
 
@@ -233,6 +218,7 @@ function validateRange(resource) {
     }
     catch(err){
         print("validateDomain " + err);
+        return true;
     }
 }
 
@@ -251,20 +237,91 @@ function validateMachineLicense(resource) {
                     return null;
                 }
                 var predicate = labelTriple.object;
+                 if (!isUndefined(predicate)){
+                           break;
+                           return null;
+                 }
                 var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
                 var result = JavaCLass.hasMachineReadableLicense(String(predicate));
                 if (!result) {
                     results.push({value: predicate});
-
                 }
             }
             machine_license_validated = true;
-
             return results;
         }
     }
     catch(err){
-        print("validateDomain " + err);
+        print("machine license error  " + err);
+        return true;
+    }
+}
+
+function validateHumanLicense(resource) {
+    try{
+        var results = [];
+        if (!human_license_validated){
+            result = [] ;
+            var labelProperty = TermFactory.namedNode(NS+"predicate");
+            var labels = $data.find(resource, labelProperty, null);
+            for(;;) {
+                var labelTriple = labels.next();
+                if (!labelTriple) {
+                    break;
+                    return null;
+                }
+                var predicate = labelTriple.object;
+                 if (!isUndefined(predicate)){
+                           break;
+                           return null;
+                 }
+                var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
+                var result = JavaCLass.hasHumanReadableLicense(String(predicate));
+                if (!result) {
+                    results.push({value: predicate});
+                }
+            }
+            human_license_validated = true;
+            return results;
+        }
+    }
+    catch(err){
+        print("human license " + err);
+        return true;
+    }
+}
+
+function validateBasicProvenance(resource) {
+    try{
+        var results = [];
+        if (!basic_provenance_validated){
+            result = [] ;
+            var labelProperty = TermFactory.namedNode(NS+"predicate");
+            var labels = $data.find(resource, labelProperty, null);
+            for(;;) {
+                var labelTriple = labels.next();
+                if (!labelTriple) {
+                    break;
+                    return null;
+                }
+                var predicate = labelTriple.object;
+                 if (!isUndefined(predicate)){
+                           break;
+                           return null;
+                 }
+                var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
+                var result = JavaCLass.hasBasicProvenance(String(predicate));
+                if (!result) {
+                    results.push({value: predicate});
+                }
+            }
+            basic_provenance_validated = true;
+            return results;
+        }
+    }
+    catch(err){
+        print("human license " + err);
+        return true;
     }
 }
 
@@ -281,6 +338,10 @@ function validateDomain(resource) {
                 break;
                 return null;
             }
+            if (isUndefined(predicate)){
+                           break;
+                           return null;
+            }
             var predicate = labelTriple.object;
             var JavaCLass = Java.type("JavaClasses.Domain");
             var result = JavaCLass.validateAllDomains(getAllValues("class", resource), String(predicate));
@@ -295,91 +356,83 @@ function validateDomain(resource) {
     }
     catch(err){
         print("validateDomain " + err);
+        return true;
      }
     }
 
+function isUndefined(URI){
+           var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
+           var result = JavaCLass.validateUndefined(String(URI));
+           return !result;
+}
+
+//
+//function validateUndefined(resource) {
+//    try{
+//        var results = [];
+//        if (!vcabulary_completeness_validated){
+//            result = [] ;
+//            var labelProperty = TermFactory.namedNode(NS+"predicate");
+//            var labels = $data.find(resource, labelProperty, null);
+//            for(;;) {
+//                var labelTriple = labels.next();
+//                if (!labelTriple) {
+//                    break;
+//                    return null;
+//                }
+//                var predicate = labelTriple.object;
+//                var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
+//                var result = JavaCLass.validateUndefined(predicate);
+//                if (!result) {
+//                    results.push({value: predicate});
+//
+//                }
+//            }
+//            vcabulary_completeness_validated = true;
+//            return results;
+//        }
+//    }
+//    catch(err){
+//        print("validateDomain " + err);
+//        return true;
+//    }
+//}
 
 
-
-function validateUndefined(resource) {
+function validateUndefined($this) {
     try{
         var results = [];
-        if (!vcabulary_completeness_validated){
-            result = [] ;
-            var labelProperty = TermFactory.namedNode(NS+"predicate");
-            var labels = $data.find(resource, labelProperty, null);
-            for(;;) {
-                var labelTriple = labels.next();
-                if (!labelTriple) {
-                    break;
-                    return null;
-                }
-                var predicate = labelTriple.object;
-                var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
-                var result = JavaCLass.vocabularyCompleteness(predicate);
-                if (!result) {
-                    results.push({value: predicate});
-
-                }
+        var p = TermFactory.namedNode(NS+"predicate");
+        var s = $data.find($this, p, null);
+        for(var t = s.next(); t; t = s.next()) {
+            var object = t.object;
+            print("label", object, isUndefined(object));
+            var result = isUndefined(object);
+            if(result) {
+                results.push({
+                    value : object
+                });
             }
-            vcabulary_completeness_validated = true;
-
-            return results;
         }
+        return results;
     }
     catch(err){
         print("validateDomain " + err);
-    }
-}
-
-function countOccurrences(numArray, num){
-        try{
-            var count = 0;
-            for (var i = 0; i < numArray.length; i++  ){
-
-                var bool = true;
-                for (var j = 0; j < num.length; j++  ){
-                    if (String(numArray[i][j]) != String(num[j])){
-                        bool = false;
-                        print(String(numArray[i][j]), String(num[j]), bool)
-                    }
-                    }
-
-                  if (bool === true){
-                        count++;
-                  }
-               }
-            return count
-        }
-        catch(err){
-            print("countOccurrences " + err);
-            }
-        }
-
-function addMissingDataTypes(resource){
-    try{
-        var labelProperty = TermFactory.namedNode(NS+"predicate");
-        var labels = $data.find(resource, labelProperty, null);
-        if (!missing_datatype_check){
-        for(;;) {
-            var labelTriple = labels.next();
-            if(!labelTriple) {
-                break;
-                return null;
-            }
-            var label = labelTriple.object;
-            var JavaCLass = Java.type("JavaClasses.DataType");
-            var result = JavaCLass.validateDataType(String(label), "./resources/sample_map.ttl");
-        }
-        missing_datatype_check = true;
-        }
-    }
-    catch(err){
-        print("addMissingDataTypes " + err);
         return true;
     }
 }
 
 
 
-
+function getEnglishLabel(resource) {
+	var labelProperty = TermFactory.namedNode(NS+"predicate");
+	var labels = $data.find(resource, labelProperty, null);
+	for(;;) {
+		var labelTriple = labels.next();
+		if(!labelTriple) {
+			return null;
+		}
+		var label = labelTriple.object;
+		print("label ", label);
+	}
+}

@@ -1,183 +1,44 @@
 package JavaClasses;
 
 import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.sparql.vocabulary.FOAF;
 
-import javax.swing.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-// import  org.apache.commons.httpclient.*;
-
 
 public class VocabularyAssessment {
 
 
     public static void main(String[] args) {
-        // calculate number of unique subjects with human labellings
-        //System.out.println(hasHumamReadableLabelling("http://dbpedia.org/ontology/Person")) ;
-        // System.out.println(vocabularyCompleteness("http://dbpedia.org/ontology/djdjdjd"));
-        System.out.println(getRDF(NS.FOAF_NS+"age"));
+        // System.out.println(test("http://purl.org/dc/terms/"));
+//        System.out.println("human license : ");
+//        System.out.println(hasHumanReadableLicense("<http://dbpedia.org/ontology/age>"));
+//        System.out.print("machine license : ");
+          System.out.println(test("http://purl.org/dc/terms/"));
+//        System.out.print("human labelling : ");
+//        System.out.println(hasHumamReadableLabelling(NS.FOAF_NS+"name"));
 
     }
 
     public static boolean isAccessible(String URI){
-        // check if resource is accessible
         boolean result =  DereferenceURI.accessRDF(URI);
         return result;
     }
 
-
-    public static int subjectCount(String URI) {
-        // calculate total number of unique subjects
-        String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s ?p ?o }";
-        ResultSet results = SPARQL.selectQuery(URI, query);
-        for (; results.hasNext(); ) {
-            QuerySolution soln = results.nextSolution();
-            String count = soln.getLiteral("?triples").toString();   // Get a result variable - must be a literal
-            if (!count.isEmpty()) {
-                int numSubjects = Integer.parseInt(count.split("\\^")[0]);
-                System.out.println(String.format("URI %s has %s unique subjects", URI, numSubjects));
-
-                return numSubjects;
-            }
-
-        }
-        return 0;
-    }
-
-    public static int numRangeDefinition(String URI) {
-        // calculate number of unique subjects with range definitions
-        String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#range> ?o }";
-        ResultSet results = SPARQL.selectQuery(URI, query);
-        for (; results.hasNext(); ) {
-            QuerySolution soln = results.nextSolution();
-            String count = soln.getLiteral("?triples").toString();   // Get a result variable - must be a literal
-            if (!count.isEmpty()) {
-                int numRange = Integer.parseInt(count.split("\\^")[0]);
-                System.out.println(String.format("URI %s has range %s triples", URI, numRange));
-                return numRange;
-            }
-
-        }
-        return 0;
-    }
-
-    public static int numDefinedBy(String URI) {
-        // calculate number of unique subjects with defined by
-        String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> ?o }";
-        ResultSet results = SPARQL.selectQuery(URI, query);
-        for (; results.hasNext(); ) {
-            QuerySolution soln = results.nextSolution();
-            String count = soln.getLiteral("?triples").toString();   // Get a result variable - must be a literal
-            if (!count.isEmpty()) {
-                int numSubjects = Integer.parseInt(count.split("\\^")[0]);
-                System.out.println(String.format("URI %s has defined by %s triples", URI, numSubjects));
-
-                return numSubjects;
-            }
-
-        }
-        return 0;
-    }
-
-    public static int numDomainDefinition(String URI){
-            // calculate number of unique subjects with domain definitions
-            String query = "SELECT (COUNT(DISTINCT ?s) AS ?triples) WHERE { ?s <http://www.w3.org/2000/01/rdf-schema#domain> ?o }";
-            ResultSet results = SPARQL.selectQuery(URI, query);
-            for (; results.hasNext(); ) {
-                QuerySolution soln = results.nextSolution();
-                String count = soln.getLiteral("?triples").toString();   // Get a result variable - must be a literal
-                if (!count.isEmpty()) {
-                    int numSubjects = Integer.parseInt(count.split("\\^")[0]);
-                    System.out.println(String.format("URI %s has domain %s triples", URI, numSubjects));
-
-                    return numSubjects;
-                }
-
-            }
-            return 0;
-    }
-
-    public static int numHumanLabelling(String URI){
-        // calculate number of unique subjects with human labellings
-        String query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
-                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-                "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
-                "PREFIX dcterms: <http://purl.org/dc/terms/> \n" +
-                "PREFIX ct: <http://data.linkedct.org/resource/linkedct/>\n" +
-                "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-                "PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>\n" +
-                "PREFIX schema: <http://schema.org/>\n" +
-                "PREFIX powder-s: <http://www.w3.org/2007/05/powder-s#> \n" +
-                "\n" +
-                "SELECT (COUNT( DISTINCT ?subject) as ?count) \n" +
-                "WHERE {\n" +
-                "   OPTIONAL { ?subject rdfs:label ?label }.\n" +
-                "   OPTIONAL { ?subject dcterms:title ?label }.\n" +
-                "   OPTIONAL { ?subject dcterms:description ?label }.\n" +
-                "   OPTIONAL { ?subject dcterms:alternative ?label }.\n" +
-                "   OPTIONAL { ?subject skos:altLabel ?label }.\n" +
-                "   OPTIONAL { ?subject skos:prefLabel ?label }.\n" +
-                "   OPTIONAL { ?subject powder-s:text ?label }.\n" +
-                "   OPTIONAL { ?subject skosxl:altLabel?label }.\n" +
-                "   OPTIONAL { ?subject skosxl:hiddenLabel ?label }.\n" +
-                "   OPTIONAL { ?subject skosxl:prefLabel ?label }.\n" +
-                "   OPTIONAL { ?subject skosxl:literalForm ?label }.\n" +
-                "    OPTIONAL { ?subject schema:description ?label }.\n" +
-                "    OPTIONAL { ?subject schema:alternateName ?label }.\n" +
-                "    OPTIONAL { ?subject foaf:name ?label }.\n" +
-                "\n" +
-                "}\n";
-
-        ResultSet results = SPARQL.selectQuery(URI, query);
-        for (; results.hasNext(); ) {
-            QuerySolution soln = results.nextSolution();
-            String count = soln.getLiteral("?count").toString();   // Get a result variable - must be a literal
-            if (!count.isEmpty()) {
-                int numLabels = Integer.parseInt(count.split("\\^")[0]);
-                System.out.println(String.format("URI %s has labelling %s triples", URI, numLabels));
-                return numLabels;
-            }
-
-        }
-        return 0;
-    }
-
-
-    public static boolean lowLatency(String URI){
-        // if vocabulary not available, return true
-        if(!DereferenceURI.getResponseCode(URI)){
-            return true;
-        }
-        // ideal time is 1 seconds
-        // return true if <= else false
-        double idealTime = 1.0;
-        long startTime = System.nanoTime();
-        boolean response  = DereferenceURI.getResponseCode(URI);
-        long elapsedTime = System.nanoTime() - startTime;
-        double elapsedSeconds = (double)elapsedTime / 1_000_000_000.0;
-        if (response && elapsedSeconds < idealTime){
-            return true;
-        }
-        return false;
-    }
-
-
-    public static boolean vocabularyCompleteness(String URI){
-        // returns true if vocabulary contains definition relating to URI
-        // if can not retrieve vocabulary, return true
+    public static boolean validateUndefined(String URI){
         if (!DereferenceURI.accessRDF(URI)){
             return false;
         }
         String query = String.format("ASK {<%s> ?predicate ?object} ", URI);
-        System.out.println(query);
         boolean result = SPARQL.askQuery(URI, query);
         return result;
-
-
     }
+
+
     public static boolean hasMachineReadableLicense(String URI){
-        // returns true if machine readable license present
-        // http://purl.org/NET/rdflicense/.* as predicate and object is a valid license
         String[] licensePredicates = {
                 "<http://purl.org/dc/terms/license>",
                 "<http://purl.org/dc/terms/rights>",
@@ -186,67 +47,88 @@ public class VocabularyAssessment {
                 "<http://creativecommons.org/ns#license>",
                 "<http://purl.org/dc/elements/1.1/licence>",
                 "<http://usefulinc.com/ns/doap#license>",
-                "<http://schema.org/license>"
+                "<http://schema.org/license>",
+
                 };
         String joinedPredicates = String.join("|", licensePredicates);
         String query = String.format("ASK {?s %s ?o}", joinedPredicates);
         boolean result = SPARQL.askQuery(URI, query);
-        System.out.println(result);
-        return true;
+        return result;
 
     }
 
-    public static boolean hasHumanReadableLicense(String URI){
-        String[] licensePredicates = {
-                "<http://purl.org/dc/terms/description>",
-                "<http://www.w3.org/2000/01/rdf-schema#comment>",
-                "<http://www.w3.org/2000/01/rdf-schema#label>",
-                "<http://schema.org/description>"
-                };
-        String regularExpression = "(licensed|rights|copyrighted|license)+";
-        String joinedPredicates = String.join("|", licensePredicates);
-        String query = String.format("ASK {  \n" +
-                "  ?subject %s ?object. \n" +
-                "  FILTER regex(?object, \"(licensed|rights|copyrighted|license)+\"). \n" +
-                "} ", joinedPredicates );
-        boolean result = SPARQL.askQuery(URI, query);
-        return result;
-        }
-
-        public static boolean highThroughput(String URI){
-//            MultiThreadedHttpConnectionManager connectionManager =
-//                    new MultiThreadedHttpConnectionManager();
-//            HttpClient client = new HttpClient(connectionManager);
-//            // and then from inside some thread executing a method
-            return true;
-
-
-
-        }
-
-        public static boolean hasHumamReadableLabelling(String URI){
-            // if can not retrieve vocabulary, return true
+    public static boolean hasBasicProvenance(String URI){
+        try{
             if (!DereferenceURI.accessRDF(URI)){
                 return true;
             }
-            String[] labellingPredicates = new String[]{"rdfs:label", "dcterms:title", "dcterms:description",
-                    "dcterms:alternative", "skos:altLabel", "skos:prefLabel", "powder-s:text",
-                    "skosxl:altLabel", "skosxl:hiddenLabel", "skosxl:prefLabel", "skosxl:literalForm",
-                    "schema:description", "schema:description", "foaf:name" };
-            String joinedPredicates = String.join("|", labellingPredicates);
-            String query = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
-                    "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-                    "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
-                    "PREFIX dcterms: <http://purl.org/dc/terms/> \n" +
-                    "PREFIX ct: <http://data.linkedct.org/resource/linkedct/>\n" +
-                    "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-                    "PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>\n" +
-                    "PREFIX schema: <http://schema.org/>\n" +
-                    "PREFIX powder-s: <http://www.w3.org/2007/05/powder-s#> \n" +
-                    "\n" +
-                    "ASK {<%s> %s ?object} ", URI, joinedPredicates);
+            String query = "PREFIX dc: <http://purl.org/dc/elements/1.1/>" +
+                    "PREFIX foaf: <http://xmlns.com/foaf/0.1/> " +
+                    "PREFIX dcterms: <http://purl.org/dc/terms/>" +
+                    "ASK { ?s dc:publisher|dc:creator|foaf:maker|dcterms:creator ?o}";
             boolean result = SPARQL.askQuery(URI, query);
             return result;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return true;
+        }
+    }
+
+    public static boolean hasHumanReadableLicense(String URI){
+        try{
+            if (!DereferenceURI.accessRDF(URI)){
+                return true;
+            }
+            String[] licensePredicates = {
+                    "<http://purl.org/dc/terms/description>",
+                    "<http://www.w3.org/2000/01/rdf-schema#comment>",
+                    "<http://www.w3.org/2000/01/rdf-schema#label>",
+                    "<http://schema.org/description>"
+            };
+            String regularExpression = "(licensed|rights|copyrighted|license)+";
+            String joinedPredicates = String.join("|", licensePredicates);
+            String query = String.format("ASK {  \n" +
+                    "  ?subject %s ?object. \n" +
+                    "  FILTER regex(?object, \"(licensed|rights|copyrighted|license)+\"). \n" +
+                    "} ", joinedPredicates );
+            boolean result = SPARQL.askQuery(URI, query);
+            return result;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return true;
+            }
+        }
+
+        public static boolean hasHumamReadableLabelling(String URI){
+            try{
+                if (!DereferenceURI.accessRDF(URI)){
+                    return true;
+                }
+                String[] labellingPredicates = new String[]{"rdfs:label", "dcterms:title", "dcterms:description",
+                        "dcterms:alternative", "skos:altLabel", "skos:prefLabel", "powder-s:text",
+                        "skosxl:altLabel", "skosxl:hiddenLabel", "skosxl:prefLabel", "skosxl:literalForm",
+                        "schema:description", "schema:description", "foaf:name" };
+                String joinedPredicates = String.join("|", labellingPredicates);
+                String query = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n" +
+                        "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+                        "PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n" +
+                        "PREFIX dcterms: <http://purl.org/dc/terms/> \n" +
+                        "PREFIX ct: <http://data.linkedct.org/resource/linkedct/>\n" +
+                        "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
+                        "PREFIX skosxl: <http://www.w3.org/2008/05/skos-xl#>\n" +
+                        "PREFIX schema: <http://schema.org/>\n" +
+                        "PREFIX powder-s: <http://www.w3.org/2007/05/powder-s#> \n" +
+                        "\n" +
+                        "ASK {<%s> %s ?object} ", URI, joinedPredicates);
+                boolean result = SPARQL.askQuery(URI, query);
+                return result;
+            }
+            catch(Exception e){
+                System.out.println(e);
+                return true;
+            }
         }
 
     public static boolean getRDF(String string_URL) {
@@ -265,6 +147,29 @@ public class VocabularyAssessment {
             return false;
         }
 
+    }
+
+    public static boolean test(String URI){
+        Model model = ModelFactory.createDefaultModel().read(URI);
+        String queryString = " select ?p ?o where {\n" +
+                "  ?x ?p ?o\n" +
+                "  filter( regex(?p, \"void\" ))\n" +
+                "}";
+        Query query = QueryFactory.create(queryString) ;
+        try (QueryExecution qexec = QueryExecutionFactory.create(queryString, model)) {
+            ResultSet results = qexec.execSelect() ;
+            for ( ; results.hasNext() ; )
+            {
+                QuerySolution soln = results.nextSolution() ;
+               // RDFNode s = soln.get("?s") ;       // Get a result variable by name.
+                RDFNode o = soln.get("?o") ;       // Get a result variable by name.
+                RDFNode p = soln.get("?p") ;       // Get a result variable by name.
+                System.out.println(String.format("  %s %s", o.toString(), p.toString()));
+
+
+            }
+        }
+        return true;
     }
 
 }

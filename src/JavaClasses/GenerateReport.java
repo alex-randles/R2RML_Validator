@@ -12,9 +12,6 @@ import java.util.Map;
 
 public class GenerateReport {
 
-
-    public static String outputFileName = "./resources/output.ttl";
-    public static String mappingFileName = "./resources/sample_map.ttl";
     public static String domainShape = NS.R2RML_NS + "DomainShape";
     public static String disjointShape = NS.R2RML_NS + "DisjointShape";
     public static String termTypeShape = NS.R2RML_NS + "ValidTermType";
@@ -27,7 +24,7 @@ public class GenerateReport {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.println(getNumberOccurrences(mappingFileName, NS.R2RML_NS+"predicate"));
+        System.out.println(getNumberOccurrences(FileNames.originalMappingFile, NS.R2RML_NS+"predicate"));
 
     }
 
@@ -94,7 +91,7 @@ public class GenerateReport {
 
     public static void querySHACLOutput(String fileName) {
         if (!shapeConforms(fileName)) {
-            ArrayList<String> shapes = selectSourceShape(outputFileName);
+            ArrayList<String> shapes = selectSourceShape(FileNames.reportFile);
             Map<String, Integer> counts = new HashMap<String, Integer>();
             for(String shape : shapes){
                 if(counts.get(shape)==null){

@@ -10,10 +10,6 @@ import java.io.FileOutputStream;
 
 public class SPARQL {
 
-    public static String RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#" ;
-    public static String FOAF_NS = "http://xmlns.com/foaf/0.1/";
-
-
     public static void main(String[] args){
 
     }
@@ -86,15 +82,13 @@ public class SPARQL {
                 QuerySolution soln = results.nextSolution();
                 System.out.println(soln);
                 String s = soln.get(variableName).toString();
-                // System.out.println(variableName);
-                // System.out.println(soln.get("?predicate").toString());
                 return s;
             }
+            return "";
         }
         catch (Exception e) {
             System.out.println(e);
+            return "";
         }
-        return "";
-
     }
 }

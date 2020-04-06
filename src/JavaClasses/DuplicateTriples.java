@@ -5,65 +5,79 @@ import org.apache.jena.query.ResultSetFactory;
 
 public class DuplicateTriples {
 
-    public static String mappingFile = "./resources/sample_map.ttl";
     public static void main(String[] args){
-        detectDuplicateTriples();
+        boolean result = detectDuplicateTriples();
+        System.out.println(result);
     }
 
     public static boolean detectDuplicateTriples(){
-        return duplicateTriples1(mappingFile);
+        boolean result1  = duplicateTriples1(FileNames.originalMappingFile);
+        boolean result2 = duplicateTriplesCase2(FileNames.originalMappingFile);
+        boolean result3 = duplicateTriplesCase3(FileNames.originalMappingFile);
+        if(result1 || result2 || result3){
+            return false;
+        }
+        return true;
     }
 
     public static boolean duplicateTriples1(String URI){
+        // test for duplicate predicate object maps
         String query = "\n" +
                 "\n" +
-                "SELECT (COUNT(?predicateObjectMap) AS ?count) ?subject ?predicate ?column ?template ?datatype ?termType ?language\n" +
+                "PREFIX rr: <http://www.w3.org/ns/r2rml#> " +
+                "SELECT (COUNT(?predicateObjectMap) AS ?count)  ?subject ?predicate ?column ?template ?datatype ?termType ?language\n" +
                 "WHERE {\n" +
-                "  ?subject \t<http://www.w3.org/ns/r2rml#predicateObjectMap> ?predicateObjectMap.\n" +
-                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#predicate> ?predicate.\n" +
-                "  ?predicateObjectMap <http://www.w3.org/ns/r2rml#objectMap> ?objectMap. \n" +
-                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#column> ?column. }\n" +
-                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#template> ?template. }\n" +
-                "  OPTIONAL {?objectMap    <http://www.w3.org/ns/r2rml#datatype> ?datatype. }\n" +
-                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#termType> ?termType. }\n" +
-                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#language> ?language. }\n" +
-                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#parentTriplesMap> ?parentTriplesMap. }\n" +
-                "  OPTIONAL {?objectMap     <http://www.w3.org/ns/r2rml#joinCondition> ?joinCondition. }\n" +
-                "  OPTIONAL {?joinCondition     <http://www.w3.org/ns/r2rml#child> ?child. }" +
-                "  OPTIONAL {?joinCondition     <http://www.w3.org/ns/r2rml#parent> ?parent. }" +
+                "  ?subject \t rr:predicateObjectMap ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap rr:predicate ?predicate.\n" +
+                "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
+                "  OPTIONAL {?objectMap     rr:column ?column. }\n" +
+                "  OPTIONAL {?objectMap    rr:template  ?template. }\n" +
+                "  OPTIONAL {?objectMap    rr:datatype ?datatype. }\n" +
+                "  OPTIONAL {?objectMap     rr:termType ?termType. }\n" +
+                "  OPTIONAL {?objectMap     rr:language ?language. }\n" +
+                "  OPTIONAL {?objectMap     rr:parentTriplesMap ?parentTriplesMap. }\n" +
+                "  OPTIONAL {?objectMap     rr:joinCondition ?joinCondition. }\n" +
+                "  OPTIONAL {?joinCondition     rr:child ?child. }" +
+                "  OPTIONAL {?joinCondition     rr:parent ?parent. }" +
                 "}\n" +
-                "GROUP BY ?subject ?predicate ?column ?template ?datatype ?termType ?language ?parentTriplesMap ?joinCondition ?child ?parent\n" +
+                "GROUP BY ?subject ?predicate ?column ?template ?datatype ?termType ?language ?parentTriplesMap  ?child ?parent \n" +
                 "HAVING (COUNT(?predicateObjectMap)  > 1)\n" +
                 "\n" +
                 "\n";
         ResultSet results = SPARQL.selectQuery(URI, query);
         String count = SPARQL.getStringVariable(results, "?count");
-        System.out.println("duplicate triples count");
-        System.out.println(query);
-        System.out.println(!count.isEmpty());
-
-        return count.isEmpty();
-    }
-
-    public static boolean removeDuplicates(String URI, ResultSet results ){
-        return true;
+        return !count.isEmpty();
     }
 
     public static boolean duplicateTriplesCase2(String URI){
-        // rr:predicateMap [ rr:constant rdf:type ];
-        // rr:objectMap [ rr:constant ex:Employee ]
-        String query = "\n" +
-                "  SELECT   (COUNT(?objectMap) AS ?count) ?predicateMapConstant ?objectMapConstant\n" +
-                "WHERE {\n" +
-                "  ?subject <http://www.w3.org/ns/r2rml#subjectMap> ?subjectMap.\n" +
-                "\t?subject\t    <http://www.w3.org/ns/r2rml#predicateMap> ?predicateMap.\n" +
-                "   \t?subject      <http://www.w3.org/ns/r2rml#objectMap> ?objectMap. \n" +
-                "   \t?predicateMap      <http://www.w3.org/ns/r2rml#constant> ?predicateMapConstant.\n" +
-                "    ?objectMap      <http://www.w3.org/ns/r2rml#constant> ?objectMapConstant.\n" +
+        // test for duplicate constant predicate map
+        String query = "PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
+                "SELECT (COUNT(?predicateObjectMap) as ?count) ?predicateMapConstant ?objectMapConstant\n" +
+                "WHERE{\n" +
+                "  ?subject rr:predicateObjectMap ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap rr:predicateMap ?predicateMap.\n" +
+                "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
+                "  ?predicateMap rr:constant ?predicateMapConstant. \n" +
+                "  ?objectMap rr:constant ?objectMapConstant\n" +
                 "}\n" +
-                "\n" +
-                "GROUP BY  ?predicateMapConstant ?objectMapConstant ?objectMap\n" +
-                "HAVING (COUNT(?objectMap) > 1)";
+                "GROUP BY ?subject ?predicateMapConstant ?objectMapConstant\n" +
+                "HAVING(COUNT(?predicateObjectMap) > 1) ";
+        ResultSet results = SPARQL.selectQuery(URI, query);
+        String count = SPARQL.getStringVariable(results, "?count");
+        return !count.isEmpty();
+    }
+
+    public static boolean duplicateTriplesCase3(String URI){
+        // test case constant shortcut properties
+        String query = "PREFIX rr: <http://www.w3.org/ns/r2rml#> \n" +
+                "SELECT  (COUNT(?predicateObjectMap) AS ?count)\n" +
+                "WHERE {\n" +
+                "  ?subject       rr:predicateObjectMap ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap rr:predicate ?predicate.\n" +
+                "  ?predicateObjectMap rr:object ?object . \n" +
+                "}\n" +
+                "GROUP BY ?subject ?predicate ?object\n" +
+                "HAVING (COUNT(?predicateObjectMap)  > 1)\n";
         ResultSet results = SPARQL.selectQuery(URI, query);
         String count = SPARQL.getStringVariable(results, "?count");
         return !count.isEmpty();
