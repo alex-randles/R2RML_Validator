@@ -34,21 +34,38 @@ public class Refinement {
         SPARQL.updateData(rename, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
     }
 
-    public static boolean AddDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
+    public static boolean addDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
         Model model = ModelFactory.createDefaultModel().read(FileNames.refinedMappingFile);
         String updateQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
                "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-               "DELETE {  ?objectMap rr:datatype ?datatype}\n" +
                "INSERT {  ?objectMap rr:datatype <%s> }\n" +
                "WHERE\n" +
                "  {  \n" +
                "  ?subject rr:predicateObjectMap ?predicateObjectMap.\n" +
                "  ?predicateObjectMap rr:predicate <%s>.\n" +
                "  ?predicateObjectMap rr:objectMap ?objectMap.\n" +
-               "  ?objectMap rr:datatype ?datatype.\n" +
+               "  \n" +
                "  } ",  dataTypeURI, predicateURI);
        SPARQL.updateData(updateQuery, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
+        return  true;
+    }
+
+    public static boolean changeDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
+        Model model = ModelFactory.createDefaultModel().read(FileNames.refinedMappingFile);
+        String updateQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
+                "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
+                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+                "DELETE {  ?objectMap rr:datatype ?datatype}\n" +
+                "INSERT {  ?objectMap rr:datatype <%s> }\n" +
+                "WHERE\n" +
+                "  {  \n" +
+                "  ?subject rr:predicateObjectMap ?predicateObjectMap.\n" +
+                "  ?predicateObjectMap rr:predicate <%s>.\n" +
+                "  ?predicateObjectMap rr:objectMap ?objectMap.\n" +
+                "  ?objectMap rr:datatype ?datatype.\n" +
+                "  } ",  dataTypeURI, predicateURI);
+        SPARQL.updateData(updateQuery, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
         return  true;
     }
 

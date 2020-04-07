@@ -19,75 +19,24 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect datatype detected." ;
+                    "Unable to derference URI." ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
+                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidDatatypeShape> ;
+                    <http://example.com/ns#AccessibilityShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    dbo:age
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect datatype detected." ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidDatatypeShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:age
+                    testv:name
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Violation Detected" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b3 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#DomainShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:age
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Violation Detected" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b3 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#DomainShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:age
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b4 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Duplicate triples detected." ;
+                    "Usage of Undefined class or property" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
@@ -95,25 +44,23 @@
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#DuplicateTriplesShape> ;
+                    <http://example.com/ns#UndefinedShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b4
+                    testv:name
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    _:b5 ;
+                    _:b1 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Disjoint Classes Detected" ;
+                    "Logical table should exactly one  table, view or SQL query" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#DisjointShape> ;
+                    <http://example.com/ns#TableShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b5
+                    _:b1
           ]
 ] .

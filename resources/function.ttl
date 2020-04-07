@@ -363,7 +363,7 @@ ex:ValidDatatypeShape
     sh:js [
               a sh:JSConstraint ;
               sh:jsFunctionName "validateDatatype" ;
-              sh:message "Incorrect datatype detected.";
+              sh:message "Incorrect datatype definition detected.";
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];

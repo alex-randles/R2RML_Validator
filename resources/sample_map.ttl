@@ -11,27 +11,20 @@
 @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
 @prefix dc:    <http://purl.org/dc/terms/> .
 @prefix dbo: <http://dbpedia.org/ontology/>.
-<#TriplesMap2>
-rr:logicalTable [                   rr:tableName "test";
-                ];
+
+<#TripleMap1>
+    rr:logicalTable [ ];
     rr:subjectMap [
-                      rr:template "http://data.example.com/department/{DEPTNO}";
-                      rr:class foaf:Project, foaf:Document, owl:Thing;
+                      rr:template "http://example.org/person/{id}";
+                      rr:class dbo:Agent;
                   ];
-rr:predicateObjectMap [
-                          rr:predicate foaf:name;
-                          rr:objectMap [ rr:column "DNAME" ];
-                      ];
-rr:predicateObjectMap [
-                          rr:predicate dbo:age;
-                          rr:objectMap [ rr:column "DNAME";
-                                       rr:datatype "dhdh";
-                                       ];
-                      ];
-rr:predicateObjectMap [
-                          rr:predicate dbo:age;
-                          rr:objectMap [ rr:column "DNAME";
-                                         rr:datatype "dhdh";
-                                    ];
-                      ];
-.
+    rr:predicateObjectMap [
+                              rr:predicate dbo:age;
+                              rr:objectMap [
+                                               rr:column"age";
+                                               ];
+                          ];
+    rr:predicateObjectMap [
+                              rr:predicate ex:name;
+                              rr:objectMap [ rr:column "name"; ];
+                          ];.

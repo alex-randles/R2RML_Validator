@@ -22,9 +22,6 @@ public class DataType {
                     "?predicateObjectMap rr:predicate <%s>. " +
                     " ?predicateObjectMap rr:objectMap ?objectMap. ?objectMap rr:datatype ?datatype }\n", predicateURI);
             boolean hasDatatype = SPARQL.askQuery(FileNames.originalMappingFile, hasDataTypeQuery);
-            if(!hasDatatype){
-                return true;
-            }
             String selectQuery = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                     "SELECT ?datatype \n" +
                     "WHERE { <%s> rdfs:range ?datatype} ", predicateURI);
@@ -34,6 +31,11 @@ public class DataType {
             System.out.println(predicateURI);
             if (!range.split("#")[0].equals("http://www.w3.org/2001/XMLSchema") || range.isEmpty()) {
                 System.out.println("is not a datatype");
+                return true;
+            }
+            if(!hasDatatype){
+                System.out.println("adding missing datatype ");
+                Refinement.addDataTypeTriple(range, predicateURI, FileNames.refinedMappingFile);
                 return true;
             }
             System.out.println("datatype for " + predicateURI + " is " + range);
@@ -49,7 +51,7 @@ public class DataType {
                     "}\n", predicateURI, range);
             boolean correctDatatype = SPARQL.askQuery(FileNames.originalMappingFile, askQuery);
             if (!correctDatatype) {
-                Refinement.AddDataTypeTriple(range, predicateURI, FileNames.refinedMappingFile);
+                Refinement.changeDataTypeTriple(range, predicateURI, FileNames.refinedMappingFile);
             }
             return correctDatatype;
         }
