@@ -27,7 +27,6 @@ public class DereferenceURI {
 
     }
 
-
    public static boolean accessRDF(String uri){
         try {
             Model data = ModelFactory.createDefaultModel();
@@ -40,8 +39,5 @@ public class DereferenceURI {
              return false;
              }
         }
-
-
-
 
 }

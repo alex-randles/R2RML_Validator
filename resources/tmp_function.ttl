@@ -412,7 +412,7 @@ rr:GraphPerformanceShape
               a sh:JSConstraint ;
               sh:message "PERFORMANCE - Duplicate triples defined" ;
               sh:jsFunctionName "validateDuplicateTriples" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 .
@@ -430,7 +430,7 @@ rr:VocabularyShape
               a sh:JSConstraint ;
               sh:message "No human labelling" ;
               sh:jsFunctionName "hasHumanReadableLabelling" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
           ];
 .
 
@@ -446,14 +446,14 @@ rr:DomainShape
               a sh:JSConstraint ;
               sh:message "Domain Violation Detected" ;
               sh:jsFunctionName "validateDomain" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 
     sh:js [
               a sh:JSConstraint ;
               sh:jsFunctionName "addMissingDataTypes" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 .
@@ -471,7 +471,7 @@ rr:DisjointShape
               a sh:JSConstraint ;
               sh:message "Disjoint Classes Detected" ;
               sh:jsFunctionName "validateDisjointClasses" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 .
@@ -488,7 +488,7 @@ rr:DisjointShape
 #		a sh:JSConstraint ;
 #		sh:message "Range Violation Detected" ;
 #        sh:jsFunctionName "validateRange" ;
-#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+#		sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 #
 #	];
 #.
@@ -580,7 +580,7 @@ rr:TermTypeShape
     sh:js [
               a sh:JSConstraint ;
               sh:jsFunctionName "validateTermType" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/mapping_consistency.js"^^xsd:anyURI ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
           ] ;
 
 

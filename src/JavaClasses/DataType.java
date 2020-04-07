@@ -18,6 +18,13 @@ public class DataType {
     public static boolean validateDatatype(String predicateURI) {
         // if can not retrieve vocabulary, return true
         try {
+            String hasDataTypeQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#> ASK {  ?subject  rr:predicateObjectMap ?predicateObjectMap. " +
+                    "?predicateObjectMap rr:predicate <%s>. " +
+                    " ?predicateObjectMap rr:objectMap ?objectMap. ?objectMap rr:datatype ?datatype }\n", predicateURI);
+            boolean hasDatatype = SPARQL.askQuery(FileNames.originalMappingFile, hasDataTypeQuery);
+            if(!hasDatatype){
+                return true;
+            }
             String selectQuery = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
                     "SELECT ?datatype \n" +
                     "WHERE { <%s> rdfs:range ?datatype} ", predicateURI);
