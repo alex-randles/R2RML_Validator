@@ -26,12 +26,12 @@ rr:predicateObjectMap [
                           rr:predicate dbo:age;
                           rr:objectMap [ rr:column "DNAME";
                                        rr:datatype "dhdh";
-                                       rr:language "edjd";];
+                                       ];
                       ];
 rr:predicateObjectMap [
                           rr:predicate dbo:age;
                           rr:objectMap [ rr:column "DNAME";
                                          rr:datatype "dhdh";
-                                       rr:termType rr:BlankNode;];
+                                    ];
                       ];
 .

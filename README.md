@@ -1,2 +1,2 @@
 # R2RML_Validator
-Extending the CARML checking with further checks. 
+A framework which will assess and refine R2RML mapping definitions.  

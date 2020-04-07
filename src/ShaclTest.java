@@ -14,7 +14,7 @@ public class ShaclTest {
 	public static String new_mapping_file = "./resources/new_sample_map.ttl";
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		try{
+//		try{
 			// String input_file = args[0];
 			// copyMapping(input_file, original_mapping_file);
 			copyMapping(original_mapping_file, new_mapping_file);
@@ -22,10 +22,10 @@ public class ShaclTest {
 //		GenerateReport.generateReport(output_file, original_mapping_file);
 			//	runTest(function_file, new_mapping_file, output_file);
 			//	GenerateReport.generateReport(output_file, new_mapping_file);
-		}
-		catch (Exception e){
-			System.out.println("Problem assessing your mapping... ");
-		}
+//		}
+//		catch (Exception e){
+//			System.out.println("Problem assessing your mapping... ");
+//		}
 	}
 
 

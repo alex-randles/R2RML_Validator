@@ -263,8 +263,6 @@ ex:RDFreification
 
                    ]
         ] ;
-
-
 .
 
 
@@ -288,34 +286,10 @@ ex:DuplicateTriplesShape
               a sh:JSConstraint ;
               sh:message "Duplicate triples detected." ;
               sh:jsFunctionName "validateDuplicateTriples" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 
-.
-
-ex:HumanLabellingShape
-    a sh:NodeShape ;
-    sh:targetClass rr:PredicateObjectMap ;
-    sh:targetObjectsOf rr:predicateObjectMap;
-    sh:js [
-              a sh:JSConstraint ;
-              sh:message "No human-readable labelling detected." ;
-              sh:jsFunctionName "hasHumanReadableLabelling" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ] ;
-          ];
-.
-
-ex:HumanLicenseShaoe
-    a sh:NodeShape ;
-    sh:targetClass rr:PredicateObjectMap ;
-    sh:targetObjectsOf rr:predicateObjectMap;
-    sh:js [
-              a sh:JSConstraint ;
-              sh:message "No human-readable license detected. " ;
-              sh:jsFunctionName "validateHumanLicense" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ] ;
-          ];
 .
 
 ex:ValidRangeShape
@@ -326,7 +300,7 @@ ex:ValidRangeShape
               a sh:JSConstraint ;
               sh:jsFunctionName "validateRange" ;
               sh:message "Incorrect range detected.";
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 .
@@ -351,7 +325,7 @@ ex:AccessibilityShape
               a sh:JSConstraint ;
               sh:message "Unable to derference URI." ;
               sh:jsFunctionName "isAccessible" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ];
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ];
 
           ];
 .
@@ -364,7 +338,7 @@ ex:UndefinedShape
               a sh:JSConstraint ;
               sh:message "Usage of Undefined class or property" ;
               sh:jsFunctionName "validateUndefined" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
           ];
 
 .
@@ -377,7 +351,7 @@ ex:DomainShape
               a sh:JSConstraint ;
               sh:message "Domain Violation Detected" ;
               sh:jsFunctionName "validateDomain" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
 
           ];
 .
@@ -390,36 +364,59 @@ ex:ValidDatatypeShape
               a sh:JSConstraint ;
               sh:jsFunctionName "validateDatatype" ;
               sh:message "Incorrect datatype detected.";
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ] ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
 .
+#
+#ex:ProvenanceShape
+#    a sh:NodeShape ;
+#    sh:targetClass rr:PredicateObjectMap ;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No basic provenance information detected." ;
+#              sh:jsFunctionName "validateBasicProvenance" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+#
+#          ];
+#.
+#
+#
+#ex:HumanLicenseShaoe
+#    a sh:NodeShape ;
+#    sh:targetClass rr:PredicateObjectMap ;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No human-readable license detected. " ;
+#              sh:jsFunctionName "validateHumanLicense" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+#          ];
+#.
+#
+#ex:MachineLicenseShape
+#    a sh:NodeShape ;
+#    sh:targetClass rr:PredicateObjectMap ;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No machine-readable license detected." ;
+#              sh:jsFunctionName "validateMachineLicense" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
+#
+#          ];
+#.
+#
+#ex:HumanLabellingShape
+#    a sh:NodeShape ;
+#    sh:targetClass rr:PredicateObjectMap ;
+#    sh:targetObjectsOf rr:predicateObjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No human-readable labelling detected." ;
+#              sh:jsFunctionName "hasHumanReadableLabelling" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+#          ];
+#.
 
-ex:ProvenanceShape
-    a sh:NodeShape ;
-    sh:targetClass rr:PredicateObjectMap ;
-    sh:targetObjectsOf rr:predicateObjectMap;
-    sh:js [
-              a sh:JSConstraint ;
-              sh:message "No basic provenance information detected." ;
-              sh:jsFunctionName "validateBasicProvenance" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js" ] ;
-
-          ];
-
-.
-
-
-ex:MachineLicenseShape
-    a sh:NodeShape ;
-    sh:targetClass rr:PredicateObjectMap ;
-    sh:targetObjectsOf rr:predicateObjectMap;
-    sh:js [
-              a sh:JSConstraint ;
-              sh:message "No machine-readable license detected." ;
-              sh:jsFunctionName "validateMachineLicense" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"] ;
-
-          ];
-
-.
