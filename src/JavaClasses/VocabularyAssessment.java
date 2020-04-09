@@ -17,7 +17,7 @@ public class VocabularyAssessment {
 //        System.out.println("human license : ");
 //        System.out.println(hasHumanReadableLicense("<http://dbpedia.org/ontology/age>"));
 //        System.out.print("machine license : ");
-          System.out.println(test("http://purl.org/dc/terms/"));
+          System.out.println(test("http://dbpedia.org/ontology/"));
 //        System.out.print("human labelling : ");
 //        System.out.println(hasHumamReadableLabelling(NS.FOAF_NS+"name"));
 
@@ -151,10 +151,10 @@ public class VocabularyAssessment {
 
     public static boolean test(String URI){
         Model model = ModelFactory.createDefaultModel().read(URI);
-        String queryString = " select ?p ?o where {\n" +
-                "  ?x ?p ?o\n" +
-                "  filter( regex(?p, \"void\" ))\n" +
-                "}";
+        String queryString = "PREFIX dc: <http://purl.org/dc/elements/1.1/>" +
+                "PREFIX foaf: <http://xmlns.com/foaf/0.1/> " +
+                "PREFIX dcterms: <http://purl.org/dc/terms/>" +
+                "SELECT ?s { ?s dc:creator ?o}";
         Query query = QueryFactory.create(queryString) ;
         try (QueryExecution qexec = QueryExecutionFactory.create(queryString, model)) {
             ResultSet results = qexec.execSelect() ;
@@ -163,10 +163,8 @@ public class VocabularyAssessment {
                 QuerySolution soln = results.nextSolution() ;
                // RDFNode s = soln.get("?s") ;       // Get a result variable by name.
                 RDFNode o = soln.get("?o") ;       // Get a result variable by name.
-                RDFNode p = soln.get("?p") ;       // Get a result variable by name.
+                RDFNode p = soln.get("?s") ;       // Get a result variable by name.
                 System.out.println(String.format("  %s %s", o.toString(), p.toString()));
-
-
             }
         }
         return true;

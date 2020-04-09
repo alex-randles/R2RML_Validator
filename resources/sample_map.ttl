@@ -16,13 +16,19 @@
     rr:logicalTable [ ];
     rr:subjectMap [
                       rr:template "http://example.org/person/{id}";
-                      rr:class dbo:Agent;
+                      rr:class dbo:Agent, dbo:MilitaryPerson, dbo:Place;
                   ];
     rr:predicateObjectMap [
-                              rr:predicate dbo:age;
+                              rr:predicate dbo:army;
                               rr:objectMap [
                                                rr:column"age";
                                                ];
+                          ];
+    rr:predicateObjectMap [
+                              rr:predicate dbo:army;
+                              rr:objectMap [
+                                               rr:column"age";
+                                           ];
                           ];
     rr:predicateObjectMap [
                               rr:predicate ex:name;

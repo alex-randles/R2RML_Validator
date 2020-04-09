@@ -8,8 +8,8 @@ public class Disjoint {
         String[] classes = new String[]{"http://dbpedia.org/ontology/Person", "http://dbpedia.org/ontology/Building", "http://dbpedia.org/ontology/Test", "http://dbpedia.org/ontology/Test"};
         System.out.println(validateDisjointClasses(classes));
     }
+
     public static boolean validateDisjointClasses(String[] classesURI){
-        // return false if any classes defined are disjoint
         try{
             for (int i=0; i<classesURI.length-1;i++) {
                 for (int j=i+1; j<classesURI.length;j++) {
@@ -20,10 +20,8 @@ public class Disjoint {
                     if (result) {
                         return false;
                     }
-
                 }
             }
-
             return true;
         }
         catch(Exception e){
@@ -32,6 +30,5 @@ public class Disjoint {
         return false;
 
     }
-
 
 }

@@ -22,7 +22,7 @@ function isAccessible($this) {
         for(var t = s.next(); t; t = s.next()) {
             var object = t.object;
             var JavaCLass = Java.type("JavaClasses.DereferenceURI");
-            var result = JavaCLass.getResponseCode(object);
+            var result = JavaCLass.accessRDF(object);
             print("dererfence", result, object);
             if(!result) {
                 results.push({
@@ -85,7 +85,7 @@ function validateDisjointClasses(resource){
     try{
         if (!disjoint_classes_check){
             var classesURI = getAllValues("class");
-            if (classesURI === undefined || classesURI.length == 0) {
+            if (classesURI === undefined || classesURI.length === 0) {
                    return true;
                }
             var JavaCLass = Java.type("JavaClasses.Disjoint");
@@ -254,22 +254,36 @@ function isUndefined(URI){
        return !result;
 }
 
+// function validateUndefined($this) {
+//     try{
+//         var results = [];
+//         var p = TermFactory.namedNode(NS+"predicate");
+//         var s = $data.find($this, p, null);
+//         for(var t = s.next(); t; t = s.next()) {
+//             var object = t.object;
+//             print("label", object, isUndefined(object));
+//             var result = isUndefined(object);
+//             if(result) {
+//                 results.push({
+//                     value : object
+//                 });
+//             }
+//         }
+//         s.close();
+//         return results;
+//     }
+//     catch(err){
+//         print("validateDomain " + err);
+//         return true;
+//     }
+// }
+
 function validateUndefined($this) {
     try{
-        var results = [];
-        var p = TermFactory.namedNode(NS+"predicate");
-        var s = $data.find($this, p, null);
-        for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            print("label", object, isUndefined(object));
-            var result = isUndefined(object);
-            if(result) {
-                results.push({
-                    value : object
-                });
-            }
-        }
-        s.close();
+        var result = ["hello", "bob"];
+        var result2  = ["john"];
+        var results = result.concat(result2);
+        print(results, "testing");
         return results;
     }
     catch(err){
@@ -277,6 +291,30 @@ function validateUndefined($this) {
         return true;
     }
 }
+
+// function validateUndefined($this) {
+//     try{
+//         var results = [];
+//         var p = TermFactory.namedNode(NS+"predicate");
+//         var s = $data.find($this, p, null);
+//         for(var t = s.next(); t; t = s.next()) {
+//             var object = t.object;
+//             print("label", object, isUndefined(object));
+//             var result = isUndefined(object);
+//             if(result) {
+//                 results.push({
+//                     value : object
+//                 });
+//             }
+//         }
+//         s.close();
+//         return results;
+//     }
+//     catch(err){
+//         print("validateDomain " + err);
+//         return true;
+//     }
+// }
 
 function validateDatatype($this) {
     try{

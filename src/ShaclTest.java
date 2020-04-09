@@ -1,4 +1,6 @@
+import JavaClasses.FileNames;
 import JavaClasses.GenerateReport;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
@@ -8,20 +10,12 @@ import java.io.*;
 
 public class ShaclTest {
 
-	public static String original_mapping_file  = "./resources/sample_map.ttl";
-	public static String function_file  = "./resources/function.ttl";
-	public static String output_file = "./resources/output.ttl";
-	public static String new_mapping_file = "./resources/new_sample_map.ttl";
-
 	public static void main(String[] args) throws InterruptedException, IOException {
 //		try{
 			// String input_file = args[0];
 			// copyMapping(input_file, original_mapping_file);
-			copyMapping(original_mapping_file, new_mapping_file);
-			runTest(function_file, original_mapping_file, output_file);
-//		GenerateReport.generateReport(output_file, original_mapping_file);
-			//	runTest(function_file, new_mapping_file, output_file);
-			//	GenerateReport.generateReport(output_file, new_mapping_file);
+			copyMapping(FileNames.originalMappingFile, FileNames.refinedMappingFile);
+			runTest(FileNames.function_file, FileNames.originalMappingFile, FileNames.reportFile);
 //		}
 //		catch (Exception e){
 //			System.out.println("Problem assessing your mapping... ");
@@ -29,7 +23,7 @@ public class ShaclTest {
 	}
 
 
-	public static void runTest(String function_file,String data_file, String output_file) {
+	public static void runTest(String function_file, String data_file, String output_file) {
 		Model data = ModelFactory.createDefaultModel();
 		data.read(data_file);
 		Model function = ModelFactory.createDefaultModel();
@@ -43,7 +37,12 @@ public class ShaclTest {
 			report.getModel().write(fop, "TURTLE");
 			fop.flush();
 			fop.close();
-			System.out.println("Validation report out written to " + output_file);
+			String validationReportMessage = String.format("Validation report written to %s", output_file);
+			String refinedMappingMessage = String.format("Refined mapping written to %s", FileNames.refinedMappingFile);
+			System.out.println(StringUtils.repeat('*', 70));
+			System.out.println(validationReportMessage);
+			System.out.println(StringUtils.repeat('*', 70));
+			System.out.println(refinedMappingMessage);
 
 		} catch (Exception e) {
 
@@ -58,7 +57,6 @@ public class ShaclTest {
 		data.read(input_file);
 		File copy_file = new File(output_file);
 		try {
-
 			FileOutputStream copy_file_stream = new FileOutputStream(copy_file);
 			data.write(copy_file_stream, "TURTLE");
 			copy_file_stream.flush();
