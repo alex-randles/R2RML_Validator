@@ -16,7 +16,7 @@
     rr:logicalTable [ ];
     rr:subjectMap [
                       rr:template "http://example.org/person/{id}";
-                      rr:class dbo:Agent, dbo:MilitaryPerson, dbo:Place;
+                      rr:class dbo:Agent, foaf:Agent;
                   ];
     rr:predicateObjectMap [
                               rr:predicate dbo:army;
@@ -28,9 +28,14 @@
                               rr:predicate dbo:army;
                               rr:objectMap [
                                                rr:column"age";
+                                           xsd:datatype "shshs";
+                                           rr:termType "dhhd";
                                            ];
                           ];
     rr:predicateObjectMap [
                               rr:predicate ex:name;
                               rr:objectMap [ rr:column "name"; ];
                           ];.
+
+
+[] rdfs:label "license".

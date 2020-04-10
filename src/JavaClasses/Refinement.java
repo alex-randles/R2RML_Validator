@@ -11,9 +11,6 @@ import java.util.Iterator;
 
 public class Refinement {
 
-    public static void main(String[] args){
-        changeTermType("<http://dbpedia.org/ontology/age>", "<http://www.w3.org/ns/r2rml#IRIh>");
-    }
     public static void findValidDomain(String URI) {
         String queryString = String.format("SELECT ?domain WHERE {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", URI);
         ResultSet results = SPARQL.selectQuery(URI, queryString);
@@ -21,7 +18,6 @@ public class Refinement {
         {
             QuerySolution soln = results.nextSolution() ;
             String domain = soln.get("?domain").toString() ;   // Get a result variable - must be a literal
-            System.out.println("domain for " + URI + " is " + domain);
             if(!domain.isEmpty()){
                 AddDomainTriple(domain, FileNames.refinedMappingFile);
                 return;

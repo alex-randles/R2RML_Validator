@@ -23,7 +23,6 @@ function isAccessible($this) {
             var object = t.object;
             var JavaCLass = Java.type("JavaClasses.DereferenceURI");
             var result = JavaCLass.accessRDF(object);
-            print("dererfence", result, object);
             if(!result) {
                 results.push({
                     value : object
@@ -34,7 +33,6 @@ function isAccessible($this) {
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
  }
@@ -51,10 +49,8 @@ function validateDuplicateTriples(resource) {
         }
     }
     catch(err){
-        print("validateDuplicateTriples ", err);
         return true;
     }
-
 }
 
 function getAllValues(name, resource){
@@ -76,8 +72,7 @@ function getAllValues(name, resource){
         return result;
     }
     catch(err){
-        print("getAllValues ", err);
-        return;
+        return true;
     }
 }
 
@@ -95,7 +90,6 @@ function validateDisjointClasses(resource){
         }
     }
     catch(err){
-        print("validateDisjointClasses " + err);
         return true;
     }
 }
@@ -109,7 +103,6 @@ function validateRange($this) {
             var object = t.object;
             var undefined = isUndefined(object);
             if (undefined){
-                print("undefined", undefined);
                 break;
             }
             var JavaCLass = Java.type("JavaClasses.Range");
@@ -124,7 +117,6 @@ function validateRange($this) {
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
  }
@@ -132,57 +124,39 @@ function validateRange($this) {
 function validateMachineLicense($this) {
     try{
         var results = [];
-        var p = TermFactory.namedNode(NS+"predicate");
-        var s = $data.find($this, p, null);
-        for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            var undefined = isUndefined(object);
-            if (undefined){
-                print("undefined", undefined);
-                break;
-            }
+        var namespaces = getUniqueNamespaces($this);
+        for (i = 0; i < namespaces.length; i++) {
             var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
-            var result = JavaCLass.hasMachineReadableLicense(object);
-            if(!result) {
+            var result = JavaCLass.hasMachineReadableLicense(namespaces[i]);
+            if (!result) {
                 results.push({
-                    value : object
+                    value: TermFactory.namedNode(namespaces[i])
                 });
             }
         }
-        s.close();
         return results;
+        }
+        catch(err){
+            return true;
+        }
     }
-    catch(err){
-        print("validateDomain " + err);
-        return true;
-    }
- }
 
 function validateHumanLicense($this) {
     try{
         var results = [];
-        var p = TermFactory.namedNode(NS+"predicate");
-        var s = $data.find($this, p, null);
-        for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            var undefined = isUndefined(object);
-            if (undefined){
-                print("undefined", undefined);
-                break;
-            }
+        var namespaces = getUniqueNamespaces($this);
+        for (i = 0; i < namespaces.length; i++) {
             var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
-            var result = JavaCLass.hasHumanReadableLicense(object);
-            if(!result) {
+            var result = JavaCLass.hasHumanReadableLicense(namespaces[i]);
+            if (!result) {
                 results.push({
-                    value : object
+                    value: TermFactory.namedNode(namespaces[i])
                 });
             }
         }
-        s.close();
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
  }
@@ -197,7 +171,6 @@ function hasHumanReadableLabelling($this) {
             var object = t.object;
             var undefined = isUndefined(object);
             if (undefined){
-                print("undefined", undefined);
                 break;
             }
             var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
@@ -212,7 +185,6 @@ function hasHumanReadableLabelling($this) {
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
  }
@@ -220,32 +192,54 @@ function hasHumanReadableLabelling($this) {
 function validateBasicProvenance($this) {
     try{
         var results = [];
-        var p = TermFactory.namedNode(NS+"predicate");
-        var s = $data.find($this, p, null);
-        for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            print("provenance test ", object);
-            var undefined = isUndefined(object);
-            if (undefined){
-                print("undefined", undefined);
-                break;
-            }
+        var namespaces = getUniqueNamespaces($this);
+        for (i = 0; i < namespaces.length; i++) {
             var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
-            var result = JavaCLass.hasBasicProvenance(object);
-            print("datatype", result, object);
-            if(!result) {
-                results.push({
-                    value : object
-                });
+            var result = JavaCLass.hasBasicProvenance(namespaces[i]);
+            if (!result) {
+                    results.push({
+                        value: TermFactory.namedNode(namespaces[i])
+                    });
             }
         }
-        s.close();
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
+}
+
+function getUniqueNamespaces($this) {
+    try{
+        var namespaces = [];
+        var p = TermFactory.namedNode(NS+"class");
+        var s = $data.find($this, p, null);
+        for(var t = s.next(); t; t = s.next()) {
+            var object = t.object;
+            var newObject  = object.toString();
+            var namespace = getNamespace(newObject);
+            if ( namespaces.indexOf(namespace) === -1){
+                 namespaces.push(namespace);
+            }
+        }
+        s.close();
+        return namespaces;
+    }
+    catch(err){
+        return true;
+    }
+}
+
+function getNamespace(URI){
+    if (URI.indexOf('#') > -1){
+        var prefix = URI.split("#").slice(0, -1);
+        return prefix.join("#") + "#";
+    }
+    else if(URI.indexOf('/') > -1){
+        var prefix = URI.split("/").slice(0, -1);
+        return prefix.join("/") + "/";
+    }
+    return URI;
 }
 
 function isUndefined(URI){
@@ -254,85 +248,27 @@ function isUndefined(URI){
        return !result;
 }
 
-// function validateUndefined($this) {
-//     try{
-//         var results = [];
-//         var p = TermFactory.namedNode(NS+"predicate");
-//         var s = $data.find($this, p, null);
-//         for(var t = s.next(); t; t = s.next()) {
-//             var object = t.object;
-//             print("label", object, isUndefined(object));
-//             var result = isUndefined(object);
-//             if(result) {
-//                 results.push({
-//                     value : object
-//                 });
-//             }
-//         }
-//         s.close();
-//         return results;
-//     }
-//     catch(err){
-//         print("validateDomain " + err);
-//         return true;
-//     }
-// }
-
 function validateUndefined($this) {
     try{
-        var result = ["hello", "bob"];
-        var result2  = ["john"];
-        var results = result.concat(result2);
-        print(results, "testing");
+        var undefinedProperties = validateUndefinedProperties($this);
+        var undefinedClasses = validateUndefinedClasses($this);
+        var results = undefinedProperties.concat(undefinedClasses);
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
 }
 
-// function validateUndefined($this) {
-//     try{
-//         var results = [];
-//         var p = TermFactory.namedNode(NS+"predicate");
-//         var s = $data.find($this, p, null);
-//         for(var t = s.next(); t; t = s.next()) {
-//             var object = t.object;
-//             print("label", object, isUndefined(object));
-//             var result = isUndefined(object);
-//             if(result) {
-//                 results.push({
-//                     value : object
-//                 });
-//             }
-//         }
-//         s.close();
-//         return results;
-//     }
-//     catch(err){
-//         print("validateDomain " + err);
-//         return true;
-//     }
-// }
-
-function validateDatatype($this) {
+function validateUndefinedProperties($this) {
     try{
         var results = [];
         var p = TermFactory.namedNode(NS+"predicate");
         var s = $data.find($this, p, null);
         for(var t = s.next(); t; t = s.next()) {
             var object = t.object;
-            print("test", object);
-            var undefined = isUndefined(object);
-            if (undefined){
-                print("undefined", undefined);
-                break;
-            }
-            var JavaCLass = Java.type("JavaClasses.DataType");
-            var result = JavaCLass.validateDatatype(object);
-            print("datatype", result, object);
-            if(!result) {
+            var result = isUndefined(object);
+            if(result) {
                 results.push({
                     value : object
                 });
@@ -342,7 +278,55 @@ function validateDatatype($this) {
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
+        return true;
+    }
+}
+
+function validateUndefinedClasses($this) {
+    try{
+        var results = [];
+        var p = TermFactory.namedNode(NS+"class");
+        var s = $data.find($this, p, null);
+        for(var t = s.next(); t; t = s.next()) {
+            var object = t.object;
+            var result = isUndefined(object);
+            if(result) {
+                results.push({
+                    value : object
+                });
+            }
+        }
+        s.close();
+        return results;
+    }
+    catch(err){
+        return true;
+    }
+}
+
+function validateDatatype($this) {
+    try{
+        var results = [];
+        var p = TermFactory.namedNode(NS+"predicate");
+        var s = $data.find($this, p, null);
+        for(var t = s.next(); t; t = s.next()) {
+            var object = t.object;
+            var undefined = isUndefined(object);
+            if (undefined){
+                break;
+            }
+            var JavaCLass = Java.type("JavaClasses.DataType");
+            var result = JavaCLass.validateDatatype(object);
+            if(!result) {
+                results.push({
+                    value : objclass_nameect
+                });
+            }
+        }
+        s.close();
+        return results;
+    }
+    catch(err){
         return true;
     }
 }
@@ -356,12 +340,10 @@ function validateDomain($this) {
             var object = t.object;
             var undefined = isUndefined(object);
             if (undefined){
-                print("undefined", undefined);
                 break;
             }
             var JavaCLass = Java.type("JavaClasses.Domain");
             var result = JavaCLass.validateDomain(object);
-            print("domain", result, object);
             if(!result) {
                 results.push({
                     value : object
@@ -372,7 +354,6 @@ function validateDomain($this) {
         return results;
     }
     catch(err){
-        print("validateDomain " + err);
         return true;
     }
 }

@@ -1,25 +1,26 @@
 import JavaClasses.FileNames;
-import JavaClasses.GenerateReport;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Resource;
-import org.topbraid.shacl.rules.RuleUtil;
+import org.apache.jena.rdf.model.*;
 import org.topbraid.shacl.validation.ValidationUtil;
 import java.io.*; 
 
 public class ShaclTest {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-//		try{
-			// String input_file = args[0];
-			// copyMapping(input_file, original_mapping_file);
+		try {
+			String processingMessage = "Please wait a few seconds for your file to be processed...";
+			System.out.println(StringUtils.repeat('*', 70));
+			System.out.println(StringUtils.repeat('*', 70));
+			System.out.println(processingMessage);
+			System.out.println(StringUtils.repeat('*', 70));
+			System.out.println(StringUtils.repeat('*', 70));
 			copyMapping(FileNames.originalMappingFile, FileNames.refinedMappingFile);
 			runTest(FileNames.function_file, FileNames.originalMappingFile, FileNames.reportFile);
-//		}
-//		catch (Exception e){
-//			System.out.println("Problem assessing your mapping... ");
-//		}
+		}
+		catch (Exception e){
+			System.out.println(e);
+			System.out.println("Problem assessing your mapping... ");
+		}
 	}
 
 
@@ -43,11 +44,10 @@ public class ShaclTest {
 			System.out.println(validationReportMessage);
 			System.out.println(StringUtils.repeat('*', 70));
 			System.out.println(refinedMappingMessage);
+			System.out.println(StringUtils.repeat('*', 70));
 
 		} catch (Exception e) {
-
 			System.out.println("File not found!");
-
 		}
 	}
 
@@ -61,14 +61,9 @@ public class ShaclTest {
 			data.write(copy_file_stream, "TURTLE");
 			copy_file_stream.flush();
 			copy_file_stream.close();
-			System.out.println("Sample map copied to " + output_file);
 
 		} catch (Exception e) {
-
-			System.out.println("File not found!");
-
 		}
-
 	}
 
 }

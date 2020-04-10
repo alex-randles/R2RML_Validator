@@ -1,14 +1,8 @@
 package JavaClasses;
 
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.query.ResultSetFactory;
 
 public class DuplicateTriples {
-
-    public static void main(String[] args){
-        boolean result = detectDuplicateTriples();
-        System.out.println(result);
-    }
 
     public static boolean detectDuplicateTriples(){
         boolean result1  = duplicateTriples1(FileNames.originalMappingFile);
@@ -21,10 +15,10 @@ public class DuplicateTriples {
     }
 
     public static boolean duplicateTriples1(String URI){
-        // test for duplicate predicate object maps
         String query = "\n" +
                 "\n" +
                 "PREFIX rr: <http://www.w3.org/ns/r2rml#> " +
+                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
                 "SELECT (COUNT(?predicateObjectMap) AS ?count)  ?subject ?predicate ?column ?template ?datatype ?termType ?language\n" +
                 "WHERE {\n" +
                 "  ?subject \t rr:predicateObjectMap ?predicateObjectMap.\n" +
@@ -32,7 +26,7 @@ public class DuplicateTriples {
                 "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
                 "  OPTIONAL {?objectMap     rr:column ?column. }\n" +
                 "  OPTIONAL {?objectMap    rr:template  ?template. }\n" +
-                "  OPTIONAL {?objectMap    rr:datatype ?datatype. }\n" +
+                "  OPTIONAL {?objectMap    xsd:datatype ?datatype. }\n" +
                 "  OPTIONAL {?objectMap     rr:termType ?termType. }\n" +
                 "  OPTIONAL {?objectMap     rr:language ?language. }\n" +
                 "  OPTIONAL {?objectMap     rr:parentTriplesMap ?parentTriplesMap. }\n" +
@@ -45,12 +39,12 @@ public class DuplicateTriples {
                 "\n" +
                 "\n";
         ResultSet results = SPARQL.selectQuery(URI, query);
+        System.out.println(query);
         String count = SPARQL.getStringVariable(results, "?count");
         return !count.isEmpty();
     }
 
     public static boolean duplicateTriplesCase2(String URI){
-        // test for duplicate constant predicate map
         String query = "PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
                 "SELECT (COUNT(?predicateObjectMap) as ?count) ?predicateMapConstant ?objectMapConstant\n" +
                 "WHERE{\n" +
@@ -68,7 +62,6 @@ public class DuplicateTriples {
     }
 
     public static boolean duplicateTriplesCase3(String URI){
-        // test case constant shortcut properties
         String query = "PREFIX rr: <http://www.w3.org/ns/r2rml#> \n" +
                 "SELECT  (COUNT(?predicateObjectMap) AS ?count)\n" +
                 "WHERE {\n" +

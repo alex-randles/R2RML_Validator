@@ -7,11 +7,6 @@ import java.io.File;
 
 public class Range {
 
-    public static void main(String[] args){
-        boolean test = validateRange("http://dbpedia.org/ontology/club");
-        System.out.println(test);
-    }
-
     public static boolean validateRange(String predicateURI){
         try{
             String range = getRange(predicateURI);
@@ -36,7 +31,6 @@ public class Range {
             return correctRange;
         }
         catch(Exception e){
-            System.out.println(e + "validating range");
             return true;
         }
     }

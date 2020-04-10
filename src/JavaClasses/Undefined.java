@@ -13,14 +13,6 @@ import org.apache.jena.sparql.vocabulary.FOAF;
 // method 3 - return a similar class otherwise nothing
 public class Undefined {
 
-    public static void main(String[] args){
-//        System.out.println(splitURI(NS.FOAF_NS+"Person"));
-//        System.out.println(splitURI(NS.RDFS_NS+"class"));
-//        System.out.println(splitURI(NS.RDFS_NS+"class"));
-        System.out.println(similarNames(NS.FOAF_NS+"Person", NS.FOAF_NS+"persons"));
-        findSimilarDefinitions(NS.FOAF_NS+"Name");
-    }
-
     public static String findSimilarDefinitions(String URI){
         Model model = ModelFactory.createDefaultModel().read(URI);
         String queryString = " select DISTINCT ?s  where {\n" +
@@ -35,8 +27,6 @@ public class Undefined {
                 String definition = splitURI(comparisionURI);
                 boolean comparisionResult = similarNames(definition, splitURI(URI));
                 if (comparisionResult){
-                    System.out.println(splitURI(URI) + " " + definition + " ");
-                    System.out.println(comparisionURI);
                     return comparisionURI;
                 }
             }
@@ -75,7 +65,6 @@ public class Undefined {
             return name;
         }
         catch(Exception e){
-            System.out.println("splitURI error " + e);
             return "";
         }
     }
