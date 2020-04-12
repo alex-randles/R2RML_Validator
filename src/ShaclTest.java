@@ -8,7 +8,7 @@ public class ShaclTest {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		try {
-			String processingMessage = "Please wait a few seconds for your file to be processed...";
+			String processingMessage = "Please wait a few seconds for your mapping to be assessed and refined..";
 			System.out.println(StringUtils.repeat('*', 70));
 			System.out.println(StringUtils.repeat('*', 70));
 			System.out.println(processingMessage);

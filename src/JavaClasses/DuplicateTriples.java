@@ -39,7 +39,6 @@ public class DuplicateTriples {
                 "\n" +
                 "\n";
         ResultSet results = SPARQL.selectQuery(URI, query);
-        System.out.println(query);
         String count = SPARQL.getStringVariable(results, "?count");
         return !count.isEmpty();
     }

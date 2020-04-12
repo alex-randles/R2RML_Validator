@@ -18,24 +18,24 @@
                       rr:template "http://example.org/person/{id}";
                       rr:class dbo:Agent, foaf:Agent;
                   ];
+#    rr:predicateObjectMap [
+#                              rr:predicate dbo:army;
+#                              rr:objectMap [
+#                                               rr:column"age";
+#                                               ];
+#                          ];
     rr:predicateObjectMap [
                               rr:predicate dbo:army;
                               rr:objectMap [
                                                rr:column"age";
-                                               ];
-                          ];
-    rr:predicateObjectMap [
-                              rr:predicate dbo:army;
-                              rr:objectMap [
-                                               rr:column"age";
-                                           xsd:datatype "shshs";
+                                           rr:datatype xsd:test;
                                            rr:termType "dhhd";
                                            ];
                           ];
-    rr:predicateObjectMap [
-                              rr:predicate ex:name;
-                              rr:objectMap [ rr:column "name"; ];
-                          ];.
-
+#    rr:predicateObjectMap [
+#                              rr:predicate ex:name;
+#                              rr:objectMap [ rr:column "name"; ];
+#                          ];.
+.
 
 [] rdfs:label "license".

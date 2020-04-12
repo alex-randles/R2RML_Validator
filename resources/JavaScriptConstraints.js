@@ -4,7 +4,7 @@ var disjoint_classes_check = false;
 
 function getProperty($this, name) {
     try{
-    	var it = $data.find($this, TermFactory.namedNode(NS + name), null);
+    	var it = $data.find($this, TermFactory.namedNode( name), null);
     	var result = it.next().object;
     	it.close();
     	return result;
@@ -112,6 +112,11 @@ function validateRange($this) {
                     value : object
                 });
             }
+            print(results);
+            if(object in results){
+                print("hello");
+            }
+
         }
         s.close();
         return results;
@@ -307,14 +312,11 @@ function validateUndefinedClasses($this) {
 function validateDatatype($this) {
     try{
         var results = [];
-        var p = TermFactory.namedNode(NS+"predicate");
+        var p = TermFactory.namedNode("http://www.w3.org/2001/XMLSchema#datatype");
         var s = $data.find($this, p, null);
         for(var t = s.next(); t; t = s.next()) {
             var object = t.object;
-            var undefined = isUndefined(object);
-            if (undefined){
-                break;
-            }
+            print("datatype", object);
             var JavaCLass = Java.type("JavaClasses.DataType");
             var result = JavaCLass.validateDatatype(object);
             if(!result) {
@@ -331,6 +333,27 @@ function validateDatatype($this) {
     }
 }
 
+function testing($this) {
+    try {
+        // var p = TermFactory.namedNode(NS + "predicateObjectMap");
+        // var s = $data.find($this, p, null);
+        // for (var t = s.next(); t; t = s.next()) {
+        //     var object = t.object;
+        //     print(object);
+        //     var JavaCLass = Java.type("JavaClasses.DataType");
+        //     var result = JavaCLass.testing(object);
+        //     print(result);
+        // }
+        //
+        // s.close();
+        print(getProperty($this, NS+"predicate"), getProperty($this, NS+"datatype"));
+        // print(getProperty($this, "http://www.w3.org/2001/XMLSchema#datatype"));
+        return true;
+    }
+    catch(err){
+        return true;
+    }
+}
 function validateDomain($this) {
     try{
         var results = [];
