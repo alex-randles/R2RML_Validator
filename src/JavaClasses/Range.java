@@ -7,11 +7,10 @@ import java.io.File;
 
 public class Range {
 
-    public static boolean validateRange(String predicateURI){
+    public static boolean validateRange(String predicateURI, String termType){
         try{
             String range = getRange(predicateURI);
-            String termType = getTermType(predicateURI);
-            if(range.isEmpty() || termType.isEmpty() || termType.equals("http://www.w3.org/ns/r2rml#BlankNode")){
+            if(range.isEmpty()){
                 return true;
             }
             boolean isLiteral = isDatatype(range);
@@ -46,17 +45,17 @@ public class Range {
         return range;
     }
 
-    public static String getTermType(String predicateURI){
-        String selectQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>" +
-                "SELECT ?termType \n" +
-                "WHERE {\n" +
-                "  ?subject rr:predicateObjectMap ?predicateObjectMap. \n" +
-                "  ?predicateObjectMap rr:predicate <%s>.\n" +
-                "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
-                "  ?objectMap rr:termType ?termType. \n" +
-                "} ", predicateURI);
-        ResultSet results = SPARQL.selectQuery(FileNames.originalMappingFile, selectQuery);
-        String termType = SPARQL.getStringVariable(results, "?termType");
-        return termType;
-    }
+//    public static String getTermType(String predicateURI){
+//        String selectQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>" +
+//                "SELECT ?termType \n" +
+//                "WHERE {\n" +
+//                "  ?subject rr:predicateObjectMap ?predicateObjectMap. \n" +
+//                "  ?predicateObjectMap rr:predicate <%s>.\n" +
+//                "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
+//                "  ?objectMap rr:termType ?termType. \n" +
+//                "} ", predicateURI);
+//        ResultSet results = SPARQL.selectQuery(FileNames.originalMappingFile, selectQuery);
+//        String termType = SPARQL.getStringVariable(results, "?termType");
+//        return termType;
+//    }
 }

@@ -16,6 +16,9 @@ public class Domain {
             String checkDomainQuery = String.format("SELECT ?domain {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", predicateURI);
             ResultSet result = SPARQL.selectQuery(predicateURI, checkDomainQuery);
             String domain = SPARQL.getStringVariable(result, "?domain");
+            if (domain.isEmpty()){
+                return true;
+            }
             boolean inDomain = SPARQL.askQuery(FileNames.originalMappingFile, String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>" +
                     "ASK {?s rr:class <%s> }", domain));
             if (!inDomain) {

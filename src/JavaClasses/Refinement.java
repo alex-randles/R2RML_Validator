@@ -47,7 +47,7 @@ public class Refinement {
         return  true;
     }
 
-    public static boolean changeDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
+    public static boolean changeDataTypeTriple(String correctDatatype, String incorrectDatatype, String predicateURI, String MappingFile){
         Model model = ModelFactory.createDefaultModel().read(FileNames.refinedMappingFile);
         String updateQuery = String.format("PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
                 "PREFIX dbo: <http://dbpedia.org/ontology/>\n" +
@@ -60,7 +60,7 @@ public class Refinement {
                 "  ?predicateObjectMap rr:predicate <%s>.\n" +
                 "  ?predicateObjectMap rr:objectMap ?objectMap.\n" +
                 "  ?objectMap rr:datatype ?datatype.\n" +
-                "  } ",  dataTypeURI, predicateURI);
+                "  } ",  correctDatatype, predicateURI, incorrectDatatype);
         SPARQL.updateData(updateQuery, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
         return  true;
     }

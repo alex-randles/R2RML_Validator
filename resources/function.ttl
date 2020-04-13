@@ -5,440 +5,414 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix ex: <http://example.com/ns#> .
+
+ex:DataTypeShape
+    a sh:NodeShape ;
+    sh:message "Data type and language tag defined in same term map" ;
+    sh:targetSubjectsOf rr:datatype, rr:language ;
+    sh:targetClass rr:objectMap;
+    sh:xone (
+                [
+                    sh:property [
+                                    sh:path rr:datatype ;
+                                    sh:minCount 1;
+                                ]
+                ]
+
+                [
+                    sh:property [
+                                    sh:path rr:language ;
+                                    sh:minCount 1;
+                                ]
+                ]
+                [
+                    sh:property [
+                                    sh:path rr:language, rr:datatype ;
+                                    sh:minCount 0;
+                                ]
+                ]
+            ) ;
+
+    sh:property [
+                    sh:message "More than one datatype in a term map.";
+                    sh:path rr:datatype ;
+                    sh:maxCount 1;
+
+                ]
+.
+
+ex:SubjectMapShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:subjectMap ;
+    sh:targetClass     rr:SubjectMap ;
+    sh:property
+        [
+            sh:message "rr:termType for the subject map should be rr:IRI or rr:BlankNode." ;
+            sh:path rr:termType ;
+            sh:in ( rr:IRI rr:BlankNode ) ;
+        ] ,
+        [
+            sh:message "rr:class for the subject map should be an IRI." ;
+            sh:path rr:class ;
+            sh:nodeKind sh:IRI ;
+        ] ;
+.
+
+ex:PredicateObjectMapShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
+    sh:targetObjectsOf  rr:predicateObjectMap ;
+    sh:targetClass rr:PredicateObjectMap ;
+
+    sh:property
+        [
+            sh:message "Predicate object map should contain at least one predicate map." ;
+            sh:path [
+                        sh:alternativePath (rr:predicate rr:predicateMap) ;
+                    ] ;
+            sh:minCount 1 ;
+        ] ,
+        [
+            sh:message "Predicate object map should contain at least one object map." ;
+            sh:path [
+                        sh:alternativePath (rr:object rr:objectMap) ;
+                    ] ;
+            sh:minCount 1 ;
+        ] ;
+.
+
+ex:JoinShape
+    a sh:NodeShape ;
+    sh:targetClass rr:Join ;
+    sh:targetSubjectsOf rr:parent, rr:child ;
+    sh:targetObjectsOf rr:joinCondition ;
+
+    sh:property
+        [
+            sh:message "Join should have one and only one child." ;
+            sh:path rr:child ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+        ] ,
+        [
+            sh:message "Value of child in join should be a literal value." ;
+            sh:path rr:child ;
+            sh:nodeKind sh:Literal ;
+        ] ,
+        [
+            sh:message "Join should have one and only one parent." ;
+            sh:path rr:parent ;
+            sh:minCount 1 ;
+            sh:maxCount 1 ;
+        ] ,
+        [
+            sh:message "Join should have at least one parent." ;
+            sh:path rr:parent ;
+            sh:nodeKind sh:Literal ;
+        ] ;
+.
+
+ex:LogicalTableShape
+    a sh:NodeShape ;
+    sh:targetClass rr:TriplesMap ;
+    sh:targetSubjectsOf rr:logicalTable, rr:subject, rr:subjectMap ;
+    sh:property [
+                    sh:path rr:logicalTable ;
+                    sh:message "Exactly one logical table should exist.";
+                    sh:minCount 1 ;
+                    sh:maxCount 1 ;
+                ] ;
+
+
+.
+
+ex:InputDataShape
+    a sh:NodeShape ;
+    sh:targetClass rr:LogicalTable ;
+    sh:targetObjectsOf rr:logicalTable;
+    sh:targetSubjectsOf rr:tableName, rr:sqlQuery;
+    sh:message "Logical table should exactly one  table, view or SQL query" ;
+    sh:xone (
+                [
+                    sh:property [
+                                    sh:path rr:tableName ;
+                                    sh:minCount 1 ;
+                                    sh:maxCount 1 ;
+                                ] ;
+                ]
+                [
+                    sh:property [
+                                    sh:path rr:sqlQuery ;
+                                    sh:minCount 1 ;
+                                    sh:maxCount 1 ;
+                                ] ;
+                ]
+            ) ;
+
+
+.
+
+ex:PredicateShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
+
+    sh:property [
+                    sh:message "rr:termType on predicate map should be rr:IRI." ;
+                    sh:path rr:termType ;
+                    sh:in ( rr:IRI ) ;
+                ] ;
+.
+
+
+rr:ValidLanguageTagShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:objectMap ;
+    sh:property [
+                    sh:message "Language tag not defined in RFC 5646 Language Tags." ;
+                    sh:path rr:language ;
+                    sh:in ( "af" "af-ZA" "ar" "ar-AE" "ar-BH" "ar-DZ" "ar-EG" "ar-IQ" "ar-JO" "ar-KW" "ar-LB" "ar-LY" "ar-MA" "ar-OM" "ar-QA" "ar-SA" "ar-SY" "ar-TN" "ar-YE" "az" "az-AZ" "az-Cyrl-AZ" "be" "be-BY" "bg" "bg-BG" "bs-BA" "ca" "ca-ES" "cs" "cs-CZ" "cy" "cy-GB" "da" "da-DK" "de" "de-AT" "de-CH" "de-DE" "de-LI" "de-LU" "dv" "dv-MV" "el" "el-GR" "en" "en-AU" "en-BZ" "en-CA" "en-CB" "en-GB" "en-IE" "en-JM" "en-NZ" "en-PH" "en-TT" "en-US" "en-ZA" "en-ZW" "eo" "es" "es-AR" "es-BO" "es-CL" "es-CO" "es-CR" "es-DO" "es-EC" "es-ES" "es-GT" "es-HN" "es-MX" "es-NI" "es-PA" "es-PE" "es-PR" "es-PY" "es-SV" "es-UY" "es-VE" "et" "et-EE" "eu" "eu-ES" "fa" "fa-IR" "fi" "fi-FI" "fo" "fo-FO" "fr" "fr-BE" "fr-CA" "fr-CH" "fr-FR" "fr-LU" "fr-MC" "gl" "gl-ES" "gu" "gu-IN" "he" "he-IL" "hi" "hi-IN" "hr" "hr-BA" "hr-HR" "hu" "hu-HU" "hy" "hy-AM" "id" "id-ID" "is" "is-IS" "it" "it-CH" "it-IT" "ja" "ja-JP" "ka" "ka-GE" "kk" "kk-KZ" "kn" "kn-IN" "ko" "ko-KR" "kok" "kok-IN" "ky" "ky-KG" "lt" "lt-LT" "lv" "lv-LV" "mi" "mi-NZ" "mk" "mk-MK" "mn" "mn-MN" "mr" "mr-IN" "ms" "ms-BN" "ms-MY" "mt" "mt-MT" "nb" "nb-NO" "nl" "nl-BE" "nl-NL" "nn-NO" "ns" "ns-ZA" "pa" "pa-IN" "pl" "pl-PL" "ps" "ps-AR" "pt" "pt-BR" "pt-PT" "qu" "qu-BO" "qu-EC" "qu-PE" "ro" "ro-RO" "ru" "ru-RU" "sa" "sa-IN" "se" "se-FI" "se-NO" "se-SE" "sk" "sk-SK" "sl" "sl-SI" "sq" "sq-AL" "sr-BA" "sr-Cyrl-BA" "sr-SP" "sr-Cyrl-SP" "sv" "sv-FI" "sv-SE" "sw" "sw-KE" "syr" "syr-SY" "ta" "ta-IN" "te" "te-IN" "th" "th-TH" "tl" "tl-PH" "tn" "tn-ZA" "tr" "tr-TR" "tt" "tt-RU" "ts" "uk" "uk-UA" "ur" "ur-PK" "uz" "uz-UZ" "uz-Cyrl-UZ" "vi" "vi-VN" "xh" "xh-ZA" "zh" "zh-CN" "zh-HK" "zh-MO" "zh-SG" "zh-TW" "zu" "zu-ZA" ) ;
+                ] ;
+.
+
+
+
+rr:ObjectMapShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:objectMap ;
+    sh:property [
+                    sh:message "rr:termType on object map should be rr:IRI or rr:BlankNode or rr:Literal." ;
+                    sh:path rr:termType ;
+                    sh:in ( rr:IRI rr:BlankNode rr:Literal ) ;
+                ] ;
+
+.
+
+ex:PredicateShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicate ;
+    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
+    sh:property
+        [
+            sh:message "rr:predicate should be a valid IRI" ;
+            sh:path rr:predicate ;
+            sh:nodeKind sh:IRI ;
+        ] ;
+.
+
+ex:GraphMapShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:graphMap ;
+    sh:property [
+                    sh:message "rr:termType on graph map should be rr:IRI." ;
+                    sh:path rr:termType ;
+                    sh:in ( rr:IRI ) ;
+                ] ;
+.
 #
-#ex:DataTypeShape
-#    a sh:NodeShape ;
-#    sh:message "Data type and language tag defined in same term map" ;
-#    sh:targetSubjectsOf rr:datatype, rr:language ;
-#    sh:targetClass rr:objectMap;
-#    sh:xone (
-#                [
-#                    sh:property [
-#                                    sh:path rr:datatype ;
-#                                    sh:minCount 1;
-#                                ]
-#                ]
-#
-#                [
-#                    sh:property [
-#                                    sh:path rr:language ;
-#                                    sh:minCount 1;
-#                                ]
-#                ]
-#                [
-#                    sh:property [
-#                                    sh:path rr:language, rr:datatype ;
-#                                    sh:minCount 0;
-#                                ]
-#                ]
-#            ) ;
-#
-#    sh:property [
-#                    sh:message "More than one datatype in a term map.";
-#                    sh:path rr:datatype ;
-#                    sh:maxCount 1;
-#
-#                ]
-#.
-#
-#ex:SubjectMapShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:subjectMap ;
-#    sh:targetClass     rr:SubjectMap ;
-#    sh:property
-#        [
-#            sh:message "rr:termType for the subject map should be rr:IRI or rr:BlankNode." ;
-#            sh:path rr:termType ;
-#            sh:in ( rr:IRI rr:BlankNode ) ;
-#        ] ,
-#        [
-#            sh:message "rr:class for the subject map should be an IRI." ;
-#            sh:path rr:class ;
-#            sh:nodeKind sh:IRI ;
-#        ] ;
-#.
-#
-#ex:PredicateObjectMapShape
-#    a sh:NodeShape ;
-#    sh:targetSubjectsOf rr:predicate, rr:predicateMap, rr:object, rr:objectMap ;
-#    sh:targetObjectsOf  rr:predicateObjectMap ;
-#    sh:targetClass rr:PredicateObjectMap ;
-#
-#    sh:property
-#        [
-#            sh:message "Predicate object map should contain at least one predicate map." ;
-#            sh:path [
-#                        sh:alternativePath (rr:predicate rr:predicateMap) ;
-#                    ] ;
-#            sh:minCount 1 ;
-#        ] ,
-#        [
-#            sh:message "Predicate object map should contain at least one object map." ;
-#            sh:path [
-#                        sh:alternativePath (rr:object rr:objectMap) ;
-#                    ] ;
-#            sh:minCount 1 ;
-#        ] ;
-#.
-#
-#ex:JoinShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:Join ;
-#    sh:targetSubjectsOf rr:parent, rr:child ;
-#    sh:targetObjectsOf rr:joinCondition ;
-#
-#    sh:property
-#        [
-#            sh:message "Join should have one and only one child." ;
-#            sh:path rr:child ;
-#            sh:minCount 1 ;
-#            sh:maxCount 1 ;
-#        ] ,
-#        [
-#            sh:message "Value of child in join should be a literal value." ;
-#            sh:path rr:child ;
-#            sh:nodeKind sh:Literal ;
-#        ] ,
-#        [
-#            sh:message "Join should have one and only one parent." ;
-#            sh:path rr:parent ;
-#            sh:minCount 1 ;
-#            sh:maxCount 1 ;
-#        ] ,
-#        [
-#            sh:message "Join should have at least one parent." ;
-#            sh:path rr:parent ;
-#            sh:nodeKind sh:Literal ;
-#        ] ;
-#.
-#
-#ex:LogicalTableShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:TriplesMap ;
-#    sh:targetSubjectsOf rr:logicalTable, rr:subject, rr:subjectMap ;
-#    sh:property [
-#                    sh:path rr:logicalTable ;
-#                    sh:message "Exactly one logical table should exist.";
-#                    sh:minCount 1 ;
-#                    sh:maxCount 1 ;
-#                ] ;
-#
-#
-#.
-#
-#
-#ex:TableShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:LogicalTable ;
-#    sh:targetObjectsOf rr:logicalTable;
-#    sh:targetSubjectsOf rr:tableName, rr:sqlQuery;
-#    sh:message "Logical table should exactly one  table, view or SQL query" ;
-#    sh:xone (
-#                [
-#                    sh:property [
-#                                    sh:path rr:tableName ;
-#                                    sh:minCount 1 ;
-#                                    sh:maxCount 1 ;
-#                                ] ;
-#                ]
-#                [
-#                    sh:property [
-#                                    sh:path rr:sqlQuery ;
-#                                    sh:minCount 1 ;
-#                                    sh:maxCount 1 ;
-#                                ] ;
-#                ]
-#            ) ;
-#
-#
-#.
-#
-#ex:PredicateShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
-#
-#    sh:property [
-#                    sh:message "rr:termType on predicate map should be rr:IRI." ;
-#                    sh:path rr:termType ;
-#                    sh:in ( rr:IRI ) ;
-#                ] ;
-#.
-#
-#
-#rr:ValidLanguageTagShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:objectMap ;
-#    sh:property [
-#                    sh:message "Language tag not defined in RFC 5646 Language Tags." ;
-#                    sh:path rr:language ;
-#                    sh:in ( "af" "af-ZA" "ar" "ar-AE" "ar-BH" "ar-DZ" "ar-EG" "ar-IQ" "ar-JO" "ar-KW" "ar-LB" "ar-LY" "ar-MA" "ar-OM" "ar-QA" "ar-SA" "ar-SY" "ar-TN" "ar-YE" "az" "az-AZ" "az-Cyrl-AZ" "be" "be-BY" "bg" "bg-BG" "bs-BA" "ca" "ca-ES" "cs" "cs-CZ" "cy" "cy-GB" "da" "da-DK" "de" "de-AT" "de-CH" "de-DE" "de-LI" "de-LU" "dv" "dv-MV" "el" "el-GR" "en" "en-AU" "en-BZ" "en-CA" "en-CB" "en-GB" "en-IE" "en-JM" "en-NZ" "en-PH" "en-TT" "en-US" "en-ZA" "en-ZW" "eo" "es" "es-AR" "es-BO" "es-CL" "es-CO" "es-CR" "es-DO" "es-EC" "es-ES" "es-GT" "es-HN" "es-MX" "es-NI" "es-PA" "es-PE" "es-PR" "es-PY" "es-SV" "es-UY" "es-VE" "et" "et-EE" "eu" "eu-ES" "fa" "fa-IR" "fi" "fi-FI" "fo" "fo-FO" "fr" "fr-BE" "fr-CA" "fr-CH" "fr-FR" "fr-LU" "fr-MC" "gl" "gl-ES" "gu" "gu-IN" "he" "he-IL" "hi" "hi-IN" "hr" "hr-BA" "hr-HR" "hu" "hu-HU" "hy" "hy-AM" "id" "id-ID" "is" "is-IS" "it" "it-CH" "it-IT" "ja" "ja-JP" "ka" "ka-GE" "kk" "kk-KZ" "kn" "kn-IN" "ko" "ko-KR" "kok" "kok-IN" "ky" "ky-KG" "lt" "lt-LT" "lv" "lv-LV" "mi" "mi-NZ" "mk" "mk-MK" "mn" "mn-MN" "mr" "mr-IN" "ms" "ms-BN" "ms-MY" "mt" "mt-MT" "nb" "nb-NO" "nl" "nl-BE" "nl-NL" "nn-NO" "ns" "ns-ZA" "pa" "pa-IN" "pl" "pl-PL" "ps" "ps-AR" "pt" "pt-BR" "pt-PT" "qu" "qu-BO" "qu-EC" "qu-PE" "ro" "ro-RO" "ru" "ru-RU" "sa" "sa-IN" "se" "se-FI" "se-NO" "se-SE" "sk" "sk-SK" "sl" "sl-SI" "sq" "sq-AL" "sr-BA" "sr-Cyrl-BA" "sr-SP" "sr-Cyrl-SP" "sv" "sv-FI" "sv-SE" "sw" "sw-KE" "syr" "syr-SY" "ta" "ta-IN" "te" "te-IN" "th" "th-TH" "tl" "tl-PH" "tn" "tn-ZA" "tr" "tr-TR" "tt" "tt-RU" "ts" "uk" "uk-UA" "ur" "ur-PK" "uz" "uz-UZ" "uz-Cyrl-UZ" "vi" "vi-VN" "xh" "xh-ZA" "zh" "zh-CN" "zh-HK" "zh-MO" "zh-SG" "zh-TW" "zu" "zu-ZA" ) ;
-#                ] ;
-#.
-#
-#
-#
-#rr:ObjectMapShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:objectMap ;
-#    sh:property [
-#                    sh:message "rr:termType on subject map should be rr:IRI or rr:BlankNode or rr:Literal." ;
-#                    sh:path rr:termType ;
-#                    sh:in ( rr:IRI rr:BlankNode rr:Literal ) ;
-#                ] ;
-#
-#.
-#
-#ex:PredicateShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:predicate ;
-#    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
-#    sh:property
-#        [
-#            sh:message "rr:predicate should be a valid IRI" ;
-#            sh:path rr:predicate ;
-#            sh:nodeKind sh:IRI ;
-#        ] ;
-#.
-#
-#ex:GraphMapShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:graphMap ;
-#    sh:property [
-#                    sh:message "rr:termType on graph map should be rr:IRI." ;
-#                    sh:path rr:termType ;
-#                    sh:in ( rr:IRI ) ;
-#                ] ;
-#.
-##
-##ex:URIlength
-##    a sh:NodeShape ;
-##    sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
-##    sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
-##    sh:property
-##        [
-##            sh:message "URI longer than 80 characters." ;
-##            sh:path rr:class, rr:predicate ;
-##            sh:maxLength 80;
-##        ] ;
-##.
-#
-#ex:URIqueryParameter
+#ex:URIlength
 #    a sh:NodeShape ;
 #    sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
 #    sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
 #    sh:property
 #        [
-#            sh:message "URI comtains query parameter." ;
+#            sh:message "URI longer than 80 characters." ;
 #            sh:path rr:class, rr:predicate ;
-#            sh:pattern "^[^?]+$" ;
+#            sh:maxLength 80;
 #        ] ;
-#.
-#
-#
-##  This metric consider all classes in a mapping defined to be
-##   instances of rdf:Statement, and predicate maps defined with any of the properties
-##   rdf:subject, rdf:predicate, or rdf:object.
-#
-#ex:RDFreification
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap, rr:subjectMap;
-#    sh:property
-#        [
-#            sh:path rr:predicate ;
-#            sh:message  "Usage of RDF reification" ;
-#            sh:not [
-#                       a sh:PropertyShape ;
-#                       sh:in (rdf:subject rdf:predicate rdf:object) ;
-#
-#                   ]
-#        ] ;
-#    sh:property
-#        [
-#            sh:path rr:class ;
-#            sh:message  "Usage of RDF reification" ;
-#            sh:not [
-#                       a sh:PropertyShape ;
-#                       sh:in (rdf:Statement) ;
-#
-#                   ]
-#        ] ;
-#.
-#
-#
-#rr:BlankNodeShape
-#    a sh:NodeShape ;
-#    sh:targetObjectsOf rr:predicateObjectMap,rr:subjectMap,rr:objectMap ;
-#    sh:message "Usage of Blank node." ;
-#    sh:not
-#        [
-#            sh:path rr:termType ;
-#            sh:hasValue rr:BlankNode;
-#        ] ;
-#
-#.
-#
-#ex:DuplicateTriplesShape
-#    sh:targetSubjectsOf rr:predicate;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:targetClass rr:PredicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "Duplicate triples detected." ;
-#              sh:jsFunctionName "validateDuplicateTriples" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#
-#          ];
-#
-#.
-#
-#ex:ValidRangeShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:PredicateObjectMap ;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:jsFunctionName "validateRange" ;
-#              sh:message "Incorrect range detected.";
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#
-#          ];
-#.
-#
-#ex:DisjointShape
-#    sh:targetObjectsOf  rr:subjectMap ;
-#    sh:targetClass rr:SubjectMap ;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "Disjoint Classes Detected" ;
-#              sh:jsFunctionName "validateDisjointClasses" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#
-#          ];
-#.
-#
-#ex:AccessibilityShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:PredicateObjectMap ;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "Unable to derference URI." ;
-#              sh:jsFunctionName "isAccessible" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ];
-#
-#          ];
-#.
-#
-#ex:UndefinedShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:PredicateObjectMap, rr:subjectMap;
-#    sh:targetObjectsOf rr:predicateObjectMap, rr:subjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "Usage of Undefined class or property" ;
-#              sh:jsFunctionName "validateUndefined" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#          ];
-#
-#.
-#
-#ex:DomainShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:PredicateObjectMap ;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "Domain Violation Detected" ;
-#              sh:jsFunctionName "validateDomain" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
-#
-#          ];
-#.
-#
-#ex:ValidDatatypeShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:ObjectMap ;
-#    sh:targetObjectsOf rr:objectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:jsFunctionName "validateDatatype" ;
-#              sh:message "Incorrect datatype definition detected.";
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#
-#          ];
-#.
-#
-#ex:ProvenanceShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:SubjectMap ;
-#    sh:targetObjectsOf rr:subjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "No basic provenance information detected." ;
-#              sh:jsFunctionName "validateBasicProvenance" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#
-#          ];
-#.
-#
-#
-#ex:HumanLicenseShaoe
-#    a sh:NodeShape ;
-#    sh:targetClass rr:SubjectMap ;
-#    sh:targetObjectsOf rr:subjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "No human-readable license detected. " ;
-#              sh:jsFunctionName "validateHumanLicense" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#          ];
-#.
-#
-#ex:MachineLicenseShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:SubjectMap ;
-#    sh:targetObjectsOf rr:subjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "No machine-readable license detected." ;
-#              sh:jsFunctionName "validateMachineLicense" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
-#
-#          ];
-#.
-#
-#ex:HumanLabellingShape
-#    a sh:NodeShape ;
-#    sh:targetClass rr:PredicateObjectMap ;
-#    sh:targetObjectsOf rr:predicateObjectMap;
-#    sh:js [
-#              a sh:JSConstraint ;
-#              sh:message "No human-readable labelling detected." ;
-#              sh:jsFunctionName "hasHumanReadableLabelling" ;
-#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#          ];
 #.
 
-
-ex:Test
+ex:URIqueryParameter
     a sh:NodeShape ;
-    sh:targetClass rr:ObjectMap;
-    sh:targetObjectsOf rr:objectMap;
+    sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
+    sh:targetClass     rr:SubjectMap, rr:PredicateObjectMap ;
+    sh:property
+        [
+            sh:message "URI comtains query parameter." ;
+            sh:path rr:class, rr:predicate ;
+            sh:pattern "^[^?]+$" ;
+        ] ;
+.
+
+
+#  Only considers RDF reification supported by R2RML
+
+ex:RDFreification
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap, rr:subjectMap;
+    sh:property
+        [
+            sh:path rr:predicate ;
+            sh:message  "Usage of RDF reification" ;
+            sh:not [
+                       a sh:PropertyShape ;
+                       sh:in (rdf:subject rdf:predicate rdf:object) ;
+
+                   ]
+        ] ;
+    sh:property
+        [
+            sh:path rr:class ;
+            sh:message  "Usage of RDF reification" ;
+            sh:not [
+                       a sh:PropertyShape ;
+                       sh:in (rdf:Statement) ;
+
+                   ]
+        ] ;
+.
+
+
+ex:BlankNodeShape
+    a sh:NodeShape ;
+    sh:targetObjectsOf rr:predicateObjectMap,rr:subjectMap,rr:objectMap ;
+    sh:message "Usage of Blank node." ;
+    sh:not
+        [
+            sh:path rr:termType ;
+            sh:hasValue rr:BlankNode;
+        ] ;
+
+.
+
+ex:DuplicateTriplesShape
+    sh:targetSubjectsOf rr:predicate;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:targetClass rr:PredicateObjectMap;
     sh:js [
               a sh:JSConstraint ;
-              sh:message "No human-readable labelling detected." ;
-              sh:jsFunctionName "testing" ;
+              sh:message "Duplicate triples detected." ;
+              sh:jsFunctionName "validateDuplicateTriples" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+
+          ];
+
+.
+
+ex:ValidRangeShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:jsFunctionName "validateRange" ;
+              sh:message "Incorrect range detected.";
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+
+          ];
+.
+
+ex:DisjointShape
+    sh:targetObjectsOf  rr:subjectMap ;
+    sh:targetClass rr:SubjectMap ;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Disjoint Classes Detected" ;
+              sh:jsFunctionName "validateDisjointClasses" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+
+          ];
+.
+
+ex:AccessibilityShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Unable to derference URI." ;
+              sh:jsFunctionName "isAccessible" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ];
+
+          ];
+.
+
+ex:UndefinedShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap, rr:subjectMap;
+    sh:targetObjectsOf rr:predicateObjectMap, rr:subjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Usage of Undefined class or property" ;
+              sh:jsFunctionName "validateUndefined" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+          ];
+
+.
+
+ex:DomainShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "Domain Violation Detected" ;
+              sh:jsFunctionName "validateDomain" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
+
+          ];
+.
+#
+ex:ValidDatatypeShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:jsFunctionName "validateDatatype" ;
+              sh:message "Incorrect datatype definition detected.";
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+
+          ];
+.
+
+ex:ProvenanceShape
+    a sh:NodeShape ;
+    sh:targetClass rr:SubjectMap ;
+    sh:targetObjectsOf rr:subjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No basic provenance information detected." ;
+              sh:jsFunctionName "validateBasicProvenance" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+
+          ];
+.
+
+
+ex:HumanLicenseShaoe
+    a sh:NodeShape ;
+    sh:targetClass rr:SubjectMap ;
+    sh:targetObjectsOf rr:subjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No human-readable license detected. " ;
+              sh:jsFunctionName "validateHumanLicense" ;
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
           ];
 .
-#sh:MaxLengthConstraintComponent
-#    a sh:ConstraintComponent ;
-#    sh:parameter [
-#                     sh:path rr:datatype ;
-#                 ] ;
-#    sh:validator ex:hasMaxLength .
-#
-#ex:hasMaxLength
-#    a sh:JSValidator ;
-#    sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-#    sh:jsFunctionName "testing" .
+
+ex:MachineLicenseShape
+    a sh:NodeShape ;
+    sh:targetClass rr:SubjectMap ;
+    sh:targetObjectsOf rr:subjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No machine-readable license detected." ;
+              sh:jsFunctionName "validateMachineLicense" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
+
+          ];
+.
+
+ex:HumanLabellingShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No human-readable labelling detected." ;
+              sh:jsFunctionName "hasHumanReadableLabelling" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+          ];
+.
+

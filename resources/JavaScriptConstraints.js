@@ -16,6 +16,7 @@ function getProperty($this, name) {
 
 function isAccessible($this) {
     try{
+        print("Validating dereferencability of URIs....")
         var results = [];
         var p = TermFactory.namedNode(NS+"predicate");
         var s = $data.find($this, p, null);
@@ -42,6 +43,7 @@ function isAccessible($this) {
 function validateDuplicateTriples(resource) {
     try{
         if(!duplicates_checked){
+            print("Validating duplicate triple definitions....")
             var JavaCLass = Java.type("JavaClasses.DuplicateTriples");
             var result = JavaCLass.detectDuplicateTriples();
             duplicates_checked = true;
@@ -79,6 +81,7 @@ function getAllValues(name, resource){
 function validateDisjointClasses(resource){
     try{
         if (!disjoint_classes_check){
+            print("Validating usage of disjoint classes....")
             var classesURI = getAllValues("class");
             if (classesURI === undefined || classesURI.length === 0) {
                    return true;
@@ -95,39 +98,36 @@ function validateDisjointClasses(resource){
 }
 
 function validateRange($this) {
-    try{
+    try {
+        print("Validating usage of incorrect range....")
         var results = [];
-        var p = TermFactory.namedNode(NS+"predicate");
+        var p = TermFactory.namedNode(NS + "predicate");
         var s = $data.find($this, p, null);
         for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            var undefined = isUndefined(object);
-            if (undefined){
-                break;
+            var predicate = t.object;
+            var objectMap = getProperty($this, NS+"objectMap");
+            var termType = getProperty(objectMap, NS+"termType");
+            if (termType === undefined || String(termType) === NS + "BlankNode"){
+                continue;
             }
             var JavaCLass = Java.type("JavaClasses.Range");
-            var result = JavaCLass.validateRange(object);
+            var result = JavaCLass.validateRange(predicate, termType);
             if(!result) {
                 results.push({
-                    value : object
+                    value: predicate
                 });
             }
-            print(results);
-            if(object in results){
-                print("hello");
-            }
-
         }
-        s.close();
         return results;
     }
     catch(err){
         return true;
     }
- }
+}
 
 function validateMachineLicense($this) {
     try{
+        print("Validating machine-readable license....")
         var results = [];
         var namespaces = getUniqueNamespaces($this);
         for (i = 0; i < namespaces.length; i++) {
@@ -148,6 +148,7 @@ function validateMachineLicense($this) {
 
 function validateHumanLicense($this) {
     try{
+        print("Validating human-readable license...")
         var results = [];
         var namespaces = getUniqueNamespaces($this);
         for (i = 0; i < namespaces.length; i++) {
@@ -169,20 +170,21 @@ function validateHumanLicense($this) {
 
 function hasHumanReadableLabelling($this) {
     try{
+        print("Validating human readable labels/comments....")
         var results = [];
         var p = TermFactory.namedNode(NS+"predicate");
         var s = $data.find($this, p, null);
         for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            var undefined = isUndefined(object);
+            var predicate = t.object;
+            var undefined = isUndefined(predicate);
             if (undefined){
                 break;
             }
             var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
-            var result = JavaCLass.hasHumamReadableLabelling(object);
+            var result = JavaCLass.hasHumamReadableLabelling(predicate);
             if(!result) {
                 results.push({
-                    value : object
+                    value : predicate
                 });
             }
         }
@@ -196,6 +198,7 @@ function hasHumanReadableLabelling($this) {
 
 function validateBasicProvenance($this) {
     try{
+        print("Validating basic provenance information....")
         var results = [];
         var namespaces = getUniqueNamespaces($this);
         for (i = 0; i < namespaces.length; i++) {
@@ -255,6 +258,7 @@ function isUndefined(URI){
 
 function validateUndefined($this) {
     try{
+        print("Validating usage of undefined classes and properties....")
         var undefinedProperties = validateUndefinedProperties($this);
         var undefinedClasses = validateUndefinedClasses($this);
         var results = undefinedProperties.concat(undefinedClasses);
@@ -309,53 +313,9 @@ function validateUndefinedClasses($this) {
     }
 }
 
-function validateDatatype($this) {
-    try{
-        var results = [];
-        var p = TermFactory.namedNode("http://www.w3.org/2001/XMLSchema#datatype");
-        var s = $data.find($this, p, null);
-        for(var t = s.next(); t; t = s.next()) {
-            var object = t.object;
-            print("datatype", object);
-            var JavaCLass = Java.type("JavaClasses.DataType");
-            var result = JavaCLass.validateDatatype(object);
-            if(!result) {
-                results.push({
-                    value : objclass_nameect
-                });
-            }
-        }
-        s.close();
-        return results;
-    }
-    catch(err){
-        return true;
-    }
-}
-
-function testing($this) {
-    try {
-        // var p = TermFactory.namedNode(NS + "predicateObjectMap");
-        // var s = $data.find($this, p, null);
-        // for (var t = s.next(); t; t = s.next()) {
-        //     var object = t.object;
-        //     print(object);
-        //     var JavaCLass = Java.type("JavaClasses.DataType");
-        //     var result = JavaCLass.testing(object);
-        //     print(result);
-        // }
-        //
-        // s.close();
-        print(getProperty($this, NS+"predicate"), getProperty($this, NS+"datatype"));
-        // print(getProperty($this, "http://www.w3.org/2001/XMLSchema#datatype"));
-        return true;
-    }
-    catch(err){
-        return true;
-    }
-}
 function validateDomain($this) {
     try{
+        print("Validating usage of incorrect domain....")
         var results = [];
         var p = TermFactory.namedNode(NS+"predicate");
         var s = $data.find($this, p, null);
@@ -380,3 +340,29 @@ function validateDomain($this) {
         return true;
     }
 }
+
+function validateDatatype($this) {
+    try {
+        print("Validating usage of incorrect datatype....")
+        var results = [];
+        var p = TermFactory.namedNode(NS + "predicate");
+        var s = $data.find($this, p, null);
+        for(var t = s.next(); t; t = s.next()) {
+            var predicate = t.object;
+            var objectMap = getProperty($this, NS+"objectMap");
+            var datatype = getProperty(objectMap, NS+"datatype");
+            var JavaCLass = Java.type("JavaClasses.DataType");
+            var result = JavaCLass.validateDatatype(predicate, datatype);
+            if(!result) {
+                results.push({
+                    value : predicate
+                });
+            }
+        }
+        return results;
+    }
+    catch(err){
+        return true;
+    }
+}
+

@@ -18,24 +18,34 @@
                       rr:template "http://example.org/person/{id}";
                       rr:class dbo:Agent, foaf:Agent;
                   ];
-#    rr:predicateObjectMap [
-#                              rr:predicate dbo:army;
-#                              rr:objectMap [
-#                                               rr:column"age";
-#                                               ];
-#                          ];
+    rr:predicateObjectMap [
+                              rr:predicate dbo:height;
+                              rr:objectMap [
+                                               rr:column"age";
+                                           rr:termType "dhhd";
+                                           ];
+                          ];
+    rr:predicateObjectMap [
+                              rr:predicate dbo:club;
+                              rr:objectMap [
+                                               rr:column"age";
+                                               rr:termType rr:Literal;
+                                                   rr:datatype xsd:string;
+                                           ];
+                          ];
     rr:predicateObjectMap [
                               rr:predicate dbo:army;
                               rr:objectMap [
                                                rr:column"age";
-                                           rr:datatype xsd:test;
-                                           rr:termType "dhhd";
+                                               rr:termType rr:dd;
+                                               rr:datatype xsd:dhdh;
                                            ];
                           ];
-#    rr:predicateObjectMap [
-#                              rr:predicate ex:name;
-#                              rr:objectMap [ rr:column "name"; ];
-#                          ];.
-.
+    rr:predicateObjectMap [
+                              rr:predicate ex:name;
+                              rr:objectMap [ rr:column "name";
+                                           rr:termType "dddd";
+                                           ];
+                          ];.
 
-[] rdfs:label "license".
+

@@ -8,12 +8,7 @@ public class ShaclTest {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		try {
-			String processingMessage = "Please wait a few seconds for your mapping to be assessed and refined..";
-			System.out.println(StringUtils.repeat('*', 70));
-			System.out.println(StringUtils.repeat('*', 70));
-			System.out.println(processingMessage);
-			System.out.println(StringUtils.repeat('*', 70));
-			System.out.println(StringUtils.repeat('*', 70));
+			printHeaders();
 			copyMapping(FileNames.originalMappingFile, FileNames.refinedMappingFile);
 			runTest(FileNames.function_file, FileNames.originalMappingFile, FileNames.reportFile);
 		}
@@ -23,6 +18,14 @@ public class ShaclTest {
 		}
 	}
 
+	public static void printHeaders(){
+		String processingMessage = "Please wait a few seconds for your mapping to be assessed and refined..";
+		System.out.println(StringUtils.repeat('*', 70));
+		System.out.println(StringUtils.repeat('*', 70));
+		System.out.println(processingMessage);
+		System.out.println(StringUtils.repeat('*', 70));
+		System.out.println(StringUtils.repeat('*', 70));
+	}
 
 	public static void runTest(String function_file, String data_file, String output_file) {
 		Model data = ModelFactory.createDefaultModel();

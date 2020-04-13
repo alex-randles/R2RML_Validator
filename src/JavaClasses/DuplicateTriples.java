@@ -18,7 +18,6 @@ public class DuplicateTriples {
         String query = "\n" +
                 "\n" +
                 "PREFIX rr: <http://www.w3.org/ns/r2rml#> " +
-                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
                 "SELECT (COUNT(?predicateObjectMap) AS ?count)  ?subject ?predicate ?column ?template ?datatype ?termType ?language\n" +
                 "WHERE {\n" +
                 "  ?subject \t rr:predicateObjectMap ?predicateObjectMap.\n" +
@@ -26,7 +25,7 @@ public class DuplicateTriples {
                 "  ?predicateObjectMap rr:objectMap ?objectMap. \n" +
                 "  OPTIONAL {?objectMap     rr:column ?column. }\n" +
                 "  OPTIONAL {?objectMap    rr:template  ?template. }\n" +
-                "  OPTIONAL {?objectMap    xsd:datatype ?datatype. }\n" +
+                "  OPTIONAL {?objectMap    rr:datatype ?datatype. }\n" +
                 "  OPTIONAL {?objectMap     rr:termType ?termType. }\n" +
                 "  OPTIONAL {?objectMap     rr:language ?language. }\n" +
                 "  OPTIONAL {?objectMap     rr:parentTriplesMap ?parentTriplesMap. }\n" +
