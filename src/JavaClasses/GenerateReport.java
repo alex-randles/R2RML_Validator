@@ -166,14 +166,8 @@ public class GenerateReport {
         return count;
     }
     public static int getNumberOccurrences(String fileName, String predicate){
-        // finds number of occurrences of a predicate
         String query = String.format("SELECT  (COUNT(?object) as ?count) WHERE { ?s <%s> ?object}", predicate);
         ResultSet results = SPARQL.selectQuery(fileName, query);
-//        int count = 0;
-//        for(;results.hasNext();){
-//            QuerySolution soln = results.nextSolution();
-//            count++;
-//        }
         return Integer.parseInt(SPARQL.getStringVariable(results, "?count").split("\\^")[0]);
     }
 

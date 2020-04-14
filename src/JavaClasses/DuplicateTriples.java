@@ -43,7 +43,8 @@ public class DuplicateTriples {
     }
 
     public static boolean duplicateTriplesCase2(String URI){
-        String query = "PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
+        String query = "" +
+                "PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
                 "SELECT (COUNT(?predicateObjectMap) as ?count) ?predicateMapConstant ?objectMapConstant\n" +
                 "WHERE{\n" +
                 "  ?subject rr:predicateObjectMap ?predicateObjectMap.\n" +
@@ -60,7 +61,8 @@ public class DuplicateTriples {
     }
 
     public static boolean duplicateTriplesCase3(String URI){
-        String query = "PREFIX rr: <http://www.w3.org/ns/r2rml#> \n" +
+        String query = "" +
+                "PREFIX rr: <http://www.w3.org/ns/r2rml#> \n" +
                 "SELECT  (COUNT(?predicateObjectMap) AS ?count)\n" +
                 "WHERE {\n" +
                 "  ?subject       rr:predicateObjectMap ?predicateObjectMap.\n" +

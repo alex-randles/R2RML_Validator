@@ -89,18 +89,18 @@ ex:JoinShape
 
     sh:property
         [
-            sh:message "Join should have one and only one child." ;
+            sh:message "Join should have exactly one child." ;
             sh:path rr:child ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
         ] ,
         [
-            sh:message "Value of child in join should be a literal value." ;
+            sh:message "Child in join should be a literal value." ;
             sh:path rr:child ;
             sh:nodeKind sh:Literal ;
         ] ,
         [
-            sh:message "Join should have one and only one parent." ;
+            sh:message "Join should have exactly one parent." ;
             sh:path rr:parent ;
             sh:minCount 1 ;
             sh:maxCount 1 ;
@@ -131,7 +131,7 @@ ex:InputDataShape
     sh:targetClass rr:LogicalTable ;
     sh:targetObjectsOf rr:logicalTable;
     sh:targetSubjectsOf rr:tableName, rr:sqlQuery;
-    sh:message "Logical table should exactly one  table, view or SQL query" ;
+    sh:message "Logical table should have one  table, view or SQL query" ;
     sh:xone (
                 [
                     sh:property [
@@ -193,7 +193,7 @@ ex:PredicateShape
     sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
     sh:property
         [
-            sh:message "rr:predicate should be a valid IRI" ;
+            sh:message "rr:predicate should be a IRI" ;
             sh:path rr:predicate ;
             sh:nodeKind sh:IRI ;
         ] ;
@@ -208,7 +208,7 @@ ex:GraphMapShape
                     sh:in ( rr:IRI ) ;
                 ] ;
 .
-#
+
 #ex:URIlength
 #    a sh:NodeShape ;
 #    sh:targetObjectsOf rr:subjectMap, rr:predicateObjectMap ;
@@ -273,11 +273,11 @@ ex:BlankNodeShape
         ] ;
 
 .
-
+#
 ex:DuplicateTriplesShape
-    sh:targetSubjectsOf rr:predicate;
-    sh:targetObjectsOf rr:predicateObjectMap;
-    sh:targetClass rr:PredicateObjectMap;
+    a sh:NodeShape ;
+    sh:targetClass rr:TriplesMap ;
+    sh:targetObjectsOf rr:subjectMap ;
     sh:js [
               a sh:JSConstraint ;
               sh:message "Duplicate triples detected." ;
@@ -285,7 +285,6 @@ ex:DuplicateTriplesShape
               sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
 
           ];
-
 .
 
 ex:ValidRangeShape
@@ -302,7 +301,7 @@ ex:ValidRangeShape
 .
 
 ex:DisjointShape
-    sh:targetObjectsOf  rr:subjectMap ;
+    sh:targetSubjectsOf  rr:class ;
     sh:targetClass rr:SubjectMap ;
     sh:js [
               a sh:JSConstraint ;
@@ -351,7 +350,7 @@ ex:DomainShape
 
           ];
 .
-#
+
 ex:ValidDatatypeShape
     a sh:NodeShape ;
     sh:targetClass rr:PredicateObjectMap ;

@@ -23,29 +23,16 @@
                               rr:objectMap [
                                                rr:column"age";
                                            rr:termType "dhhd";
+                                           rr:datatype xsd:string;
                                            ];
                           ];
-    rr:predicateObjectMap [
+        rr:predicateObjectMap [
                               rr:predicate dbo:club;
                               rr:objectMap [
                                                rr:column"age";
-                                               rr:termType rr:Literal;
-                                                   rr:datatype xsd:string;
+                                           rr:termType "dhhd";
                                            ];
-                          ];
-    rr:predicateObjectMap [
-                              rr:predicate dbo:army;
-                              rr:objectMap [
-                                               rr:column"age";
-                                               rr:termType rr:dd;
-                                               rr:datatype xsd:dhdh;
-                                           ];
-                          ];
-    rr:predicateObjectMap [
-                              rr:predicate ex:name;
-                              rr:objectMap [ rr:column "name";
-                                           rr:termType "dddd";
-                                           ];
-                          ];.
+]
+.
 
 

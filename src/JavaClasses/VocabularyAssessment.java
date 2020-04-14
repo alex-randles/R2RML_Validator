@@ -1,13 +1,5 @@
 package JavaClasses;
 
-import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.sparql.vocabulary.FOAF;
-import org.apache.jena.vocabulary.RDFS;
-
-import javax.swing.tree.ExpandVetoException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 

@@ -1,10 +1,7 @@
 package JavaClasses;
 
-
 import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-
+import org.apache.jena.rdf.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +10,8 @@ public class Domain {
 
     public static boolean validateDomain(String predicateURI) {
         try {
-            String checkDomainQuery = String.format("SELECT ?domain {<%s> <http://www.w3.org/2000/01/rdf-schema#domain> ?domain }", predicateURI);
+            String checkDomainQuery = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
+                    "SELECT ?domain {<%s> rdfs:domain ?domain }", predicateURI);
             ResultSet result = SPARQL.selectQuery(predicateURI, checkDomainQuery);
             String domain = SPARQL.getStringVariable(result, "?domain");
             if (domain.isEmpty()){

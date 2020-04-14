@@ -32,11 +32,13 @@ public class Range {
     }
 
     public static boolean isDatatype(String range){
-        return range.split("#")[0].equals("http://www.w3.org/2001/XMLSchema");
+        return range.split("#")[0].equals(NS.XSD_NS);
     }
 
     public static String getRange(String predicateURI){
-        String query = String.format("SELECT ?range WHERE {<%s> <http://www.w3.org/2000/01/rdf-schema#range> ?range} ", predicateURI);
+        String query = String.format("" +
+                "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
+                "SELECT ?range WHERE {<%s> rdfs:range ?range} ", predicateURI);
         ResultSet results = SPARQL.selectQuery(predicateURI, query);
         String range = SPARQL.getStringVariable(results, "?range");
         return range;

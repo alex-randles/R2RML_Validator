@@ -1,7 +1,7 @@
 package JavaClasses;
 
-import java.net.*;
 import org.apache.jena.rdf.model.*;
+import java.net.*;
 
 public class DereferenceURI {
 

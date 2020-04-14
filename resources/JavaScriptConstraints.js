@@ -1,6 +1,4 @@
 var NS = "http://www.w3.org/ns/r2rml#";
-var duplicates_checked = false;
-var disjoint_classes_check = false;
 
 function getProperty($this, name) {
     try{
@@ -42,13 +40,10 @@ function isAccessible($this) {
 
 function validateDuplicateTriples(resource) {
     try{
-        if(!duplicates_checked){
-            print("Validating duplicate triple definitions....")
-            var JavaCLass = Java.type("JavaClasses.DuplicateTriples");
-            var result = JavaCLass.detectDuplicateTriples();
-            duplicates_checked = true;
-            return result;
-        }
+        print("Validating duplicate triple definitions....")
+        var JavaCLass = Java.type("JavaClasses.DuplicateTriples");
+        var result = JavaCLass.detectDuplicateTriples();
+        return result;
     }
     catch(err){
         return true;
@@ -80,17 +75,14 @@ function getAllValues(name, resource){
 
 function validateDisjointClasses(resource){
     try{
-        if (!disjoint_classes_check){
-            print("Validating usage of disjoint classes....")
-            var classesURI = getAllValues("class");
-            if (classesURI === undefined || classesURI.length === 0) {
-                   return true;
-               }
-            var JavaCLass = Java.type("JavaClasses.Disjoint");
-            var result = JavaCLass.validateDisjointClasses(classesURI);
-            disjoint_classes_check = true;
-            return result;
-        }
+        print("Validating usage of disjoint classes....")
+        var classesURI = getAllValues("class");
+        if (classesURI === undefined || classesURI.length === 0) {
+               return true;
+           }
+        var JavaCLass = Java.type("JavaClasses.Disjoint");
+        var result = JavaCLass.validateDisjointClasses(classesURI);
+        return result;
     }
     catch(err){
         return true;

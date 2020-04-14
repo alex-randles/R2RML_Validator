@@ -1,4 +1,5 @@
 import JavaClasses.FileNames;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.rdf.model.*;
 import org.topbraid.shacl.validation.ValidationUtil;
@@ -9,6 +10,7 @@ public class ShaclTest {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		try {
 			printHeaders();
+			FileUtils.cleanDirectory(new File("./cache"));
 			copyMapping(FileNames.originalMappingFile, FileNames.refinedMappingFile);
 			runTest(FileNames.function_file, FileNames.originalMappingFile, FileNames.reportFile);
 		}
