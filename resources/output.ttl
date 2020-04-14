@@ -17,73 +17,7 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    []  ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "rr:termType on object map should be rr:IRI or rr:BlankNode or rr:Literal." ;
-            <http://www.w3.org/ns/shacl#resultPath>
-                    rr:termType ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
                     _:b0 ;
-            <http://www.w3.org/ns/shacl#value>
-                    "dhhd"
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Logical table should exactly one  table, view or SQL query" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#InputDataShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    _:b1
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Domain Violation Detected" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b3 ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#DomainShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:club
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b4 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Usage of Undefined class or property" ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#UndefinedShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    testv:name
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b4 ;
             <http://www.w3.org/ns/shacl#resultMessage>
                     "Unable to derference URI." ;
             <http://www.w3.org/ns/shacl#resultSeverity>
@@ -100,36 +34,53 @@
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    []  ;
+                    _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect range detected." ;
+                    "Usage of Undefined class or property" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b5 ;
+                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidRangeShape> ;
+                    <http://example.com/ns#UndefinedShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    dbo:height
+                    testv:name
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    _:b6 ;
+                    _:b1 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect range detected." ;
+                    "No basic provenance information detected." ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b5 ;
+                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidRangeShape> ;
+                    <http://example.com/ns#ProvenanceShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    dbo:army
+                    foaf:
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "No human-readable license detected. " ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b2 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#HumanLicenseShaoe> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
@@ -144,9 +95,60 @@
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#InConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    _:b0 ;
+                    _:b3 ;
             <http://www.w3.org/ns/shacl#value>
-                    "dddd"
+                    "dhhd"
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "No human-readable license detected. " ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b2 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#HumanLicenseShaoe> ;
+            <http://www.w3.org/ns/shacl#value>
+                    foaf:
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "No machine-readable license detected." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#MachineLicenseShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    foaf:
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b4 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Incorrect range detected." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b5 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#ValidRangeShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:club
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
@@ -170,11 +172,79 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b6 ;
             <http://www.w3.org/ns/shacl#resultMessage>
+                    "Incorrect range detected." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b5 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#ValidRangeShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:army
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b4 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
                     "Domain Violation Detected" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b7 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#DomainShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:club
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    []  ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Incorrect range detected." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b5 ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#ValidRangeShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:height
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    []  ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "rr:termType on object map should be rr:IRI or rr:BlankNode or rr:Literal." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
                     _:b3 ;
+            <http://www.w3.org/ns/shacl#value>
+                    rr:dd
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b6 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Domain Violation Detected" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    _:b7 ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
@@ -195,25 +265,23 @@
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
                     <http://www.w3.org/ns/shacl#InConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    _:b0 ;
+                    _:b3 ;
             <http://www.w3.org/ns/shacl#value>
-                    rr:dd
+                    "dddd"
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
-                    _:b2 ;
+                    _:b8 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect range detected." ;
+                    "Logical table should exactly one  table, view or SQL query" ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    _:b5 ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidRangeShape> ;
+                    <http://example.com/ns#InputDataShape> ;
             <http://www.w3.org/ns/shacl#value>
-                    dbo:club
+                    _:b8
           ]
 ] .

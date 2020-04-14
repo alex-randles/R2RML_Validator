@@ -1,0 +1,22 @@
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ns8:   <http://open.vocab.org/terms/> .
+@prefix ns7:   <http://mappings.dbpedia.org/index.php/OntologyProperty:> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix wdrs:  <http://www.w3.org/2007/05/powder-s#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+
+dbo:height  a                owl:FunctionalProperty , owl:DatatypeProperty , rdf:Property ;
+        rdfs:isDefinedBy     dbo: ;
+        rdfs:label           "身長 (μ)"@ja , "altura (μ)"@pt , "ύψος (μ)"@el , "hoogte (μ)"@nl , "hauteur (μ)"@fr , "Höhe (μ)"@de , "height (μ)"@en , "višina (μ)"@sl ;
+        rdfs:range           xsd:double ;
+        owl:sameAs           dbo:height ;
+        wdrs:describedby     <http://dbpedia.org/ontology/data/definitions.ttl> ;
+        prov:wasDerivedFrom  ns7:height .
+
+<http://dbpedia.org/ontology/data/definitions.ttl>
+        ns8:describes  dbo:height .
+
+dbo:    ns8:defines  dbo:height .

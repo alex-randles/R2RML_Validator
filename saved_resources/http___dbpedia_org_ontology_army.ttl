@@ -1,0 +1,24 @@
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ns8:   <http://open.vocab.org/terms/> .
+@prefix ns7:   <http://mappings.dbpedia.org/index.php/OntologyProperty:> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix wdrs:  <http://www.w3.org/2007/05/powder-s#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+
+dbo:army  a                  rdf:Property , owl:DatatypeProperty ;
+        rdfs:comment         "Ένας στρατός αποτελεί τις επίγειες ένοπλες δυνάμεις ενός έθνους"@el ;
+        rdfs:domain          dbo:MilitaryPerson ;
+        rdfs:isDefinedBy     dbo: ;
+        rdfs:label           "Armee"@de , "army"@en , "στρατός"@el , "leger"@nl ;
+        rdfs:range           xsd:string ;
+        owl:sameAs           dbo:army ;
+        wdrs:describedby     <http://dbpedia.org/ontology/data/definitions.ttl> ;
+        prov:wasDerivedFrom  ns7:army .
+
+<http://dbpedia.org/ontology/data/definitions.ttl>
+        ns8:describes  dbo:army .
+
+dbo:    ns8:defines  dbo:army .

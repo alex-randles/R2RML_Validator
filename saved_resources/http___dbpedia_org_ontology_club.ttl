@@ -1,0 +1,25 @@
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ns8:   <http://open.vocab.org/terms/> .
+@prefix ns7:   <http://mappings.dbpedia.org/index.php/OntologyProperty:> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix wdrs:  <http://www.w3.org/2007/05/powder-s#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix ns4:   <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+dbo:club  a                     owl:ObjectProperty , rdf:Property ;
+        rdfs:domain             dbo:Athlete ;
+        rdfs:isDefinedBy        dbo: ;
+        rdfs:label              "club"@nl , "club"@en , "クラブ"@ja , "ομάδα"@el , "Verein"@de ;
+        rdfs:range              dbo:SportsTeam ;
+        rdfs:subPropertyOf      ns4:isMemberOf ;
+        owl:equivalentProperty  dbo:team ;
+        owl:sameAs              dbo:club ;
+        wdrs:describedby        <http://dbpedia.org/ontology/data/definitions.ttl> ;
+        prov:wasDerivedFrom     ns7:club .
+
+<http://dbpedia.org/ontology/data/definitions.ttl>
+        ns8:describes  dbo:club .
+
+dbo:    ns8:defines  dbo:club .

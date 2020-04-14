@@ -11,8 +11,9 @@ public class SPARQL {
 
     public static void main(String[] args){
         String s = "SELECT ?o WHERE {<http://xmlns.com/foaf/0.1/mbox> <http://www.w3.org/2000/01/rdf-schema#domain> ?o}";
-        ResultSet results = selectQuery(FOAF.NS, s);
+        ResultSet results = selectQuery(FOAF.NS + "name", s);
         System.out.println(SPARQL.getStringVariable(results, "?o"));
+    //     saveRDFLocally(NS.FOAF_NS + "age");
     }
 
     public static boolean askQuery(String URI, String queryString){
@@ -22,8 +23,10 @@ public class SPARQL {
 //            QueryExecution qexec = QueryExecutionFactory.create(askQuery, model) ;
 //            boolean result = qexec.execAsk() ;
 //            qexec.close() ;
+            String localFileName = saveRDFLocally(URI);
+            Model model =  ModelFactory.createDefaultModel().read(localFileName) ;
             Query query = QueryFactory.create(queryString);
-            QueryExecution qexec = QueryExecutionFactory.create(query, ModelFactory.createDefaultModel().read(URI));
+            QueryExecution qexec = QueryExecutionFactory.create(query, model);
             boolean result = qexec.execAsk();
             qexec.close();
             return result;
@@ -52,7 +55,8 @@ public class SPARQL {
 
     public static ResultSet selectQuery(String URI, String queryString){
         try{
-            Model model =  ModelFactory.createDefaultModel().read(URI) ;
+            String localFileName = saveRDFLocally(URI);
+            Model model =  ModelFactory.createDefaultModel().read(localFileName) ;
             try (QueryExecution qexec = QueryExecutionFactory.create(queryString, model)) {
                 ResultSet results = qexec.execSelect() ;
                 results = ResultSetFactory.copyResults(results) ;
@@ -83,6 +87,28 @@ public class SPARQL {
         catch (Exception e){
             System.out.println(e);
             return null;
+        }
+    }
+
+    public static String saveRDFLocally(String URI) {
+        String localFileName = "./saved_resources/"  + URI.replaceAll("[^\\w]", "_") + ".ttl";
+        File localFile = new File(localFileName);
+        if (localFile.exists() && !localFile.isDirectory()) {
+            return localFileName;
+        }
+        else {
+            try {
+                Model data = ModelFactory.createDefaultModel().read(URI);
+                localFile.createNewFile();
+                FileOutputStream localFileStream = new FileOutputStream(localFile);
+                data.write(localFileStream, "TURTLE");
+                localFileStream.flush();
+                localFileStream.close();
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return localFileName;
         }
     }
 

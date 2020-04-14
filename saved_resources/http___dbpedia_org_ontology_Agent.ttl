@@ -1,0 +1,90 @@
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ns5:   <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix ns8:   <http://mappings.dbpedia.org/index.php/OntologyClass:> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix ns9:   <http://open.vocab.org/terms/> .
+@prefix wdrs:  <http://www.w3.org/2007/05/powder-s#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+
+dbo:managerSeason  rdfs:domain  dbo:Agent .
+
+dbo:roleInEvent  rdfs:domain  dbo:Agent .
+
+dbo:regionalCouncil  rdfs:domain  dbo:Agent .
+
+dbo:owns  rdfs:domain  dbo:Agent .
+
+dbo:nationalSelection
+        rdfs:domain  dbo:Agent .
+
+dbo:Person  rdfs:subClassOf  dbo:Agent .
+
+dbo:ideology  rdfs:domain  dbo:Agent .
+
+dbo:juniorSeason  rdfs:domain  dbo:Agent .
+
+dbo:foundedBy  rdfs:range  dbo:Agent .
+
+<http://dbpedia.org/ontology/data/definitions.ttl>
+        ns9:describes  dbo:Agent .
+
+dbo:developer  rdfs:range  dbo:Agent .
+
+dbo:Deity  rdfs:subClassOf  dbo:Agent .
+
+dbo:Family  rdfs:subClassOf  dbo:Agent .
+
+dbo:producer  rdfs:range  dbo:Agent .
+
+dbo:firstOwner  rdfs:range  dbo:Agent .
+
+dbo:discipline  rdfs:domain  dbo:Agent .
+
+dbo:artist  rdfs:range  dbo:Agent .
+
+dbo:generalCouncil  rdfs:domain  dbo:Agent .
+
+dbo:Employer  rdfs:subClassOf  dbo:Agent .
+
+dbo:playerSeason  rdfs:domain  dbo:Agent .
+
+dbo:editor  rdfs:range  dbo:Agent .
+
+dbo:season  rdfs:domain  dbo:Agent .
+
+dbo:creator  rdfs:range  dbo:Agent .
+
+dbo:owner  rdfs:range  dbo:Agent .
+
+dbo:Agent  a                 owl:Class ;
+        rdfs:comment         "Ανάλογα με την κλάση foaf:Agent, ένας πράκτορας είναι μια οντότητα που ενεργεί. Αυτό προορίζεται να είναι μια υπερκλάση της κλάσης Άτόμο και Οργανισμός."@el , "Análogo a foaf:Agent, un axente é unha entidade que actúa. Destínase a ser a super clase de Persoa e Organización."@gl , "Analogous to a foaf:Agent, an agent is an entity that acts. This is intended to be the super class of Person and Organisation."@en ;
+        rdfs:isDefinedBy     dbo: ;
+        rdfs:label           "agent"@fr , "agent"@nl , "agent"@en , "Agent"@de , "agente"@es , "agente"@it , "axente"@gl , "エージェント"@ja , "에이전트"@ko , "πράκτορας"@el , "gníomhaire"@ga ;
+        rdfs:subClassOf      owl:Thing ;
+        owl:disjointWith     dbo:Place ;
+        owl:equivalentClass  ns5:Agent , wikidata:Q24229398 ;
+        owl:sameAs           dbo:Agent ;
+        wdrs:describedby     <http://dbpedia.org/ontology/data/definitions.ttl> ;
+        prov:wasDerivedFrom  ns8:Agent .
+
+dbo:currentWorldChampion
+        rdfs:range  dbo:Agent .
+
+dbo:publisher  rdfs:range  dbo:Agent .
+
+dbo:age  rdfs:domain  dbo:Agent .
+
+dbo:    ns9:defines  dbo:Agent .
+
+dbo:animator  rdfs:range  dbo:Agent .
+
+dbo:firstPublisher  rdfs:range  dbo:Agent .
+
+dbo:Organisation  rdfs:subClassOf  dbo:Agent .
+
+dbo:hometown  rdfs:domain  dbo:Agent .
+
+dbo:artPatron  rdfs:domain  dbo:Agent .

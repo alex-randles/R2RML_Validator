@@ -1,9 +1,6 @@
 package JavaClasses;
 
-import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
-
-import java.io.File;
 
 public class Range {
 
@@ -16,15 +13,15 @@ public class Range {
             boolean isLiteral = isDatatype(range);
             boolean correctRange;
             if(isLiteral){
-                correctRange = termType.equals("http://www.w3.org/ns/r2rml#Literal");
+                correctRange = termType.equals(NS.R2RML_NS + "Literal");
                 if(!correctRange){
-                    Refinement.changeTermType(predicateURI, "http://www.w3.org/ns/r2rml#Literal");
+                    Refinement.changeTermType(predicateURI, NS.R2RML_NS + "Literal");
                 }
             }
             else {
-               correctRange = termType.equals("http://www.w3.org/ns/r2rml#IRI");
+               correctRange = termType.equals(NS.R2RML_NS + "IRI");
                 if(!correctRange){
-                    Refinement.changeTermType(predicateURI, "http://www.w3.org/ns/r2rml#IRI");
+                    Refinement.changeTermType(predicateURI, NS.R2RML_NS + "IRI");
                 }
             }
             return correctRange;
