@@ -19,11 +19,10 @@
                                  rr:predicate  dbo:club
                                ] ;
         rr:predicateObjectMap  [ rr:objectMap  [ rr:column    "age" ;
-                                                 rr:datatype  xsd:double ;
-                                                 rr:termType  rr:Literal
+                                                 rr:datatype  xsd:double
                                                ] ;
                                  rr:predicate  dbo:height
                                ] ;
-        rr:subjectMap          [ rr:class     foaf:Agent , dbo:Agent , dbo:Athlete ;
+        rr:subjectMap          [ rr:class     dbo:Athlete , dbo:Agent ;
                                  rr:template  "http://example.org/person/{id}"
                                ] .

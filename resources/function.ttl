@@ -350,6 +350,18 @@ ex:DomainShape
 
           ];
 .
+ex:DomainRangeDefinitionShape
+    a sh:NodeShape ;
+    sh:targetClass rr:PredicateObjectMap ;
+    sh:targetObjectsOf rr:predicateObjectMap;
+    sh:js [
+              a sh:JSConstraint ;
+              sh:message "No domain or range definition in vocabulary." ;
+              sh:jsFunctionName "validateDomainRangeDefinition" ;
+              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI] ;
+
+          ];
+.
 
 ex:ValidDatatypeShape
     a sh:NodeShape ;
@@ -378,17 +390,17 @@ ex:ProvenanceShape
 .
 
 
-ex:HumanLicenseShaoe
-    a sh:NodeShape ;
-    sh:targetClass rr:SubjectMap ;
-    sh:targetObjectsOf rr:subjectMap;
-    sh:js [
-              a sh:JSConstraint ;
-              sh:message "No human-readable license detected. " ;
-              sh:jsFunctionName "validateHumanLicense" ;
-              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
-          ];
-.
+#ex:HumanLicenseShaoe
+#    a sh:NodeShape ;
+#    sh:targetClass rr:SubjectMap ;
+#    sh:targetObjectsOf rr:subjectMap;
+#    sh:js [
+#              a sh:JSConstraint ;
+#              sh:message "No human-readable license detected. " ;
+#              sh:jsFunctionName "validateHumanLicense" ;
+#              sh:jsLibrary [ sh:jsLibraryURL "file:///home/alex/Desktop/R2RML_Validator/resources/JavaScriptConstraints.js"^^xsd:anyURI ] ;
+#          ];
+#.
 
 ex:MachineLicenseShape
     a sh:NodeShape ;

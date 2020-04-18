@@ -11,12 +11,15 @@ public class ShaclTest {
 		try {
 			printHeaders();
 			FileUtils.cleanDirectory(new File("./cache"));
+			String inputFile = args[0];
+			copyMapping(inputFile, FileNames.originalMappingFile);
 			copyMapping(FileNames.originalMappingFile, FileNames.refinedMappingFile);
 			runTest(FileNames.function_file, FileNames.originalMappingFile, FileNames.reportFile);
 		}
 		catch (Exception e){
-			System.out.println(e);
-			System.out.println("Problem assessing your mapping... ");
+			String outputMessage = String.format("Problem assessing mapping!!!\n" +
+					"Please ensure '%s' contains a valid R2RML mapping.....", args[0]);
+			System.out.println(outputMessage);
 		}
 	}
 

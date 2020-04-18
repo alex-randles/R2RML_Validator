@@ -8,6 +8,7 @@ import org.apache.jena.update.UpdateAction;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Refinement {
 
@@ -30,6 +31,11 @@ public class Refinement {
     }
 
     public static boolean addDataTypeTriple(String dataTypeURI, String predicateURI, String MappingFile){
+//        String message = String.format("Suggested mpdification\nWould you like to add the datatype %s for the %s predicate?(Y/n)", dataTypeURI, predicateURI);
+//        boolean result = askUser(message);
+//        if (!result){
+//            return true;
+//        }
         Model model = ModelFactory.createDefaultModel().read(FileNames.refinedMappingFile);
         String updateQuery = String.format("" +
                 "PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
@@ -48,6 +54,11 @@ public class Refinement {
     }
 
     public static boolean changeDataTypeTriple(String correctDatatype, String incorrectDatatype, String predicateURI, String MappingFile){
+//        String message = String.format("Suggested mpdification\nWould you like to change the datatype for the %s predicate to %s ?(Y/n)", predicateURI, correctDatatype);
+//        boolean result = askUser(message);
+//        if (!result){
+//            return true;
+//        }
         Model model = ModelFactory.createDefaultModel().read(FileNames.refinedMappingFile);
         String updateQuery = String.format("" +
                 "PREFIX rr: <http://www.w3.org/ns/r2rml#>\n" +
@@ -81,5 +92,15 @@ public class Refinement {
         SPARQL.updateData(updateQuery, FileNames.refinedMappingFile, FileNames.refinedMappingFile);
         return true;
     }
+
+    public static boolean askUser(String message){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(message);
+        String response = scanner.nextLine();
+        return response.toLowerCase().equals("y");
+
+
+    }
+
 }
 

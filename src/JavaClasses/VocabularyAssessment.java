@@ -52,8 +52,8 @@ public class VocabularyAssessment {
         }
     }
 
-    public static boolean hasHumanReadableLicense(String URI){
-        try{
+    public static boolean hasHumanReadableLicense(String URI) {
+        try {
             String[] licensePredicates = {
                     " dc:description",
                     "rdfs:comment",
@@ -67,16 +67,27 @@ public class VocabularyAssessment {
                     "ASK {  \n" +
                     "  ?subject %s ?object. \n" +
                     "   FILTER regex(STR(?object), \".*(licensed?|copyrighte?d?).*\" ). \n \n" +
-                    "} ", joinedPredicates );
+                    "} ", joinedPredicates);
             boolean result = SPARQL.askQuery(URI, query);
             return result;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    public static boolean hasDomainRangeDefinition(String URI){
+        try{
+            String query = String.format("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>" +
+                    "ASK { <%s> rdfs:domain ?domain;" +
+                    "           rdfs:range ?range }", URI);
+            return SPARQL.askQuery(URI, query);
         }
         catch(Exception e){
             return true;
-            }
         }
+    }
 
-        public static boolean hasHumamReadableLabelling(String URI){
+    public static boolean hasHumamReadableLabelling(String URI){
             try{
                 String[] labellingPredicates = new String[]{"rdfs:label", "dcterms:title", "dcterms:description",
                         "dcterms:alternative", "skos:altLabel", "skos:prefLabel", "powder-s:text",

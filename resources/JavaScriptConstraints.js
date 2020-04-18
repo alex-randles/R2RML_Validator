@@ -78,8 +78,8 @@ function validateDisjointClasses(resource){
         print("Validating usage of disjoint classes....")
         var classesURI = getAllValues("class");
         if (classesURI === undefined || classesURI.length === 0) {
-               return true;
-           }
+            return true;
+        }
         var JavaCLass = Java.type("JavaClasses.Disjoint");
         var result = JavaCLass.validateDisjointClasses(classesURI);
         return result;
@@ -110,6 +110,34 @@ function validateRange($this) {
                 });
             }
         }
+        return results;
+    }
+    catch(err){
+        return true;
+    }
+}
+
+function validateDomainRangeDefinition($this) {
+    try {
+        print("Validating domain and range definition...")
+        var results = [];
+        var p = TermFactory.namedNode(NS+"predicate");
+        var s = $data.find($this, p, null);
+        for(var t = s.next(); t; t = s.next()) {
+            var object = t.object;
+            var undefined = isUndefined(object);
+            if (undefined){
+                break;
+            }
+            var JavaCLass = Java.type("JavaClasses.VocabularyAssessment");
+            var result = JavaCLass.hasDomainRangeDefinition(object);
+            if(!result) {
+                results.push({
+                    value : object
+                });
+            }
+        }
+        s.close();
         return results;
     }
     catch(err){

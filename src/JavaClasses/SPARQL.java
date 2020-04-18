@@ -21,6 +21,7 @@ public class SPARQL {
         try {
             String localFileName = saveRDFLocally(URI);
             Model model =  ModelFactory.createDefaultModel().read(localFileName) ;
+//            Model model =  ModelFactory.createDefaultModel().read(URI) ;
             Query query = QueryFactory.create(queryString);
             QueryExecution qexec = QueryExecutionFactory.create(query, model);
             boolean result = qexec.execAsk();
@@ -60,7 +61,6 @@ public class SPARQL {
             }
         }
         catch (Exception e){
-            System.out.println(e);
             return null;
         }
     }
@@ -68,7 +68,7 @@ public class SPARQL {
     public static String saveRDFLocally(String URI) throws IOException {
         String localFileName = "./cache/"  + URI.replaceAll("[^\\w]", "_") + ".ttl";
         File localFile = new File(localFileName);
-        if (localFile.createNewFile() || localFile.length() == 0 ){
+        if (localFile.createNewFile() || localFile.length() == 0 || !URI.startsWith("http")){
             try {
                 Model data = ModelFactory.createDefaultModel().read(URI);
                 FileOutputStream localFileStream = new FileOutputStream(localFile);
@@ -78,7 +78,8 @@ public class SPARQL {
 
             } catch (Exception e) {
             }
-            return localFileName;        }
+            return localFileName;
+        }
         else{
             return localFileName;
         }

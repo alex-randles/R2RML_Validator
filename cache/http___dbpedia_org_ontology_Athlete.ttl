@@ -1,0 +1,273 @@
+@prefix dbo:   <http://dbpedia.org/ontology/> .
+@prefix ns7:   <http://mappings.dbpedia.org/index.php/OntologyClass:> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix wdrs:  <http://www.w3.org/2007/05/powder-s#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ns2:   <http://open.vocab.org/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+
+dbo:draftPosition  rdfs:domain  dbo:Athlete .
+
+dbo:club  rdfs:domain  dbo:Athlete .
+
+dbo:formerTeam  rdfs:domain  dbo:Athlete .
+
+dbo:draftTeam  rdfs:domain  dbo:Athlete .
+
+dbo:VolleyballPlayer  rdfs:subClassOf  dbo:Athlete .
+
+<http://dbpedia.org/ontology/data/definitions.ttl>
+        ns2:describes  dbo:Athlete .
+
+dbo:heightAttack  rdfs:domain  dbo:Athlete .
+
+dbo:trainer  rdfs:domain  dbo:Athlete .
+
+dbo:BaseballPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:GridironFootballPlayer
+        rdfs:subClassOf  dbo:Athlete .
+
+dbo:ArcherPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:Canoeist  rdfs:subClassOf  dbo:Athlete .
+
+dbo:LacrossePlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:stateOfOriginTeam
+        rdfs:domain  dbo:Athlete .
+
+dbo:RugbyPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:TableTennisPlayer
+        rdfs:subClassOf  dbo:Athlete .
+
+dbo:Cyclist  rdfs:subClassOf  dbo:Athlete .
+
+dbo:athleticsDiscipline
+        rdfs:domain  dbo:Athlete .
+
+dbo:TennisPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:Swimmer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:worldOpen  rdfs:domain  dbo:Athlete .
+
+dbo:TeamMember  rdfs:subClassOf  dbo:Athlete .
+
+dbo:championInDoubleFemale
+        rdfs:range  dbo:Athlete .
+
+dbo:NationalCollegiateAthleticAssociationAthlete
+        rdfs:subClassOf  dbo:Athlete .
+
+dbo:championInDoubleMale
+        rdfs:range  dbo:Athlete .
+
+dbo:MartialArtist  rdfs:subClassOf  dbo:Athlete .
+
+dbo:lastProMatch  rdfs:domain  dbo:Athlete .
+
+dbo:nflTeam  rdfs:domain  dbo:Athlete .
+
+dbo:Surfer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:oldTeamCoached  rdfs:domain  dbo:Athlete .
+
+dbo:fedCup  rdfs:domain  dbo:Athlete .
+
+dbo:teamTitle  rdfs:domain  dbo:Athlete .
+
+dbo:heightAgainst  rdfs:domain  dbo:Athlete .
+
+dbo:finalLostTeam  rdfs:domain  dbo:Athlete .
+
+dbo:youthClub  rdfs:domain  dbo:Athlete .
+
+dbo:collegeHof  rdfs:domain  dbo:Athlete .
+
+dbo:championInDouble  rdfs:range  dbo:Athlete .
+
+dbo:WinterSportPlayer
+        rdfs:subClassOf  dbo:Athlete .
+
+dbo:heisman  rdfs:domain  dbo:Athlete .
+
+dbo:worldTeamCup  rdfs:domain  dbo:Athlete .
+
+dbo:champion  rdfs:range  dbo:Athlete .
+
+dbo:debutTeam  rdfs:domain  dbo:Athlete .
+
+dbo:wins  rdfs:domain  dbo:Athlete .
+
+dbo:MotorsportRacer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:BullFighter  rdfs:subClassOf  dbo:Athlete .
+
+dbo:BasketballPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:Athlete  a               owl:Class ;
+        rdfs:isDefinedBy     dbo: ;
+        rdfs:label           "athlète"@fr , "atleta"@it , "athlete"@en , "atleet"@nl , "アスリート"@ja , "Athlet"@de , "lúthchleasaí"@ga , "운동 선수"@ko , "αθλητής"@el ;
+        rdfs:subClassOf      dbo:Person ;
+        owl:sameAs           dbo:Athlete ;
+        wdrs:describedby     <http://dbpedia.org/ontology/data/definitions.ttl> ;
+        prov:wasDerivedFrom  ns7:Athlete .
+
+dbo:ncbhof  rdfs:domain  dbo:Athlete .
+
+dbo:ithfDate  rdfs:domain  dbo:Athlete .
+
+dbo:selectionYear  rdfs:domain  dbo:Athlete .
+
+dbo:nationalTeam  rdfs:domain  dbo:Athlete .
+
+dbo:supplementalDraftRound
+        rdfs:domain  dbo:Athlete .
+
+dbo:championInMixedDouble
+        rdfs:range  dbo:Athlete .
+
+dbo:laterality  rdfs:domain  dbo:Athlete .
+
+dbo:PokerPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:mvp  rdfs:domain  dbo:Athlete .
+
+dbo:asiaChampionship  rdfs:domain  dbo:Athlete .
+
+dbo:ncaaSeason  rdfs:domain  dbo:Athlete .
+
+dbo:Wrestler  rdfs:subClassOf  dbo:Athlete .
+
+dbo:GolfPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:managerClub  rdfs:domain  dbo:Athlete .
+
+dbo:hof  rdfs:domain  dbo:Athlete .
+
+dbo:worldChampionTitleYear
+        rdfs:domain  dbo:Athlete .
+
+dbo:nflCode  rdfs:domain  dbo:Athlete .
+
+dbo:    ns2:defines  dbo:Athlete .
+
+dbo:Boxer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:ncaaTeam  rdfs:domain  dbo:Athlete .
+
+dbo:britishOpen  rdfs:domain  dbo:Athlete .
+
+dbo:nflSeason  rdfs:domain  dbo:Athlete .
+
+dbo:currentLeague  rdfs:domain  dbo:Athlete .
+
+dbo:WaterPoloPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:SnookerPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:espnId  rdfs:domain  dbo:Athlete .
+
+dbo:selectionPoint  rdfs:domain  dbo:Athlete .
+
+dbo:Gymnast  rdfs:subClassOf  dbo:Athlete .
+
+dbo:championInSingleMale
+        rdfs:range  dbo:Athlete .
+
+dbo:Rower  rdfs:subClassOf  dbo:Athlete .
+
+dbo:Fencer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:GaelicGamesPlayer
+        rdfs:subClassOf  dbo:Athlete .
+
+dbo:AustralianRulesFootballPlayer
+        rdfs:subClassOf  dbo:Athlete .
+
+dbo:championInSingleFemale
+        rdfs:range  dbo:Athlete .
+
+dbo:stateOfOriginYear
+        rdfs:domain  dbo:Athlete .
+
+dbo:superbowlWin  rdfs:domain  dbo:Athlete .
+
+dbo:DartsPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:teamPoint  rdfs:domain  dbo:Athlete .
+
+dbo:qatarClassic  rdfs:domain  dbo:Athlete .
+
+dbo:sportSpecialty  rdfs:domain  dbo:Athlete .
+
+dbo:Jockey  rdfs:subClassOf  dbo:Athlete .
+
+dbo:otherSportsExperience
+        rdfs:domain  dbo:Athlete .
+
+dbo:firstProMatch  rdfs:domain  dbo:Athlete .
+
+dbo:nationalChampionship
+        rdfs:domain  dbo:Athlete .
+
+dbo:ChessPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:tournamentOfChampions
+        rdfs:domain  dbo:Athlete .
+
+dbo:currentTeam  rdfs:domain  dbo:Athlete .
+
+dbo:coachClub  rdfs:domain  dbo:Athlete .
+
+dbo:Cricketer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:europeanChampionship
+        rdfs:domain  dbo:Athlete .
+
+dbo:juniorTeam  rdfs:domain  dbo:Athlete .
+
+dbo:HandballPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:SoccerPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:NetballPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:backhand  rdfs:domain  dbo:Athlete .
+
+dbo:Bodybuilder  rdfs:subClassOf  dbo:Athlete .
+
+dbo:SquashPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:fibahof  rdfs:domain  dbo:Athlete .
+
+dbo:horseRidingDiscipline
+        rdfs:domain  dbo:Athlete .
+
+dbo:sportCountry  rdfs:domain  dbo:Athlete .
+
+dbo:hopmanCup  rdfs:domain  dbo:Athlete .
+
+dbo:HorseRider  rdfs:subClassOf  dbo:Athlete .
+
+dbo:AthleticsPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:stateOfOriginPoint
+        rdfs:domain  dbo:Athlete .
+
+dbo:coachSeason  rdfs:domain  dbo:Athlete .
+
+dbo:probowlPick  rdfs:domain  dbo:Athlete .
+
+dbo:HighDiver  rdfs:subClassOf  dbo:Athlete .
+
+dbo:BadmintonPlayer  rdfs:subClassOf  dbo:Athlete .
+
+dbo:championInSingle  rdfs:range  dbo:Athlete .
+
+dbo:teamCoached  rdfs:domain  dbo:Athlete .
+
+dbo:draftLeague  rdfs:domain  dbo:Athlete .
