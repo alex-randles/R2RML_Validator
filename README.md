@@ -29,8 +29,8 @@ The validation report will be written to ```/resources/output.ttl```.
 
 The refined mapping will be written to ```/resources/refined_mapping.ttl```.
 
-## License
-
+## Contributors
 Code written by Alex Randles.
 
-This study is supported the Science Foundation Ireland ADAPT Centre for Digital Content Technology (Grant 13/RC/2106).
+This research was conducted with the financial support of the SFI AI Centre for Research Training under Grant Agreement No. 18/CRT/6223 at the ADAPT SFI Research Centre at Trinity College Dublin.  The ADAPT SFI Centre for Digital Media Technology is funded by Science Foundation Ireland through the SFI Research Centres Programme and is co-funded under the European Regional Development Fund (ERDF) through Grant # 13/RC/2106.
+
