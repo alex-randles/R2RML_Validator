@@ -11,18 +11,22 @@
 @prefix prov: <http://www.w3.org/ns/prov#>.
 @prefix dc: <http://purl.org/dc/elements/1.1/>.
 
+# Representing quality dimensions.
 ex:mappingConsistency a dqv:Dimension ;
                     dqv:inCategory ex:intrinsicCategory;
                     skos:prefLabel "Mapping Consistency"@en;
                     skos:definition "Mapping Consistency refers to the extent to which a mapping is conformant to its mapping consistency language."@en
 .
 
+# Representing quality categories.
 ex:intrinsicCategory a dqv:Category ;
                      skos:prefLabel "Intrinsic category"@en;
                      skos:definition "Intrinsic category groups dimensions related to the corrrectness, consistency and conciseness."@en;
                      daq:hasDimension ex:dataConsistency, ex:mappingConsistency, ex:RDFtermCorrectness
 .
 
+# Representing quality metrics, which are also SHACL shapes.
+# This is the metrics for validating the predicate(Object)map termType is an rr:IRI
 ex:predicateShape a dqv:Metric, sh:NodeShape;
                   skos:definition "Validating term type used in a predicate map is correct."@en ;
                   dqv:expectedDataType xsd:boolean;
@@ -31,17 +35,18 @@ ex:predicateShape a dqv:Metric, sh:NodeShape;
                   sh:property [
                                   sh:message "rr:termType on predicate map should be rr:IRI." ;
                                   sh:path rr:termType ;
-                                  sh:in ( rr:IRI ) ;
+                                  sh:in ( rr:IRI rr:Literal) ;
                               ] .
 
+# Representing the mapping file.
 ex:mapDoc1 a prov:Entity;
           prov:atLocation <file://Users/mapping.ttl>;
-#       How to link ex:mappingFile to the mapping file containing the R2RML mapping?
 .
 
 <file://Users/mapping.ttl> a prov:Location
 .
 
+# Representing the quality assessment framework.
 ex:SHACLengine
     a prov:SoftwareAgent ;
     rdfs:label "Mapping quality assessment and refinement framework."^^xsd:string;
@@ -50,6 +55,7 @@ ex:SHACLengine
 
 # Should we include provenance about who is running the test? e.g prov:Person
 
+# Representing the quality assessment process.
 ex:qualityAssessment
     a prov:Activity;
     rdfs:label "Assessing mapping document."^^xsd:string;
@@ -61,46 +67,76 @@ ex:qualityAssessment
     prov:startedAtTime     "2020-04-21T00:52:02Z"^^xsd:dateTime
 .
 
+# Representing different violation types i.e mapping, data and vocabulary.
 ex:mappingQualityViolationType a prov:Collection;
         prov:hadMember ex:predicateShape;
 #       This collection will include all mapping quality violations once completed, we can then add a collection for data and vocabulary violations.
 .
 
+# Representing the SHACL validation report.
 ex:validationReport a       sh:validationReport, prov:Entity ;
      prov:wasGeneratedBy ex:qualityAssessment;
      sh:conforms false ;
      sh:result ex:violation1;
-#    sh:result will be linked to all violations created
+#    sh:result will be linked to all violations created.
      prov:atLocation <file://Users/validationReport.ttl>;
 .
 
 <file://Users/validationReport.ttl> a prov:Location .
 
-ex:violation1 a      sh:ValidationResult ;
+# Representing the violations within the report.
+ex:violation1 a      sh:ValidationResult, prov:Entity ;
               sh:focusNode []  ;
               sh:resultMessage "rr:termType on predicate map should be rr:IRI." ;
               sh:resultPath rr:termType ;
               sh:resultSeverity sh:Violation ;
               sh:sourceConstraintComponent sh:InConstraintComponent ;
-              sh:sourceShape []  ;
-              sh:value "dhdhd"
+              sh:sourceShape ex:predicateShape  ;
+              sh:value rr:Literal
 .
 
+# Calculating confidence score for refinement 1.
+ex:confidenceScore1
+    a dqv:QualityMeasurement , prov:Entity;
+    prov:wasAttributedTo ex:SHACLengine;
+    dqv:computedOn ex:mapDoc1, ex:refinement1;
+    dqv:isMeasurementOf ex:confidenceScoreMetric ;
+    dqv:value "0.8"^^xsd:double
+.
+
+# Calculating confidence score for refinement 2.
+ex:confidenceScore2
+    a dqv:QualityMeasurement, prov:Entity ;
+    prov:wasAttributedTo ex:SHACLengine;
+    dqv:computedOn ex:mapDoc1, ex:refinement2;
+    dqv:isMeasurementOf ex:confidenceScoreMetric ;
+    dqv:value "0.6"^^xsd:double
+.
+
+# The metric used to calculate the confidence score.
+ex:confidenceScoreMetric
+    a dqv:Metric ;
+    skos:definition "A confidence score for how successful a refinement will be."@en ;
+    dqv:expectedDataType xsd:double ;
+.
+
+# The suggested refinements.
 ex:refinement1  a prov:Activity;
                 prov:used ex:mapDoc, ex:violation1, ex:SPARQLquery1;
-                ex:hasConfidence "0.8"^^xsd:integer
+                prov:wasInfluencedBy ex:confidenceScore1
 .
+
+# The location of theex:SPARQLquery1;
 ex:SPARQLquery1 a prov:Entity;
                 prov:atLocation <file://Users/query1.rq>;
 .
 
 <file://Users/query1.rq> a prov:Location .
-#               how to store the SPARQL query?
 
 
 ex:refinement2 a prov:Activity;
                prov:used ex:mapDoc, ex:violation1, ex:SPARQLquery2;
-               ex:hasConfidence "0.45"^^xsd:integer
+               prov:wasInfluencedBy ex:confidenceScore2
 .
 
 ex:SPARQLquery2 a prov:Entity;
@@ -115,6 +151,6 @@ ex:refinedMapDoc1 a prov:Entity;
                   prov:atLocation <file://Users/refinedMapping.ttl>
 .
 
-<file://Users/refinedMapping.rq> a prov:Location .
+<file://Users/refinedMapping.ttl> a prov:Location .
 
 

@@ -1,5 +1,5 @@
-@prefix testd: <http://www.txample.com/people/data/> .
 @prefix rr:    <http://www.w3.org/ns/r2rml#> .
+@prefix testd: <http://www.txample.com/people/data/> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
