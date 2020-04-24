@@ -14,7 +14,7 @@ public class ShaclTest {
 			String inputFile = args[0];
 			copyMapping(inputFile, FileNames.originalMappingFile);
 			copyMapping(FileNames.originalMappingFile, FileNames.refinedMappingFile);
-			runTest(FileNames.function_file, FileNames.originalMappingFile, FileNames.reportFile);
+			runTest(FileNames.shapesFile, FileNames.originalMappingFile, FileNames.reportFile);
 		}
 		catch (Exception e){
 			String outputMessage = String.format("Problem assessing mapping!!!\n" +

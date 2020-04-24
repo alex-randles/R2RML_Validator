@@ -19,65 +19,33 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect datatype definition detected." ;
+                    "rr:predicate should be a IRI" ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:predicate ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#NodeKindConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidDatatypeShape> ;
+                    []  ;
             <http://www.w3.org/ns/shacl#value>
-                    dbo:height
+                    "ddhdhdddgdgggggggggggggggggggggggggggggggggggggggggggggg"
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "No domain or range definition in vocabulary." ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#DomainRangeDefinitionShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:height
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    []  ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Incorrect range detected." ;
-            <http://www.w3.org/ns/shacl#resultSeverity>
-                    <http://www.w3.org/ns/shacl#Violation> ;
-            <http://www.w3.org/ns/shacl#sourceConstraint>
-                    []  ;
-            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
-            <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#ValidRangeShape> ;
-            <http://www.w3.org/ns/shacl#value>
-                    dbo:club
-          ] ;
-  <http://www.w3.org/ns/shacl#result>
-          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
-            <http://www.w3.org/ns/shacl#focusNode>
-                    _:b1 ;
-            <http://www.w3.org/ns/shacl#resultMessage>
-                    "Logical table should have one  table, view or SQL query" ;
+                    "rr:termType on predicate map should be rr:IRI." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    <http://example.com/ns#InputDataShape> ;
+                    []  ;
             <http://www.w3.org/ns/shacl#value>
-                    _:b1
+                    "dhdhd"
           ]
 ] .

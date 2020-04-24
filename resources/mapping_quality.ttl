@@ -1,0 +1,120 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix ex: <http://example.com/ns#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix daq: <http://purl.org/eis/vocab/daq#>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+
+ex:mappingConsistency a dqv:Dimension ;
+                    dqv:inCategory ex:intrinsicCategory;
+                    skos:prefLabel "Mapping Consistency"@en;
+                    skos:definition "Mapping Consistency refers to the extent to which a mapping is conformant to its mapping consistency language."@en
+.
+
+ex:intrinsicCategory a dqv:Category ;
+                     skos:prefLabel "Intrinsic category"@en;
+                     skos:definition "Intrinsic category groups dimensions related to the corrrectness, consistency and conciseness."@en;
+                     daq:hasDimension ex:dataConsistency, ex:mappingConsistency, ex:RDFtermCorrectness
+.
+
+ex:predicateShape a dqv:Metric, sh:NodeShape;
+                  skos:definition "Validating term type used in a predicate map is correct."@en ;
+                  dqv:expectedDataType xsd:boolean;
+                  dqv:inDimension ex:mappingConsistency;
+                  sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
+                  sh:property [
+                                  sh:message "rr:termType on predicate map should be rr:IRI." ;
+                                  sh:path rr:termType ;
+                                  sh:in ( rr:IRI ) ;
+                              ] .
+
+ex:mapDoc1 a prov:Entity;
+          prov:atLocation <file://Users/mapping.ttl>;
+#       How to link ex:mappingFile to the mapping file containing the R2RML mapping?
+.
+
+<file://Users/mapping.ttl> a prov:Location
+.
+
+ex:SHACLengine
+    a prov:SoftwareAgent ;
+    rdfs:label "Mapping quality assessment and refinement framework."^^xsd:string;
+#    Other information about the quality assessment framework.
+.
+
+# Should we include provenance about who is running the test? e.g prov:Person
+
+ex:qualityAssessment
+    a prov:Activity;
+    rdfs:label "Assessing mapping document."^^xsd:string;
+    prov:wasAssociatedWith ex:SHACLengine ;
+    prov:used              ex:mapDoc1;
+    prov:generated         ex:validationReport;
+#   Should prov:generated be linked to individual violations or the entire validation report?
+    prov:endedAtTime      "2020-04-21T02:52:02Z"^^xsd:dateTime;
+    prov:startedAtTime     "2020-04-21T00:52:02Z"^^xsd:dateTime
+.
+
+ex:mappingQualityViolationType a prov:Collection;
+        prov:hadMember ex:predicateShape;
+#       This collection will include all mapping quality violations once completed, we can then add a collection for data and vocabulary violations.
+.
+
+ex:validationReport a       sh:validationReport, prov:Entity ;
+     prov:wasGeneratedBy ex:qualityAssessment;
+     sh:conforms false ;
+     sh:result ex:violation1;
+#    sh:result will be linked to all violations created
+     prov:atLocation <file://Users/validationReport.ttl>;
+.
+
+<file://Users/validationReport.ttl> a prov:Location .
+
+ex:violation1 a      sh:ValidationResult ;
+              sh:focusNode []  ;
+              sh:resultMessage "rr:termType on predicate map should be rr:IRI." ;
+              sh:resultPath rr:termType ;
+              sh:resultSeverity sh:Violation ;
+              sh:sourceConstraintComponent sh:InConstraintComponent ;
+              sh:sourceShape []  ;
+              sh:value "dhdhd"
+.
+
+ex:refinement1  a prov:Activity;
+                prov:used ex:mapDoc, ex:violation1, ex:SPARQLquery1;
+                ex:hasConfidence "0.8"^^xsd:integer
+.
+ex:SPARQLquery1 a prov:Entity;
+                prov:atLocation <file://Users/query1.rq>;
+.
+
+<file://Users/query1.rq> a prov:Location .
+#               how to store the SPARQL query?
+
+
+ex:refinement2 a prov:Activity;
+               prov:used ex:mapDoc, ex:violation1, ex:SPARQLquery2;
+               ex:hasConfidence "0.45"^^xsd:integer
+.
+
+ex:SPARQLquery2 a prov:Entity;
+                prov:atLocation <file://Users/query2.rq>;
+.
+
+<file://Users/query2.rq> a prov:Location .
+
+ex:refinedMapDoc1 a prov:Entity;
+                  prov:wasGeneratedBy ex:refinement1 ;
+                  prov:wasDerivedFrom ex:mapDoc;
+                  prov:atLocation <file://Users/refinedMapping.ttl>
+.
+
+<file://Users/refinedMapping.rq> a prov:Location .
+
+
