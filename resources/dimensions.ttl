@@ -6,25 +6,29 @@
 ex:accessibilityCategory a dqv:Category ;
                          skos:prefLabel "Accessibility category"@en;
                          skos:definition "Accessibility category groups dimensions related to the access, authenticity and retrieval of data."@en;
-                         daq:hasDimension ex:availability, ex:licensing .
+                         daq:hasDimension ex:availability, ex:licensing
+.
 
 ex:intrinsicCategory a dqv:Category ;
                      skos:prefLabel "Intrinsic category"@en;
                      skos:definition "Intrinsic category groups dimensions related to the corrrectness, consistency and conciseness."@en;
-                     daq:hasDimension ex:dataConsistency, ex:mappingConsistency, ex:RDFtermCorrectness .
+                     daq:hasDimension ex:dataConsistency, ex:mappingConsistency, ex:RDFtermCorrectness
+.
 
 
 
 ex:contextualCategory a dqv:Category ;
                       skos:prefLabel "Contextual category"@en;
                       skos:definition "Contextual category groups dimensions related to trustworthiness and understandability."@en;
-                       daq:hasDimension ex:trustworthiness, ex:understandability .
+                      daq:hasDimension ex:trustworthiness, ex:understandability
+.
 
 
 ex:representationalCategory a dqv:Category ;
                             skos:prefLabel "Representational category"@en;
                             skos:definition "Representational category groups dimensions related to the quality of the resulting datasets produced by mappings."@en;
-                            daq:hasDimension ex:interpretability, ex:representationalConciseness .
+                            daq:hasDimension ex:interpretability, ex:representationalConciseness
+.
 
 
 ex:availability

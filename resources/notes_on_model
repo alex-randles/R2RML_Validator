@@ -1,0 +1,25 @@
+ex:intrinsicCategory represents the intrinsic category. This will be of type dqv:Category and be related to each of the dimensions within this category. 
+ex:mappingConsistency represents the mapping consistency dimension. This will be of type dqv:Dimension.
+ex:predicateShape is the SHACL shape, which is also a metric. This will be type dqv:Metric and sh:NodeShape.
+ex:predicateShapeProperty is the properties of this shape, the constraints to be validated. 
+ex:shapesDoc represents the file with the SHACL shapes.
+ex:mapDoc is the mapping document. This will be of type prov:Entity and be related to a location.
+ex:qualityAssessment is the process of assessing the mapping and generating the validation report.
+ex:SHACLengine is the software running the SHACL constraints. This will be of type prov:SoftwareAgent and be related to software information etc. 
+ex:validationReport is the SHACL validation report. This will be of type sh:ValidationReport and prov:Entity. This will contain information on violations. 
+ex:violation is a violation contain within the SHACL report. This will be of type sh:ValidationResult and prov:Entity. This will relate to information about the violation. 
+ex:confidenceScore is the score of how confident the framework is that the refinement will remove the violation. This is of type dqv:QualityMeasurement and prov:Entity 
+and is a measurement of the confident score metric. The score is represented as a double value.
+ex:confidenceScoreMetric is the metric used to calculate the confidence score. This is of type dqv:Metric and expects a double value. 
+ex:refinement is the suggested refinement. This is of type prov:Activity and will be related to a SPARQL query, which is the suggested refinement.
+ex:SPARQLquery is the SPARQL query for the refinement. This is of type prov:Entity and will be stored in a prov:Location. 
+ex:refinedMapDoc is the refined mapping document, generated from the refinement activity. This is of type prov:Entity and will be stored in a prov:Location. 
+
+
+Information being captured 
+Quality Category and Dimensions - Information relating to these is captured in 1. 
+Quality Metrics and SHACL Shapes - Information relating to these is captured in 2. 
+Mapping File, Metrics library, Validation Report and Refined Mapping file - Information represented as shown in 3. 
+Quality Assessment Framework - Information relating to this is captured in 4. 
+Quality Assessment Report - Information relating to the validation report is captured in 5.
+Quality Refinement Process - Information relating to this is captured in 6.

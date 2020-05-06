@@ -1,0 +1,2 @@
+Should we include provenance about who is running the test? e.g prov:Person.
+The sh:focusNode within the validation result is a blank node due the number of blank nodes within the R2RML mapping document.

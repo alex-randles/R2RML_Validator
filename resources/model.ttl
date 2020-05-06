@@ -5,11 +5,9 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix ex: <http://example.com/ns#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix daq: <http://purl.org/eis/vocab/daq#>.
 @prefix prov: <http://www.w3.org/ns/prov#>.
-@prefix dc: <http://purl.org/dc/elements/1.1/>.
 
 # Representing quality dimensions.
 ex:mappingConsistency a dqv:Dimension ;
@@ -27,19 +25,38 @@ ex:intrinsicCategory a dqv:Category ;
 
 # Representing quality metrics, which are also SHACL shapes.
 # This is the metrics for validating the predicate(Object)map termType is an rr:IRI
-ex:predicateShape a dqv:Metric, sh:NodeShape;
+ex:predicateShape a dqv:Metric, sh:NodeShape, prov:Entity;
                   skos:definition "Validating term type used in a predicate map is correct."@en ;
                   dqv:expectedDataType xsd:boolean;
                   dqv:inDimension ex:mappingConsistency;
                   sh:targetObjectsOf rr:predicateMap, rr:predicateObjectMap ;
-                  sh:property [
-                                  sh:message "rr:termType on predicate map should be rr:IRI." ;
-                                  sh:path rr:termType ;
-                                  sh:in ( rr:IRI rr:Literal) ;
-                              ] .
+                  sh:property ex:predicateShapeProperty;
+                  prov:used ex:shapesDoc
+.
+
+# Representing the shapes file.
+ex:shapesDoc a prov:Entity;
+          prov:atLocation <file://Users/shapes.ttl>;
+.
+
+<file://Users/shapes.ttl> a prov:Location
+.
+
+# Properties of this SHACL shape. 
+ex:predicateShapeProperty
+				  sh:message "rr:termType on predicate map should be rr:IRI." ;
+				  sh:path rr:termType ;
+				  sh:in ( rr:IRI ) ;
+.
+
+# Representing different violation types i.e mapping, data and vocabulary.
+ex:mappingQualityViolationType a prov:Collection;
+                               prov:hadMember ex:predicateShape;
+#       This collection will include all mapping quality violations once completed, we can then add a collection for data and vocabulary violations.
+.
 
 # Representing the mapping file.
-ex:mapDoc1 a prov:Entity;
+ex:mapDoc a prov:Entity;
           prov:atLocation <file://Users/mapping.ttl>;
 .
 
@@ -60,24 +77,20 @@ ex:qualityAssessment
     a prov:Activity;
     rdfs:label "Assessing mapping document."^^xsd:string;
     prov:wasAssociatedWith ex:SHACLengine ;
-    prov:used              ex:mapDoc1;
+    prov:used              ex:mapDoc, ex:shapesDoc;
     prov:generated         ex:validationReport;
 #   Should prov:generated be linked to individual violations or the entire validation report?
     prov:endedAtTime      "2020-04-21T02:52:02Z"^^xsd:dateTime;
     prov:startedAtTime     "2020-04-21T00:52:02Z"^^xsd:dateTime
 .
 
-# Representing different violation types i.e mapping, data and vocabulary.
-ex:mappingQualityViolationType a prov:Collection;
-        prov:hadMember ex:predicateShape;
-#       This collection will include all mapping quality violations once completed, we can then add a collection for data and vocabulary violations.
-.
+
 
 # Representing the SHACL validation report.
 ex:validationReport a       sh:validationReport, prov:Entity ;
      prov:wasGeneratedBy ex:qualityAssessment;
      sh:conforms false ;
-     sh:result ex:violation1;
+     sh:result ex:violation;
 #    sh:result will be linked to all violations created.
      prov:atLocation <file://Users/validationReport.ttl>;
 .
@@ -85,7 +98,7 @@ ex:validationReport a       sh:validationReport, prov:Entity ;
 <file://Users/validationReport.ttl> a prov:Location .
 
 # Representing the violations within the report.
-ex:violation1 a      sh:ValidationResult, prov:Entity ;
+ex:violation a      sh:ValidationResult, prov:Entity ;
               sh:focusNode []  ;
               sh:resultMessage "rr:termType on predicate map should be rr:IRI." ;
               sh:resultPath rr:termType ;
@@ -95,22 +108,13 @@ ex:violation1 a      sh:ValidationResult, prov:Entity ;
               sh:value rr:Literal
 .
 
-# Calculating confidence score for refinement 1.
-ex:confidenceScore1
+# Calculating confidence score for refinement .
+ex:confidenceScore
     a dqv:QualityMeasurement , prov:Entity;
     prov:wasAttributedTo ex:SHACLengine;
-    dqv:computedOn ex:mapDoc1, ex:refinement1;
+    dqv:computedOn ex:mapDoc, ex:refinement;
     dqv:isMeasurementOf ex:confidenceScoreMetric ;
     dqv:value "0.8"^^xsd:double
-.
-
-# Calculating confidence score for refinement 2.
-ex:confidenceScore2
-    a dqv:QualityMeasurement, prov:Entity ;
-    prov:wasAttributedTo ex:SHACLengine;
-    dqv:computedOn ex:mapDoc1, ex:refinement2;
-    dqv:isMeasurementOf ex:confidenceScoreMetric ;
-    dqv:value "0.6"^^xsd:double
 .
 
 # The metric used to calculate the confidence score.
@@ -121,32 +125,20 @@ ex:confidenceScoreMetric
 .
 
 # The suggested refinements.
-ex:refinement1  a prov:Activity;
-                prov:used ex:mapDoc, ex:violation1, ex:SPARQLquery1;
-                prov:wasInfluencedBy ex:confidenceScore1
+ex:refinement  a prov:Activity;
+                prov:used ex:mapDoc, ex:violation, ex:SPARQLquery;
+                prov:wasInfluencedBy ex:confidenceScore
 .
 
 # The location of theex:SPARQLquery1;
-ex:SPARQLquery1 a prov:Entity;
+ex:SPARQLquery a prov:Entity;
                 prov:atLocation <file://Users/query1.rq>;
 .
 
 <file://Users/query1.rq> a prov:Location .
 
-
-ex:refinement2 a prov:Activity;
-               prov:used ex:mapDoc, ex:violation1, ex:SPARQLquery2;
-               prov:wasInfluencedBy ex:confidenceScore2
-.
-
-ex:SPARQLquery2 a prov:Entity;
-                prov:atLocation <file://Users/query2.rq>;
-.
-
-<file://Users/query2.rq> a prov:Location .
-
-ex:refinedMapDoc1 a prov:Entity;
-                  prov:wasGeneratedBy ex:refinement1 ;
+ex:refinedMapDoc a prov:Entity;
+                  prov:wasGeneratedBy ex:refinement ;
                   prov:wasDerivedFrom ex:mapDoc;
                   prov:atLocation <file://Users/refinedMapping.ttl>
 .

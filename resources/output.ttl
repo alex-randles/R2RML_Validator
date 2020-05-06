@@ -1,5 +1,5 @@
-@prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix testd: <http://www.txample.com/people/data/> .
+@prefix rr:    <http://www.w3.org/ns/r2rml#> .
 @prefix dbo:   <http://dbpedia.org/ontology/> .
 @prefix ex:    <http://www.txample.com/people/voc/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -19,24 +19,107 @@
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "rr:predicate should be a IRI" ;
+                    "No human-readable license detected. " ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#HumanLicenseShaoe> ;
+            <http://www.w3.org/ns/shacl#value>
+                    dbo:
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Language tag not defined in RFC 5646 Language Tags." ;
             <http://www.w3.org/ns/shacl#resultPath>
-                    rr:predicate ;
+                    rr:language ;
             <http://www.w3.org/ns/shacl#resultSeverity>
                     <http://www.w3.org/ns/shacl#Violation> ;
             <http://www.w3.org/ns/shacl#sourceConstraintComponent>
-                    <http://www.w3.org/ns/shacl#NodeKindConstraintComponent> ;
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
             <http://www.w3.org/ns/shacl#sourceShape>
-                    []  ;
+                    rr:ValidLanguageTagShapeProperty ;
             <http://www.w3.org/ns/shacl#value>
-                    "ddhdhdddgdgggggggggggggggggggggggggggggggggggggggggggggg"
+                    "hshshs"
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b2 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Unable to derference URI." ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#AccessibilityShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    "ddddddddddddddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b2 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Usage of Undefined class or property" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraint>
+                    []  ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#JSConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#UndefinedShape> ;
+            <http://www.w3.org/ns/shacl#value>
+                    "ddddddddddddddhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "Data type and language tag defined in same term map" ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#XoneConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#DataTypeShapeProperty> ;
+            <http://www.w3.org/ns/shacl#value>
+                    _:b1
+          ] ;
+  <http://www.w3.org/ns/shacl#result>
+          [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
+            <http://www.w3.org/ns/shacl#focusNode>
+                    _:b1 ;
+            <http://www.w3.org/ns/shacl#resultMessage>
+                    "rr:termType on object map should be rr:IRI or rr:BlankNode or rr:Literal." ;
+            <http://www.w3.org/ns/shacl#resultPath>
+                    rr:termType ;
+            <http://www.w3.org/ns/shacl#resultSeverity>
+                    <http://www.w3.org/ns/shacl#Violation> ;
+            <http://www.w3.org/ns/shacl#sourceConstraintComponent>
+                    <http://www.w3.org/ns/shacl#InConstraintComponent> ;
+            <http://www.w3.org/ns/shacl#sourceShape>
+                    <http://example.com/ns#ObjectMapShapeProperty> ;
+            <http://www.w3.org/ns/shacl#value>
+                    "dndhd"
           ] ;
   <http://www.w3.org/ns/shacl#result>
           [ a       <http://www.w3.org/ns/shacl#ValidationResult> ;
             <http://www.w3.org/ns/shacl#focusNode>
                     _:b0 ;
             <http://www.w3.org/ns/shacl#resultMessage>
-                    "rr:termType on predicate map should be rr:IRI." ;
+                    "rr:termType for the subject map should be rr:IRI or rr:BlankNode." ;
             <http://www.w3.org/ns/shacl#resultPath>
                     rr:termType ;
             <http://www.w3.org/ns/shacl#resultSeverity>
@@ -46,6 +129,6 @@
             <http://www.w3.org/ns/shacl#sourceShape>
                     []  ;
             <http://www.w3.org/ns/shacl#value>
-                    "dhdhd"
+                    rr:Literal
           ]
 ] .
